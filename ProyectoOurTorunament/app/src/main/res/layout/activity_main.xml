@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#424247"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo"
+            android:layout_marginRight="60dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="OUR TOURNAMENT"
+            android:textColor="#B8B8BD"
+
+            android:textSize="30sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- FOOTER -->
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#424247"
+        android:textColor="#B8B8BD"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/Fixture"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#00FFFFFF"
+            android:textColor="#B8B8BD"
+            android:textSize="12dp"
+            android:onClick="IrAFixture"
+            android:text="Fixture" />
+        <Button
+            android:id="@+id/TablaGoleadores"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#00FFFFFF"
+            android:textColor="#B8B8BD"
+            android:textSize="12dp"
+            android:text="goleadores"
+            android:onClick="IrAFixture"/>
+
+        <Button
+            android:id="@+id/Inicio"
+            android:layout_width="105dp"
+            android:layout_height="70dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#00FFFFFF"
+            android:onClick="IrAFixture"
+            android:textSize="20dp"
+            android:text="Inicio" />
+        <Button
+            android:id="@+id/TablaDePosiciones"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#00FFFFFF"
+            android:textColor="#B8B8BD"
+            android:textSize="12dp"
+            android:text="Posiciones"
+            android:onClick="IrAFixture"/>
+        <Button
+            android:id="@+id/Administracion"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:backgroundTint="#00FFFFFF"
+            android:textColor="#B8B8BD"
+            android:textSize="12dp"
+            android:text="Administracion"
+            android:onClick="IrAFixture"/>
+
+    </LinearLayout>
+
+    <!-- ESPACIO DE TRABAJO -->
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:background="#000"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio"
+            android:textColor="#FFF"
+            android:textSize="50dp" />
+    </RelativeLayout>
+
+</RelativeLayout>
