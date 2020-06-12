@@ -22,6 +22,7 @@ public class Fixture extends AppCompatActivity {
     FragmentTransaction TransaccionesDeFragment;
 
     ArrayList<String> Jornadas;
+    //que pasa gluk aguante boka
     Spinner LasJornadas;
     ArrayAdapter<String> Adaptador;
 
