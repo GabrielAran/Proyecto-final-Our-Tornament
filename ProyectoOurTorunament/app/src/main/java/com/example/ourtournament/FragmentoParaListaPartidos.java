@@ -25,8 +25,8 @@ public class FragmentoParaListaPartidos extends Fragment
 
         ListView = VistaADevolver.findViewById(R.id.ListaPartidos);
 
-        Fixture act;
-        act = (Fixture) getActivity();
+        MainActivity act;
+        act = (MainActivity) getActivity();
 
         ListaEquipos1 = act.getEquipos1();
         ListaEquipos2 = act.getEquipos2();
@@ -40,8 +40,8 @@ public class FragmentoParaListaPartidos extends Fragment
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Fixture act;
-                act = (Fixture) getActivity();
+                MainActivity act;
+                act = (MainActivity) getActivity();
 
                 act.PartidoSeleccionado(ListaEquipos1.get(i),ListaEquipos2.get(i));
             }

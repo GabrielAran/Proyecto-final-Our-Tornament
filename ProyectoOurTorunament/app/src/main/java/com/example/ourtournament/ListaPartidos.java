@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class ListaPartidos extends BaseAdapter
 {
-
     private ArrayList<String> _MilistaDeEquipos1;
     private ArrayList<String> _MilistaDeEquipos2;
     private Context _Contexto;

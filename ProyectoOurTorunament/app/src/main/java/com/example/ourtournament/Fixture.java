@@ -1,5 +1,6 @@
 package com.example.ourtournament;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ourtournament.ListaPartidos;
@@ -8,7 +9,10 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,7 +21,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class Fixture extends AppCompatActivity {
+public class Fixture extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
@@ -31,54 +35,26 @@ public class Fixture extends AppCompatActivity {
     String Jornada;
     Button Fixture;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fixture);
-        Fixture = findViewById(R.id.Fixture);
+    public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
+        Log.d("conexion", "entre");
+        View VistaADevolver;
+        VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
+        Fixture = VistaADevolver.findViewById(R.id.Fixture);
         AdminFragments=getFragmentManager();
 
-        Jornadas = new ArrayList<>();
-        LasJornadas = findViewById(R.id.Jornadas);
-        Adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Jornadas);
-        Jornadas.add("Jornada 1");
-        Jornadas.add("Jornada 2");
-        Jornadas.add("Jornada 3");
-        Jornadas.add("Jornada 4");
-        Jornadas.add("Jornada 5");
-        Jornadas.add("Jornada 6");
+        Jornadas = new ArrayList<String>();
+        MainActivity Principal;
+        Principal = (MainActivity) getActivity();
+        Jornadas = Principal.getJornadas();
+        LasJornadas = VistaADevolver.findViewById(R.id.Jornadas);
+        Adaptador = Principal.getAdaptador();
         LasJornadas.setAdapter(Adaptador);
 
-        Equipo1 = new ArrayList<>();
-        Equipo1.add("San Lorenzo");
-        Equipo1.add("Boca Juniors");
-        Equipo1.add("River Plate");
-        Equipo1.add("Independiente");
-        Equipo1.add("Racing");
-
-
-        Equipo2 = new ArrayList<>();
-        Equipo2.add("San Lorenzo");
-        Equipo2.add("Boca Juniors");
-        Equipo2.add("River Plate");
-        Equipo2.add("Independiente");
-        Equipo2.add("Racing");
-
         MostrarListaPartidos();
+
+        return VistaADevolver;
     }
 
-
-    public void PartidoSeleccionado(String Equipo1,String Equipo2)
-    {
-        Jornada = LasJornadas.getSelectedItem().toString();
-        Intent LLamada;
-        LLamada = new Intent(this,Partido.class);
-        Bundle paquete = new Bundle();
-        paquete.putString("Jornada", Jornada);
-        paquete.putString("Equipo1", Equipo1);
-        paquete.putString("Equipo2", Equipo2);
-        LLamada.putExtras(paquete);
-        startActivity(LLamada);
-    }
 
     public void MostrarListaPartidos()
     {
@@ -87,6 +63,4 @@ public class Fixture extends AppCompatActivity {
         TransaccionesDeFragment.replace(R.id.Frame, lista);
         TransaccionesDeFragment.commit();
     }
-    public ArrayList<String> getEquipos1() {return Equipo1;}
-    public ArrayList<String> getEquipos2() {return Equipo2;}
 }
