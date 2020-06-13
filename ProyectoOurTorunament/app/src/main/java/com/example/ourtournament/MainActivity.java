@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void CargarFixture()
     {
-        Adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Jornadas);
+        Adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Jornadas);
         Jornadas = new ArrayList<>();
         Jornadas.add("Jornada 1");
         Jornadas.add("Jornada 2");
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void PartidoSeleccionado(String Equipo1,String Equipo2)
     {
-        Jornada = LasJornadas.getSelectedItem().toString();
+
         Intent LLamada;
         LLamada = new Intent(this,Partido.class);
         Bundle paquete = new Bundle();
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getEquipos2() {return Equipo2;}
     public void IrAFixture(View vista)
     {
-        FragmentoParaListaPartidos lista = new FragmentoParaListaPartidos();
+        Fixture lista = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame, lista);
         TransaccionesDeFragment.commit();

@@ -20,12 +20,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Fixture extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
-    ArrayList<String> Jornadas;
+    Spinner Jornadas;
     Spinner LasJornadas;
     ArrayAdapter<String> Adaptador;
 
@@ -34,27 +35,61 @@ public class Fixture extends Fragment {
 
     String Jornada;
     Button Fixture;
+    private Object AdapterView;
+
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         Log.d("conexion", "entre");
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
-        Fixture = VistaADevolver.findViewById(R.id.Fixture);
         AdminFragments=getFragmentManager();
-
-        Jornadas = new ArrayList<String>();
         MainActivity Principal;
         Principal = (MainActivity) getActivity();
+
+        Jornadas = (Spinner) VistaADevolver.findViewById(R.id.Jornadas);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("RANJITH");
+        list.add("ARUN");
+        list.add("JEESMON");
+        list.add("NISAM");
+        list.add("SREEJITH");
+        list.add("SANJAY");
+        list.add("AKSHY");
+        list.add("FIROZ");
+        list.add("RAHUL");
+        list.add("ARJUN");
+        list.add("SAVIYO");
+        list.add("VISHNU");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(android.R.layout.simple_spinner_item, Jornadas);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Jornadas.setAdapter(adapter);
+        Jornadas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        /*
+        Jornadas = VistaADevolver.findViewById(R.layout.Jornadas);
+
         Jornadas = Principal.getJornadas();
         LasJornadas = VistaADevolver.findViewById(R.id.Jornadas);
         Adaptador = Principal.getAdaptador();
         LasJornadas.setAdapter(Adaptador);
 
+         */
         MostrarListaPartidos();
 
         return VistaADevolver;
     }
-
 
     public void MostrarListaPartidos()
     {
