@@ -54,7 +54,7 @@
             android:onClick="IrAFixture"
             android:text="Fixture" />
         <Button
-            android:id="@+id/TablaGoleadores"
+            android:id="@+id/TablaDeGoleadores"
             android:layout_width="80dp"
             android:layout_height="70dp"
             android:backgroundTint="#00FFFFFF"

@@ -9,7 +9,7 @@
         android:layout_above="@id/footer"
         android:layout_below="@id/header"
         android:gravity="center_horizontal"
-        android:background="#31E698">
+        android:background="#000">
 
 
         <Spinner
@@ -19,17 +19,10 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/spinner"
             android:spinnerMode="dropdown"/>
-        <Spinner
 
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="#B8B8BD"
-            android:backgroundTint="#B8B8BD"
-            android:spinnerMode="dialog" />
 
         <FrameLayout
-            android:id="@+id/Frame"
+            android:id="@+id/FragmentoListaPartidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#B8B8BD"
@@ -38,7 +31,7 @@
             android:id="@+id/Fecha"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="07/8/2020"
+            android:text=""
             android:textSize="20dp"
             android:textColor="#FFFF"
             tools:ignore="HardcodedText,SpUsage" />

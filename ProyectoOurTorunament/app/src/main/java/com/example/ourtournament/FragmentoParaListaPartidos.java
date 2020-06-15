@@ -12,6 +12,7 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.PropertyResourceBundle;
 
 public class FragmentoParaListaPartidos extends Fragment
 {
@@ -25,14 +26,13 @@ public class FragmentoParaListaPartidos extends Fragment
 
         ListView = VistaADevolver.findViewById(R.id.ListaPartidos);
 
-        MainActivity act;
-        act = (MainActivity) getActivity();
+        MainActivity Principal = (MainActivity) getActivity();
 
-        ListaEquipos1 = act.getEquipos1();
-        ListaEquipos2 = act.getEquipos2();
+        ListaEquipos1 = Principal.getListaEquipos1();
+        ListaEquipos2 = Principal.getListaEquipos2();
 
         ListaPartidos Adaptador;
-        Adaptador = new ListaPartidos(ListaEquipos1,ListaEquipos2,act);
+        Adaptador = new ListaPartidos(ListaEquipos1,ListaEquipos2, Principal);
 
         ListView.setAdapter(Adaptador);
 
@@ -43,7 +43,7 @@ public class FragmentoParaListaPartidos extends Fragment
                 MainActivity act;
                 act = (MainActivity) getActivity();
 
-                act.PartidoSeleccionado(ListaEquipos1.get(i),ListaEquipos2.get(i));
+                act.PartidoSeleccionado(i);
             }
         });
 

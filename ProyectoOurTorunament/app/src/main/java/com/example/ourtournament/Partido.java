@@ -1,17 +1,22 @@
 package com.example.ourtournament;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
-public class Partido extends AppCompatActivity {
+public class Partido extends Fragment {
     TextView Jorn,E1,E2;
 
     ArrayList<String> Goles1;
@@ -21,41 +26,43 @@ public class Partido extends AppCompatActivity {
     ArrayList<String> Goles2;
     ListView LosGoles2;
     ArrayAdapter<String> Adaptador2;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.un_partido);
 
-        Jorn = findViewById(R.id.Jornada);
-        E1 = findViewById(R.id.Equipo1);
-        E2 = findViewById(R.id.Equipo2);
+    MainActivity Principal = (MainActivity) getActivity();
+    protected View onCreate(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
+        View VistaADevolver;
+        VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
 
-        Bundle Paquete = this.getIntent().getExtras();
-        String Jornada = Paquete.getString("Jornada");
-        String Equipo1 = Paquete.getString("Equipo1");
-        String Equipo2 = Paquete.getString("Equipo2");
+        Jorn = VistaADevolver.findViewById(R.id.Jornada);
+        E1 = VistaADevolver.findViewById(R.id.Equipo1);
+        E2 = VistaADevolver.findViewById(R.id.Equipo2);
+
+
+        String Jornada = Principal.GetJornadaElegida();
+        String Equipo1 = Principal.GetEquipoElegido1();
+        String Equipo2 = Principal.GetEquipoElegido2();
 
         Jorn.setText(Jornada);
         E1.setText(Equipo1);
         E2.setText(Equipo2);
 
         Goles1 = new ArrayList<>();
-        LosGoles1 = findViewById(R.id.ListaGolesE1);
-        Adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Goles1);
+        LosGoles1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
+        Adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles1);
         Goles1.add("No hay goles aun");
         LosGoles1.setAdapter(Adaptador);
 
         Goles2 = new ArrayList<>();
-        LosGoles2 = findViewById(R.id.ListaGolesE2);
-        Adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Goles2);
+        LosGoles2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
+        Adaptador2 = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles2);
         Goles2.add("No hay goles aun");
         LosGoles2.setAdapter(Adaptador2);
+
+        return VistaADevolver;
     }
 
-    public void Volver(View vista)
+    public void Volver()
     {
-        Intent LLamada;
-        LLamada = new Intent(this,Fixture.class);
-        startActivity(LLamada);
+        Principal.Volver();
     }
+
 }
