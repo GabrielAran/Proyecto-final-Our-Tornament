@@ -1,9 +1,12 @@
 package com.example.ourtournament;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         BTNFixture = findViewById(R.id.Fixture);
         BTNTablaDePosiciones = findViewById(R.id.TablaDePosiciones);
         BTNInicio = findViewById(R.id.Inicio);
-        BTNTablaDeGoleadores = findViewById(R.id.TablaGoleadores);
+        BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
     }
     //Fixture
@@ -89,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getListaEquipos1() {return ListaEquipos1;}
     public ArrayList<String> getListaEquipos2() {return ListaEquipos2;}
     public void Volver(){
+        BTNFixture.setTextSize(20);
+        BTNFixture.setWidth(105);
+        BTNInicio.setTextSize(12);
+        BTNInicio.setWidth(80);
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
@@ -96,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void IrAFixture(View vista)
     {
-
+        BTNFixture.setTextSize(16);
+        BTNInicio.setTextSize(10);
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);

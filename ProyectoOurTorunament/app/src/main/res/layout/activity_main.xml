@@ -50,46 +50,51 @@
             android:layout_height="70dp"
             android:backgroundTint="#00FFFFFF"
             android:textColor="#B8B8BD"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:onClick="IrAFixture"
-            android:text="Fixture" />
+            android:text="Fixture"
+            android:background="@drawable/ic_launcher_background"/>
         <Button
             android:id="@+id/TablaDeGoleadores"
             android:layout_width="80dp"
             android:layout_height="70dp"
             android:backgroundTint="#00FFFFFF"
             android:textColor="#B8B8BD"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:text="goleadores"
-            android:onClick="IrAFixture"/>
+            android:onClick="IrAFixture"
+            android:background="@drawable/ic_launcher_background"/>
 
         <Button
             android:id="@+id/Inicio"
-            android:layout_width="105dp"
+            android:layout_width="80dp"
             android:layout_height="70dp"
             android:textColor="#FFFFFF"
             android:backgroundTint="#00FFFFFF"
             android:onClick="IrAFixture"
-            android:textSize="20dp"
-            android:text="Inicio" />
+            android:textSize="16dp"
+            android:text="Inicio"
+            android:background="@drawable/ic_launcher_background"/>
         <Button
             android:id="@+id/TablaDePosiciones"
             android:layout_width="80dp"
             android:layout_height="70dp"
             android:backgroundTint="#00FFFFFF"
+            android:background="@drawable/ic_launcher_background"
             android:textColor="#B8B8BD"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:text="Posiciones"
             android:onClick="IrAFixture"/>
         <Button
             android:id="@+id/Administracion"
-            android:layout_width="80dp"
+            android:layout_width="83dp"
             android:layout_height="70dp"
             android:backgroundTint="#00FFFFFF"
             android:textColor="#B8B8BD"
-            android:textSize="12dp"
+            android:textSize="10dp"
             android:text="Administracion"
-            android:onClick="IrAFixture"/>
+            android:onClick="IrAFixture"
+            android:background="@drawable/ic_launcher_background"/>
 
     </LinearLayout>
 
