@@ -21,7 +21,7 @@ public class Inicio extends Fragment {
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
         View VistaADevolver;
-        VistaADevolver = inflador.inflate(R.layout.in, GrupoDeLaVista, false);
+        VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
 
         return VistaADevolver;
     }

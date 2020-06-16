@@ -123,9 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrAFixture(View vista)
     {
-        BTNFixture.setTextSize(16);
         BTNFixture.setTextColor(Color.argb(255,255,255,255));
-        BTNInicio.setTextSize(10);
         BTNInicio.setTextColor(Color.argb(255,0,0,0));
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
