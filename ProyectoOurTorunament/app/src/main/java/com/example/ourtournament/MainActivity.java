@@ -7,7 +7,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         ListaJornadas.add("Jornada 3");
         ListaJornadas.add("Jornada 4");
         ListaJornadas.add("Jornada 5");
-        ListaJornadas.add("Jornada 6");
 
         ListaEquipos1 = new ArrayList<>();
         ListaEquipos1.add("San Lorenzo");
@@ -83,8 +84,17 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.replace(R.id.Frame,partido);
         TransaccionesDeFragment.commit();
     }
-    public void SetJornada(int i){JornadaElegida = ListaJornadas.get(i);}
-    public String GetJornadaElegida(){return JornadaElegida;}
+    public void SetJornadaElegida(int i)
+    {
+        Log.d("conexion", JornadaElegida + "va a ser " +ListaJornadas.get(i));
+        JornadaElegida = ListaJornadas.get(i);
+
+    }
+    public String GetJornadaElegida()
+    {
+        Log.d("conexion", "devuelvo "+JornadaElegida);
+        return JornadaElegida;
+    }
     public String GetEquipoElegido1(){return EquipoElegido1;}
     public String GetEquipoElegido2(){return EquipoElegido2;}
     
@@ -93,18 +103,21 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getListaEquipos2() {return ListaEquipos2;}
     public void Volver(){
         BTNFixture.setTextSize(20);
-        BTNFixture.setWidth(105);
+        BTNFixture.setTextColor(Color.argb(255,255,255,255));
         BTNInicio.setTextSize(12);
-        BTNInicio.setWidth(80);
+        BTNInicio.setTextColor(Color.argb(255,0,0,0));
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
     }
+
     public void IrAFixture(View vista)
     {
         BTNFixture.setTextSize(16);
+        BTNFixture.setTextColor(Color.argb(255,255,255,255));
         BTNInicio.setTextSize(10);
+        BTNInicio.setTextColor(Color.argb(255,0,0,0));
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);

@@ -1,7 +1,6 @@
 package com.example.ourtournament;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -27,10 +24,13 @@ public class Partido extends Fragment {
     ListView LosGoles2;
     ArrayAdapter<String> Adaptador2;
 
-    MainActivity Principal = (MainActivity) getActivity();
-    protected View onCreate(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
+
+    @Override
+    public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
+
+        MainActivity Principal = (MainActivity) getActivity();
 
         Jorn = VistaADevolver.findViewById(R.id.Jornada);
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
@@ -59,9 +59,9 @@ public class Partido extends Fragment {
 
         return VistaADevolver;
     }
-
-    public void Volver()
+    public void VolverAFixture(View vista)
     {
+        MainActivity Principal = (MainActivity) getActivity();
         Principal.Volver();
     }
 

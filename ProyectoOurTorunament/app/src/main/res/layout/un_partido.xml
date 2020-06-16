@@ -4,37 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31E698">
-
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:background="#424247"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="10dp">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="60dp"
-            android:src="@drawable/logo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:text="OUR TOURNAMENT"
-            android:textColor="#B8B8BD"
-            android:textSize="30sp" />
-    </LinearLayout>
+    android:background="#212423">
 
     <Button
         android:id="@+id/Volver"
@@ -42,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="320dp"
         android:textColor="#000000"
-        android:onClick="Volver"
+        android:onClick="VolverAFixture"
         android:text="Volver"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintTop_toBottomOf="@id/header"
@@ -53,10 +23,21 @@
         android:id="@+id/Jornada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="0dp"
         android:text="jornada"
         android:textColor="#FFF"
         android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+    <TextView
+        android:id="@+id/Fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="320dp"
+        android:text="20/05/20"
+        android:textColor="#FFF"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header" />
@@ -100,6 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="220dp"
+        android:gravity="left"
         android:text="Equipo 2"
         android:textSize="25dp"
         android:textColor="#FFFFFF"

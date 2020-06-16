@@ -46,7 +46,7 @@ public class Fixture extends Fragment {
                 {
                     MostrarListaPartidos();
                     Fecha.setText("07/8/2020");
-                    Principal.SetJornada(i);
+                    Principal.SetJornadaElegida(i);
                 }
 
             }
