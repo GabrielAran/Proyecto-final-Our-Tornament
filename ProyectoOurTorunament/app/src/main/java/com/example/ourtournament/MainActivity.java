@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AdminFragments=getFragmentManager();
         CargarGeneral();
+        CargarInicio();
         CargarFixture();
     }
 
@@ -48,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio = findViewById(R.id.Inicio);
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
+    }
+    //Inicio
+    public void CargarInicio()
+    {
+        Inicio inicio = new Inicio();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,inicio);
+        TransaccionesDeFragment.commit();
     }
     //Fixture
     public void CargarFixture()

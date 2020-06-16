@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#3CBC80"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/logo"
+            android:layout_marginRight="60dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="OUR TOURNAMENT"
+            android:textColor="#000"
+
+            android:textSize="30sp"
+            android:gravity="center"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/content"
+        android:background="#212423"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/header"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/texto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="inicio"
+            android:textColor="#FFFF"
+            android:textSize="30dp"
+            android:gravity="center"/>
+    </RelativeLayout>
+
+</RelativeLayout>
