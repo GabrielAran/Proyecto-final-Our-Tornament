@@ -23,6 +23,7 @@ public class Inicio extends Fragment {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
 
+
         return VistaADevolver;
     }
 }

@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="#3CBC80"
+        android:background="#000"
         android:gravity="center" >
 
         <Spinner
@@ -36,7 +36,7 @@
             android:layout_marginRight="0dp"
             android:text="Seleccione una jornada"
             android:textSize="20dp"
-            android:textColor="#000000"
+            android:textColor="#FFF"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
     <LinearLayout

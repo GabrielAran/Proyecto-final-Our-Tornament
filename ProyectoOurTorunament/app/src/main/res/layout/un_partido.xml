@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="0dp"
-        android:background="#3CBC80"
+        android:background="#000"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@android:id/title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,15 +26,15 @@
             android:onClick="VolverAFixture"
             android:text="Volver"
             android:layout_marginRight="70dp"
-            android:backgroundTint="#FFFFFF" />
+            android:backgroundTint="#3CBC80" />
 
         <TextView
             android:id="@+id/Jornada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="jornada"
-            android:textColor="#000"
-            android:textSize="30dp"
+            android:textColor="#FFF"
+            android:textSize="35dp"
             android:layout_marginRight="70dp"/>
         <TextView
             android:id="@+id/Fecha"
