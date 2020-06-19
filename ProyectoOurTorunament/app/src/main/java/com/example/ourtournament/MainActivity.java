@@ -147,8 +147,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrAFixture(View vista)
     {
-        BTNFixture.setTextColor(Color.argb(255,255,255,255));
-        BTNInicio.setTextColor(Color.argb(255,0,0,0));
+        BTNFixture.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
@@ -157,11 +160,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrATablaGoleadores(View vista)
     {
-        BTNFixture.setTextColor(Color.argb(255,255,255,255));
-        BTNInicio.setTextColor(Color.argb(255,0,0,0));
+        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
         TablaDeGoleadores TablaGol = new TablaDeGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,TablaGol);
         TransaccionesDeFragment.commit();
+    }
+
+    public void IrAInicio(View vista) {
+        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+    }
+    public void IrATablaPosiciones(View vista) {
+        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+    }
+    public void IrAAdministracion(View vista) {
+        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio_verde);
     }
 }

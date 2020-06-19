@@ -44,9 +44,9 @@ public class Fixture extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0)
                 {
+                    Principal.SetJornadaElegida(i);
                     MostrarListaPartidos();
                     Fecha.setText("07/8/2020");
-                    Principal.SetJornadaElegida(i);
                 }
 
             }

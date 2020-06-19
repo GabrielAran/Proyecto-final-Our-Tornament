@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:background="#000"
         android:textColor="#3CBC80"
@@ -15,46 +15,39 @@
 
         <Button
             android:id="@+id/Fixture"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:backgroundTint="#00FFFFFF"
-            android:textColor="#FFF"
-            android:textSize="14dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="IrAFixture"
-            android:text="Fixture"
-            android:background="@drawable/ic_launcher_background"/>
+            android:background="@drawable/icono_inicio"/>
 
-
+        <Button
+            android:id="@+id/TablaDeGoleadores"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:onClick="IrATablaGoleadores"
+            android:background="@drawable/icono_inicio"/>
         <Button
             android:id="@+id/Inicio"
-            android:layout_width="85dp"
-            android:layout_height="70dp"
-            android:textColor="#3CBC80"
-            android:backgroundTint="#00FFFFFF"
-            android:onClick="IrAFixture"
-            android:textSize="25dp"
-            android:text="Inicio"
-            android:background="@drawable/ic_launcher_background"/>
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:onClick="IrAInicio"
+            android:background="@drawable/icono_inicio_verde"/>
         <Button
             android:id="@+id/TablaDePosiciones"
-            android:layout_width="85dp"
-            android:layout_height="70dp"
-            android:backgroundTint="#00FFFFFF"
-            android:background="@drawable/ic_launcher_background"
-            android:textColor="#FFF"
-            android:textSize="14dp"
-            android:text="Posiciones"
-            android:onClick="IrAFixture"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:onClick="IrATablaPosiciones"
+            android:background="@drawable/icono_inicio"/>
         <Button
             android:id="@+id/Administracion"
-            android:layout_width="85dp"
-            android:layout_height="70dp"
-            android:backgroundTint="#00FFFFFF"
-            android:textColor="#FFF"
-            android:textSize="14dp"
-            android:text="Administracion"
-            android:onClick="IrAFixture"
-            android:background="@drawable/ic_launcher_background"/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:onClick="IrAAdministracion"
+            android:background="@drawable/icono_inicio"/>
 
     </LinearLayout>
 
