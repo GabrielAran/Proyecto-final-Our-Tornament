@@ -42,6 +42,25 @@ namespace OurTournamentAPI
             return UnTorneo;
         }
 
+        public Models.Partido TraerPartidosPorJornada(int IDJornada, int IDTorneo)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "SELECT * FROM Partidos where Partidos.Jornada = " + IDJornada+ "and Partidos.Torneo = "+IDTorneo;
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            Models.Torneo UnTorneo = new Models.Torneo();
+            while (Lector.Read())
+            {
+                int idtorneo = Convert.ToInt32(Lector["IDTorneo"]);
+                string nombretorneo = Lector["NombreTorneo"].ToString();
+                string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
+                string linkparaunirse = Lector["LinkParaUnirse"].ToString();
+                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse);
+            }
+            Desconectar(con);
+            return UnTorneo;
+        }
         /*
         public static List<Respuestas> TraerRespuestas()
         {

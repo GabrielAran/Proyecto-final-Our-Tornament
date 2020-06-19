@@ -10,7 +10,7 @@ namespace OurTournamentAPI.Controllers
     public class TorneosController : ApiController
     {
         [HttpGet]
-        [Route("api/Torneos/{id}")]
+        [Route("api/Torneos={id}")]
         public IHttpActionResult ObtenerTorneoPorID(int id)
         {
             Models.Torneo T = new Models.Torneo();
@@ -25,6 +25,24 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
             
+        }
+
+        [HttpGet]
+        [Route("api/Jornada={IDJornada}/Torneo={IDTorneo}")]
+        public IHttpActionResult ObtenerPartidosPorJornadas(int IDJornada, int IDTorneo)
+        {
+            Models.Partido P = new Models.Partido();
+            QQSM Conexion = new QQSM();
+            P = Conexion.TraerPartidosPorJornada(IDJornada,IDTorneo);
+            if (P != null)
+            {
+                return Ok(P);
+            }
+            else
+            {
+                return NotFound();
+            }
+
         }
     }
 }
