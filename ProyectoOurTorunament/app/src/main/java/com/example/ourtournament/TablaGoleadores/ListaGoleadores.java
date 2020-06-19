@@ -67,8 +67,7 @@ public class ListaGoleadores extends BaseAdapter
         int posj = pos + 1;
 
         ArrayList<String> ListaDeLaPosicionActual;
-
-
+        
         LayoutInflater MiInflador;
         MiInflador = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         VistaADevolver = MiInflador.inflate(R.layout.item_tabla_goleadores,GrupoActual,false);

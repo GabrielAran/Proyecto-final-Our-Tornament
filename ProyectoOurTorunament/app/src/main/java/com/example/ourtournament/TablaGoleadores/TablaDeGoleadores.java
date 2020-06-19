@@ -36,7 +36,7 @@ public class TablaDeGoleadores extends Fragment {
     private void LlamarFragment() {
         FragmentoParaListaGoleadores Goleadores = new FragmentoParaListaGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,Goleadores);
+        TransaccionesDeFragment.replace(R.id.FragmentoTablaGoleadores,Goleadores);
         TransaccionesDeFragment.commit();
     }
 }
