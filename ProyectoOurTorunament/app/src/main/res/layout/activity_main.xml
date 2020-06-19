@@ -17,7 +17,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:onClick="IrAFixture"
-            android:background="@drawable/Fixture"/>
+            android:background="@drawable/icono_fixture"/>
 
         <Button
             android:id="@+id/TablaDeGoleadores"
