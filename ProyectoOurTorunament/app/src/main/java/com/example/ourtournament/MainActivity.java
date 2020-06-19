@@ -1,18 +1,19 @@
 package com.example.ourtournament;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.res.ColorStateList;
-import android.content.res.XmlResourceParser;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+
+import com.example.ourtournament.Fixture.Fixture;
+import com.example.ourtournament.Fixture.Partido;
+import com.example.ourtournament.Inicio.Inicio;
+import com.example.ourtournament.TablaGoleadores.TablaDeGoleadores;
 
 import java.util.ArrayList;
 

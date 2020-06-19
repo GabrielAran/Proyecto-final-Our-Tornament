@@ -1,4 +1,4 @@
-package com.example.ourtournament;
+package com.example.ourtournament.Fixture;
 
 import androidx.annotation.Nullable;
 
@@ -14,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.R;
 
 import java.util.ArrayList;
 

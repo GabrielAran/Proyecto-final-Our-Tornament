@@ -11,7 +11,7 @@ namespace OurTournamentAPI
         private SqlConnection Conectar()
         {
 
-            string constring = "Server=.; DataBase=OurTorunament; Trusted_Connection = true;";
+            string constring = @"Server=LAPTOP-UAO80ANB\MSSQLSERVER01;Database=OurTorunament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;

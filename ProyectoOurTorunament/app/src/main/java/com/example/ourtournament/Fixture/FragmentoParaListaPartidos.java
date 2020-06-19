@@ -1,4 +1,4 @@
-package com.example.ourtournament;
+package com.example.ourtournament.Fixture;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,8 +11,10 @@ import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 
+import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.R;
+
 import java.util.ArrayList;
-import java.util.PropertyResourceBundle;
 
 public class FragmentoParaListaPartidos extends Fragment
 {

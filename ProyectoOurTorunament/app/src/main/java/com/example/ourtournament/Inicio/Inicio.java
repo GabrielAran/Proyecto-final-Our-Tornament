@@ -1,4 +1,4 @@
-package com.example.ourtournament;
+package com.example.ourtournament.Inicio;
 
 import androidx.annotation.Nullable;
 import android.app.Fragment;
@@ -14,14 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.ourtournament.R;
+
 import java.util.ArrayList;
 
-public class FragmentoParaListaGoleadores extends Fragment {
+public class Inicio extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
         View VistaADevolver;
-        VistaADevolver = inflador.inflate(R.layout.tabla_de_goleadores, GrupoDeLaVista, false);
+        VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
+
 
         return VistaADevolver;
     }

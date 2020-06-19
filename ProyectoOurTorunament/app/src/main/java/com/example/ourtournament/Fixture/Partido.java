@@ -1,4 +1,4 @@
-package com.example.ourtournament;
+package com.example.ourtournament.Fixture;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
+
+import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.R;
 
 import java.security.Principal;
 import java.util.ArrayList;
