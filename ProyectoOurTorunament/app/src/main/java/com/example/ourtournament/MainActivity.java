@@ -177,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+        Inicio incio = new Inicio();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,incio);
+        TransaccionesDeFragment.commit();
     }
     public void IrATablaPosiciones(View vista) {
         BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
