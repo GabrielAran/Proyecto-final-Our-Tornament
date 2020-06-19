@@ -111,10 +111,6 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getListaEquipos1() {return ListaEquipos1;}
     public ArrayList<String> getListaEquipos2() {return ListaEquipos2;}
     public void Volver(){
-        BTNFixture.setTextSize(25);
-        BTNFixture.setTextColor(Color.argb(255,255,255,255));
-        BTNInicio.setTextSize(14);
-        BTNInicio.setTextColor(Color.argb(255,0,0,0));
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
