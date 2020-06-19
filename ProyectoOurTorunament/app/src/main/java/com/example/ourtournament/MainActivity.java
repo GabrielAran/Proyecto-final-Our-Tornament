@@ -28,8 +28,11 @@ public class MainActivity extends AppCompatActivity {
     //fixture
     ArrayList<String> ListaJornadas;
     ArrayAdapter<String> Adaptador;
+    ArrayAdapter<String> Adaptador2;
     ArrayList<String> ListaEquipos1;
     ArrayList<String> ListaEquipos2;
+    ArrayList<String> ListaJugador;
+    ArrayList<String> ListaGoles;
     String JornadaElegida;
     String EquipoElegido1;
     String EquipoElegido2;
@@ -84,6 +87,31 @@ public class MainActivity extends AppCompatActivity {
         ListaEquipos2.add("Independiente");
         ListaEquipos2.add("Racing");
     }
+    public void CargarTabla()
+    {
+        Adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
+        ListaJugador = new ArrayList<>();
+        ListaJornadas.add(0,"Jornadas");
+        ListaJornadas.add("Bochini");
+        ListaJornadas.add("Maradona");
+        ListaJornadas.add("Pumpido");
+        ListaJornadas.add("Batistuta");
+        ListaJornadas.add("Messi");
+
+        ListaEquipos1 = new ArrayList<>();
+        ListaEquipos1.add("San Lorenzo");
+        ListaEquipos1.add("Boca Juniors");
+        ListaEquipos1.add("River Plate");
+        ListaEquipos1.add("Independiente");
+        ListaEquipos1.add("Racing");
+
+        ListaGoles = new ArrayList<>();
+        ListaEquipos2.add("3");
+        ListaEquipos2.add("10");
+        ListaEquipos2.add("18");
+        ListaEquipos2.add("8");
+        ListaEquipos2.add("6");
+    }
     public void PartidoSeleccionado(int i)
     {
         EquipoElegido1 = ListaEquipos1.get(i);
@@ -124,6 +152,16 @@ public class MainActivity extends AppCompatActivity {
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
+        TransaccionesDeFragment.commit();
+    }
+
+    public void IrATablaGoleadores(View vista)
+    {
+        BTNFixture.setTextColor(Color.argb(255,255,255,255));
+        BTNInicio.setTextColor(Color.argb(255,0,0,0));
+        TablaDeGoleadores TablaGol = new TablaDeGoleadores();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,TablaGol);
         TransaccionesDeFragment.commit();
     }
 }
