@@ -23,16 +23,7 @@
             android:onClick="IrAFixture"
             android:text="Fixture"
             android:background="@drawable/ic_launcher_background"/>
-        <Button
-            android:id="@+id/TablaDeGoleadores"
-            android:layout_width="90dp"
-            android:layout_height="70dp"
-            android:backgroundTint="#00FFFFFF"
-            android:textColor="#FFF"
-            android:textSize="14dp"
-            android:text="goleadores"
-            android:onClick="IrATablaGoleadores"
-            android:background="@drawable/ic_launcher_background"/>
+
 
         <Button
             android:id="@+id/Inicio"
