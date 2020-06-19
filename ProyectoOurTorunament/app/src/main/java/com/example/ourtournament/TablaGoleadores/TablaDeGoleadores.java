@@ -5,11 +5,16 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
+import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.R;
+
+import java.util.ArrayList;
 
 public class TablaDeGoleadores extends Fragment {
 
@@ -20,10 +25,10 @@ public class TablaDeGoleadores extends Fragment {
 
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.tabla_de_goleadores, GrupoDeLaVista, false);
-
         AdminFragments=getFragmentManager();
 
         LlamarFragment();
+        Log.d("conexion", "entre");
 
         return VistaADevolver;
     }

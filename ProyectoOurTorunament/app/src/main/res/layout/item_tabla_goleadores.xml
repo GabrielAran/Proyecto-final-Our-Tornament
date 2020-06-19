@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabla"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:stretchColumns="1">
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/pos1"
+            android:layout_width="20dp"
+            android:gravity="center"
+            android:padding="3dip"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/jug1"
+            android:layout_width="150dp"
+            android:background="#3CBC80"
+            android:padding="3dip"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/eqp1"
+            android:layout_width="160dp"
+            android:padding="3dip"
+            android:text="Equipo"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/Goles"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:background="#3CBC80"
+            android:gravity="center"
+            android:padding="3dip"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+    </TableRow>
+
+
+</TableLayout>

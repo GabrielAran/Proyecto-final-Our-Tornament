@@ -32,11 +32,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> Adaptador2;
     ArrayList<String> ListaEquipos1;
     ArrayList<String> ListaEquipos2;
-    ArrayList<String> ListaJugador;
-    ArrayList<String> ListaGoles;
     String JornadaElegida;
     String EquipoElegido1;
     String EquipoElegido2;
+
+    //Tabla de Goleadores
+    ArrayList<String> ListaJugador;
+    ArrayList<String> ListaGoles;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         CargarGeneral();
         CargarInicio();
         CargarFixture();
+        CargarTabla();
     }
 
     public void CargarGeneral()
@@ -88,31 +92,7 @@ public class MainActivity extends AppCompatActivity {
         ListaEquipos2.add("Independiente");
         ListaEquipos2.add("Racing");
     }
-    public void CargarTabla()
-    {
-        Adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
-        ListaJugador = new ArrayList<>();
-        ListaJornadas.add(0,"Jornadas");
-        ListaJornadas.add("Bochini");
-        ListaJornadas.add("Maradona");
-        ListaJornadas.add("Pumpido");
-        ListaJornadas.add("Batistuta");
-        ListaJornadas.add("Messi");
 
-        ListaEquipos1 = new ArrayList<>();
-        ListaEquipos1.add("San Lorenzo");
-        ListaEquipos1.add("Boca Juniors");
-        ListaEquipos1.add("River Plate");
-        ListaEquipos1.add("Independiente");
-        ListaEquipos1.add("Racing");
-
-        ListaGoles = new ArrayList<>();
-        ListaEquipos2.add("3");
-        ListaEquipos2.add("10");
-        ListaEquipos2.add("18");
-        ListaEquipos2.add("8");
-        ListaEquipos2.add("6");
-    }
     public void PartidoSeleccionado(int i)
     {
         EquipoElegido1 = ListaEquipos1.get(i);
@@ -122,23 +102,51 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.replace(R.id.Frame,partido);
         TransaccionesDeFragment.commit();
     }
+
     public void SetJornadaElegida(int i)
     {
         Log.d("conexion", JornadaElegida + "va a ser " +ListaJornadas.get(i));
         JornadaElegida = ListaJornadas.get(i);
 
     }
+
     public String GetJornadaElegida()
     {
         Log.d("conexion", "devuelvo "+JornadaElegida);
         return JornadaElegida;
     }
+
     public String GetEquipoElegido1(){return EquipoElegido1;}
     public String GetEquipoElegido2(){return EquipoElegido2;}
     
     public ArrayList<String> getListaJornadas() {return ListaJornadas;}
     public ArrayList<String> getListaEquipos1() {return ListaEquipos1;}
     public ArrayList<String> getListaEquipos2() {return ListaEquipos2;}
+
+    //Tabla de goleadores
+    public void CargarTabla()
+    {
+        Adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
+        ListaJugador = new ArrayList<>();
+        ListaJugador.add("Bochini");
+        ListaJugador.add("Maradona");
+        ListaJugador.add("Pumpido");
+        ListaJugador.add("Batistuta");
+        ListaJugador.add("Messi");
+
+        ListaGoles = new ArrayList<>();
+        ListaGoles.add("10");
+        ListaGoles.add("8");
+        ListaGoles.add("7");
+        ListaGoles.add("3");
+        ListaGoles.add("1");
+    }
+
+    public ArrayList<String> getListaJugador() {return ListaJugador;}
+    public ArrayList<String> getListaGoles() {return ListaGoles;}
+
+    //Funciones de Ir a...
+
     public void Volver(){
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
@@ -183,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.replace(R.id.Frame,incio);
         TransaccionesDeFragment.commit();
     }
+
     public void IrATablaPosiciones(View vista) {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
@@ -190,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
     }
+
     public void IrAAdministracion(View vista) {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
