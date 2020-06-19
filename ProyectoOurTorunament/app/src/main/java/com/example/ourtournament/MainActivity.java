@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrAFixture(View vista)
     {
-        BTNFixture.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrATablaGoleadores(View vista)
     {
-        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrAInicio(View vista) {
-        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
@@ -183,14 +183,14 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.commit();
     }
     public void IrATablaPosiciones(View vista) {
-        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
     }
     public void IrAAdministracion(View vista) {
-        BTNFixture.setBackgroundResource(R.drawable.icono_inicio);
+        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
