@@ -25,11 +25,11 @@
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrATablaGoleadores"
-            android:background="@drawable/icono_inicio"/>
+            android:background="@drawable/icono_tabla_goleadores"/>
         <Button
             android:id="@+id/Inicio"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrAInicio"
             android:background="@drawable/icono_inicio_verde"/>
@@ -39,14 +39,14 @@
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrATablaPosiciones"
-            android:background="@drawable/icono_inicio"/>
+            android:background="@drawable/icono_tabla_posiciones"/>
         <Button
             android:id="@+id/Administracion"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrAAdministracion"
-            android:background="@drawable/icono_inicio"/>
+            android:background="@drawable/icono_admin"/>
 
     </LinearLayout>
 

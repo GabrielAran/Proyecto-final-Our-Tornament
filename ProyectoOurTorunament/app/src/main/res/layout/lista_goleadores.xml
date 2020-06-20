@@ -5,6 +5,7 @@
 
     <ListView
         android:id="@+id/ListaDeGoleadores"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

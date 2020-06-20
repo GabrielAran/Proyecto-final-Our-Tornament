@@ -157,10 +157,10 @@ public class MainActivity extends AppCompatActivity {
     public void IrAFixture(View vista)
     {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
@@ -170,10 +170,10 @@ public class MainActivity extends AppCompatActivity {
     public void IrATablaGoleadores(View vista)
     {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
         TablaDeGoleadores TablaGol = new TablaDeGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,TablaGol);
@@ -182,10 +182,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrAInicio(View vista) {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
         Inicio incio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,incio);
@@ -194,17 +194,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrATablaPosiciones(View vista) {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio_verde);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
     }
 
     public void IrAAdministracion(View vista) {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_inicio);
+        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_inicio);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_inicio_verde);
+        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
     }
 }

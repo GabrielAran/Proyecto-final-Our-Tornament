@@ -34,8 +34,9 @@
 
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:orientation="horizontal">
 
         <TextView
@@ -43,7 +44,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:background="#3CBC80"
+            android:background="@drawable/celda_principal"
             android:text="P"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
@@ -51,27 +52,32 @@
         <TextView
             android:id="@+id/jug1"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:gravity="center"
+            android:padding="7dip"
             android:text="Jugador"
+            android:background="@drawable/celda_principal"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/eqp1"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:gravity="center"
+            android:padding="7dip"
             android:text="Equipo"
+            android:background="@drawable/celda_principal"
             android:textColor="@android:color/background_light"
             android:textSize="18sp"
             />
 
         <TextView
             android:id="@+id/Goles"
-            android:layout_width="35dp"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
             android:gravity="center"
+            android:background="@drawable/celda_principal"
             android:text="G"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
