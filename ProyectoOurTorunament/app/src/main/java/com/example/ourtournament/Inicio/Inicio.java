@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.R;
 
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 
 public class Inicio extends Fragment {
     Button Noticias,Buscar;
+    FragmentManager AdminFragments;
+    FragmentTransaction TransaccionesDeFragment;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
@@ -29,8 +32,26 @@ public class Inicio extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
+        AdminFragments=getFragmentManager();
 
-
+        Noticias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Noticias.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
+                Buscar.setBackgroundResource(R.drawable.secciones_inicio_neutro);
+                Noticias Noticia = new Noticias();
+                TransaccionesDeFragment=AdminFragments.beginTransaction();
+                TransaccionesDeFragment.replace(R.id.FrameInicio,Noticia);
+                TransaccionesDeFragment.commit();
+            }
+        });
+        Buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Noticias.setBackgroundResource(R.drawable.secciones_inicio_neutro);
+                Buscar.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
+            }
+        });
 
         return VistaADevolver;
     }

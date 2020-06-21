@@ -27,7 +27,7 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:text="OUR TOURNAMENT"
-            android:fontFamily="cursive"
+            android:fontFamily="sans-serif-smallcaps"
             android:textColor="#3CBC80"
             android:background="#000"
             android:textSize="30sp" />
@@ -48,29 +48,28 @@
             android:layout_below="@id/header"
             android:layout_marginTop="0dp"
             android:background="#212423"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
 
             <Button
                 android:id="@+id/Noticias"
                 android:layout_width="210dp"
                 android:layout_height="40dp"
                 android:layout_gravity="top"
-                android:background="@drawable/secciones_inicio"
+                android:background="@drawable/secciones_inicio_izquierda"
                 android:text="Noticias"
                 android:textColor="#FFF"
-                android:textSize="18dp"
-                android:onClick="IrANoticias"/>
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/Buscar"
                 android:layout_width="210dp"
                 android:layout_height="40dp"
                 android:layout_gravity="top"
-                android:background="@drawable/secciones_inicio_2"
+                android:background="@drawable/secciones_inicio_neutro"
                 android:text="Buscar"
                 android:textColor="#FFF"
-                android:textSize="18dp"
-                android:onClick="IrABuscar"/>
+                android:textSize="18dp"/>
         </LinearLayout>
 
         <FrameLayout

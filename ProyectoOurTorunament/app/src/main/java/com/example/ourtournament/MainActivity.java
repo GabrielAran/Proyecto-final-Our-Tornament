@@ -9,12 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.Partido;
 import com.example.ourtournament.Inicio.Inicio;
 import com.example.ourtournament.TablaGoleadores.TablaDeGoleadores;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +44,25 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> ListaJugador;
     ArrayList<String> ListaGoles;
 
+    //Inicio
+    public static class Noticia
+    {
+        public Noticia()
+        {
+             int IDNoticia;
+            String Torneo;
+            String Titulo;
+            String Descripcion;
+            Boolean Destacada;
+            ImageView Foto;
+            Date Fecha;
+        }
+
+        public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, ImageView foto, Date fecha) {
+        }
+    }
+    ArrayList<Noticia> ListaNoticias;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -63,6 +84,19 @@ public class MainActivity extends AppCompatActivity {
     //Inicio
     public void CargarInicio()
     {
+        int IDNoticia=1;
+        String Torneo = "Europa league";
+        String Titulo = "River le gana a boca";
+        String Descripcion = "el partido se llevo a cabo en una maniana calurosa donde river convertia 2 goles y boca 0";
+        Boolean Destacada = true;
+        ImageView Foto = null;
+        Date Fecha = new Date(2/2/2020);
+        Noticia UnaNoticia = new Noticia(IDNoticia,Torneo,Titulo,Descripcion,Destacada,Foto,Fecha);
+        ListaNoticias = new ArrayList<>();
+        ListaNoticias.add(UnaNoticia);
+        ListaNoticias.add(UnaNoticia);
+        ListaNoticias.add(UnaNoticia);
+
         Inicio inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
@@ -156,9 +190,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getListaJugador() {return ListaJugador;}
     public ArrayList<String> getListaGoles() {return ListaGoles;}
 
-    //Funciones de Ir a...
-
-
+    //Navegacion
 
     public void IrAFixture(View vista)
     {
@@ -214,4 +246,7 @@ public class MainActivity extends AppCompatActivity {
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
     }
+    //Inicio
+    public ArrayList<Noticia> getNoticias(){return ListaNoticias;}
+
 }

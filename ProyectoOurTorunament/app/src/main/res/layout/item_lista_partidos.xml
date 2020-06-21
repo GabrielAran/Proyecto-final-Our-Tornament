@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#3CBC80"
+    android:layout_height="55dp"
+    android:layout_marginTop="8dp"
+    android:background="#000"
     android:orientation="horizontal">
 
     <ImageView
@@ -18,40 +18,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Equipo1"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:text="Equipo 1"
-        android:textColor="#000"
-        android:textSize="20dp"
-        android:layout_marginRight="180dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:text="VS"
-        android:textColor="#000"
-        android:textSize="20dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <ImageView
         android:id="@+id/LogoEquipo2"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:src="@drawable/icono_equipo"
         android:layout_marginLeft="355dp"
+        android:src="@drawable/icono_equipo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:gravity="center"
+        android:text="VS"
+        android:textColor="#FFF"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Equipo1"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="180dp"
+        android:text="Equipo 1"
+        android:textColor="#FFF"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Equipo2"
@@ -60,7 +61,7 @@
         android:layout_marginLeft="180dp"
         android:gravity="right"
         android:text="Equipo 2"
-        android:textColor="#000"
+        android:textColor="#FFF"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

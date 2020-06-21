@@ -25,20 +25,21 @@ public class Fixture extends Fragment {
     FragmentTransaction TransaccionesDeFragment;
 
     private Spinner spinner;
-    TextView Fecha;
+    TextView Fecha,Seleccion;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
         Fecha = VistaADevolver.findViewById(R.id.Fecha);
+        Seleccion = VistaADevolver.findViewById(R.id.Seleccione);
+        spinner = VistaADevolver.findViewById(R.id.Jornadas);
         AdminFragments=getFragmentManager();
 
         final MainActivity Principal = (MainActivity) getActivity();
-
         final ArrayList<String> ListaJornadas = Principal.getListaJornadas();
 
-        spinner = VistaADevolver.findViewById(R.id.Jornadas);
+        Seleccion.setVisibility(View.VISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
         spinner.setAdapter(adapter);
         Log.d("conexion", "entre");
@@ -50,7 +51,7 @@ public class Fixture extends Fragment {
                     Fecha.setText("07/8/2020");
                     Principal.SetJornadaElegida(i);
                     MostrarListaPartidos();
-
+                    Seleccion.setVisibility(View.INVISIBLE);
                 }
 
             }
@@ -65,6 +66,7 @@ public class Fixture extends Fragment {
             TransaccionesDeFragment=AdminFragments.beginTransaction();
             TransaccionesDeFragment.replace(R.id.FragmentoListaPartidos, lista);
             TransaccionesDeFragment.commit();
+            Seleccion.setVisibility(View.INVISIBLE);
         }
         return VistaADevolver;
     }
