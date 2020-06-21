@@ -32,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> Adaptador2;
     ArrayList<String> ListaEquipos1;
     ArrayList<String> ListaEquipos2;
+    int IDJornadaElegida;
     String JornadaElegida;
     String EquipoElegido1;
     String EquipoElegido2;
+    boolean Volver= false;
 
     //Tabla de Goleadores
     ArrayList<String> ListaJugador;
@@ -107,8 +109,9 @@ public class MainActivity extends AppCompatActivity {
     {
         Log.d("conexion", JornadaElegida + "va a ser " +ListaJornadas.get(i));
         JornadaElegida = ListaJornadas.get(i);
-
+        IDJornadaElegida = i;
     }
+    public void SetVolverTrue(){Volver = true;}
 
     public String GetJornadaElegida()
     {
@@ -122,7 +125,15 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getListaJornadas() {return ListaJornadas;}
     public ArrayList<String> getListaEquipos1() {return ListaEquipos1;}
     public ArrayList<String> getListaEquipos2() {return ListaEquipos2;}
+    public boolean getVolver(){return Volver;};
 
+    public void Volver(){
+        Fixture fixture = new Fixture();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,fixture);
+        TransaccionesDeFragment.commit();
+        Volver = true;
+    }
     //Tabla de goleadores
     public void CargarTabla()
     {
@@ -147,12 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Funciones de Ir a...
 
-    public void Volver(){
-        Fixture fixture = new Fixture();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,fixture);
-        TransaccionesDeFragment.commit();
-    }
+
 
     public void IrAFixture(View vista)
     {
@@ -161,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+        Volver = false;
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);

@@ -47,9 +47,10 @@ public class Fixture extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0)
                 {
+                    Fecha.setText("07/8/2020");
                     Principal.SetJornadaElegida(i);
                     MostrarListaPartidos();
-                    Fecha.setText("07/8/2020");
+
                 }
 
             }
@@ -57,6 +58,14 @@ public class Fixture extends Fragment {
 
             }
         });
+        if (Principal.getVolver()==true)
+        {
+            Fecha.setText("07/8/2020");
+            FragmentoParaListaPartidos lista = new FragmentoParaListaPartidos();
+            TransaccionesDeFragment=AdminFragments.beginTransaction();
+            TransaccionesDeFragment.replace(R.id.FragmentoListaPartidos, lista);
+            TransaccionesDeFragment.commit();
+        }
         return VistaADevolver;
     }
 

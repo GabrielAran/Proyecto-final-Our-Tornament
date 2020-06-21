@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -27,7 +28,7 @@ public class Partido extends Fragment {
     ListView LosGoles2;
     ArrayAdapter<String> Adaptador2;
 
-
+    Button Volver;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -38,6 +39,7 @@ public class Partido extends Fragment {
         Jorn = VistaADevolver.findViewById(R.id.Jornada);
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
         E2 = VistaADevolver.findViewById(R.id.Equipo2);
+        Volver = VistaADevolver.findViewById(R.id.Volver);
 
 
         String Jornada = Principal.GetJornadaElegida();
@@ -60,12 +62,16 @@ public class Partido extends Fragment {
         Goles2.add("No hay goles aun");
         LosGoles2.setAdapter(Adaptador2);
 
+        Volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity Principal = (MainActivity) getActivity();
+                Principal.Volver();
+            }
+
+        });
+
         return VistaADevolver;
-    }
-    public void VolverAFixture(View vista)
-    {
-        MainActivity Principal = (MainActivity) getActivity();
-        Principal.Volver();
     }
 
 }
