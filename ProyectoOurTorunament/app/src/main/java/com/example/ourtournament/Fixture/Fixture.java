@@ -25,13 +25,12 @@ public class Fixture extends Fragment {
     FragmentTransaction TransaccionesDeFragment;
 
     private Spinner spinner;
-    TextView Fecha,Seleccion;
+    TextView Seleccion;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
-        Fecha = VistaADevolver.findViewById(R.id.Fecha);
         Seleccion = VistaADevolver.findViewById(R.id.Seleccione);
         spinner = VistaADevolver.findViewById(R.id.Jornadas);
         AdminFragments=getFragmentManager();
@@ -48,7 +47,6 @@ public class Fixture extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i!=0)
                 {
-                    Fecha.setText("07/8/2020");
                     Principal.SetJornadaElegida(i);
                     MostrarListaPartidos();
                     Seleccion.setVisibility(View.INVISIBLE);
@@ -61,7 +59,6 @@ public class Fixture extends Fragment {
         });
         if (Principal.getVolver()==true)
         {
-            Fecha.setText("07/8/2020");
             FragmentoParaListaPartidos lista = new FragmentoParaListaPartidos();
             TransaccionesDeFragment=AdminFragments.beginTransaction();
             TransaccionesDeFragment.replace(R.id.FragmentoListaPartidos, lista);

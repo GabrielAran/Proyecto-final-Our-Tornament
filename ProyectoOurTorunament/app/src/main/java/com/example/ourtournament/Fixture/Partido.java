@@ -70,8 +70,6 @@ public class Partido extends Fragment {
             }
 
         });
-
         return VistaADevolver;
     }
-
 }

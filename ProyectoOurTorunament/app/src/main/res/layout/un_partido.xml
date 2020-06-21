@@ -35,21 +35,35 @@
             android:textColor="#FFF"
             android:textSize="35dp"
             android:layout_marginRight="70dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#FFF">
+
         <TextView
             android:id="@+id/Fecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:text="20/05/20"
-            android:textColor="#FFF"
+            android:textColor="#000"
             android:textSize="15dp"
+            android:layout_marginLeft="320dp"
+            android:layout_gravity="center"
+
             />
     </LinearLayout>
+
     <ImageView
         android:id="@+id/FotoE1"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginRight="240dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/jugado"
@@ -59,7 +73,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="240dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/jugado"
@@ -102,13 +116,13 @@
         android:id="@+id/jugado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="no jugado"
-        android:textSize="18dp"
-        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:text="Aun no ha sido jugado"
+        android:textSize="25dp"
+        android:layout_gravity="left"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/header"
         app:layout_constraintTop_toBottomOf="@id/header" />
     <TextView
         android:id="@+id/Goles"

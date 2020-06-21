@@ -20,27 +20,16 @@
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:background="#000"
-        android:gravity="center" >
+        android:gravity="center">
 
         <TextView
             android:id="@+id/Fixture"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:layout_marginRight="0dp"
             android:text="Fixture"
             android:textSize="25dp"
             android:textColor="#FFF"
             android:gravity="left"
-            tools:ignore="HardcodedText,SpUsage" />
-        <TextView
-            android:id="@+id/Fecha"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="150dp"
-            android:text=""
-            android:textSize="20dp"
-            android:textColor="#FFF"
-            android:gravity="right"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
     <LinearLayout
@@ -57,7 +46,7 @@
 
         <Spinner
             android:id="@+id/Jornadas"
-            android:layout_width="300dp"
+            android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/spinner"
@@ -67,9 +56,9 @@
             android:id="@+id/Seleccione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:text="Seleccione una jornada"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textColor="#FFF"
             android:gravity="right"
             tools:ignore="HardcodedText,SpUsage" />
