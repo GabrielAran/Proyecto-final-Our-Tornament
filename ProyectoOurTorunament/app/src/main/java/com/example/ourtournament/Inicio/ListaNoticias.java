@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
@@ -44,7 +45,8 @@ public class ListaNoticias extends BaseAdapter
     public View getView(int pos, View VistaActual, ViewGroup GrupoActual)
     {
         View VistaADevolver;
-        TextView Titulo;
+        TextView Titulo,Fecha;
+        ImageView Destacada;
         MainActivity.Noticia Not;
 
 
@@ -52,10 +54,19 @@ public class ListaNoticias extends BaseAdapter
         MiInflador = (LayoutInflater)_Contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         VistaADevolver=MiInflador.inflate(R.layout.item_lista_noticias,GrupoActual,false);
         Titulo=VistaADevolver.findViewById(R.id.Titulo);
+        Fecha=VistaADevolver.findViewById(R.id.Fecha);
+        Destacada=VistaADevolver.findViewById(R.id.Destacada);
+
 
         Not = getItem(pos);
-        String a = "hola";
+        if(pos != 0)
+        {
+            Destacada.setVisibility(View.INVISIBLE);
+        }
+        String a = "Boca le gana a river";
         Titulo.setText(a);
+        String b = "06/08";
+        Fecha.setText(b);
         return  VistaADevolver;
     }
 }

@@ -33,9 +33,9 @@ public class Inicio extends Fragment {
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
         AdminFragments=getFragmentManager();
-        Noticias Noticia = new Noticias();
+        Noticias N = new Noticias();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.FrameInicio,Noticia);
+        TransaccionesDeFragment.replace(R.id.FrameInicio,N);
         TransaccionesDeFragment.commit();
 
         Noticias.setOnClickListener(new View.OnClickListener() {
@@ -43,9 +43,9 @@ public class Inicio extends Fragment {
             public void onClick(View view) {
                 Noticias.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_neutro);
-                Noticias Noticia = new Noticias();
+                Noticias N = new Noticias();
                 TransaccionesDeFragment=AdminFragments.beginTransaction();
-                TransaccionesDeFragment.replace(R.id.FrameInicio,Noticia);
+                TransaccionesDeFragment.replace(R.id.FrameInicio,N);
                 TransaccionesDeFragment.commit();
             }
         });
