@@ -30,7 +30,7 @@ namespace OurTournamentAPI
             Consulta.CommandText = "SELECT * FROM Torneos where Torneos.IDTorneo = " + ID;
             SqlDataReader Lector = Consulta.ExecuteReader();
             Models.Torneo UnTorneo = new Models.Torneo();
-            while (Lector.Read())
+            if (Lector.Read())
             {
                 int idtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 string nombretorneo = Lector["NombreTorneo"].ToString(); 
@@ -42,24 +42,30 @@ namespace OurTournamentAPI
             return UnTorneo;
         }
 
-        public Models.Partido TraerPartidosPorJornada(int IDJornada, int IDTorneo)
+        public List<Models.Partido> TraerPartidosPorJornada(int IDJornada, int IDTorneo)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.CommandText = "SELECT * FROM Partidos where Partidos.Jornada = " + IDJornada+ "and Partidos.Torneo = "+IDTorneo;
             SqlDataReader Lector = Consulta.ExecuteReader();
-            Models.Torneo UnTorneo = new Models.Torneo();
+            List<Models.Partido> ListaPartidos = new List<Models.Partido>();
+            Models.Partido UnPartido = new Models.Partido();
             while (Lector.Read())
             {
-                int idtorneo = Convert.ToInt32(Lector["IDTorneo"]);
-                string nombretorneo = Lector["NombreTorneo"].ToString();
-                string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
-                string linkparaunirse = Lector["LinkParaUnirse"].ToString();
-                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse);
+                int IDPartido = Convert.ToInt32(Lector["IDPartido"]);
+                DateTime FechaDeEncuentro = Convert.ToDateTime(Lector["FechaDeEncuentro"]);
+                int IDEquipoLocal = Convert.ToInt32(Lector["IDEquipoLocal"]);
+                int IDEquipoVisitante = Convert.ToInt32(Lector["IDEquipoVisitante"]);
+                int GolesLocal = Convert.ToInt32(Lector["GolesLocal"]);
+                int GolesVisitante = Convert.ToInt32(Lector["GolesVisitante"]);
+                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
+                int IDjornada = Convert.ToInt32(Lector["IDJornada"]);
+                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, IDEquipoLocal, IDEquipoVisitante, GolesLocal, GolesVisitante ,IDTorneo, IDjornada);
+                ListaPartidos.Add(UnPartido);
             }
             Desconectar(con);
-            return UnTorneo;
+            return ListaPartidos;
         }
         /*
         public static List<Respuestas> TraerRespuestas()

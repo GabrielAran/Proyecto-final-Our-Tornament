@@ -31,12 +31,12 @@ namespace OurTournamentAPI.Controllers
         [Route("api/Jornada={IDJornada}/Torneo={IDTorneo}")]
         public IHttpActionResult ObtenerPartidosPorJornadas(int IDJornada, int IDTorneo)
         {
-            Models.Partido P = new Models.Partido();
+            List<Models.Partido> Lista = new List<Models.Partido>();
             QQSM Conexion = new QQSM();
-            P = Conexion.TraerPartidosPorJornada(IDJornada,IDTorneo);
-            if (P != null)
+            Lista = Conexion.TraerPartidosPorJornada(IDJornada,IDTorneo);
+            if (Lista != null)
             {
-                return Ok(P);
+                return Ok(Lista);
             }
             else
             {

@@ -33,6 +33,10 @@ public class Inicio extends Fragment {
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
         AdminFragments=getFragmentManager();
+        Noticias Noticia = new Noticias();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.FrameInicio,Noticia);
+        TransaccionesDeFragment.commit();
 
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -47,18 +47,26 @@ public class MainActivity extends AppCompatActivity {
     //Inicio
     public static class Noticia
     {
-        public Noticia()
-        {
-             int IDNoticia;
-            String Torneo;
-            String Titulo;
-            String Descripcion;
-            Boolean Destacada;
-            ImageView Foto;
-            Date Fecha;
-        }
+        private int IDNoticia;
+        private String Torneo;
+        private String Titulo;
+        private String Descripcion;
+        private Boolean Destacada;
+        private ImageView Foto;
+        private Date Fecha;
 
-        public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, ImageView foto, Date fecha) {
+
+        public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, ImageView foto, Date fecha)
+        {
+            IDNoticia = idNoticia;
+            Torneo = torneo;
+            Titulo = titulo;
+            Descripcion = descripcion;
+            Destacada = destacada;
+            Foto = foto;
+            Fecha = fecha;
+        }
+        public Noticia() {
         }
     }
     ArrayList<Noticia> ListaNoticias;

@@ -24,9 +24,6 @@ import java.util.ArrayList;
 public class Noticias extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
-    ArrayList<MainActivity.Noticia> listNoticias;
-    ListView ListaNoticias;
-    ArrayAdapter<MainActivity.Noticia> Adaptador;
 
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -34,14 +31,11 @@ public class Noticias extends Fragment {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
-        ListaNoticias = VistaADevolver.findViewById(R.id.ListaNoticias);
-        MainActivity Principal = (MainActivity) getActivity();
+        FragmentoParaListaNoticias Noticias = new FragmentoParaListaNoticias();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.FrameInicio,Noticias);
+        TransaccionesDeFragment.commit();
 
-        MainActivity.Noticia Not = new MainActivity.Noticia();
-        listNoticias = new ArrayList<>();
-        Adaptador = new ArrayAdapter<MainActivity.Noticia>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, listNoticias);
-        listNoticias = Principal.getNoticias();
-        ListaNoticias.setAdapter(Adaptador);
 
         return VistaADevolver;
     }
