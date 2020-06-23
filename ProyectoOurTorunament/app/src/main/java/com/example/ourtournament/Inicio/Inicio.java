@@ -54,6 +54,7 @@ public class Inicio extends Fragment {
             public void onClick(View view) {
                 Noticias.setBackgroundResource(R.drawable.secciones_inicio_neutro);
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
+
             }
         });
 

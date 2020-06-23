@@ -58,7 +58,7 @@
                 android:layout_gravity="top"
                 android:background="@drawable/secciones_inicio_izquierda"
                 android:text="Noticias"
-                android:textColor="#FFF"
+                android:textColor="#3CBC80"
                 android:textSize="18dp" />
 
             <Button
