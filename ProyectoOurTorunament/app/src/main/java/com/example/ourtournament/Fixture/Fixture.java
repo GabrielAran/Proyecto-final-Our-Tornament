@@ -49,7 +49,7 @@ public class Fixture extends Fragment {
                 {
                     Principal.SetJornadaElegida(i);
                     MostrarListaPartidos();
-                    Seleccion.setVisibility(View.INVISIBLE);
+                    Seleccion.setVisibility(View.GONE);
                 }
 
             }

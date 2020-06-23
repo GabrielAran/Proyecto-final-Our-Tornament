@@ -21,7 +21,6 @@ public class ListaPartidos extends BaseAdapter
 
     public ListaPartidos(ArrayList<String> ListaEquipos1, ArrayList<String> ListaEquipos2,Context contexto)
     {
-        Log.d("Conexion", "llegue al adaptador");
         _MilistaDeEquipos1 = ListaEquipos1;
         _MilistaDeEquipos2= ListaEquipos2;
         _Contexto = contexto;

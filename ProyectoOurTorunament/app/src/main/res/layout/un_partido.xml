@@ -52,7 +52,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:text="Aun no ha sido jugado"
-            android:textSize="25dp"
+            android:textSize="24dp"
             android:layout_gravity="left"
             android:textColor="#000"
             />
@@ -118,6 +118,7 @@
         android:id="@+id/Resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="- : -"
         android:textSize="60dp"
         android:textColor="#FFFFFF"

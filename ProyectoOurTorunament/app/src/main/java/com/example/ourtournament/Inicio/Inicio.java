@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,6 +44,8 @@ public class Inicio extends Fragment {
             public void onClick(View view) {
                 Noticias.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_neutro);
+                Buscar.setTextColor(Color.rgb(255,255,255));
+                Noticias.setTextColor(Color.rgb(60,188,128));
                 Noticias N = new Noticias();
                 TransaccionesDeFragment=AdminFragments.beginTransaction();
                 TransaccionesDeFragment.replace(R.id.FrameInicio,N);
@@ -54,6 +57,8 @@ public class Inicio extends Fragment {
             public void onClick(View view) {
                 Noticias.setBackgroundResource(R.drawable.secciones_inicio_neutro);
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
+                Noticias.setTextColor(Color.rgb(255,255,255));
+                Buscar.setTextColor(Color.rgb(60,188,128));
 
             }
         });

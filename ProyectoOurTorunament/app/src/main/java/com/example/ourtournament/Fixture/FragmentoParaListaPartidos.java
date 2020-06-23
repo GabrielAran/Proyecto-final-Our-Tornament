@@ -22,7 +22,6 @@ public class FragmentoParaListaPartidos extends Fragment
     ArrayList<String> ListaEquipos2;
     ListView ListView;
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-        Log.d("conexion", "entre");
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.lista_partidos, GrupoDeLaVista, false);
 

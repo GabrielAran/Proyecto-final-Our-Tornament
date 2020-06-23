@@ -11,18 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.R;
 
 import java.util.ArrayList;
 
 public class ListaNoticias extends BaseAdapter
 {
-    private ArrayList<MainActivity.Noticia> _Noticias;
+    private ArrayList<Noticia> _Noticias;
     private Context _Contexto;
 
-    public ListaNoticias(ArrayList<MainActivity.Noticia> Noticias, Context contexto)
+    public ListaNoticias(ArrayList<Noticia> Noticias, Context contexto)
     {
-        Log.d("Conexion", "llegue al adaptador");
         _Noticias = Noticias;
         _Contexto = contexto;
     }
@@ -31,7 +31,7 @@ public class ListaNoticias extends BaseAdapter
         return _Noticias.size();
     }
 
-    public MainActivity.Noticia getItem(int pos)
+    public Noticia getItem(int pos)
     {
         return _Noticias.get(pos);
     }
@@ -45,9 +45,9 @@ public class ListaNoticias extends BaseAdapter
     public View getView(int pos, View VistaActual, ViewGroup GrupoActual)
     {
         View VistaADevolver;
-        TextView Titulo,Fecha;
+        TextView Titulo,Fecha,renglon;
         ImageView Destacada;
-        MainActivity.Noticia Not;
+        Noticia Not;
 
 
         LayoutInflater MiInflador;
@@ -55,18 +55,20 @@ public class ListaNoticias extends BaseAdapter
         VistaADevolver=MiInflador.inflate(R.layout.item_lista_noticias,GrupoActual,false);
         Titulo=VistaADevolver.findViewById(R.id.Titulo);
         Fecha=VistaADevolver.findViewById(R.id.Fecha);
+        renglon=VistaADevolver.findViewById(R.id.renglon);
         Destacada=VistaADevolver.findViewById(R.id.Destacada);
-
 
         Not = getItem(pos);
         if(pos != 0)
         {
             Destacada.setVisibility(View.INVISIBLE);
+            renglon.setVisibility(View.VISIBLE);
+        }else
+        {
+            renglon.setVisibility(View.INVISIBLE);
         }
-        String a = "Boca le gana a river";
-        Titulo.setText(a);
-        String b = "06/08";
-        Fecha.setText(b);
+        Titulo.setText(Not.Titulo);
+        Fecha.setText(Not.Fecha.toString());
         return  VistaADevolver;
     }
 }

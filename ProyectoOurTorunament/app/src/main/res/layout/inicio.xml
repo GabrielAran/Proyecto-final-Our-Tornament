@@ -25,11 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:gravity="center"
-            android:text="OUR TOURNAMENT"
-            android:fontFamily="sans-serif-smallcaps"
-            android:textColor="#3CBC80"
-            android:background="#000"
+            android:layout_gravity="center"
+            android:text="Our Tournament"
+            android:fontFamily="serif-monospace"
+            android:textColor="#FFF"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -74,9 +73,9 @@
 
         <FrameLayout
             android:id="@+id/FrameInicio"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="top" />
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/texto"

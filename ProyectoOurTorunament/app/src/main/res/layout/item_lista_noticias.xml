@@ -3,32 +3,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="600dp"
-    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
     android:background="#212423"
     android:orientation="horizontal">
 
+    <TextView
+        android:id="@+id/renglon"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="#3CBC80"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <ImageView
         android:id="@+id/Destacada"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/Titulo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/estrella" />
+        app:layout_constraintBottom_toBottomOf="@+id/Titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Titulo"
+        app:srcCompat="@drawable/estrella"
+        />
 
     <TextView
         android:id="@+id/Titulo"
-        android:layout_width="245dp"
+        android:layout_width="333dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:gravity="left"
+        android:gravity="center"
         android:text="Titulo"
         android:textColor="#FFF"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,13 +43,55 @@
         android:id="@+id/Fecha"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Fecha"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
         android:textColor="#FFF"
-        android:textSize="15dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Descripcion"
+        app:layout_constraintVertical_bias="0.649"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/Torneo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:text="Torneo"
+        android:textColor="#FFF"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Descripcion"
+        app:layout_constraintVertical_bias="0.646" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo"
+        app:srcCompat="@drawable/icono_equipo" />
+
+    <TextView
+        android:id="@+id/Descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Descripcion"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

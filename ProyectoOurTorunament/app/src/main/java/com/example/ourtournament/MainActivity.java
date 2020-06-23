@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.Partido;
 import com.example.ourtournament.Inicio.Inicio;
+import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.TablaGoleadores.TablaDeGoleadores;
 
 import java.sql.Date;
@@ -45,30 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> ListaGoles;
 
     //Inicio
-    public static class Noticia
-    {
-        private int IDNoticia;
-        private String Torneo;
-        private String Titulo;
-        private String Descripcion;
-        private Boolean Destacada;
-        private ImageView Foto;
-        private Date Fecha;
 
-
-        public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, ImageView foto, Date fecha)
-        {
-            IDNoticia = idNoticia;
-            Torneo = torneo;
-            Titulo = titulo;
-            Descripcion = descripcion;
-            Destacada = destacada;
-            Foto = foto;
-            Fecha = fecha;
-        }
-        public Noticia() {
-        }
-    }
     ArrayList<Noticia> ListaNoticias;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void SetJornadaElegida(int i)
     {
-        Log.d("conexion", JornadaElegida + "va a ser " +ListaJornadas.get(i));
         JornadaElegida = ListaJornadas.get(i);
         IDJornadaElegida = i;
     }
@@ -157,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
     public String GetJornadaElegida()
     {
-        Log.d("conexion", "devuelvo "+JornadaElegida);
         return JornadaElegida;
     }
 

@@ -22,7 +22,6 @@ public class ListaGoleadores extends BaseAdapter
 
     public ListaGoleadores(ArrayList<String> ListaJugadores, ArrayList<String> ListaEquipos, ArrayList<String> ListaGoles, Context contexto)
     {
-        Log.d("Conexion", "llegue al adaptador");
         _listaJugadores = ListaJugadores;
         _listaEquipos = ListaEquipos;
         _listaGoles = ListaGoles;

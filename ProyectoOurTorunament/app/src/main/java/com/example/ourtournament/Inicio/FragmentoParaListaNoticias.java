@@ -12,16 +12,16 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.R;
 
 import java.util.ArrayList;
 
 public class FragmentoParaListaNoticias extends Fragment
 {
-    ArrayList<MainActivity.Noticia> ListaNoticias;
+    ArrayList<Noticia> ListaNoticias;
     ListView ListView;
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-        Log.d("conexion", "entre");
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.lista_noticias, GrupoDeLaVista, false);
 
