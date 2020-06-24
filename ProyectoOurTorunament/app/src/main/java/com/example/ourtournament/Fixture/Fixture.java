@@ -63,7 +63,7 @@ public class Fixture extends Fragment {
             TransaccionesDeFragment=AdminFragments.beginTransaction();
             TransaccionesDeFragment.replace(R.id.FragmentoListaPartidos, lista);
             TransaccionesDeFragment.commit();
-            Seleccion.setVisibility(View.INVISIBLE);
+            Seleccion.setVisibility(View.GONE);
         }
         return VistaADevolver;
     }

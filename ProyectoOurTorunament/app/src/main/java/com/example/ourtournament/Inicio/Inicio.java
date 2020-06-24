@@ -59,6 +59,10 @@ public class Inicio extends Fragment {
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
                 Noticias.setTextColor(Color.rgb(255,255,255));
                 Buscar.setTextColor(Color.rgb(60,188,128));
+                BuscarTorneos BT = new BuscarTorneos();
+                TransaccionesDeFragment=AdminFragments.beginTransaction();
+                TransaccionesDeFragment.replace(R.id.FrameInicio,BT);
+                TransaccionesDeFragment.commit();
 
             }
         });

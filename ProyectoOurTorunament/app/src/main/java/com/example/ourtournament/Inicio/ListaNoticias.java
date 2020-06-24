@@ -62,10 +62,8 @@ public class ListaNoticias extends BaseAdapter
         if(pos != 0)
         {
             Destacada.setVisibility(View.INVISIBLE);
-            renglon.setVisibility(View.VISIBLE);
         }else
         {
-            renglon.setVisibility(View.INVISIBLE);
         }
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
