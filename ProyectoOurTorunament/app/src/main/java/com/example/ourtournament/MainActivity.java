@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
+    int IDTorneo=0;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
     Button BTNInicio;
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         CargarFixture();
         CargarTabla();
     }
-
+    //  GENERAL
+    public int getIDTorneo(){return IDTorneo;}
     public void CargarGeneral()
     {
         BTNFixture = findViewById(R.id.Fixture);
