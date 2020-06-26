@@ -10,7 +10,7 @@ namespace OurTournamentAPI.Controllers
     public class TorneosController : ApiController
     {
         [HttpGet]
-        [Route("api/Torneos={id}")]
+        [Route("api/Torneos/{id}")]
         public IHttpActionResult ObtenerTorneoPorID(int id)
         {
             Models.Torneo T = new Models.Torneo();
