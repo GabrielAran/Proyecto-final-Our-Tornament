@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +27,16 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
+    /*
+    SharedPreferences DatosGenerales=getSharedPreferences("datos", Context.MODE_PRIVATE);
+    Editor edit = DatosGenerales.edit();
+    edit.putString("dd", "dwd");
+    edit.commit();
+     */
     int IDTorneo=0;
+    Fixture fixture;
+    TablaDeGoleadores tablaDeGoleadores;
+    Inicio inicio;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
     Button BTNInicio;
@@ -85,10 +97,11 @@ public class MainActivity extends AppCompatActivity {
         ListaNoticias.add(UnaNoticia);
         ListaNoticias.add(UnaNoticia);
 
-        Inicio inicio = new Inicio();
+        inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
     //Fixture
     public void CargarFixture()
@@ -125,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,partido);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
 
     public void SetJornadaElegida(int i)
@@ -148,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean getVolver(){return Volver;};
 
     public void Volver(){
-        Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
@@ -185,11 +198,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        Volver = false;
-        Fixture fixture = new Fixture();
+        fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
 
     public void IrATablaGoleadores(View vista)
@@ -199,10 +212,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        TablaDeGoleadores TablaGol = new TablaDeGoleadores();
+        tablaDeGoleadores = new TablaDeGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,TablaGol);
+        TransaccionesDeFragment.replace(R.id.Frame,tablaDeGoleadores);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
 
     public void IrAInicio(View vista) {
@@ -211,10 +225,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        Inicio incio = new Inicio();
+        inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,incio);
+        TransaccionesDeFragment.replace(R.id.Frame,inicio);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
 
     public void IrATablaPosiciones(View vista) {

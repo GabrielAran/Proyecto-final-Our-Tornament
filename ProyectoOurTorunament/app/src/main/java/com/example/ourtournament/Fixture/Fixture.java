@@ -44,7 +44,7 @@ public class Fixture extends Fragment {
 
         final MainActivity Principal = (MainActivity) getActivity();
         ID = Principal.getIDTorneo();
-        //TraerJornadasPorTorneo(ID);
+        TraerJornadas(ID);
 
 
         final ArrayList<String> ListaJornadas = Principal.getListaJornadas();
@@ -68,14 +68,6 @@ public class Fixture extends Fragment {
 
             }
         });
-        if (Principal.getVolver()==true)
-        {
-            FragmentoParaListaPartidos lista = new FragmentoParaListaPartidos();
-            TransaccionesDeFragment=AdminFragments.beginTransaction();
-            TransaccionesDeFragment.replace(R.id.FragmentoListaPartidos, lista);
-            TransaccionesDeFragment.commit();
-            Seleccion.setVisibility(View.GONE);
-        }
         return VistaADevolver;
     }
 
@@ -85,11 +77,12 @@ public class Fixture extends Fragment {
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.FragmentoListaPartidos, lista);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
 
 
 
-    protected String doInBackground(int... Parametros) {
+    protected String TraerJornadas(int... Parametros) {
         String Devolucion="";
         try {
             String miURL="http://10.0.2.2:55859/api/Torneos/" + ID;

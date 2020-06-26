@@ -34,10 +34,12 @@ public class Inicio extends Fragment {
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
         AdminFragments=getFragmentManager();
-        Noticias N = new Noticias();
+        final BuscarTorneos BT = new BuscarTorneos();
+        final Noticias N = new Noticias();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.FrameInicio,N);
         TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
 
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +48,10 @@ public class Inicio extends Fragment {
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_neutro);
                 Buscar.setTextColor(Color.rgb(255,255,255));
                 Noticias.setTextColor(Color.rgb(60,188,128));
-                Noticias N = new Noticias();
                 TransaccionesDeFragment=AdminFragments.beginTransaction();
                 TransaccionesDeFragment.replace(R.id.FrameInicio,N);
                 TransaccionesDeFragment.commit();
+                TransaccionesDeFragment.addToBackStack(null);
             }
         });
         Buscar.setOnClickListener(new View.OnClickListener() {
@@ -59,10 +61,10 @@ public class Inicio extends Fragment {
                 Buscar.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
                 Noticias.setTextColor(Color.rgb(255,255,255));
                 Buscar.setTextColor(Color.rgb(60,188,128));
-                BuscarTorneos BT = new BuscarTorneos();
                 TransaccionesDeFragment=AdminFragments.beginTransaction();
                 TransaccionesDeFragment.replace(R.id.FrameInicio,BT);
                 TransaccionesDeFragment.commit();
+                TransaccionesDeFragment.addToBackStack(null);
 
             }
         });
