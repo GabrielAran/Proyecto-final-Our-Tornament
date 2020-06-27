@@ -19,7 +19,7 @@ namespace OurTournamentAPI.Models
 
         public int IDTorneo { get => this._IDTorneo; set => this._IDTorneo = value; }
         public int IDPartido { get => _IDPartido; set => _IDPartido = value; }
-        public DateTime FechaDeEncuentro1 { get => _FechaDeEncuentro; set => _FechaDeEncuentro = value; }
+        public DateTime FechaDeEncuentro { get => _FechaDeEncuentro; set => _FechaDeEncuentro = value; }
         public int IDEquipoLocal { get => _IDEquipoLocal; set => _IDEquipoLocal = value; }
         public int IDEquipoVisitante { get => _IDEquipoVisitante; set => _IDEquipoVisitante = value; }
         public int GolesLocal { get => _GolesLocal; set => _GolesLocal = value; }

@@ -16,7 +16,7 @@ namespace OurTournamentAPI.Models
         private int _IDTorneo;
 
         public int IDEquipo { get => _IDEquipo; set => _IDEquipo = value; }
-        public string Nombre { get => _Nombre; set => _Nombre = value; }
+        public String Nombre { get => _Nombre; set => _Nombre = value; }
         public int PartidosJugados { get => _PartidosJugados; set => _PartidosJugados = value; }
         public int Puntos { get => _Puntos; set => _Puntos = value; }
         public int GolesAFavor { get => _GolesAFavor; set => _GolesAFavor = value; }

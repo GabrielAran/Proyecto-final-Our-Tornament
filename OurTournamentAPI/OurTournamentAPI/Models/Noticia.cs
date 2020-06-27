@@ -16,11 +16,11 @@ namespace OurTournamentAPI.Models
         private DateTime Fecha;
 
         public int IDNoticia1 { get => IDNoticia; set => IDNoticia = value; }
-        public string Torneo1 { get => Torneo; set => Torneo = value; }
-        public string Titulo1 { get => Titulo; set => Titulo = value; }
-        public string Descripcion1 { get => Descripcion; set => Descripcion = value; }
+        public String Torneo1 { get => Torneo; set => Torneo = value; }
+        public String Titulo1 { get => Titulo; set => Titulo = value; }
+        public String Descripcion1 { get => Descripcion; set => Descripcion = value; }
         public bool Destacada1 { get => Destacada; set => Destacada = value; }
-        public string Foto1 { get => Foto; set => Foto = value; }
+        public String Foto1 { get => Foto; set => Foto = value; }
         public DateTime Fecha1 { get => Fecha; set => Fecha = value; }
 
         private Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, String foto, DateTime fecha)

@@ -43,30 +43,22 @@ namespace OurTournamentAPI
             return UnTorneo;
         }
 
-        public List<Models.Partido> TraerJornadasPorTorneo(int IDTorneo)
+        public List<int> TraerJornadasPorTorneo(int IDTorneo)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "SELECT * FROM Torneos where Torneos.IDTorneo = " + IDTorneo + "and Partidos.Torneo = " + IDTorneo;
+            Consulta.CommandText = "SELECT Distinct JornadaDelTorneo FROM Partidos where Partidos.IDTorneo = " + IDTorneo;
             SqlDataReader Lector = Consulta.ExecuteReader();
-            List<Models.Partido> ListaPartidos = new List<Models.Partido>();
-            Models.Partido UnPartido = new Models.Partido();
+            List<int> ListaJornadas = new List<int>();
+            int jornada;
             while (Lector.Read())
             {
-                int IDPartido = Convert.ToInt32(Lector["IDPartido"]);
-                DateTime FechaDeEncuentro = Convert.ToDateTime(Lector["FechaDeEncuentro"]);
-                int IDEquipoLocal = Convert.ToInt32(Lector["IDEquipoLocal"]);
-                int IDEquipoVisitante = Convert.ToInt32(Lector["IDEquipoVisitante"]);
-                int GolesLocal = Convert.ToInt32(Lector["GolesLocal"]);
-                int GolesVisitante = Convert.ToInt32(Lector["GolesVisitante"]);
-                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
-                int IDjornada = Convert.ToInt32(Lector["IDJornada"]);
-                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, IDEquipoLocal, IDEquipoVisitante, GolesLocal, GolesVisitante, IDTorneo, IDjornada);
-                ListaPartidos.Add(UnPartido);
+                jornada = Convert.ToInt32(Lector["JornadaDelTorneo"]);
+                ListaJornadas.Add(jornada);
             }
             Desconectar(con);
-            return ListaPartidos;
+            return ListaJornadas;
         }
 
         public List<Models.Partido> TraerPartidosPorJornada(int IDJornada, int IDTorneo)

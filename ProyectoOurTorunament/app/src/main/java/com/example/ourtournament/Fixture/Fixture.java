@@ -44,10 +44,9 @@ public class Fixture extends Fragment {
 
         final MainActivity Principal = (MainActivity) getActivity();
         ID = Principal.getIDTorneo();
-        TraerJornadas(ID);
 
-
-        final ArrayList<String> ListaJornadas = Principal.getListaJornadas();
+        final ArrayList<String> ListaJornadas = TraerJornadas(ID);
+        Principal.SetListaJornadas(ListaJornadas);
 
         Seleccion.setVisibility(View.VISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
@@ -82,14 +81,18 @@ public class Fixture extends Fragment {
 
 
 
-    protected String TraerJornadas(int... Parametros) {
-        String Devolucion="";
+    protected ArrayList<String> TraerJornadas(int... Parametros) {
+        ArrayList<String> ListaJornadas= new ArrayList<String>();
         try {
-            String miURL="http://10.0.2.2:55859/api/Torneos/" + ID;
+            Log.d("conexion", "mando ID "+ID);
+            String miURL = "http://10.0.2.2:55859/api/OBTJornadas/Torneo/" + ID;
             URL miRuta = new URL(miURL);
             HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+            Log.d("conexion", "llegue");
             miConexion.setRequestMethod("GET");
 
+            int num;
+            Log.d("conexion", "me devolvio: ");
             if (miConexion.getResponseCode() == 200) {
                 Log.d("conexion", "me conecte");
                 InputStream lector = miConexion.getInputStream();
@@ -97,7 +100,8 @@ public class Fixture extends Fragment {
                 JsonParser parseador = new JsonParser();
                 JsonObject objetoJSon = parseador.parse(lectorJSon).getAsJsonObject();
 
-                Devolucion = objetoJSon.get("_NombreTorneo").getAsString();
+                num = objetoJSon.getAsInt();
+                ListaJornadas.add("jornada " +num);
 
             } else {
                 Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -107,6 +111,6 @@ public class Fixture extends Fragment {
             Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
         }
 
-        return Devolucion;
+        return ListaJornadas;
     }
 }

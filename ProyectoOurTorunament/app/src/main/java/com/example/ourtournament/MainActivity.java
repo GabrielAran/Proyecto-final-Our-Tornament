@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     edit.putString("dd", "dwd");
     edit.commit();
      */
-    int IDTorneo=0;
+    int IDTorneo=1;
     Fixture fixture;
     TablaDeGoleadores tablaDeGoleadores;
     Inicio inicio;
@@ -109,11 +109,6 @@ public class MainActivity extends AppCompatActivity {
         Adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
         ListaJornadas = new ArrayList<>();
         ListaJornadas.add(0,"Jornadas");
-        ListaJornadas.add("Jornada 1");
-        ListaJornadas.add("Jornada 2");
-        ListaJornadas.add("Jornada 3");
-        ListaJornadas.add("Jornada 4");
-        ListaJornadas.add("Jornada 5");
 
         ListaEquipos1 = new ArrayList<>();
         ListaEquipos1.add("San Lorenzo");
@@ -146,8 +141,10 @@ public class MainActivity extends AppCompatActivity {
         JornadaElegida = ListaJornadas.get(i);
         IDJornadaElegida = i;
     }
-    public void SetVolverTrue(){Volver = true;}
-
+    public void SetListaJornadas(ArrayList<String> J)
+    {
+        ListaJornadas =J;
+    }
     public String GetJornadaElegida()
     {
         return JornadaElegida;
