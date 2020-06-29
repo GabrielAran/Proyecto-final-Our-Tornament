@@ -28,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction TransaccionesDeFragment;
 
     /*
-    SharedPreferences DatosGenerales=getSharedPreferences("datos", Context.MODE_PRIVATE);
-    Editor edit = DatosGenerales.edit();
-    edit.putString("dd", "dwd");
-    edit.commit();
+    DatosGenerales= getPreferences(this.MODE_PRIVATE);
+    SharedPreferences.Editor editor=DatosGenerales.edit();
+        editor.putString("Nombre", "hola");
+        editor.commit();
+    String e=DatosGenerales.getString("Nombre", "nada" );
      */
+    static SharedPreferences DatosGenerales;
+    boolean Logueado;
+
     int IDTorneo=1;
     Fixture fixture;
     TablaDeGoleadores tablaDeGoleadores;
@@ -64,15 +68,35 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.pantalla_de_carga);
         AdminFragments=getFragmentManager();
-        CargarGeneral();
-        CargarInicio();
-        CargarFixture();
-        CargarTabla();
+        Logueado = LoguearUsuario();
+        if(Logueado = true)
+        {
+            CargarGeneral();
+            CargarInicio();
+            CargarFixture();
+            CargarTabla();
+        }else
+        {
+            TransaccionesDeFragment=AdminFragments.beginTransaction();
+            TransaccionesDeFragment.replace(R.id.Frame,inicio);
+            TransaccionesDeFragment.commit();
+        }
+
     }
     //  GENERAL
     public int getIDTorneo(){return IDTorneo;}
+    public boolean LoguearUsuario()
+    {
+        if(DatosGenerales.getString("NombreDeUsuario", "" )=="")
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
+    }
     public void CargarGeneral()
     {
         BTNFixture = findViewById(R.id.Fixture);
@@ -97,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         ListaNoticias.add(UnaNoticia);
         ListaNoticias.add(UnaNoticia);
 
+        setContentView(R.layout.activity_main);
         inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
