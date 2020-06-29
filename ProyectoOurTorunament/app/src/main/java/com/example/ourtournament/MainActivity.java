@@ -27,15 +27,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
-    /*
-    DatosGenerales= getPreferences(this.MODE_PRIVATE);
-    SharedPreferences.Editor editor=DatosGenerales.edit();
-        editor.putString("Nombre", "hola");
-        editor.commit();
-    String e=DatosGenerales.getString("Nombre", "nada" );
-     */
+
     static SharedPreferences DatosGenerales;
-    boolean Logueado;
 
     int IDTorneo=1;
     Fixture fixture;
@@ -70,33 +63,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_de_carga);
         AdminFragments=getFragmentManager();
-        Logueado = LoguearUsuario();
-        if(Logueado = true)
+
+        DatosGenerales= getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor=DatosGenerales.edit();
+        editor.putString("NombreDeUsuario", "");
+        editor.apply();
+        String Nombre = DatosGenerales.getString("NombreDeUsuario", "" );
+        if(Nombre=="")
         {
+            setContentView(R.layout.loguear);
+        }else
+        {
+            setContentView(R.layout.activity_main);
             CargarGeneral();
             CargarInicio();
             CargarFixture();
             CargarTabla();
-        }else
-        {
-            TransaccionesDeFragment=AdminFragments.beginTransaction();
-            TransaccionesDeFragment.replace(R.id.Frame,inicio);
-            TransaccionesDeFragment.commit();
         }
 
     }
     //  GENERAL
     public int getIDTorneo(){return IDTorneo;}
-    public boolean LoguearUsuario()
-    {
-        if(DatosGenerales.getString("NombreDeUsuario", "" )=="")
-        {
-            return false;
-        }else
-        {
-            return true;
-        }
-    }
     public void CargarGeneral()
     {
         BTNFixture = findViewById(R.id.Fixture);
