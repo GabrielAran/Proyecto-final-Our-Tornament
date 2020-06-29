@@ -17,17 +17,15 @@ import android.widget.FrameLayout;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.R;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class IniciarSesion extends Fragment {
+public class CrearCuenta extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Button ConfirmarLogueo;
-    static  SharedPreferences DatosGenerales;
+    SharedPreferences DatosGenerales;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
-        VistaADevolver = inflador.inflate(R.layout.iniciar_sesion, GrupoDeLaVista, false);
+        VistaADevolver = inflador.inflate(R.layout.crear_cuenta, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
         ConfirmarLogueo = VistaADevolver.findViewById(R.id.button);
         ConfirmarLogueo.setOnClickListener(new View.OnClickListener() {

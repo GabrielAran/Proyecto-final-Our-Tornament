@@ -1,5 +1,6 @@
 package com.example.ourtournament;
 
+import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
@@ -59,12 +60,10 @@ public class MainActivity extends AppCompatActivity {
     //Inicio
 
     ArrayList<Noticia> ListaNoticias;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_de_carga);
         AdminFragments=getFragmentManager();
-
         DatosGenerales= getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor=DatosGenerales.edit();
         editor.putString("NombreDeUsuario", "");
@@ -87,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
             CargarTabla();
         }
 
+    }
+    public void Entrar()
+    {
+        setContentView(R.layout.activity_main);
+        CargarGeneral();
+        CargarInicio();
+        CargarFixture();
+        CargarTabla();
     }
     //  GENERAL
     public int getIDTorneo(){return IDTorneo;}
