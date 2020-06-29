@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +26,20 @@ public class Loguear extends Fragment {
 
         AdminFragments=getFragmentManager();
 
+        Mostrar();
+
+
+
+
+        return VistaADevolver;
+    }
+    public void Mostrar()
+    {
+        Log.d("conexion", "entre");
         IniciarSesion cuenta = new IniciarSesion();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.fragmentiniciosesion, cuenta);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
-
-
-
-        return VistaADevolver;
     }
 }

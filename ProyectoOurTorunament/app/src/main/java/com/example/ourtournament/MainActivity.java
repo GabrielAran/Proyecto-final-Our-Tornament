@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.Partido;
 import com.example.ourtournament.Inicio.Inicio;
+import com.example.ourtournament.Loguearse.Loguear;
 import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.TablaGoleadores.TablaDeGoleadores;
 
@@ -71,7 +72,12 @@ public class MainActivity extends AppCompatActivity {
         String Nombre = DatosGenerales.getString("NombreDeUsuario", "" );
         if(Nombre=="")
         {
-            setContentView(R.layout.loguear);
+            setContentView(R.layout.pantalla_vacia_con_fragment);
+            Loguear logueo = new Loguear();
+            TransaccionesDeFragment=AdminFragments.beginTransaction();
+            TransaccionesDeFragment.replace(R.id.fragmentodepantallacompleta,logueo);
+            TransaccionesDeFragment.commit();
+            TransaccionesDeFragment.addToBackStack(null);
         }else
         {
             setContentView(R.layout.activity_main);
