@@ -51,7 +51,6 @@ public class Fixture extends Fragment {
         Seleccion.setVisibility(View.VISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
         spinner.setAdapter(adapter);
-        Log.d("conexion", "entre");
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -82,10 +81,10 @@ public class Fixture extends Fragment {
 
 
     protected ArrayList<String> TraerJornadas(int... Parametros) {
-        ArrayList<String> ListaJornadas= new ArrayList<String>();
+        ArrayList<String> ListaJornadas= new ArrayList<>();
         try {
             Log.d("conexion", "mando ID "+ID);
-            String miURL = "http://10.0.2.2:55859/api/OBTJornadas/Torneo/" + ID;
+            String miURL = "http://10.0.2.2:55859/api/Torneo/" + ID;
             URL miRuta = new URL(miURL);
             HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
             Log.d("conexion", "llegue");
@@ -110,7 +109,6 @@ public class Fixture extends Fragment {
         } catch (Exception ErrorOcurrido) {
             Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
         }
-
         return ListaJornadas;
     }
 }
