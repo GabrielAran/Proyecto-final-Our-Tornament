@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
     static SharedPreferences DatosGenerales;
 
     int IDTorneo=1;
-    Fixture fixture;
-    TablaDeGoleadores tablaDeGoleadores;
-    Inicio inicio;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
     Button BTNInicio;
@@ -122,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         ListaNoticias.add(UnaNoticia);
 
         setContentView(R.layout.activity_main);
-        inicio = new Inicio();
+        Inicio inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
         TransaccionesDeFragment.commit();
@@ -184,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean getVolver(){return Volver;};
 
     public void Volver(){
+        Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
@@ -215,26 +213,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrAFixture(View vista)
     {
+        Log.d("conexion", "fixture");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        fixture = new Fixture();
+        Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
     }
 
+
     public void IrATablaGoleadores(View vista)
     {
+        Log.d("conexion", "goleadores");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        tablaDeGoleadores = new TablaDeGoleadores();
+        TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,tablaDeGoleadores);
         TransaccionesDeFragment.commit();
@@ -242,12 +243,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrAInicio(View vista) {
+        Log.d("conexion", "inicio");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        inicio = new Inicio();
+        Inicio inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
         TransaccionesDeFragment.commit();
@@ -255,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrATablaPosiciones(View vista) {
+        Log.d("conexion", "posiciones");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
@@ -263,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrAAdministracion(View vista) {
+        Log.d("conexion", "administracion");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
