@@ -26,12 +26,14 @@
             android:id="@+id/Fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tabla de goleadores"
+            android:text="Tabla de posiciones"
             android:textColor="@android:color/background_light"
             android:textSize="25dp"
             android:layout_marginLeft="15dp"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
+
+
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -39,65 +41,58 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/pos1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/posicion"
             android:layout_marginStart="2dp"
-            android:gravity="center"
-            android:background="@drawable/celda_principal"
-            android:text="P"
-            android:textColor="@android:color/background_light"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/jug1"
-            android:layout_width="150dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:padding="7dip"
-            android:text="Jugador"
             android:background="@drawable/celda_principal"
+            android:text="Pos"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/eqp1"
-            android:layout_width="150dp"
+            android:id="@+id/Equipo"
+            android:layout_width="170dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:padding="7dip"
             android:text="Equipo"
             android:background="@drawable/celda_principal"
             android:textColor="@android:color/background_light"
-            android:textSize="18sp"
-            />
-
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/Puntos"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/celda_principal"
+            android:text="P"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
         <TextView
             android:id="@+id/Goles"
-            android:layout_width="70dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:background="@drawable/celda_principal"
             android:text="G"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
+        <TextView
+            android:id="@+id/PartidosJugados"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/celda_principal"
+            android:text="PJ"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/footer"
-        android:layout_below="@id/header"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:id="@+id/FragmentoTablaGoleadores"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
-    </LinearLayout>
+    <ListView
+        android:id="@+id/ListaDeGposiciones"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

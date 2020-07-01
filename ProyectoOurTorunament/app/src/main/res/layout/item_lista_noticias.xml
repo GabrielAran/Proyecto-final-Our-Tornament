@@ -1,101 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
+    android:layout_marginTop="10dp"
     android:background="#212423"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/Destacada"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.358"
-        app:layout_constraintStart_toEndOf="@+id/Torneo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/estrella" />
+    <TextView
+        android:id="@+id/Torneo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Torneo"
+        android:textColor="#FFF"
+        android:textSize="25dp" />
+    <TextView
+        android:id="@+id/renglon1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="#3CBC80"
+        android:visibility="visible" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#212423"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/Titulo"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Titulo"
+            android:textColor="#FFF"
+            android:textSize="25sp" />
+        <ImageView
+            android:id="@+id/Destacada"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/estrella" />
+    </LinearLayout>
+
+
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:foregroundGravity="center"
-        app:layout_constraintEnd_toEndOf="@+id/Titulo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/Titulo"
-        app:layout_constraintTop_toBottomOf="@+id/Titulo"
         app:srcCompat="@drawable/icono_equipo" />
-
     <TextView
-        android:id="@+id/Titulo"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:id="@+id/Descripcion"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Titulo"
+        android:text="Descripcion"
         android:textColor="#FFF"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.686"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Torneo" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/Fecha"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Fecha"
         android:textColor="#FFF"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Descripcion"
         tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/Torneo"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
-        android:text="Torneo"
-        android:textColor="#FFF"
-        android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/renglon"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
         android:background="#3CBC80"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/Torneo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Descripcion"
-        android:layout_width="360dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="Descripcion" android:textColor="#FFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:visibility="visible" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

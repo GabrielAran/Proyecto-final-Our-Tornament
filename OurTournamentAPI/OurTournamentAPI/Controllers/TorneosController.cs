@@ -46,7 +46,7 @@ namespace OurTournamentAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/OBTJornadas/Torneo/{IDTorneo}")]
+        [Route("api/Torneo/{IDTorneo}")]
         public IHttpActionResult TraerJornadasPorTorneo(int IDTorneo)
         {
             List<int> Lista = new List<int>();

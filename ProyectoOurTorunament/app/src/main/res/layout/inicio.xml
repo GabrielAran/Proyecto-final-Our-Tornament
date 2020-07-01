@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#212423">
 
     <!-- HEADER -->
     <LinearLayout
@@ -33,61 +34,44 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/subheader"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/header"
-        android:layout_marginTop="0dp"
         android:background="#212423"
-        android:gravity="top"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="420dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/header"
-            android:layout_marginTop="0dp"
-            android:background="#212423"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-
-            <Button
-                android:id="@+id/Noticias"
-                android:layout_width="210dp"
-                android:layout_height="40dp"
-                android:layout_gravity="top"
-                android:background="@drawable/secciones_inicio_izquierda"
-                android:text="Noticias"
-                android:textColor="#3CBC80"
-                android:textSize="18dp" />
-
-            <Button
-                android:id="@+id/Buscar"
-                android:layout_width="210dp"
-                android:layout_height="40dp"
-                android:layout_gravity="top"
-                android:background="@drawable/secciones_inicio_neutro"
-                android:text="Buscar"
-                android:textColor="#FFF"
-                android:textSize="18dp"/>
-        </LinearLayout>
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/Noticias"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:background="@drawable/secciones_inicio_izquierda"
+            android:text="Noticias"
+            android:textColor="#3CBC80"
+            android:textSize="18dp" />
+        <Button
+            android:id="@+id/Buscar"
+            android:layout_width="210dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:background="@drawable/secciones_inicio_neutro"
+            android:text="Buscar"
+            android:textColor="#FFF"
+            android:textSize="18dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/subheader">
 
         <FrameLayout
             android:id="@+id/FrameInicio"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center" />
-
-        <EditText
-            android:id="@+id/texto"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="top"
-            android:layout_marginTop="150dp"
-            android:background="#FFF"
-            android:hint="Buscar Torneos"
-            android:textColor="#000" />
-
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
     </LinearLayout>
 
 </RelativeLayout>

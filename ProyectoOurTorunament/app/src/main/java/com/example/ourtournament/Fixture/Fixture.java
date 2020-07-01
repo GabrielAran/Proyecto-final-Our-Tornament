@@ -47,6 +47,9 @@ public class Fixture extends Fragment {
 
         final ArrayList<String> ListaJornadas = TraerJornadas(ID);
         Principal.SetListaJornadas(ListaJornadas);
+        ListaJornadas.add("jornada 1");
+        ListaJornadas.add("jornada 2");
+        ListaJornadas.add("jornada 3");
 
         Seleccion.setVisibility(View.VISIBLE);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);

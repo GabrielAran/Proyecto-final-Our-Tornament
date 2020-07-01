@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +20,10 @@ import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.Partido;
 import com.example.ourtournament.Inicio.Inicio;
 import com.example.ourtournament.Loguearse.Loguear;
+import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.TablaGoleadores.TablaDeGoleadores;
+import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -54,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> ListaJugador;
     ArrayList<String> ListaGoles;
 
+    // Tabla de Posiciones
+    ArrayList<Equipo> ListaPosiciones;
     //Inicio
 
     ArrayList<Noticia> ListaNoticias;
@@ -80,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
             CargarGeneral();
             CargarInicio();
             CargarFixture();
-            CargarTabla();
+            CargarTablaGoleadores();
+            CargarTablaPosiciones();
         }
 
     }
@@ -90,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         CargarGeneral();
         CargarInicio();
         CargarFixture();
-        CargarTabla();
+        CargarTablaGoleadores();
     }
     //  GENERAL
     public int getIDTorneo(){return IDTorneo;}
@@ -128,9 +134,9 @@ public class MainActivity extends AppCompatActivity {
     //Fixture
     public void CargarFixture()
     {
-        Adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
         ListaJornadas = new ArrayList<>();
         ListaJornadas.add(0,"Jornadas");
+        ListaJornadas.add("Jornada 1");
 
         ListaEquipos1 = new ArrayList<>();
         ListaEquipos1.add("San Lorenzo");
@@ -188,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         Volver = true;
     }
     //Tabla de goleadores
-    public void CargarTabla()
+    public void CargarTablaGoleadores()
     {
         Adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
         ListaJugador = new ArrayList<>();
@@ -209,8 +215,17 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> getListaJugador() {return ListaJugador;}
     public ArrayList<String> getListaGoles() {return ListaGoles;}
 
-    //Navegacion
+    //TablaPosiciones
+    public void CargarTablaPosiciones()
+    {
+        Equipo E = new Equipo(1,"Boca Juniors",3,9,8,4,1);
+        ListaPosiciones.add(E);
+        ListaPosiciones.add(E);
+        ListaPosiciones.add(E);
+    }
+    public ArrayList<Equipo> getListaPosiciones(){return ListaPosiciones;}
 
+    //Navegacion
     public void IrAFixture(View vista)
     {
         Log.d("conexion", "fixture");
@@ -263,6 +278,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+        TablaPosiciones tabladeposiciones = new TablaPosiciones();
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,tabladeposiciones);
+        TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
     }
 
     public void IrAAdministracion(View vista) {
