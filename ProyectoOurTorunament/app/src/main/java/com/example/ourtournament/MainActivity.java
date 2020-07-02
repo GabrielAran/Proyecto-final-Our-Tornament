@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,6 +28,8 @@ import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
@@ -64,11 +67,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Noticia> ListaNoticias;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pantalla_de_carga);
         AdminFragments=getFragmentManager();
         DatosGenerales= getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor=DatosGenerales.edit();
-        editor.putString("NombreDeUsuario", "");
+        editor.putString("NombreDeUsuario","");
         editor.apply();
         String Nombre = DatosGenerales.getString("NombreDeUsuario", "" );
         if(Nombre=="")
@@ -228,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
     //Navegacion
     public void IrAFixture(View vista)
     {
-        Log.d("conexion", "fixture");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
@@ -244,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void IrATablaGoleadores(View vista)
     {
-        Log.d("conexion", "goleadores");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
@@ -258,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrAInicio(View vista) {
-        Log.d("conexion", "inicio");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
@@ -272,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrATablaPosiciones(View vista) {
-        Log.d("conexion", "posiciones");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
@@ -286,7 +284,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrAAdministracion(View vista) {
-        Log.d("conexion", "administracion");
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);

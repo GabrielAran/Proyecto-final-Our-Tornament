@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Buscar torneos"
-        android:textColor="#FFF"
-        android:textColorHint="#FFFFFF" />
+        android:textColor="#212423"
+        android:textColorHint="#212423"
+        android:background="@drawable/input"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

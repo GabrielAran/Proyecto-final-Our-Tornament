@@ -23,7 +23,7 @@ public class IniciarSesion extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Button ConfirmarLogueo;
-    static  SharedPreferences DatosGenerales;
+    static SharedPreferences DatosGenerales;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;

@@ -37,7 +37,7 @@ public class TablaPosiciones extends Fragment {
         MainActivity Principal = (MainActivity) getActivity();
         VecPosiciones = Principal.getListaPosiciones();
         AdaptadorListaPosiciones Adaptador = new AdaptadorListaPosiciones(Principal,R.layout.item_lista_posiciones,VecPosiciones);
-        listaposiciones.setAdapter(Adaptador);
+        //listaposiciones.setAdapter(Adaptador);
         return VistaADevolver;
     }
 
