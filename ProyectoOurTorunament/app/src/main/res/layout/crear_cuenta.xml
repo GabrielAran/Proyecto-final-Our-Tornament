@@ -8,55 +8,61 @@
     android:layout_gravity="center">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="center">
 
         <EditText
+            android:id="@+id/nombre"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="60dp"
             android:background="@drawable/input"
             android:ems="20"
-            android:layout_marginTop="60dp"
             android:gravity="center"
             android:hint="Nombre de usuario"
             android:inputType="textPersonName"
             android:textColor="#000"
             android:textColorHint="#a6a6a6" />
+
         <EditText
+            android:id="@+id/correo"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/input"
             android:ems="20"
-            android:layout_marginTop="10dp"
             android:gravity="center"
             android:hint="Correo electronico"
             android:inputType="textEmailAddress"
             android:textColor="#000"
             android:textColorHint="#a6a6a6" />
+
         <EditText
+            android:id="@+id/contra"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/input"
             android:ems="20"
-            android:layout_marginTop="10dp"
             android:gravity="center"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:textColor="#000"
             android:textColorHint="#a6a6a6" />
+
         <EditText
+            android:id="@+id/confContra"
             android:layout_width="360dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/input"
             android:ems="20"
-            android:layout_marginTop="10dp"
             android:gravity="center"
             android:hint="Confirmar contraseña"
             android:inputType="textPassword"
