@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
     }
+
     //Inicio
     public void CargarInicio()
     {
@@ -241,7 +242,6 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
     }
-
 
     public void IrATablaGoleadores(View vista)
     {

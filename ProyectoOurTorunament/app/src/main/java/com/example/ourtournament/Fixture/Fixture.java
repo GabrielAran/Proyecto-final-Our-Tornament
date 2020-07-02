@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.R;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -25,6 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.Principal;
 import java.util.ArrayList;
 
 public class Fixture extends Fragment {
@@ -33,6 +35,7 @@ public class Fixture extends Fragment {
     int ID;
     private Spinner spinner;
     TextView Seleccion;
+    ArrayList<String> ListaJornadas;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
@@ -45,30 +48,11 @@ public class Fixture extends Fragment {
         final MainActivity Principal = (MainActivity) getActivity();
         ID = Principal.getIDTorneo();
 
-        final ArrayList<String> ListaJornadas = TraerJornadas(ID);
+        ListaJornadas = new ArrayList<>();
+        TraerJornadas Tarea = new TraerJornadas();
+        Tarea.execute(ID);
         Principal.SetListaJornadas(ListaJornadas);
-        ListaJornadas.add("jornada 1");
-        ListaJornadas.add("jornada 2");
-        ListaJornadas.add("jornada 3");
 
-        Seleccion.setVisibility(View.VISIBLE);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0)
-                {
-                    Principal.SetJornadaElegida(i);
-                    MostrarListaPartidos();
-                    Seleccion.setVisibility(View.GONE);
-                }
-
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         return VistaADevolver;
     }
 
@@ -81,37 +65,77 @@ public class Fixture extends Fragment {
         TransaccionesDeFragment.addToBackStack(null);
     }
 
+    private class TraerJornadas extends AsyncTask<Integer,Void,ArrayList<String>>
+    {
+        @Override
+        protected ArrayList<String> doInBackground(Integer... voids) {
+            ArrayList<String> listaJornada= new ArrayList<>();
+            try {
+                Log.d("conexion", "mando ID "+ID);
+                String miURL = "http://localhost:10.0.2.2/api/Torneo/" + ID;
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                Log.d("conexion", "llegue");
+                miConexion.setRequestMethod("GET");
+
+                int num;
+                Log.d("conexion", "me devolvio: "+miConexion.getResponseCode());
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "me conecte");
+                    listaJornada.add(0,"Jornadas");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonObject objetoJSon = parseador.parse(lectorJSon).getAsJsonObject();
+                    JsonArray VecJornadas = objetoJSon.get("Lista").getAsJsonArray();
+                    for (int i = 0; i < VecJornadas.size(); i++)
+                    {
+                        JsonObject Jornada = VecJornadas.get(i).getAsJsonObject();
+                        num = Jornada.get("JornadaDelTorneo").getAsInt();
+                        listaJornada.add("jornada " +num);
+                    }
 
 
-    protected ArrayList<String> TraerJornadas(int... Parametros) {
-        ArrayList<String> ListaJornadas= new ArrayList<>();
-        try {
-            Log.d("conexion", "mando ID "+ID);
-            String miURL = "http://10.0.2.2:55859/api/Torneo/" + ID;
-            URL miRuta = new URL(miURL);
-            HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
-            Log.d("conexion", "llegue");
-            miConexion.setRequestMethod("GET");
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                if(ErrorOcurrido == null)
+                {
+                    Log.d("conexion", "no hay error pero tengo ganas de romper las bolas");
+                }else
+                {
+                    Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+                }
 
-            int num;
-            Log.d("conexion", "me devolvio: ");
-            if (miConexion.getResponseCode() == 200) {
-                Log.d("conexion", "me conecte");
-                InputStream lector = miConexion.getInputStream();
-                InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
-                JsonParser parseador = new JsonParser();
-                JsonObject objetoJSon = parseador.parse(lectorJSon).getAsJsonObject();
-
-                num = objetoJSon.getAsInt();
-                ListaJornadas.add("jornada " +num);
-
-            } else {
-                Log.d("Conexion", "Me pude conectar pero algo malo pasó");
             }
-            miConexion.disconnect();
-        } catch (Exception ErrorOcurrido) {
-            Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            return listaJornada;
         }
-        return ListaJornadas;
+        protected void onPostExecute(ArrayList<String> lista)
+        {
+            final MainActivity Principal = (MainActivity) getActivity();
+            ListaJornadas = lista;
+            Seleccion.setVisibility(View.VISIBLE);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(i!=0)
+                    {
+                        Principal.SetJornadaElegida(i);
+                        MostrarListaPartidos();
+                        Seleccion.setVisibility(View.GONE);
+                    }
+
+                }
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
     }
+
+
 }
