@@ -82,7 +82,6 @@ public class Fixture extends Fragment {
                 Log.d("conexion", "me devolvio: "+miConexion.getResponseCode());
                 if (miConexion.getResponseCode() == 200) {
                     Log.d("conexion", "me conecte");
-                    listaJornada.add(0,"Jornadas");
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
@@ -93,7 +92,7 @@ public class Fixture extends Fragment {
                         int Jornada = VecJornadas.get(i).getAsInt();
                         Log.d("conexion", ""+Jornada);
                         //num = Jornada.get("JornadaDelTorneo").getAsInt();
-                        listaJornada.add("jornada " +Jornada);
+                        listaJornada.add("jornada "+Jornada);
                     }
 
                 } else {

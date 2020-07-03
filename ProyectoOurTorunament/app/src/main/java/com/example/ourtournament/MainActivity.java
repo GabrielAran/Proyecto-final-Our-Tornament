@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
-
     static SharedPreferences DatosGenerales;
 
     int IDTorneo=1;
@@ -75,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         String Nombre = DatosGenerales.getString("NombreDeUsuario", "" );
         if(Nombre=="")
         {
+            Log.d("conexion", "entre al if");
             setContentView(R.layout.pantalla_vacia_con_fragment);
             Loguear logueo = new Loguear();
             TransaccionesDeFragment=AdminFragments.beginTransaction();
@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         CargarInicio();
         CargarFixture();
         CargarTablaGoleadores();
+        CargarTablaPosiciones();
+
     }
     //  GENERAL
     public int getIDTorneo(){return IDTorneo;}
@@ -221,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
     //TablaPosiciones
     public void CargarTablaPosiciones()
     {
+        ListaPosiciones = new ArrayList<Equipo>();
         Equipo E = new Equipo(1,"Boca Juniors",3,9,8,4,1);
         ListaPosiciones.add(E);
         ListaPosiciones.add(E);
@@ -236,11 +239,13 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+        /*
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
+         */
     }
 
     public void IrATablaGoleadores(View vista)
@@ -250,11 +255,14 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+        /*
         TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,tablaDeGoleadores);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
+
+         */
     }
 
     public void IrAInicio(View vista) {
@@ -263,11 +271,14 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+        /*
         Inicio inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
+
+         */
     }
 
     public void IrATablaPosiciones(View vista) {
@@ -276,11 +287,14 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+        /*
         TablaPosiciones tabladeposiciones = new TablaPosiciones();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,tabladeposiciones);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
+
+         */
     }
 
     public void IrAAdministracion(View vista) {

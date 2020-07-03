@@ -38,6 +38,7 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource,null);
         }
+        /*
         TextView Posicion,Equipo,Puntos,Goles,PartidosJugados;
         Posicion = VistaADevolver.findViewById(R.id.posicion);
         Equipo = VistaADevolver.findViewById(R.id.Equipo);
@@ -52,6 +53,8 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
         Puntos.setText(E._Puntos);
         Goles.setText(E._GolesAFavor);
         PartidosJugados.setText(E._PartidosJugados);
+
+         */
 
         return  VistaADevolver;
     }
