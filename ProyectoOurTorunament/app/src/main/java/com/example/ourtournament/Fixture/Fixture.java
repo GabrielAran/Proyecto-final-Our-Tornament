@@ -86,15 +86,15 @@ public class Fixture extends Fragment {
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
-                    JsonObject objetoJSon = parseador.parse(lectorJSon).getAsJsonObject();
-                    JsonArray VecJornadas = objetoJSon.get("Lista").getAsJsonArray();
+                    JsonArray VecJornadas = parseador.parse(lectorJSon).getAsJsonArray();
+                    //JsonArray VecJornadas = objetoJSon.get("Lista").getAsJsonArray();
                     for (int i = 0; i < VecJornadas.size(); i++)
                     {
-                        JsonObject Jornada = VecJornadas.get(i).getAsJsonObject();
-                        num = Jornada.get("JornadaDelTorneo").getAsInt();
-                        listaJornada.add("jornada " +num);
+                        int Jornada = VecJornadas.get(i).getAsInt();
+                        Log.d("conexion", ""+Jornada);
+                        //num = Jornada.get("JornadaDelTorneo").getAsInt();
+                        listaJornada.add("jornada " +Jornada);
                     }
-
 
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -116,6 +116,8 @@ public class Fixture extends Fragment {
         {
             final MainActivity Principal = (MainActivity) getActivity();
             ListaJornadas = lista;
+            ListaJornadas.add("Jorrnada 1");
+            ListaJornadas.add("Jorrnada 2");
             Seleccion.setVisibility(View.VISIBLE);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
             spinner.setAdapter(adapter);
