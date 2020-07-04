@@ -17,7 +17,6 @@
             android:id="@+id/Fixture"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/icono_fixture"
             android:onClick="IrAFixture"/>
 
         <Button
@@ -25,29 +24,26 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
-            android:onClick="IrATablaGoleadores"
-            android:background="@drawable/icono_tabla_goleadores"/>
+            android:onClick="IrATablaGoleadores" />
         <Button
             android:id="@+id/Inicio"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
-            android:onClick="IrAInicio"
-            android:background="@drawable/icono_inicio_verde"/>
+            android:onClick="IrAInicio" />
         <Button
             android:id="@+id/TablaDePosiciones"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
-            android:onClick="IrATablaPosiciones"
-            android:background="@drawable/icono_tabla_posiciones"/>
+            android:onClick="IrATablaPosiciones" />
         <Button
             android:id="@+id/Administracion"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrAAdministracion"
-            android:background="@drawable/icono_admin"/>
+            />
 
     </LinearLayout>
 

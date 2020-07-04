@@ -2,71 +2,87 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
+    android:layout_height="80dp"
     android:layout_marginTop="8dp"
-    android:background="#000"
+    android:background="#212423"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/LogoEquipo1"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginRight="355dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/icono_equipo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/Equipo1"
+        app:layout_constraintEnd_toEndOf="@+id/Equipo1"
+        app:layout_constraintStart_toStartOf="@+id/Equipo1" />
 
     <ImageView
         android:id="@+id/LogoEquipo2"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="355dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/icono_equipo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/Equipo2"
+        app:layout_constraintEnd_toEndOf="@+id/Equipo2"
+        app:layout_constraintStart_toStartOf="@+id/Equipo2" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="65dp"
+        android:layout_height="40dp"
         android:gravity="center"
         android:text="VS"
         android:textColor="#FFF"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.175" />
+
+    <TextView
+        android:id="@+id/jugado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="jugado"
+        android:textColor="#FFF"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/Equipo1"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="180dp"
+        android:gravity="center"
         android:text="Equipo 1"
         android:textColor="#FFF"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.886" />
 
     <TextView
         android:id="@+id/Equipo2"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="180dp"
-        android:gravity="right"
+        android:gravity="center"
         android:text="Equipo 2"
         android:textColor="#FFF"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.886" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

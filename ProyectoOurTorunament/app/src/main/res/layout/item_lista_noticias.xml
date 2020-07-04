@@ -9,21 +9,7 @@
     android:background="#212423"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/Torneo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Torneo"
-        android:textColor="#FFF"
-        android:textSize="25dp" />
-    <TextView
-        android:id="@+id/renglon1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:background="#3CBC80"
-        android:visibility="visible" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,21 +18,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/Titulo"
-            android:layout_width="360dp"
+            android:id="@+id/Torneo"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Titulo"
+            android:layout_marginStart="10dp"
+            android:text="Torneo"
             android:textColor="#FFF"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
         <ImageView
             android:id="@+id/Destacada"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:srcCompat="@drawable/estrella" />
     </LinearLayout>
-
-
+    <TextView
+        android:id="@+id/Titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Titulo"
+        android:textColor="#FFF"
+        android:textSize="22sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -59,17 +51,17 @@
         android:id="@+id/Descripcion"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="Descripcion"
         android:textColor="#FFF"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/Fecha"
         android:layout_width="80dp"
         android:layout_height="30dp"
-        android:layout_marginTop="10dp"
+
         android:gravity="center"
         android:text="Fecha"
         android:textColor="#FFF"
@@ -80,9 +72,9 @@
         android:id="@+id/renglon"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="0dp"
         android:layout_gravity="center"
-        android:background="#3CBC80"
+        android:background="#000"
         android:visibility="visible" />
 
 

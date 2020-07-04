@@ -5,13 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,8 +23,6 @@ import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
@@ -67,14 +60,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AdminFragments=getFragmentManager();
-        DatosGenerales= getPreferences(MODE_PRIVATE);
+        DatosGenerales= getSharedPreferences("DatosGenerales",MODE_PRIVATE);
         SharedPreferences.Editor editor=DatosGenerales.edit();
         editor.putString("NombreDeUsuario","");
         editor.apply();
         String Nombre = DatosGenerales.getString("NombreDeUsuario", "" );
         if(Nombre=="")
         {
-            Log.d("conexion", "entre al if");
             setContentView(R.layout.pantalla_vacia_con_fragment);
             Loguear logueo = new Loguear();
             TransaccionesDeFragment=AdminFragments.beginTransaction();
@@ -83,12 +75,7 @@ public class MainActivity extends AppCompatActivity {
             TransaccionesDeFragment.addToBackStack(null);
         }else
         {
-            setContentView(R.layout.activity_main);
-            CargarGeneral();
-            CargarInicio();
-            CargarFixture();
-            CargarTablaGoleadores();
-            CargarTablaPosiciones();
+            Entrar();
         }
 
     }
@@ -129,19 +116,12 @@ public class MainActivity extends AppCompatActivity {
         ListaNoticias.add(UnaNoticia);
         ListaNoticias.add(UnaNoticia);
 
-        setContentView(R.layout.activity_main);
-        Inicio inicio = new Inicio();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,inicio);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
+        IrAInicio(null);
     }
     //Fixture
     public void CargarFixture()
     {
         ListaJornadas = new ArrayList<>();
-        ListaJornadas.add(0,"Jornadas");
-        ListaJornadas.add("Jornada 1");
 
         ListaEquipos1 = new ArrayList<>();
         ListaEquipos1.add("San Lorenzo");
@@ -239,13 +219,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        /*
         Fixture fixture = new Fixture();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fixture);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
-         */
     }
 
     public void IrATablaGoleadores(View vista)
@@ -255,14 +233,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        /*
         TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,tablaDeGoleadores);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
-
-         */
     }
 
     public void IrAInicio(View vista) {
@@ -271,14 +246,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        /*
         Inicio inicio = new Inicio();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,inicio);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
-
-         */
     }
 
     public void IrATablaPosiciones(View vista) {
@@ -287,14 +259,11 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
-        /*
         TablaPosiciones tabladeposiciones = new TablaPosiciones();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,tabladeposiciones);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
-
-         */
     }
 
     public void IrAAdministracion(View vista) {

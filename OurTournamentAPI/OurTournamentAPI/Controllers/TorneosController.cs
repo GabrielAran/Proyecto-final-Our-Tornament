@@ -58,7 +58,7 @@ namespace OurTournamentAPI.Controllers
             }
             else
             {
-                return NotFound();
+                return Ok();
             }
 
         }
