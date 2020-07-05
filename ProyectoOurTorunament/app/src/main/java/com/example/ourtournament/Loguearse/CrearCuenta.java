@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 
 public class CrearCuenta extends Fragment {
@@ -25,15 +26,13 @@ public class CrearCuenta extends Fragment {
     Button ConfirmarLogueo;
     SharedPreferences DatosGenerales;
 
-    EditText contra;
-    EditText confContra;
-
+    EditText Nombre,Email,contra,confContra;
+    Preferencias P = new Preferencias();
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.crear_cuenta, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
-
         ConfirmarLogueo = VistaADevolver.findViewById(R.id.button);
         contra = VistaADevolver.findViewById(R.id.contra);
         confContra = VistaADevolver.findViewById(R.id.confContra);
@@ -43,13 +42,18 @@ public class CrearCuenta extends Fragment {
             public void onClick(View view) {
                 String contraText = contra.getText().toString();
                 String confContraText = confContra.getText().toString();
-                Log.d("Contrasenia", "c1=" + contraText + " c2=" + confContraText);
-                if (!contraText.equals(confContraText)){
-                    Log.d("Contrasenia", "Las contrasenias no coinciden");
-                }else {
-                    final MainActivity Principal = (MainActivity) getActivity();
-                    Principal.Entrar();
+                if(contra.getText().toString() != "")
+                {
+                    if (!contraText.equals(confContraText)){
+                        Log.d("Contrasenia", "Las contrasenias no coinciden");
+                    }else {
+                        final MainActivity Principal = (MainActivity) getActivity();
+                        P = Principal.CargarSharedPreferences();
+                        P.GuardarString("contrasenia",contra.getText().toString());
+                        Principal.Entrar();
+                    }
                 }
+
             }
         });
         return VistaADevolver;

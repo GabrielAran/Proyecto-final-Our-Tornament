@@ -18,6 +18,7 @@ import com.example.ourtournament.Inicio.Inicio;
 import com.example.ourtournament.Loguearse.Loguear;
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Noticia;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.TablaGoleadores.TablaDeGoleadores;
 import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
 
-    static SharedPreferences DatosGenerales;
+    Preferencias DatosGenerales;
 
     int IDTorneo=1;
     Button BTNFixture;
@@ -60,12 +61,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AdminFragments=getFragmentManager();
-        DatosGenerales= getSharedPreferences("DatosGenerales",MODE_PRIVATE);
-        SharedPreferences.Editor editor=DatosGenerales.edit();
-        editor.putString("NombreDeUsuario","");
-        editor.apply();
-        String Nombre = DatosGenerales.getString("NombreDeUsuario", "" );
-        if(Nombre=="")
+        DatosGenerales = CargarSharedPreferences();
+        String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
+        if(Nombre=="no hay contrasenia")
         {
             setContentView(R.layout.pantalla_vacia_con_fragment);
             Loguear logueo = new Loguear();
@@ -78,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
             Entrar();
         }
 
+    }
+    public Preferencias CargarSharedPreferences()
+    {
+        SharedPreferences aux = getSharedPreferences("DatosGenerales",MODE_PRIVATE);
+        SharedPreferences.Editor editor = null;
+        Preferencias P = new Preferencias(aux,editor);
+        return P;
     }
     public void Entrar()
     {

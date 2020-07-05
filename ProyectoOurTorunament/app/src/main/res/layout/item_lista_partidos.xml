@@ -46,7 +46,7 @@
         android:gravity="center"
         android:text="jugado"
         android:textColor="#FFF"
-        android:textSize="10dp"
+        android:textSize="14dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.428"
