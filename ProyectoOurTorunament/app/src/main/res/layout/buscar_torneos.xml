@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:layout_gravity="center"
     android:background="#212423">
-    <!-- HEADER -->
     <EditText
+        android:id="@+id/Buscar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -16,5 +17,11 @@
         android:textColorHint="#212423"
         android:background="@drawable/input"
         android:layout_marginTop="10dp"/>
+
+    <ListView
+        android:id="@+id/listaTorneos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

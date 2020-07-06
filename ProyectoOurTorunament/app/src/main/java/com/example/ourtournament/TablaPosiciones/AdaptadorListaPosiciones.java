@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
 {
-    ArrayList<Equipo> _ListaEquipos;
+    private ArrayList<Equipo> _ListaEquipos;
     private Context _Contexto;
-    int _Resource;
+    private int _Resource;
 
     public AdaptadorListaPosiciones(Context contexto,int Resource,ArrayList<Equipo> ListaEquipos)
     {
@@ -38,7 +38,7 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource,null);
         }
-        /*
+
         TextView Posicion,Equipo,Puntos,Goles,PartidosJugados;
         Posicion = VistaADevolver.findViewById(R.id.posicion);
         Equipo = VistaADevolver.findViewById(R.id.Equipo);
@@ -46,9 +46,12 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
         Goles = VistaADevolver.findViewById(R.id.Goles);
         PartidosJugados = VistaADevolver.findViewById(R.id.PartidosJugados);
 
+
         Equipo E = getItem(pos);
 
-        Posicion.setText(pos);
+
+        Posicion.setText("1");
+        /*
         Equipo.setText(E._Nombre);
         Puntos.setText(E._Puntos);
         Goles.setText(E._GolesAFavor);

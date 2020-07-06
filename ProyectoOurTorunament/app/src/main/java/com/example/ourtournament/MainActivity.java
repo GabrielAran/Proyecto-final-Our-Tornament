@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AdminFragments=getFragmentManager();
         DatosGenerales = CargarSharedPreferences();
+        DatosGenerales.EliminarDato("contrasenia");
         String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
         if(Nombre=="no hay contrasenia")
         {
@@ -208,8 +210,10 @@ public class MainActivity extends AppCompatActivity {
     //TablaPosiciones
     public void CargarTablaPosiciones()
     {
-        ListaPosiciones = new ArrayList<Equipo>();
+        ListaPosiciones = new ArrayList<>();
         Equipo E = new Equipo(1,"Boca Juniors",3,9,8,4,1);
+        ListaPosiciones.add(E);
+        ListaPosiciones.add(E);
         ListaPosiciones.add(E);
         ListaPosiciones.add(E);
         ListaPosiciones.add(E);

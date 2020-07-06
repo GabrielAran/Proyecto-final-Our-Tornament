@@ -45,7 +45,7 @@ public class ListaNoticias extends BaseAdapter
     public View getView(int pos, View VistaActual, ViewGroup GrupoActual)
     {
         View VistaADevolver;
-        TextView Titulo,Fecha,Torneo;
+        TextView Titulo,Fecha,Descripcion;
         ImageView Destacada;
         Noticia Not;
 
@@ -53,9 +53,9 @@ public class ListaNoticias extends BaseAdapter
         LayoutInflater MiInflador;
         MiInflador = (LayoutInflater)_Contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         VistaADevolver=MiInflador.inflate(R.layout.item_lista_noticias,GrupoActual,false);
-        Torneo=VistaADevolver.findViewById(R.id.Torneo);
         Titulo=VistaADevolver.findViewById(R.id.Titulo);
         Fecha=VistaADevolver.findViewById(R.id.Fecha);
+        Descripcion=VistaADevolver.findViewById(R.id.Descripcion);
         Destacada=VistaADevolver.findViewById(R.id.Destacada);
 
         Not = getItem(pos);
@@ -65,9 +65,9 @@ public class ListaNoticias extends BaseAdapter
         }else
         {
         }
-        Torneo.setText(Not.Torneo);
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
+        Descripcion.setText(Not.Descripcion);
         return  VistaADevolver;
     }
 }
