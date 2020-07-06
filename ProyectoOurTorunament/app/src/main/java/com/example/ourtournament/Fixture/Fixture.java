@@ -49,8 +49,9 @@ public class Fixture extends Fragment {
         ID = Principal.getIDTorneo();
 
         ListaJornadas = new ArrayList<>();
-        //TraerJornadas Tarea = new TraerJornadas();
-        //Tarea.execute(ID);
+        TraerJornadas Tarea = new TraerJornadas();
+        Tarea.execute(ID);
+        /*
         ListaJornadas.add(0,"Jornadas");
         ListaJornadas.add("Jornada 1");
         ListaJornadas.add("Jornada 2");
@@ -74,6 +75,8 @@ public class Fixture extends Fragment {
             }
         });
 
+         */
+
         return VistaADevolver;
     }
 
@@ -86,7 +89,7 @@ public class Fixture extends Fragment {
         TransaccionesDeFragment.addToBackStack(null);
     }
 
-    /*
+
     private class TraerJornadas extends AsyncTask<Integer,Void,ArrayList<String>>
     {
         @Override
@@ -126,11 +129,11 @@ public class Fixture extends Fragment {
         protected void onPostExecute(ArrayList<String> lista)
         {
             final MainActivity Principal = (MainActivity) getActivity();
-
+            Log.d("conexion",String.valueOf(lista.size()));
         }
     }
 
-     */
+
 
 
 }
