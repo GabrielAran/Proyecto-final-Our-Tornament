@@ -2,6 +2,8 @@ package com.example.ourtournament.Loguearse;
 
 import androidx.annotation.Nullable;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourtournament.Fixture.FragmentoParaListaPartidos;
@@ -22,6 +25,8 @@ public class Loguear extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     TextView Texto;
+    ImageView Foto;
+    ObjectAnimator Animacion;
     CrearCuenta cuentacrear;
     IniciarSesion cuentaentrar;
     boolean cambio;
@@ -30,10 +35,16 @@ public class Loguear extends Fragment {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.loguear, GrupoDeLaVista, false);
         Texto = VistaADevolver.findViewById(R.id.cambiar);
+        Foto = VistaADevolver.findViewById(R.id.Logo);
         AdminFragments=getFragmentManager();
         cambio = false;
         cuentacrear = new CrearCuenta();
         cuentaentrar = new IniciarSesion();
+        Animacion = ObjectAnimator.ofFloat(Foto,View.ALPHA,0.0f,1.0f);
+        Animacion.setDuration(5000);
+        AnimatorSet SetDeAnimacion = new AnimatorSet();
+        SetDeAnimacion.play(Animacion);
+        SetDeAnimacion.start();
         Mostrar();
 
         Texto.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +67,6 @@ public class Loguear extends Fragment {
                     TransaccionesDeFragment.replace(R.id.fragmentdelogueo, cuentacrear);
                     TransaccionesDeFragment.commit();
                     TransaccionesDeFragment.addToBackStack(null);
-
                 }
 
             }

@@ -2,37 +2,41 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="400dp"
     android:background="#212423"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    android:layout_gravity="bottom"
+    >
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
         <EditText
             android:layout_width="360dp"
             android:layout_height="38dp"
             android:layout_gravity="center"
+            android:layout_marginTop="0dp"
             android:background="@drawable/input"
             android:ems="20"
-            android:layout_marginTop="120dp"
             android:gravity="center"
             android:hint="Nombre de usuario"
             android:inputType="textPersonName"
             android:textColor="#000"
             android:textColorHint="#3c3c3c" />
+
         <EditText
             android:layout_width="360dp"
             android:layout_height="38dp"
             android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:background="@drawable/input"
             android:ems="20"
-            android:layout_marginTop="16dp"
             android:gravity="center"
             android:hint="Contraseña"
             android:inputType="textPassword"
@@ -40,11 +44,12 @@
             android:textColorHint="#3c3c3c" />
     </LinearLayout>
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#212423"
         android:orientation="vertical"
+        android:layout_marginTop="50dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center">
 
@@ -57,7 +62,7 @@
             android:ems="12"
             android:text="Iniciar sesion"
             android:textSize="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="0dp"
             />
 
     </LinearLayout>

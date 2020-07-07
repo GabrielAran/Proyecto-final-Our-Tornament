@@ -3,6 +3,7 @@ package com.example.ourtournament;
 import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
@@ -40,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     Button BTNAdministracion;
     //fixture
     ArrayList<String> ListaJornadas;
-    ArrayAdapter<String> Adaptador;
-    ArrayAdapter<String> Adaptador2;
     ArrayList<String> ListaEquipos1;
     ArrayList<String> ListaEquipos2;
     int IDJornadaElegida;
@@ -188,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
     //Tabla de goleadores
     public void CargarTablaGoleadores()
     {
-        Adaptador2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ListaJornadas);
         ListaJugador = new ArrayList<>();
         ListaJugador.add("Bochini");
         ListaJugador.add("Maradona");

@@ -10,38 +10,38 @@
         android:id="@+id/fragmentdelogueo"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        app:layout_constraintBottom_toTopOf="@+id/cambiar"
-    />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Bienvenida" />
 
     <TextView
         android:id="@+id/cambiar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="cambiar"
         android:text="Crear cuenta"
         android:textColor="#0808EF"
         android:textSize="18dp"
-        android:onClick="cambiar"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentdelogueo" />
     <ImageView
         android:id="@+id/Logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@mipmap/logo" />
 
     <TextView
         android:id="@+id/Bienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="Bienvenido a Our torunament"
         android:textColor="#FFF"
         android:textSize="28dp"

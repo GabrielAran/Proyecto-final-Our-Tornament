@@ -49,9 +49,9 @@ public class Fixture extends Fragment {
         ID = Principal.getIDTorneo();
 
         ListaJornadas = new ArrayList<>();
-        TraerJornadas Tarea = new TraerJornadas();
-        Tarea.execute(ID);
-        /*
+        //TraerJornadas Tarea = new TraerJornadas();
+        //Tarea.execute(ID);
+
         ListaJornadas.add(0,"Jornadas");
         ListaJornadas.add("Jornada 1");
         ListaJornadas.add("Jornada 2");
@@ -75,7 +75,7 @@ public class Fixture extends Fragment {
             }
         });
 
-         */
+
 
         return VistaADevolver;
     }
