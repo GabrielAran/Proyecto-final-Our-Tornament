@@ -28,7 +28,7 @@ namespace OurTournamentAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/OBTPartidos/Jornada={IDJornada}/Torneo/{IDTorneo}")]
+        [Route("api/OBTPartidos/Jornada/{IDJornada}/Torneo/{IDTorneo}")]
         public IHttpActionResult ObtenerPartidosPorJornadas(int IDJornada, int IDTorneo)
         {
             List<Models.Partido> Lista = new List<Models.Partido>();

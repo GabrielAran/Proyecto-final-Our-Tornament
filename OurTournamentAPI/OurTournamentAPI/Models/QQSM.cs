@@ -66,7 +66,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "SELECT * FROM Partidos where Partidos.Jornada = " + IDJornada+ "and Partidos.Torneo = "+IDTorneo;
+            Consulta.CommandText = "SELECT * FROM Partidos where Partidos.JornadaDelTorneo = " + IDJornada+ "and Partidos.IDTorneo = "+IDTorneo;
             SqlDataReader Lector = Consulta.ExecuteReader();
             List<Models.Partido> ListaPartidos = new List<Models.Partido>();
             Models.Partido UnPartido = new Models.Partido();
@@ -79,7 +79,7 @@ namespace OurTournamentAPI
                 int GolesLocal = Convert.ToInt32(Lector["GolesLocal"]);
                 int GolesVisitante = Convert.ToInt32(Lector["GolesVisitante"]);
                 int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
-                int IDjornada = Convert.ToInt32(Lector["IDJornada"]);
+                int IDjornada = Convert.ToInt32(Lector["JornadaDelTorneo"]);
                 UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, IDEquipoLocal, IDEquipoVisitante, GolesLocal, GolesVisitante ,IDTorneo, IDjornada);
                 ListaPartidos.Add(UnPartido);
             }

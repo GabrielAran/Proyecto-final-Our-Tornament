@@ -34,14 +34,12 @@ public class Fixture extends Fragment {
     FragmentTransaction TransaccionesDeFragment;
     int ID;
     private Spinner spinner;
-    TextView Seleccion;
     ArrayList<String> ListaJornadas;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
-        Seleccion = VistaADevolver.findViewById(R.id.Seleccione);
         spinner = VistaADevolver.findViewById(R.id.Jornadas);
         AdminFragments=getFragmentManager();
 
@@ -56,8 +54,9 @@ public class Fixture extends Fragment {
         ListaJornadas.add("Jornada 1");
         ListaJornadas.add("Jornada 2");
         Principal.SetListaJornadas(ListaJornadas);
-        Seleccion.setVisibility(View.VISIBLE);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_expandable_list_item_1,ListaJornadas);
+        Principal.SetJornadaElegida(ListaJornadas.size()-1);
+        MostrarListaPartidos();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_expandable_list_item_1,ListaJornadas);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -66,12 +65,11 @@ public class Fixture extends Fragment {
                 {
                     Principal.SetJornadaElegida(i);
                     MostrarListaPartidos();
-                    Seleccion.setVisibility(View.GONE);
                 }
 
             }
             public void onNothingSelected(AdapterView<?> parent) {
-                Seleccion.setVisibility(View.VISIBLE);
+
             }
         });
 

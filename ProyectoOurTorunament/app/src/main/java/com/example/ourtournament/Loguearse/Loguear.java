@@ -40,12 +40,13 @@ public class Loguear extends Fragment {
         cambio = false;
         cuentacrear = new CrearCuenta();
         cuentaentrar = new IniciarSesion();
-        Animacion = ObjectAnimator.ofFloat(Foto,View.ALPHA,0.0f,1.0f);
-        Animacion.setDuration(5000);
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Foto,View.ALPHA,0.3f,1.0f);
+        Animacion.setDuration(1200);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
         Mostrar();
+
 
         Texto.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -59,6 +60,7 @@ public class Loguear extends Fragment {
                     TransaccionesDeFragment.replace(R.id.fragmentdelogueo, cuentaentrar);
                     TransaccionesDeFragment.commit();
                     TransaccionesDeFragment.addToBackStack(null);
+
                 }else
                 {
                     cambio = true;

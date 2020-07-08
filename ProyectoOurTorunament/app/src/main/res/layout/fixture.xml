@@ -52,16 +52,7 @@
             android:background="@drawable/spinner"
             android:spinnerMode="dropdown"
             android:gravity="left" />
-        <TextView
-            android:id="@+id/Seleccione"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="190dp"
-            android:text="Seleccione una jornada"
-            android:textSize="20dp"
-            android:textColor="#FFF"
-            android:gravity="center"
-            tools:ignore="HardcodedText,SpUsage" />
+
         <FrameLayout
             android:id="@+id/FragmentoListaPartidos"
             android:layout_width="match_parent"

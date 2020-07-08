@@ -1,6 +1,10 @@
 package com.example.ourtournament.Inicio;
 
 import androidx.annotation.Nullable;
+
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -52,6 +56,11 @@ public class Inicio extends Fragment {
                 TransaccionesDeFragment.replace(R.id.FrameInicio,N);
                 TransaccionesDeFragment.commit();
                 TransaccionesDeFragment.addToBackStack(null);
+                ObjectAnimator Animacion = ObjectAnimator.ofFloat(R.id.FrameInicio,"X",200);
+                Animacion.setDuration(5000);
+                AnimatorSet SetDeAnimacion = new AnimatorSet();
+                SetDeAnimacion.play(Animacion);
+                SetDeAnimacion.start();
             }
         });
         Buscar.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +74,11 @@ public class Inicio extends Fragment {
                 TransaccionesDeFragment.replace(R.id.FrameInicio,BT);
                 TransaccionesDeFragment.commit();
                 TransaccionesDeFragment.addToBackStack(null);
+                ObjectAnimator Animacion = ObjectAnimator.ofFloat(R.id.FrameInicio,"X",200);
+                Animacion.setDuration(5000);
+                AnimatorSet SetDeAnimacion = new AnimatorSet();
+                SetDeAnimacion.play(Animacion);
+                SetDeAnimacion.start();
 
             }
         });

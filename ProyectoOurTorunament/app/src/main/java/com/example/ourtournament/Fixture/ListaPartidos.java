@@ -55,7 +55,7 @@ public class ListaPartidos extends BaseAdapter
     public View getView(int pos, View VistaActual, ViewGroup GrupoActual)
     {
         View VistaADevolver;
-        TextView Equipo1,Equipo2;
+        TextView Equipo1,Equipo2,renglon;
 
         ArrayList<String> ListaDeLaPosicionActual;
 
@@ -66,8 +66,13 @@ public class ListaPartidos extends BaseAdapter
 
         Equipo1=VistaADevolver.findViewById(R.id.Equipo1);
         Equipo2=VistaADevolver.findViewById(R.id.Equipo2);
+        renglon=VistaADevolver.findViewById(R.id.renglonArriba);
 
         ListaDeLaPosicionActual = getItem(pos);
+        if(pos == 0)
+        {
+            renglon.setVisibility(View.GONE);
+        }
 
         Equipo1.setText(ListaDeLaPosicionActual.get(0));
         Equipo2.setText(ListaDeLaPosicionActual.get(1));
