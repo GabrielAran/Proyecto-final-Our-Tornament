@@ -52,13 +52,18 @@ public class Partido extends Fragment {
 
         Goles1 = new ArrayList<>();
         LosGoles1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
-        Adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles1);
+        Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles1);
         Goles1.add("No hay goles aun");
         LosGoles1.setAdapter(Adaptador);
 
         Goles2 = new ArrayList<>();
         LosGoles2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
-        Adaptador2 = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles2);
+        Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles2);
+        Goles2.add("No hay goles aun");
+        Goles2.add("No hay goles aun");
+        Goles2.add("No hay goles aun");
+        Goles2.add("No hay goles aun");
+        Goles2.add("No hay goles aun");
         Goles2.add("No hay goles aun");
         LosGoles2.setAdapter(Adaptador2);
 

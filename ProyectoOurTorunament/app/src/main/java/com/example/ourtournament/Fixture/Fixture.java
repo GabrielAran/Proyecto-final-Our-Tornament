@@ -56,7 +56,7 @@ public class Fixture extends Fragment {
         Principal.SetListaJornadas(ListaJornadas);
         Principal.SetJornadaElegida(ListaJornadas.size()-1);
         MostrarListaPartidos();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.simple_expandable_list_item_1,ListaJornadas);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,ListaJornadas);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
