@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.R;
 
-import java.security.Principal;
 import java.util.ArrayList;
 
 public class Partido extends Fragment {
@@ -52,19 +51,14 @@ public class Partido extends Fragment {
 
         Goles1 = new ArrayList<>();
         LosGoles1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
-        Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles1);
-        Goles1.add("No hay goles aun");
+        Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
+        Goles1.add("No hay goles");
         LosGoles1.setAdapter(Adaptador);
 
         Goles2 = new ArrayList<>();
         LosGoles2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
-        Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, Goles2);
-        Goles2.add("No hay goles aun");
-        Goles2.add("No hay goles aun");
-        Goles2.add("No hay goles aun");
-        Goles2.add("No hay goles aun");
-        Goles2.add("No hay goles aun");
-        Goles2.add("No hay goles aun");
+        Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
+        Goles2.add("No hay goles");
         LosGoles2.setAdapter(Adaptador2);
 
         Volver.setOnClickListener(new View.OnClickListener() {

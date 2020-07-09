@@ -37,19 +37,6 @@ public class TablaPosiciones extends Fragment {
         VecPosiciones = new ArrayList<>();
         MainActivity Principal = (MainActivity) getActivity();
         VecPosiciones = Principal.getListaPosiciones();
-        if(VecPosiciones == null)
-        {
-            Log.d("conexion", "soy null");
-        }else
-        {
-            Log.d("conexion", String.valueOf(VecPosiciones.size()));
-            Log.d("conexion", String.valueOf(VecPosiciones.get(0)._Nombre));
-            Log.d("conexion", String.valueOf(VecPosiciones.get(1)._Nombre));
-            Log.d("conexion", String.valueOf(VecPosiciones.get(2)._Nombre));
-            Log.d("conexion", String.valueOf(VecPosiciones.get(3)._Nombre));
-            Log.d("conexion", String.valueOf(VecPosiciones.get(4)._Nombre));
-
-        }
         AdaptadorListaPosiciones Adaptador = new AdaptadorListaPosiciones(Principal,R.layout.item_lista_posiciones,VecPosiciones);
         listaposiciones.setAdapter(Adaptador);
         return VistaADevolver;

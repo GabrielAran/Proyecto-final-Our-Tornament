@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
+import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -209,11 +210,12 @@ public class MainActivity extends AppCompatActivity {
     public void CargarTablaPosiciones()
     {
         ListaPosiciones = new ArrayList<>();
-        Equipo E = new Equipo(1,"Boca Juniors",3,9,8,4,1);
+        Equipo E = new Equipo(1,"Boca",3,9,8,4,1);
+        Equipo A = new Equipo(1,"River",3,9,8,4,1);
         ListaPosiciones.add(E);
+        ListaPosiciones.add(A);
         ListaPosiciones.add(E);
-        ListaPosiciones.add(E);
-        ListaPosiciones.add(E);
+        ListaPosiciones.add(A);
         ListaPosiciones.add(E);
     }
     public ArrayList<Equipo> getListaPosiciones(){return ListaPosiciones;}

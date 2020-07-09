@@ -24,6 +24,12 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
     public AdaptadorListaPosiciones(Context contexto,int Resource,ArrayList<Equipo> ListaEquipos)
     {
         super(contexto,Resource,ListaEquipos);
+        Log.d("conexion", String.valueOf(ListaEquipos.size()));
+        Log.d("conexion", String.valueOf(ListaEquipos.get(0)._Nombre));
+        Log.d("conexion", String.valueOf(ListaEquipos.get(1)._Nombre));
+        Log.d("conexion", String.valueOf(ListaEquipos.get(2)._Nombre));
+        Log.d("conexion", String.valueOf(ListaEquipos.get(3)._Nombre));
+        Log.d("conexion", String.valueOf(ListaEquipos.get(4)._Nombre));
         this._ListaEquipos = ListaEquipos;
         this._Contexto = contexto;
         this._Resource = Resource;
@@ -46,18 +52,13 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
         Goles = VistaADevolver.findViewById(R.id.Goles);
         PartidosJugados = VistaADevolver.findViewById(R.id.PartidosJugados);
 
-
         Equipo E = getItem(pos);
 
-
-        Posicion.setText("1");
-        /*
+        Posicion.setText(String.valueOf(pos));
         Equipo.setText(E._Nombre);
-        Puntos.setText(E._Puntos);
-        Goles.setText(E._GolesAFavor);
-        PartidosJugados.setText(E._PartidosJugados);
-
-         */
+        Puntos.setText(String.valueOf(E._Puntos));
+        Goles.setText(String.valueOf(E._GolesAFavor));
+        PartidosJugados.setText(String.valueOf(E._PartidosJugados));
 
         return  VistaADevolver;
     }

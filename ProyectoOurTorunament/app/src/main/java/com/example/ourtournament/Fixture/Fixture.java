@@ -53,11 +53,15 @@ public class Fixture extends Fragment {
         ListaJornadas.add(0,"Jornadas");
         ListaJornadas.add("Jornada 1");
         ListaJornadas.add("Jornada 2");
+        ListaJornadas.add("Jornada 3");
+        ListaJornadas.add("Jornada 4");
+        ListaJornadas.add("Jornada 5");
         Principal.SetListaJornadas(ListaJornadas);
         Principal.SetJornadaElegida(ListaJornadas.size()-1);
         MostrarListaPartidos();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,ListaJornadas);
         spinner.setAdapter(adapter);
+        spinner.setSelection(ListaJornadas.size()-1);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
