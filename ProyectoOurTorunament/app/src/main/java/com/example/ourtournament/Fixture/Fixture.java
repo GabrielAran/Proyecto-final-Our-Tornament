@@ -99,7 +99,7 @@ public class Fixture extends Fragment {
             ArrayList<String> listaJornada= new ArrayList<>();
             try {
                 Log.d("conexion", "mando ID "+ID);
-                String miURL = "http://10.0.2.2:55859/api/Torneo/" + ID;
+                String miURL = "http://localhost:8080/api/Torneo/" + ID;
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
                 Log.d("conexion", "llegue");
