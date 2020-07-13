@@ -11,7 +11,7 @@
 
         <TextView
             android:id="@+id/posicion"
-            android:layout_width="50dp"
+            android:layout_width="52dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:background="#3CBC80"
@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/Equipo"
-            android:layout_width="170dp"
+            android:layout_width="215dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:padding="7dip"
@@ -31,28 +31,28 @@
             android:textSize="18sp" />
         <TextView
             android:id="@+id/Puntos"
-            android:layout_width="65dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:background="@drawable/celda"
+            android:background="@drawable/celdachiquita"
             android:text="P"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
         <TextView
             android:id="@+id/Goles"
-            android:layout_width="65dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:background="@drawable/celda"
+            android:background="@drawable/celdachiquita"
             android:text="G"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
         <TextView
             android:id="@+id/PartidosJugados"
-            android:layout_width="65dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:background="@drawable/celda"
+            android:background="@drawable/celdachiquita"
             android:text="PJ"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />

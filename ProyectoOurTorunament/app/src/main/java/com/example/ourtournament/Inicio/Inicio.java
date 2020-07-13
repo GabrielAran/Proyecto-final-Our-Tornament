@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class Inicio extends Fragment {
     Button Noticias,Buscar;
+    TextView renglon;
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     @Override
@@ -37,6 +38,7 @@ public class Inicio extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
+        renglon = VistaADevolver.findViewById(R.id.ren);
         AdminFragments=getFragmentManager();
         final BuscarTorneos BT = new BuscarTorneos();
         final Noticias N = new Noticias();
@@ -48,38 +50,33 @@ public class Inicio extends Fragment {
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Noticias.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
-                Buscar.setBackgroundResource(R.drawable.secciones_inicio_neutro);
+                ObjectAnimator Animacion = ObjectAnimator.ofFloat(renglon,"X",-10);
+                Animacion.setDuration(500);
+                AnimatorSet SetDeAnimacion = new AnimatorSet();
+                SetDeAnimacion.play(Animacion);
+                SetDeAnimacion.start();
                 Buscar.setTextColor(Color.rgb(255,255,255));
                 Noticias.setTextColor(Color.rgb(60,188,128));
                 TransaccionesDeFragment=AdminFragments.beginTransaction();
                 TransaccionesDeFragment.replace(R.id.FrameInicio,N);
                 TransaccionesDeFragment.commit();
                 TransaccionesDeFragment.addToBackStack(null);
-                ObjectAnimator Animacion = ObjectAnimator.ofFloat(R.id.FrameInicio,"X",200);
-                Animacion.setDuration(5000);
-                AnimatorSet SetDeAnimacion = new AnimatorSet();
-                SetDeAnimacion.play(Animacion);
-                SetDeAnimacion.start();
             }
         });
         Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Noticias.setBackgroundResource(R.drawable.secciones_inicio_neutro);
-                Buscar.setBackgroundResource(R.drawable.secciones_inicio_izquierda);
+                ObjectAnimator Animacion = ObjectAnimator.ofFloat(renglon,"X",540);
+                Animacion.setDuration(500);
+                AnimatorSet SetDeAnimacion = new AnimatorSet();
+                SetDeAnimacion.play(Animacion);
+                SetDeAnimacion.start();
                 Noticias.setTextColor(Color.rgb(255,255,255));
                 Buscar.setTextColor(Color.rgb(60,188,128));
                 TransaccionesDeFragment=AdminFragments.beginTransaction();
                 TransaccionesDeFragment.replace(R.id.FrameInicio,BT);
                 TransaccionesDeFragment.commit();
                 TransaccionesDeFragment.addToBackStack(null);
-                ObjectAnimator Animacion = ObjectAnimator.ofFloat(R.id.FrameInicio,"X",200);
-                Animacion.setDuration(5000);
-                AnimatorSet SetDeAnimacion = new AnimatorSet();
-                SetDeAnimacion.play(Animacion);
-                SetDeAnimacion.start();
-
             }
         });
 

@@ -53,7 +53,7 @@
 
         <TextView
             android:id="@+id/Equipo"
-            android:layout_width="170dp"
+            android:layout_width="215dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:padding="7dip"
@@ -63,7 +63,7 @@
             android:textSize="18sp" />
         <TextView
             android:id="@+id/Puntos"
-            android:layout_width="65dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:background="@drawable/celda_principal"
@@ -72,7 +72,7 @@
             android:textSize="18sp" />
         <TextView
             android:id="@+id/Goles"
-            android:layout_width="65dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:background="@drawable/celda_principal"
@@ -81,7 +81,7 @@
             android:textSize="18sp" />
         <TextView
             android:id="@+id/PartidosJugados"
-            android:layout_width="65dp"
+            android:layout_width="50dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:background="@drawable/celda_principal"

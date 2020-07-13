@@ -10,7 +10,7 @@
     <TableRow>
         <TextView
             android:id="@+id/pos1"
-            android:layout_width="40dp"
+            android:layout_width="41dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:padding="3dip"
@@ -20,7 +20,7 @@
 
         <TextView
             android:id="@+id/jug1"
-            android:layout_width="150dp"
+            android:layout_width="151dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:padding="7dip"
@@ -30,7 +30,7 @@
 
         <TextView
             android:id="@+id/eqp1"
-            android:layout_width="150dp"
+            android:layout_width="152dp"
             android:layout_height="40dp"
             android:background="@drawable/celda"
             android:padding="7dip"

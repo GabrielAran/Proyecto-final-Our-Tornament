@@ -46,9 +46,9 @@
         <Button
             android:id="@+id/Noticias"
             android:layout_width="210dp"
-            android:layout_height="40dp"
+            android:layout_height="38dp"
             android:layout_gravity="top"
-            android:background="@drawable/secciones_inicio_izquierda"
+            android:background="#000"
             android:text="Noticias"
             android:textColor="#3CBC80"
             android:textSize="18dp"
@@ -56,17 +56,36 @@
         <Button
             android:id="@+id/Buscar"
             android:layout_width="210dp"
-            android:layout_height="40dp"
+            android:layout_height="38dp"
             android:layout_gravity="top"
-            android:background="@drawable/secciones_inicio_neutro"
+            android:background="#000"
             android:text="Buscar"
             android:textColor="#FFF"
             android:textSize="18dp"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/subsubheader"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subheader"
+        android:background="#212423"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        tools:ignore="ExtraText">
+
+        <TextView
+            android:id="@+id/ren"
+            android:layout_width="208dp"
+            android:layout_height="2dp"
+            android:layout_gravity="top"
+            android:background="#3CBC80"
+        />
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/subheader"
+        android:layout_below="@id/subsubheader"
         android:gravity="center"
         android:orientation="horizontal">
 
