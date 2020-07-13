@@ -9,7 +9,7 @@
     android:background="#212423">
     <EditText
         android:id="@+id/Buscar"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Buscar torneos"
