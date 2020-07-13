@@ -9,7 +9,7 @@
     android:background="#212423">
     <EditText
         android:id="@+id/Buscar"
-        android:layout_width="340dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Buscar torneos"
@@ -19,6 +19,7 @@
         android:layout_marginTop="10dp"/>
 
     <ListView
+        android:layout_marginTop="20dp"
         android:id="@+id/listaTorneos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

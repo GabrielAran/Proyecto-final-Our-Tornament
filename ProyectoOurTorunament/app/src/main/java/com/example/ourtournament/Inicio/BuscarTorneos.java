@@ -45,8 +45,7 @@ public class BuscarTorneos extends Fragment {
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after)
             {
-                AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal,R.layout.item_lista_torneos,ListaTorneos);
-                ListaAMostrar.setAdapter(Adaptador);
+
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count)
@@ -69,6 +68,7 @@ public class BuscarTorneos extends Fragment {
 
     public void LlenarLista()
     {
+        ListaTorneos.removeAll(ListaTorneos);
         Torneo T = new Torneo(1,"Copa palermo","lacontra", "aaaaa",2);
         Torneo A = new Torneo(2,"Gambeta corta","lacontra", "aaaaa",2);
         ListaTorneos.add(T);
