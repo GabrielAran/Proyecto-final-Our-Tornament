@@ -47,8 +47,8 @@ public class Fixture extends Fragment {
         ID = Principal.getIDTorneo();
 
         ListaJornadas = new ArrayList<>();
-        //TraerJornadas Tarea = new TraerJornadas();
-        //Tarea.execute(ID);
+        TraerJornadas Tarea = new TraerJornadas();
+        Tarea.execute(ID);
 
         ListaJornadas.add(0,"Jornadas");
         ListaJornadas.add("Jornada 1");
@@ -99,7 +99,8 @@ public class Fixture extends Fragment {
             ArrayList<String> listaJornada= new ArrayList<>();
             try {
                 Log.d("conexion", "mando ID "+ID);
-                String miURL = "http://localhost:8080/api/Torneo/" + ID;
+                String miURL = "http://10.0.2.2:55859/api/Torneo/" + ID;
+                Log.d("conexion", miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
                 Log.d("conexion", "llegue");
