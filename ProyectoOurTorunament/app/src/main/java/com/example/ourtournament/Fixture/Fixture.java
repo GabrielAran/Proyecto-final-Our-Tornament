@@ -46,39 +46,20 @@ public class Fixture extends Fragment {
         final MainActivity Principal = (MainActivity) getActivity();
         ID = Principal.getIDTorneo();
 
+
         ListaJornadas = new ArrayList<>();
         TraerJornadas Tarea = new TraerJornadas();
         Tarea.execute(ID);
 
+        /*
         ListaJornadas.add(0,"Jornadas");
         ListaJornadas.add("Jornada 1");
         ListaJornadas.add("Jornada 2");
         ListaJornadas.add("Jornada 3");
         ListaJornadas.add("Jornada 4");
         ListaJornadas.add("Jornada 5");
-        Principal.SetListaJornadas(ListaJornadas);
-        Principal.SetJornadaElegida(ListaJornadas.size()-1);
-        MostrarListaPartidos();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,ListaJornadas);
-        spinner.setAdapter(adapter);
-        spinner.setSelection(ListaJornadas.size()-1);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i!=0)
-                {
-                    Principal.SetJornadaElegida(i);
-                    MostrarListaPartidos();
-                }
-
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
+         */
         return VistaADevolver;
     }
 
@@ -98,16 +79,15 @@ public class Fixture extends Fragment {
         protected ArrayList<String> doInBackground(Integer... voids) {
             ArrayList<String> listaJornada= new ArrayList<>();
             try {
-                Log.d("conexion", "mando ID "+ID);
+                Log.d("conexion", "estoy accediendo al torneo "+ID);
                 String miURL = "http://10.0.2.2:55859/api/Torneo/" + ID;
-                Log.d("conexion", miURL);
+                Log.d("conexion", "estoy accediendo a la ruta "+miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
-                Log.d("conexion", "llegue");
                 miConexion.setRequestMethod("GET");
-                Log.d("conexion", "me devolvio: "+ miConexion.getResponseCode());
+                Log.d("conexion", "la conexion me devolvio: "+ miConexion.getResponseCode());
                 if (miConexion.getResponseCode() == 200) {
-                    Log.d("conexion", "me conecte");
+                    Log.d("conexion", "me pude conectar perfectamente");
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
@@ -115,10 +95,9 @@ public class Fixture extends Fragment {
                     for (int i = 0; i < VecJornadas.size(); i++)
                     {
                         int Jornada = VecJornadas.get(i).getAsInt();
-                        Log.d("conexion", ""+Jornada);
+                        Log.d("conexion", "Traje jornada "+Jornada);
                         listaJornada.add("jornada "+Jornada);
                     }
-
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
                 }
@@ -132,6 +111,26 @@ public class Fixture extends Fragment {
         protected void onPostExecute(ArrayList<String> lista)
         {
             final MainActivity Principal = (MainActivity) getActivity();
+            Principal.SetListaJornadas(lista);
+            Principal.SetJornadaElegida(lista.size()-1);
+            MostrarListaPartidos();
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,lista);
+            spinner.setAdapter(adapter);
+            spinner.setSelection(lista.size()-1);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(i!=0)
+                    {
+                        Principal.SetJornadaElegida(i);
+                        MostrarListaPartidos();
+                    }
+
+                }
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
             Log.d("conexion",String.valueOf(lista.size()));
         }
     }

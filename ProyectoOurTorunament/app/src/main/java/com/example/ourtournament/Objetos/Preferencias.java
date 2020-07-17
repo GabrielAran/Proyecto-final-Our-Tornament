@@ -1,5 +1,6 @@
 package com.example.ourtournament.Objetos;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -8,6 +9,7 @@ public class Preferencias{
     SharedPreferences Datos;
     android.content.SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     public Preferencias(SharedPreferences datos, android.content.SharedPreferences.Editor edit)
     {
         Datos = datos;

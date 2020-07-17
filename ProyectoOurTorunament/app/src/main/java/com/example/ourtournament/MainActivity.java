@@ -31,9 +31,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
-
     Preferencias DatosGenerales;
-
     int IDTorneo=1;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
