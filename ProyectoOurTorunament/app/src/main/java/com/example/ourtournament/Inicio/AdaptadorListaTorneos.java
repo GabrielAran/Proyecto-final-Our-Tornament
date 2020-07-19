@@ -16,6 +16,8 @@ package com.example.ourtournament.Inicio;
 
         import java.util.ArrayList;
 
+        import de.hdodenhof.circleimageview.CircleImageView;
+
 public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
 {
     private ArrayList<Torneo> _ListaTorneos;
@@ -33,16 +35,21 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
     @SuppressLint("ViewHolder")
     public View getView(int pos, View VistaADevolver, ViewGroup GrupoActual)
     {
+        CircleImageView FotoPerfil;
+        TextView NombreTorneo;
         LayoutInflater MiInflador;
         if(VistaADevolver == null)
         {
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource,null);
         }
-
+        FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
+        NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
 
         Torneo T = getItem(pos);
 
+        FotoPerfil.setImageResource(R.drawable.icono_equipo);
+        NombreTorneo.setText(T._nombreTorneo);
 
         return  VistaADevolver;
     }

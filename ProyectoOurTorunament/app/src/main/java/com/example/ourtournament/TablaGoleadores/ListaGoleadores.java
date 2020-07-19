@@ -78,7 +78,6 @@ public class ListaGoleadores extends BaseAdapter
 
         ListaDeLaPosicionActual = getItem(pos);
 
-        Log.d("Gabi", "pos es: " + pos);
         pos1.setText("" + posj);
         jug1.setText(ListaDeLaPosicionActual.get(0));
         eqp1.setText(ListaDeLaPosicionActual.get(1));
