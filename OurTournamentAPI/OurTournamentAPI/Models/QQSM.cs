@@ -74,13 +74,13 @@ namespace OurTournamentAPI
             {
                 int IDPartido = Convert.ToInt32(Lector["IDPartido"]);
                 DateTime FechaDeEncuentro = Convert.ToDateTime(Lector["FechaDeEncuentro"]);
-                int IDEquipoLocal = Convert.ToInt32(Lector["IDEquipoLocal"]);
-                int IDEquipoVisitante = Convert.ToInt32(Lector["IDEquipoVisitante"]);
+                String NobreEquipoLocal = Lector["NombreEquipoLocal"].ToString();
+                String NombreEquipoVisitante = Lector["NombreEquipoVisitante"].ToString();
                 int GolesLocal = Convert.ToInt32(Lector["GolesLocal"]);
                 int GolesVisitante = Convert.ToInt32(Lector["GolesVisitante"]);
                 int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 int IDjornada = Convert.ToInt32(Lector["JornadaDelTorneo"]);
-                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, IDEquipoLocal, IDEquipoVisitante, GolesLocal, GolesVisitante ,IDTorneo, IDjornada);
+                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, NobreEquipoLocal, NombreEquipoVisitante, GolesLocal, GolesVisitante ,IDTorneo, IDjornada);
                 ListaPartidos.Add(UnPartido);
             }
             Desconectar(con);

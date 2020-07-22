@@ -1,22 +1,17 @@
 package com.example.ourtournament;
 
-import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.ObjectAnimator;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
-import android.media.audiofx.DynamicsProcessing;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.ourtournament.Fixture.Fixture;
-import com.example.ourtournament.Fixture.Partido;
+import com.example.ourtournament.Fixture.MostrarPartido;
 import com.example.ourtournament.Inicio.Inicio;
 import com.example.ourtournament.Loguearse.Loguear;
 import com.example.ourtournament.Objetos.Equipo;
@@ -147,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
     {
         EquipoElegido1 = ListaEquipos1.get(i);
         EquipoElegido2 = ListaEquipos2.get(i);
-        Partido partido = new Partido();
+        MostrarPartido partido = new MostrarPartido();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,partido);
         TransaccionesDeFragment.commit();

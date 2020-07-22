@@ -16,7 +16,7 @@ import com.example.ourtournament.R;
 
 import java.util.ArrayList;
 
-public class Partido extends Fragment {
+public class MostrarPartido extends Fragment {
     TextView Jorn,E1,E2;
 
     ArrayList<String> Goles1;

@@ -46,20 +46,8 @@ public class Fixture extends Fragment {
         final MainActivity Principal = (MainActivity) getActivity();
         ID = Principal.getIDTorneo();
 
-
-        ListaJornadas = new ArrayList<>();
         TraerJornadas Tarea = new TraerJornadas();
         Tarea.execute(ID);
-
-        /*
-        ListaJornadas.add(0,"Jornadas");
-        ListaJornadas.add("Jornada 1");
-        ListaJornadas.add("Jornada 2");
-        ListaJornadas.add("Jornada 3");
-        ListaJornadas.add("Jornada 4");
-        ListaJornadas.add("Jornada 5");
-
-         */
         return VistaADevolver;
     }
 
@@ -80,7 +68,7 @@ public class Fixture extends Fragment {
             ArrayList<String> listaJornada= new ArrayList<>();
             try {
                 Log.d("conexion", "estoy accediendo al torneo "+ID);
-                String miURL = "http://10.0.2.2:55859/api/Torneo/" + ID;
+                String miURL = "http://10.0.2.2:55859/api/GetJornadas/Torneo/" + ID;
                 Log.d("conexion", "estoy accediendo a la ruta "+miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -113,7 +101,6 @@ public class Fixture extends Fragment {
             final MainActivity Principal = (MainActivity) getActivity();
             Principal.SetListaJornadas(lista);
             Principal.SetJornadaElegida(lista.size()-1);
-            MostrarListaPartidos();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,lista);
             spinner.setAdapter(adapter);
             spinner.setSelection(lista.size()-1);
@@ -131,7 +118,6 @@ public class Fixture extends Fragment {
 
                 }
             });
-            Log.d("conexion",String.valueOf(lista.size()));
         }
     }
 
