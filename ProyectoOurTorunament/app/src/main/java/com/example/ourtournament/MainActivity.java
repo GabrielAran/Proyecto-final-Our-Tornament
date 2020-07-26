@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AdminFragments=getFragmentManager();
         DatosGenerales = CargarSharedPreferences();
-        //holsaaaaaaaaaa
         DatosGenerales.EliminarDato("contrasenia");
         String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
         if(Nombre=="no hay contrasenia")
