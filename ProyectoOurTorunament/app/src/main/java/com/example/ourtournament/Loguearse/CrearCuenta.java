@@ -25,9 +25,9 @@ public class CrearCuenta extends Fragment {
     FragmentTransaction TransaccionesDeFragment;
     Button ConfirmarLogueo;
     SharedPreferences DatosGenerales;
-
     EditText Nombre,Email,contra,confContra;
     Preferencias P = new Preferencias();
+    boolean Finalizar = false;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -40,6 +40,7 @@ public class CrearCuenta extends Fragment {
         ConfirmarLogueo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String contraText = contra.getText().toString();
                 String confContraText = confContra.getText().toString();
                 if(contra.getText().toString() != "")
@@ -47,10 +48,20 @@ public class CrearCuenta extends Fragment {
                     if (!contraText.equals(confContraText)){
                         Log.d("Contrasenia", "Las contrasenias no coinciden");
                     }else {
-                        final MainActivity Principal = (MainActivity) getActivity();
-                        P = Principal.CargarSharedPreferences();
-                        P.GuardarString("contrasenia",contra.getText().toString());
-                        Principal.Entrar();
+                        FragmentFotoDePerfil CrearFoto = new FragmentFotoDePerfil();
+                        TransaccionesDeFragment=AdminFragments.beginTransaction();
+                        TransaccionesDeFragment.replace(R.id.inputs, CrearFoto);
+                        TransaccionesDeFragment.commit();
+                        TransaccionesDeFragment.addToBackStack(null);
+                        if(Finalizar)
+                        {
+                            final MainActivity Principal = (MainActivity) getActivity();
+                            P = Principal.CargarSharedPreferences();
+                            P.GuardarString("contrasenia",contra.getText().toString());
+                            Intent Llamada = new Intent(Principal,MainActivity.class);
+                            startActivity(Llamada);
+                        }
+                        Finalizar = true;
                     }
                 }
 

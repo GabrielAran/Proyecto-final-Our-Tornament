@@ -7,70 +7,77 @@
     android:orientation="vertical"
     android:layout_gravity="bottom">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/inputs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/footer"
-        android:layout_alignParentTop="true"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true">
 
-        <EditText
-            android:id="@+id/nombre"
-            android:layout_width="360dp"
-            android:layout_height="38dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_gravity="center"
-            android:background="@drawable/input"
-            android:ems="20"
-            android:gravity="center"
-            android:hint="Nombre de usuario"
-            android:inputType="textPersonName"
-            android:textColor="#000"
-            android:textColorHint="#3c3c3c" />
+            android:gravity="center">
 
-        <EditText
-            android:id="@+id/correo"
-            android:layout_width="360dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/input"
-            android:ems="20"
-            android:gravity="center"
-            android:hint="Correo electronico"
-            android:inputType="textEmailAddress"
-            android:textColor="#000"
-            android:textColorHint="#3c3c3c" />
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Nombre de usuario"
+                android:inputType="textPersonName"
+                android:textColor="#000"
+                android:textColorHint="#3c3c3c" />
 
-        <EditText
-            android:id="@+id/contra"
-            android:layout_width="360dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/input"
-            android:ems="20"
-            android:gravity="center"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textColor="#000"
-            android:textColorHint="#3c3c3c" />
+            <EditText
+                android:id="@+id/correo"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Correo electronico"
+                android:inputType="textEmailAddress"
+                android:textColor="#000"
+                android:textColorHint="#3c3c3c" />
 
-        <EditText
-            android:id="@+id/confContra"
-            android:layout_width="360dp"
-            android:layout_height="38dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/input"
-            android:ems="20"
-            android:gravity="center"
-            android:hint="Confirmar contraseña"
-            android:inputType="textPassword"
-            android:textColor="#000"
-            android:textColorHint="#3c3c3c" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/contra"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                android:textColorHint="#3c3c3c" />
+
+            <EditText
+                android:id="@+id/confContra"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Confirmar contraseña"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                android:textColorHint="#3c3c3c" />
+        </LinearLayout>
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/footer"
@@ -78,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="#212423"
         android:orientation="vertical">
 
