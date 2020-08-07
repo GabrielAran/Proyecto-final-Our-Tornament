@@ -1,11 +1,19 @@
 package com.example.ourtournament;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
+    int RequestCode;
     int IDTorneo=1;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
@@ -56,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AdminFragments=getFragmentManager();
         DatosGenerales = CargarSharedPreferences();
-        //DatosGenerales.EliminarDato("contrasenia");
+        DatosGenerales.EliminarDato("contrasenia");
         String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
         if(Nombre=="no hay contrasenia")
         {
@@ -98,6 +107,23 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio = findViewById(R.id.Inicio);
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
+    }
+
+    public void PedirPermisoParaCarrete()
+    {
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},RequestCode);
+    }
+
+    public Bitmap BuscarImagenEnCarrete(String Ubicacion)
+    {
+        Bitmap Imagen = null;
+        try {
+            Imagen = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(Ubicacion));
+        }catch (Exception Error)
+        {
+            Log.d("conexion", "Hay un error: "+Error);
+        }
+        return Imagen;
     }
 
     //Inicio

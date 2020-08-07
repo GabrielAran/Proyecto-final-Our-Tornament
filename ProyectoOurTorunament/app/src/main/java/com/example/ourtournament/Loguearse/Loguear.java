@@ -60,7 +60,6 @@ public class Loguear extends Fragment {
                     TransaccionesDeFragment.replace(R.id.fragmentdelogueo, cuentaentrar);
                     TransaccionesDeFragment.commit();
                     TransaccionesDeFragment.addToBackStack(null);
-
                 }else
                 {
                     cambio = true;
