@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
-    int RequestCode;
+    int CodeElegirFoto = 3,RequestCode;
     int IDTorneo=1;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
