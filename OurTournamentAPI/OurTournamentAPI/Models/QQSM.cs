@@ -11,7 +11,7 @@ namespace OurTournamentAPI
         private SqlConnection Conectar()
         {
 
-            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -86,31 +86,6 @@ namespace OurTournamentAPI
             Desconectar(con);
             return ListaPartidos;
         }
-        public List<Models.Equipo> TraerListaDePosiciones(int IDTorneo)
-        {
-            SqlConnection con = Conectar();
-            SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "SELECT * FROM Equipos where Equipos.IDTorneo = " + IDTorneo + " order by Puntos desc";
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            List<Models.Equipo> ListaPosiciones = new List<Models.Equipo>();
-            Models.Equipo UnEquipo = new Models.Equipo();
-            while (Lector.Read())
-            {
-                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
-                String NobreEquipo = Lector["NombreEquipo"].ToString();
-                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
-                int Puntos = Convert.ToInt32(Lector["Puntos"]);
-                int GolesAFavor = Convert.ToInt32(Lector["GolesAFavor"]);
-                int GolesEnContra = Convert.ToInt32(Lector["GolesEnContra"]);
-                int PartidosJugados = Convert.ToInt32(Lector["PartidosJugados"]);
-                UnEquipo = new Models.Equipo(IDEquipo, NobreEquipo, IDtorneo, Puntos, GolesAFavor, GolesEnContra, PartidosJugados);
-                ListaPosiciones.Add(UnEquipo);
-            }
-            Desconectar(con);
-            return ListaPosiciones;
-        }
-
         /*
         public static List<Respuestas> TraerRespuestas()
         {

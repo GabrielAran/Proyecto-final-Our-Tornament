@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.ourtournament.ClasesBases.MainBase;
 import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.MostrarPartido;
 import com.example.ourtournament.Inicio.Inicio;
@@ -32,7 +33,7 @@ import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MainBase {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
