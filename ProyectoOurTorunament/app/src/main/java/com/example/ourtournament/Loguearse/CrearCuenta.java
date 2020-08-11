@@ -24,7 +24,6 @@ public class CrearCuenta extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Button ConfirmarLogueo;
-    SharedPreferences DatosGenerales;
     EditText Nombre,Email,contra,confContra;
     Preferencias P = new Preferencias();
     boolean Finalizar = false;
@@ -58,6 +57,7 @@ public class CrearCuenta extends Fragment {
                             final MainActivity Principal = (MainActivity) getActivity();
                             P = Principal.CargarSharedPreferences();
                             P.GuardarString("contrasenia",contra.getText().toString());
+                            P.GuardarInt("IDTorneo",1);
                             Intent Llamada = new Intent(Principal,MainActivity.class);
                             startActivity(Llamada);
                         }

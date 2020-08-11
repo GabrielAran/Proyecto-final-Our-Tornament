@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -34,7 +36,6 @@ public class Fixture extends Fragment {
     FragmentTransaction TransaccionesDeFragment;
     int ID;
     private Spinner spinner;
-    ArrayList<String> ListaJornadas;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
@@ -44,10 +45,14 @@ public class Fixture extends Fragment {
         AdminFragments=getFragmentManager();
 
         final MainActivity Principal = (MainActivity) getActivity();
-        ID = Principal.getIDTorneo();
+        Preferencias P = Principal.CargarSharedPreferences();
+        ID = P.ObtenerInt("IDTorneo",-1);
 
-        TraerJornadas Tarea = new TraerJornadas();
-        Tarea.execute(ID);
+        if(ID!=-1)
+        {
+            TraerJornadas Tarea = new TraerJornadas();
+            Tarea.execute(ID);
+        }
         return VistaADevolver;
     }
 

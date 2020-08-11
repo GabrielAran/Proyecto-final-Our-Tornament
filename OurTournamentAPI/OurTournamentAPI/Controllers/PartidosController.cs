@@ -22,7 +22,7 @@ namespace OurTournamentAPI.Controllers
             }
             else
             {
-                return Ok();
+                return NotFound();
             }
 
         }

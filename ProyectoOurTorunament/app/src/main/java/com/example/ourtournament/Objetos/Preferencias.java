@@ -28,7 +28,21 @@ public class Preferencias{
     {
         return Datos.getString(Clave,defaul);
     }
-    public void EliminarDato(String Clave)
+    public void EliminarString(String Clave)
+    {
+        editor.remove(Clave);
+        editor.apply();
+    }
+    public void GuardarInt(String Clave,int dato)
+    {
+        editor.putInt(Clave, dato);
+        editor.apply();
+    }
+    public int ObtenerInt(String Clave,int defaul)
+    {
+        return Datos.getInt(Clave,defaul);
+    }
+    public void EliminarInt(String Clave)
     {
         editor.remove(Clave);
         editor.apply();

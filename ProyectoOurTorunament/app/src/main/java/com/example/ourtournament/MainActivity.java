@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
     int CodeElegirFoto = 3,RequestCode;
-    int IDTorneo=1;
     Button BTNFixture;
     Button BTNTablaDePosiciones;
     Button BTNInicio;
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AdminFragments=getFragmentManager();
         DatosGenerales = CargarSharedPreferences();
-        DatosGenerales.EliminarDato("contrasenia");
+        //DatosGenerales.EliminarString("contrasenia");
         String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
         if(Nombre=="no hay contrasenia")
         {
@@ -100,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //  GENERAL
-    public int getIDTorneo(){return IDTorneo;}
     public void CargarGeneral()
     {
         BTNFixture = findViewById(R.id.Fixture);
@@ -229,14 +227,7 @@ public class MainActivity extends AppCompatActivity {
     //TablaPosiciones
     public void CargarTablaPosiciones()
     {
-        ListaPosiciones = new ArrayList<>();
-        Equipo E = new Equipo(1,"Boca",3,9,8,4,1);
-        Equipo A = new Equipo(1,"River",3,9,8,4,1);
-        ListaPosiciones.add(E);
-        ListaPosiciones.add(A);
-        ListaPosiciones.add(E);
-        ListaPosiciones.add(A);
-        ListaPosiciones.add(E);
+
     }
     public ArrayList<Equipo> getListaPosiciones(){return ListaPosiciones;}
 
