@@ -2,14 +2,12 @@ package com.example.ourtournament;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.example.ourtournament.ClasesBases.MainBase;
 import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.MostrarPartido;
 import com.example.ourtournament.Inicio.Inicio;
@@ -33,7 +30,7 @@ import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class MainActivity extends MainBase {
+public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
@@ -232,69 +229,68 @@ public class MainActivity extends MainBase {
     }
     public ArrayList<Equipo> getListaPosiciones(){return ListaPosiciones;}
 
+
+
     //Navegacion
     public void IrAFixture(View vista)
     {
+        CambiarColor();
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
-        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+
         Fixture fixture = new Fixture();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,fixture);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
+        IrAlFragment2(fixture);
     }
 
     public void IrATablaGoleadores(View vista)
     {
-        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
+        CambiarColor();
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
-        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+
         TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,tablaDeGoleadores);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
+        IrAlFragment2(tablaDeGoleadores);
     }
 
     public void IrAInicio(View vista) {
-        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
+        CambiarColor();
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
-        BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+
         Inicio inicio = new Inicio();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,inicio);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
+        IrAlFragment2(inicio);
     }
 
     public void IrATablaPosiciones(View vista) {
-        BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
-        BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
-        BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
+        CambiarColor();
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
+
         TablaPosiciones tabladeposiciones = new TablaPosiciones();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,tabladeposiciones);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
+        IrAlFragment2(tabladeposiciones);
     }
 
-    public void IrAAdministracion(View vista) {
+    /*public void IrAAdministracion(View vista) {
+        CambiarColor();
+        BTNAdministracion.setBackgroundColor(R.drawable.icono_admin_verde);
+
+        Administracion admin = new Administracion();
+        IrAlFragment2(admin);
+    }
+    */
+    //Inicio
+    public ArrayList<Noticia> getNoticias(){return ListaNoticias;}
+
+    public void CambiarColor()
+    {
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture);
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores);
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio);
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones);
-        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
     }
-    //Inicio
-    public ArrayList<Noticia> getNoticias(){return ListaNoticias;}
+
+    public void IrAlFragment2(Fragment fragment){
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,fragment);
+        TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
+    }
 
 }
