@@ -154,6 +154,7 @@
     <Compile Include="Controllers\EquiposController.cs" />
     <Compile Include="Controllers\PartidosController.cs" />
     <Compile Include="Controllers\TorneosController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
