@@ -10,13 +10,13 @@ namespace OurTournamentAPI.Controllers
 {
     public class UsuarioController : ApiController
     {
-        [System.Web.Http.Route("api/InsertTorneosSeguidos/Usuario/{IDUsuario}/Torneo/{IdTorneo}/Equipo/{IDEquipo}")]
+        [System.Web.Http.Route("api/Usuario/InsertTorneosSeguidos/Usuario/{IDUsuario}/Torneo/{IDTorneo}/Equipo/{IDEquipo}")]
         [System.Web.Http.HttpPost]
-        [System.Web.Http.AcceptVerbs("POST")]
-        public System.Web.Http.HttpPostAttribute InsertarTorneoSeguidoPorUsuario(int IDUsuario,int IDTorneo,int IDEquipo)
+        public IHttpActionResult InsertarTorneoSeguidoPorUsuario(int IDUsuario,int IDTorneo,int IDEquipo)
         {
             QQSM Conexion = new QQSM();
             Conexion.InsertarTorneoSeguidoPorUsuario(IDUsuario,IDTorneo,IDEquipo);
+            return Ok();
         }
     }
 }

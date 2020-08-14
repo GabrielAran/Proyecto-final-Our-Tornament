@@ -266,14 +266,16 @@ public class MainActivity extends AppCompatActivity {
         IrAlFragment2(tabladeposiciones);
     }
 
-    /*public void IrAAdministracion(View vista) {
+    public void IrAAdministracion(View vista) {
+
         CambiarColor();
         BTNAdministracion.setBackgroundColor(R.drawable.icono_admin_verde);
-
+        /*
         Administracion admin = new Administracion();
         IrAlFragment2(admin);
+         */
     }
-    */
+
     //Inicio
     public ArrayList<Noticia> getNoticias(){return ListaNoticias;}
 
