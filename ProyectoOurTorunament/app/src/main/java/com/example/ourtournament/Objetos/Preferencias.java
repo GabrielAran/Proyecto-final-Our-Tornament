@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
 public class Preferencias{
 
     SharedPreferences Datos;
@@ -32,6 +36,12 @@ public class Preferencias{
     {
         editor.remove(Clave);
         editor.apply();
+    }
+    public void GuardarListas(String Clave, ArrayList<String> dato)
+    {
+        Gson gson = new Gson();
+        String json = gson.toJson(dato);
+        editor.putString(Clave,json);
     }
     public void GuardarInt(String Clave,int dato)
     {
