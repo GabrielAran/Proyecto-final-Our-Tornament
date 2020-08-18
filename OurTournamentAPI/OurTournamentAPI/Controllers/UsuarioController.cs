@@ -10,7 +10,7 @@ namespace OurTournamentAPI.Controllers
 {
     public class UsuarioController : ApiController
     {
-        [System.Web.Http.Route("api/Usuario/InsertTorneosSeguidos/Usuario/{IDUsuario}/Torneo/{IDTorneo}/Equipo/{IDEquipo}")]
+        [System.Web.Http.Route("api/InsertTorneosSeguidos/Usuario/{IDUsuario}/Torneo/{IDTorneo}/Equipo/{IDEquipo}")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarTorneoSeguidoPorUsuario(int IDUsuario,int IDTorneo,int IDEquipo)
         {
