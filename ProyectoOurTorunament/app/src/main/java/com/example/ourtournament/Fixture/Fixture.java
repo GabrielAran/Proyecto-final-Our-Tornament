@@ -94,8 +94,9 @@ public class Fixture extends Fragment {
                         String NombreEquipoVisitante = Partido.get("NombreEquipoVisitante").getAsString();
                         int GolesLocal= Partido.get("GolesLocal").getAsInt();
                         int GolesVisitante= Partido.get("GolesVisitante").getAsInt();
+                        int Jorn = Partido.get("Jornada").getAsInt();
 
-                        Partido P = new Partido(IDPartido,null,NombreEquipoLocal,NombreEquipoVisitante,GolesLocal,GolesVisitante);
+                        Partido P = new Partido(IDPartido,null,NombreEquipoLocal,NombreEquipoVisitante,GolesLocal,GolesVisitante,Jorn);
                         listaPartidos.add(P);
                     }
                 } else {
@@ -108,20 +109,21 @@ public class Fixture extends Fragment {
             }
             return listaPartidos;
         }
-        protected void onPostExecute(ArrayList<Partido> lista)
+        protected void onPostExecute(final ArrayList<Partido> lista)
         {
+            Log.d("conexion", "la lista tiene: "+lista.size());
             MainActivity Principal = (MainActivity) getActivity();
             AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
+            P.GuardarListaPartidos("ListaPartidos",lista);
 
             ListView.setAdapter(Adaptador);
-
             ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    MainActivity act;
-                    act = (MainActivity) getActivity();
-                    act.PartidoSeleccionado(i);
+                    MainActivity Principal = (MainActivity) getActivity();
+                    Log.d("conexion", "se eligio el partido: "+i);
+                    P.GuardarInt("PartidoElegido",i);
+                    Principal.PartidoSeleccionado();
                 }
             });
 
@@ -163,7 +165,7 @@ public class Fixture extends Fragment {
         }
         protected void onPostExecute(ArrayList<String> lista)
         {
-            P.GuardarListas("ListaJornadas",lista);
+            P.GuardarListaString("ListaJornadas",lista);
             P.GuardarInt("JornadaElegida", lista.size()-1);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,lista);
             spinner.setAdapter(adapter);
@@ -179,7 +181,7 @@ public class Fixture extends Fragment {
 
                 }
             });
-            spinner.setSelection(lista.size()-2);
+            spinner.setSelection(lista.size()-1);
         }
     }
 

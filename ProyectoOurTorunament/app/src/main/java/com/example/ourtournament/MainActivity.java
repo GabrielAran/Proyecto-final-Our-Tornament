@@ -161,10 +161,8 @@ public class MainActivity extends AppCompatActivity {
         ListaEquipos2.add("Racing");
     }
 
-    public void PartidoSeleccionado(int i)
+    public void PartidoSeleccionado()
     {
-        EquipoElegido1 = ListaEquipos1.get(i);
-        EquipoElegido2 = ListaEquipos2.get(i);
         MostrarPartido partido = new MostrarPartido();
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,partido);
@@ -172,15 +170,6 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.addToBackStack(null);
     }
 
-    public void SetJornadaElegida(int i)
-    {
-        JornadaElegida = ListaJornadas.get(i);
-        IDJornadaElegida = i;
-    }
-    public void SetListaJornadas(ArrayList<String> J)
-    {
-        ListaJornadas =J;
-    }
     public String GetJornadaElegida()
     {
         return JornadaElegida;

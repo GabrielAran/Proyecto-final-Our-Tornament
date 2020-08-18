@@ -11,9 +11,10 @@ public class Partido
     public String _NombreEVisitante;
     public int _GolesLocal;
     public int _GolesVisitante;
+    public int _Jornada;
 
 
-    public Partido(int IDPartido, Date FechaDeEncuentro, String NombreLocal, String NombreVisitante, int GolesLocal, int GolesVisitante)
+    public Partido(int IDPartido, Date FechaDeEncuentro, String NombreLocal, String NombreVisitante, int GolesLocal, int GolesVisitante,int Jornada)
     {
         _IDPartido = IDPartido;
         _NombreELocal = NombreLocal;
@@ -21,6 +22,7 @@ public class Partido
         _GolesLocal = GolesLocal;
         _GolesVisitante = GolesVisitante;
         _FechaDeEncuentro = FechaDeEncuentro;
+        _Jornada = Jornada;
     }
 
     public Partido()

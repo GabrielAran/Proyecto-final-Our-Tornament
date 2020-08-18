@@ -37,7 +37,7 @@ public class Preferencias{
         editor.remove(Clave);
         editor.apply();
     }
-    public void GuardarListas(String Clave, ArrayList<String> dato)
+    public void GuardarListaString(String Clave, ArrayList<String> dato)
     {
         Gson gson = new Gson();
         String json = gson.toJson(dato);
@@ -56,6 +56,14 @@ public class Preferencias{
     {
         editor.remove(Clave);
         editor.apply();
+    }
+    //Listas de objetos
+
+    public void GuardarListaPartidos(String Clave, ArrayList<Partido> dato)
+    {
+        Gson gson = new Gson();
+        String json = gson.toJson(dato);
+        editor.putString(Clave,json);
     }
 
 }

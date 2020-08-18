@@ -46,16 +46,24 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
             VistaADevolver = MiInflador.inflate(R.layout.item_lista_partidos,null);
         }
 
-        TextView Equipo1,Equipo2,renglon;
+        TextView Equipo1,Equipo2,renglon,jugado;
 
         Equipo1=VistaADevolver.findViewById(R.id.Equipo1);
         Equipo2=VistaADevolver.findViewById(R.id.Equipo2);
         renglon=VistaADevolver.findViewById(R.id.renglonArriba);
+        jugado =VistaADevolver.findViewById(R.id.jugado);
 
         Partido P = getItem(pos);
         if(pos == 0)
         {
             renglon.setVisibility(View.GONE);
+        }
+        if (P._GolesLocal == -1)
+        {
+            jugado.setText("No jugadó");
+        }else
+        {
+            jugado.setText("Jugadó");
         }
         Equipo1.setText(P._NombreELocal);
         Equipo2.setText(P._NombreEVisitante);

@@ -80,7 +80,7 @@ namespace OurTournamentAPI
                 int GolesVisitante = Convert.ToInt32(Lector["GolesVisitante"]);
                 int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 int IDjornada = Convert.ToInt32(Lector["JornadaDelTorneo"]);
-                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, NobreEquipoLocal, NombreEquipoVisitante, GolesLocal, GolesVisitante ,IDTorneo, IDjornada);
+                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, NobreEquipoLocal, NombreEquipoVisitante, GolesLocal, GolesVisitante ,IDtorneo, IDjornada);
                 ListaPartidos.Add(UnPartido);
             }
             Desconectar(con);
