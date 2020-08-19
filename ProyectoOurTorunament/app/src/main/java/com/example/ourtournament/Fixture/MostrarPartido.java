@@ -32,22 +32,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MostrarPartido extends Fragment {
-    TextView Jorn,E1,E2;
-
-    ArrayList<Partido> ListaPartidos;
-    ListView listaMostrar;
-    ArrayAdapter<String> Adaptador;
+    TextView Jorn,E1,E2,jugado,Fecha,Resultado;
+    Partido Par;
     Preferencias P;
     Button Volver;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
+        Resultado = VistaADevolver.findViewById(R.id.Resultado);
+        Fecha = VistaADevolver.findViewById(R.id.Fecha);
+        jugado = VistaADevolver.findViewById(R.id.jugado);
         Jorn = VistaADevolver.findViewById(R.id.Jornada);
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
         E2 = VistaADevolver.findViewById(R.id.Equipo2);
         Volver = VistaADevolver.findViewById(R.id.Volver);
-        ListaPartidos = new ArrayList<>();
 
         MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
@@ -59,22 +58,18 @@ public class MostrarPartido extends Fragment {
             try {
                 JsonParser parseador = new JsonParser();
                 JsonArray VecPartidos = parseador.parse(JSON).getAsJsonArray();
-                Log.d("conexion",String.valueOf(VecPartidos.size()));
-                for (int i = 0; i < VecPartidos.size(); i++) {
+                JsonObject Partido = (JsonObject) VecPartidos.get(PartidoElegido);
 
-                    JsonObject Partido = (JsonObject) VecPartidos.get(i);
+                int IDPartido = Partido.get("_IDPartido").getAsInt();
+                String NombreEquipoLocal = Partido.get("_NombreELocal").getAsString();
+                String NombreEquipoVisitante = Partido.get("_NombreEVisitante").getAsString();
+                int GolesLocal= Partido.get("_GolesLocal").getAsInt();
+                int GolesVisitante= Partido.get("_GolesVisitante").getAsInt();
+                int Jorn = Partido.get("_Jornada").getAsInt();
 
-                    int IDPartido = Partido.get("IDPartido").getAsInt();
-                    String NombreEquipoLocal = Partido.get("NombreEquipoLocal").getAsString();
-                    String NombreEquipoVisitante = Partido.get("NombreEquipoVisitante").getAsString();
-                    int GolesLocal= Partido.get("GolesLocal").getAsInt();
-                    int GolesVisitante= Partido.get("GolesVisitante").getAsInt();
-                    int Jorn = Partido.get("Jornada").getAsInt();
+                Par = new Partido(IDPartido,null,NombreEquipoLocal,NombreEquipoVisitante,GolesLocal,GolesVisitante,Jorn);
 
-                    Log.d("conexion",IDPartido+" "+NombreEquipoLocal+" "+ NombreEquipoVisitante);
-                    Partido P = new Partido(IDPartido,null,NombreEquipoLocal,NombreEquipoVisitante,GolesLocal,GolesVisitante,Jorn);
-                    ListaPartidos.add(P);
-                }
+
 
             } catch (Exception e) {
                 Log.d("conexion","Hubo un error:"+e);
@@ -82,32 +77,53 @@ public class MostrarPartido extends Fragment {
 
         }
 
-        if(PartidoElegido != -1)
+        if (Par._GolesLocal == -1)
         {
-            Log.d("conexion", "La lista tiene :"+ListaPartidos.size()+" y se eligio el partido: "+PartidoElegido);
-            Partido P = ListaPartidos.get(PartidoElegido);
-            Jorn.setText(P._Jornada);
-            E1.setText(P._NombreELocal);
-            E2.setText(P._NombreEVisitante);
+            jugado.setText("No jugado");
+            Resultado.setText("-:-");
+            Fecha.setText("-/-/-");
+
+            ArrayList<String> Goles1 = new ArrayList<>();
+            ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
+            Goles1.add("No hay goles");
+            ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
+            lista1.setAdapter(Adaptador);
+
+            ArrayList<String> Goles2 = new ArrayList<>();
+            ListView lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
+            ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
+            Goles2.add("No hay goles");
+            lista2.setAdapter(Adaptador2);
+        }else
+        {
+            Resultado.setText(Par._GolesLocal + " - "+ Par._GolesVisitante);
+            jugado.setText("Jugado");
+            Fecha.setText(String.valueOf(Par._FechaDeEncuentro));
+
+            ArrayList<String> Goles1 = new ArrayList<>();
+            ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
+            Goles1.add(Par._NombreELocal);
+            for(int i=0;i<Par._GolesLocal;i++)
+            {
+                Goles1.add("Nombre");
+            }
+            ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
+            lista1.setAdapter(Adaptador);
+
+            ArrayList<String> Goles2 = new ArrayList<>();
+            ListView lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
+            ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
+            Goles2.add(Par._NombreEVisitante);
+            for(int i=0;i<Par._GolesVisitante;i++)
+            {
+                Goles2.add("Nombre");
+            }
+            lista2.setAdapter(Adaptador2);
         }
-/*
 
-
-        Json
-
-
-
-        Goles1 = new ArrayList<>();
-        LosGoles1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
-        Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
-        Goles1.add("No hay goles");
-        LosGoles1.setAdapter(Adaptador);
-
-        Goles2 = new ArrayList<>();
-        LosGoles2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
-        Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
-        Goles2.add("No hay goles");
-        LosGoles2.setAdapter(Adaptador2);
+        Jorn.setText("Jornada "+Par._Jornada);
+        E1.setText(Par._NombreELocal);
+        E2.setText(Par._NombreEVisitante);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +134,6 @@ public class MostrarPartido extends Fragment {
 
         });
 
- */
         return VistaADevolver;
     }
 }

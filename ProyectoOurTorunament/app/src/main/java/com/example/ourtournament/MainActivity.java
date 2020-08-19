@@ -41,13 +41,7 @@ public class MainActivity extends AppCompatActivity {
     Button BTNTablaDeGoleadores;
     Button BTNAdministracion;
     //fixture
-    ArrayList<String> ListaJornadas;
-    ArrayList<String> ListaEquipos1;
-    ArrayList<String> ListaEquipos2;
-    int IDJornadaElegida;
-    String JornadaElegida;
-    String EquipoElegido1;
-    String EquipoElegido2;
+    Fixture fixture = new Fixture();
     boolean Volver= false;
 
     //Tabla de Goleadores
@@ -144,21 +138,7 @@ public class MainActivity extends AppCompatActivity {
     //Fixture
     public void CargarFixture()
     {
-        ListaJornadas = new ArrayList<>();
 
-        ListaEquipos1 = new ArrayList<>();
-        ListaEquipos1.add("San Lorenzo");
-        ListaEquipos1.add("Boca Juniors");
-        ListaEquipos1.add("River Plate");
-        ListaEquipos1.add("Independiente");
-        ListaEquipos1.add("Racing");
-
-        ListaEquipos2 = new ArrayList<>();
-        ListaEquipos2.add("San Lorenzo");
-        ListaEquipos2.add("Boca Juniors");
-        ListaEquipos2.add("River Plate");
-        ListaEquipos2.add("Independiente");
-        ListaEquipos2.add("Racing");
     }
 
     public void PartidoSeleccionado()
@@ -170,25 +150,9 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.addToBackStack(null);
     }
 
-    public String GetJornadaElegida()
-    {
-        return JornadaElegida;
-    }
-
-    public String GetEquipoElegido1(){return EquipoElegido1;}
-    public String GetEquipoElegido2(){return EquipoElegido2;}
-    
-    public ArrayList<String> getListaJornadas() {return ListaJornadas;}
-    public ArrayList<String> getListaEquipos1() {return ListaEquipos1;}
-    public ArrayList<String> getListaEquipos2() {return ListaEquipos2;}
-    public boolean getVolver(){return Volver;};
 
     public void Volver(){
-        Fixture fixture = new Fixture();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,fixture);
-        TransaccionesDeFragment.commit();
-        Volver = true;
+        IrAFragment(fixture);
     }
     //Tabla de goleadores
     public void CargarTablaGoleadores()
@@ -216,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
     {
 
     }
-    public ArrayList<Equipo> getListaPosiciones(){return ListaPosiciones;}
 
 
 
@@ -226,8 +189,7 @@ public class MainActivity extends AppCompatActivity {
         CambiarColor();
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
 
-        Fixture fixture = new Fixture();
-        IrAlFragment2(fixture);
+        IrAFragment(fixture);
     }
 
     public void IrATablaGoleadores(View vista)
@@ -236,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
 
         TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
-        IrAlFragment2(tablaDeGoleadores);
+        IrAFragment(tablaDeGoleadores);
     }
 
     public void IrAInicio(View vista) {
@@ -244,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
 
         Inicio inicio = new Inicio();
-        IrAlFragment2(inicio);
+        IrAFragment(inicio);
     }
 
     public void IrATablaPosiciones(View vista) {
@@ -252,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
 
         TablaPosiciones tabladeposiciones = new TablaPosiciones();
-        IrAlFragment2(tabladeposiciones);
+        IrAFragment(tabladeposiciones);
     }
 
     public void IrAAdministracion(View vista) {
@@ -277,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
     }
 
-    public void IrAlFragment2(Fragment fragment){
+    public void IrAFragment(Fragment fragment){
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fragment);
         TransaccionesDeFragment.commit();

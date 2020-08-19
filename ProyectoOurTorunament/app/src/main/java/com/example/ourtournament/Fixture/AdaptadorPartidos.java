@@ -60,10 +60,10 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
         }
         if (P._GolesLocal == -1)
         {
-            jugado.setText("No jugadó");
+            jugado.setText("No jugado");
         }else
         {
-            jugado.setText("Jugadó");
+            jugado.setText("Jugado");
         }
         Equipo1.setText(P._NombreELocal);
         Equipo2.setText(P._NombreEVisitante);

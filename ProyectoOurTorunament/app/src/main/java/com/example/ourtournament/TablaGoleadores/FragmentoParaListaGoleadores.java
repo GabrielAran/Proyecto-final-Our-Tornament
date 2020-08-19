@@ -30,7 +30,7 @@ public class FragmentoParaListaGoleadores extends Fragment
         MainActivity Principal = (MainActivity) getActivity();
 
         ListaJugador = Principal.getListaJugador();
-        ListaEquipos1 = Principal.getListaEquipos1();
+        //ListaEquipos1 = Principal.getListaEquipos1();
         ListaGoles = Principal.getListaGoles();
 
         ListaGoleadores Adaptador;
