@@ -39,14 +39,15 @@ public class CrearCuenta extends Fragment {
         ConfirmarLogueo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.d("conexion","Entro al click");
                 String contraText = contra.getText().toString();
                 String confContraText = confContra.getText().toString();
                 if(contra.getText().toString() != "")
-                {
+                {Log.d("conexion","La contrasenia no esta vacia");
                     if (!contraText.equals(confContraText)){
-                        Log.d("Contrasenia", "Las contrasenias no coinciden");
+                        Log.d("conexion", "Las contrasenias no coinciden");
                     }else {
+                        Log.d("conexion", "Las contrasenias coinciden");
                         FragmentFotoDePerfil CrearFoto = new FragmentFotoDePerfil();
                         TransaccionesDeFragment=AdminFragments.beginTransaction();
                         TransaccionesDeFragment.replace(R.id.inputs, CrearFoto);

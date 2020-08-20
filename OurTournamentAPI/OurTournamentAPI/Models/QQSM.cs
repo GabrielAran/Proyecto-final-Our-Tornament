@@ -22,11 +22,40 @@ namespace OurTournamentAPI
             con.Close();
         }
 
-        public Models.Torneo TraerTorneo(int ID)
+        public List<Models.Torneo> TraerTorneosPorNombre(String Nombre)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandType = CommandType.Text;
+            if(Nombre == "")
+            {
+                Consulta.CommandText = "SELECT * FROM Torneos order by NombreTorneo ASC";
+            }else
+            {
+                Consulta.CommandText = "SELECT * FROM Torneos where NombreTorneo LIKE '%"+Nombre+"%'order by NombreTorneo ASC";
+            }
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            Models.Torneo UnTorneo;
+            List<Models.Torneo> ListaTorneos = new List<Models.Torneo>();
+            while (Lector.Read())
+            {
+                int idtorneo = Convert.ToInt32(Lector["IDTorneo"]);
+                string nombretorneo = Lector["NombreTorneo"].ToString();
+                string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
+                string linkparaunirse = Lector["LinkParaUnirse"].ToString();
+                int TipoDeTorneo = Convert.ToInt32(Lector["TipoDeTorneo"]);
+                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse, TipoDeTorneo);
+                ListaTorneos.Add(UnTorneo);
+            }
+            Desconectar(con);
+            return ListaTorneos;
+        }
+
+        public Models.Torneo TraerTorneoPorID(int ID)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "SELECT * FROM Torneos where Torneos.IDTorneo = " + ID;
             SqlDataReader Lector = Consulta.ExecuteReader();
             Models.Torneo UnTorneo = new Models.Torneo();
@@ -47,7 +76,7 @@ namespace OurTournamentAPI
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "SELECT Distinct JornadaDelTorneo FROM Partidos where Partidos.IDTorneo = " + IDTorneo;
             SqlDataReader Lector = Consulta.ExecuteReader();
             List<int> ListaJornadas = new List<int>();
@@ -65,7 +94,7 @@ namespace OurTournamentAPI
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "SELECT * FROM Partidos where Partidos.JornadaDelTorneo = " + IDJornada+ "and Partidos.IDTorneo = "+IDTorneo;
             SqlDataReader Lector = Consulta.ExecuteReader();
             List<Models.Partido> ListaPartidos = new List<Models.Partido>();
@@ -90,7 +119,7 @@ namespace OurTournamentAPI
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "SELECT * FROM Equipos where Equipos.IDTorneo = " + IDTorneo + " order by Puntos desc";
             SqlDataReader Lector = Consulta.ExecuteReader();
             List<Models.Equipo> ListaPosiciones = new List<Models.Equipo>();
@@ -115,7 +144,7 @@ namespace OurTournamentAPI
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "insert into SeguidoresXTorneos (IDUsuario,IDTorneo,IDEquipoFavorito) values (" + IDUsuario + "," + IDTorneo + "," + IDEquipo + ")";
             Desconectar(con);
         }
