@@ -27,7 +27,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            if(Nombre == "")
+            if(Nombre =="NULL")
             {
                 Consulta.CommandText = "SELECT * FROM Torneos order by NombreTorneo ASC";
             }else
@@ -43,8 +43,7 @@ namespace OurTournamentAPI
                 string nombretorneo = Lector["NombreTorneo"].ToString();
                 string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
                 string linkparaunirse = Lector["LinkParaUnirse"].ToString();
-                int TipoDeTorneo = Convert.ToInt32(Lector["TipoDeTorneo"]);
-                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse, TipoDeTorneo);
+                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse);
                 ListaTorneos.Add(UnTorneo);
             }
             Desconectar(con);
@@ -65,8 +64,7 @@ namespace OurTournamentAPI
                 string nombretorneo = Lector["NombreTorneo"].ToString(); 
                 string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
                 string linkparaunirse = Lector["LinkParaUnirse"].ToString();
-                int TipoDeTorneo = Convert.ToInt32(Lector["TipoDeTorneo"]);
-                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse,TipoDeTorneo);
+                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse);
             }
             Desconectar(con);
             return UnTorneo;
