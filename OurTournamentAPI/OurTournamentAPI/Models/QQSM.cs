@@ -10,7 +10,6 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-
             string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
@@ -147,6 +146,32 @@ namespace OurTournamentAPI
             Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "insert into SeguidoresXTorneos (IDUsuario,IDTorneo,IDEquipoFavorito) values (" + IDUsuario + "," + IDTorneo + "," + IDEquipo + ")";
             Desconectar(con);
+        }
+
+        public List<Models.Usuario> TraerListaGoleadores (int IdTorneo, int IdUsuario) {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "Select IdUsuario,Goles From usuarios Order by Goles asc";
+
+            SqlDataReader Lector = Consulta.ExecuteReader();
+        
+            //List<Models.Usuario> Tablagoleadores;
+            while (Lector.Read())
+            {
+                int GolesUsuario = Convert.ToInt32(Lector["Goles"]);
+
+                int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+
+                string NombreUsuario = Lector["NombreUsuario"].ToString();
+
+                //Tablagoleadores = new List<Models.Usuario>(GolesUsuario, IDUsuario, NombreUsuario);
+
+                //((GolesUsuario), (IDUsuario), (NombreUsuario));
+
+            }
+            Desconectar(con);
+            return null; //Tablagoleadores;
         }
 
         /*
