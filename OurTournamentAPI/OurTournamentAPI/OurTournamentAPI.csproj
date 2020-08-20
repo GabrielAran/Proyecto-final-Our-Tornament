@@ -163,6 +163,7 @@
     <Compile Include="Models\Partido.cs" />
     <Compile Include="Models\QQSM.cs" />
     <Compile Include="Models\Torneo.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
