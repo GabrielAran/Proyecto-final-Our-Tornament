@@ -170,7 +170,7 @@ namespace OurTournamentAPI
                 Tablagoleadores.Add(UnUsuario);
             }
             Desconectar(con);
-            return Tablagoleadores;//fg
+            return Tablagoleadores;
         }
 
         /*
