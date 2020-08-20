@@ -167,7 +167,7 @@ namespace OurTournamentAPI
 
                 //Tablagoleadores = new List<Models.Usuario>(GolesUsuario, IDUsuario, NombreUsuario);
 
-                //((GolesUsuario), (IDUsuario), (NombreUsuario));
+                //((GolesrtyUsuario), (IDUsuario), (NombreUsuario));
 
             }
             Desconectar(con);
