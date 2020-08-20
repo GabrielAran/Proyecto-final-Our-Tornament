@@ -146,7 +146,7 @@ namespace OurTournamentAPI
             Desconectar(con);
         }
 
-        public List<Models.Usuario> TraerListaGoleadores (int IdTorneo, int IdUsuario) {
+        public List<Models.Usuario> TraerListaGoleadores (int IdUsuario) {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
@@ -154,22 +154,23 @@ namespace OurTournamentAPI
 
             SqlDataReader Lector = Consulta.ExecuteReader();
         
-            //List<Models.Usuario> Tablagoleadores;
+            List<Models.Usuario> Tablagoleadores = new List<Models.Usuario>();
+            Models.Usuario UnUsuario = new Models.Usuario();
             while (Lector.Read())
             {
-                int GolesUsuario = Convert.ToInt32(Lector["Goles"]);
+                int IDUsuario = Convert.ToInt32(Lector["IdUsuario"]);
+                String NombreUsuario = Lector["NombreUsuario"].ToString();
+                String Contrasenia = Lector["Contrasenia"].ToString();
+                DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
+                String Email = Lector["Email"].ToString();
+                int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
+                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
 
-                int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
-
-                string NombreUsuario = Lector["NombreUsuario"].ToString();
-
-                //Tablagoleadores = new List<Models.Usuario>(GolesUsuario, IDUsuario, NombreUsuario);
-
-                //((GolesrtyUsuario), (IDUsuario), (NombreUsuario));
-
+                UnUsuario = new Models.Usuario(IDUsuario, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, GolesEnTorneo, IDEquipo);
+                Tablagoleadores.Add(UnUsuario);
             }
             Desconectar(con);
-            return null; //Tablagoleadores;
+            return Tablagoleadores;
         }
 
         /*
