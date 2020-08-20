@@ -38,8 +38,7 @@ public class BuscarTorneos extends Fragment {
     EditText Buscador;
     ArrayList<Torneo> ListaTorneosSeleccionados = new ArrayList<>();
     ListView ListaAMostrar;
-    String NombreABuscar;
-    final MainActivity Principal = (MainActivity) getActivity();
+    String NombreABuscar ="NULL";
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -63,17 +62,16 @@ public class BuscarTorneos extends Fragment {
 
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                NombreABuscar = String.valueOf(s);
                 ListaTorneosSeleccionados.removeAll(ListaTorneosSeleccionados);
-                for (int a=0;a<ListaTorneos.size();a++)
+                if(s.length() == 0)
                 {
-                    if(ListaTorneos.get(a)._nombreTorneo.contains(s))
-                    {
-                        ListaTorneosSeleccionados.add(ListaTorneos.get(a));
-                    }
+                    NombreABuscar = "NULL";
+                }else
+                {
+                    NombreABuscar = String.valueOf(s);
                 }
-                AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal,R.layout.item_lista_torneos,ListaTorneosSeleccionados);
-                ListaAMostrar.setAdapter(Adaptador);
+                LLenarListaTorneos Tarea = new LLenarListaTorneos();
+                Tarea.execute();
             }
         });
 
@@ -104,9 +102,7 @@ public class BuscarTorneos extends Fragment {
                         String NombreTorneo = Torneo.get("NombreTorneo").getAsString();
                         String ContraseniaDeAdministrador = Torneo.get("ContraseniaDeAdministrador").getAsString();
                         String LinkParaUnirse = Torneo.get("LinkParaUnirse").getAsString();
-                        int TipoDeTorneo = Torneo.get("TipoDeTorneo").getAsInt();
-
-                        Torneo T = new Torneo(IDTorneo, NombreTorneo, ContraseniaDeAdministrador, LinkParaUnirse, TipoDeTorneo);
+                        Torneo T = new Torneo(IDTorneo, NombreTorneo, ContraseniaDeAdministrador, LinkParaUnirse);
                         listaTorneos.add(T);
                     }
                 } else {
@@ -114,13 +110,13 @@ public class BuscarTorneos extends Fragment {
                 }
                 miConexion.disconnect();
             } catch (Exception ErrorOcurrido) {
-
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
             return listaTorneos;
         }
 
         protected void onPostExecute(ArrayList<Torneo> lista) {
+            MainActivity Principal = (MainActivity) getActivity();
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista);
             ListaAMostrar.setAdapter(Adaptador);
         }
