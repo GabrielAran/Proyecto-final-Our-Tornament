@@ -146,11 +146,11 @@ namespace OurTournamentAPI
             Desconectar(con);
         }
 
-        public List<Models.Usuario> TraerListaGoleadores (int IdUsuario) {
+        public List<Models.Usuario> TraerListaGoleadores (int IDTorneo) {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select IdUsuario,Goles From usuarios Order by Goles asc";
+            Consulta.CommandText = "Select * From usuarios where IDTorneo = " + IDTorneo + "Order by Goles asc";
 
             SqlDataReader Lector = Consulta.ExecuteReader();
         

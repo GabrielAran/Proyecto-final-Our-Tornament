@@ -4,8 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
-
 namespace OurTournamentAPI.Controllers
 {
     public class UsuarioController : ApiController
@@ -18,5 +16,24 @@ namespace OurTournamentAPI.Controllers
             Conexion.InsertarTorneoSeguidoPorUsuario(IDUsuario,IDTorneo,IDEquipo);
             return Ok();
         }
+
+        [HttpGet]
+        [Route("api/GetGoleadores/Torneo/{IDTorneo}")]
+        public IHttpActionResult TraerListaGoleadores(int IDTorneo)
+        {
+            List<Models.Usuario> Lista = new List<Models.Usuario>();
+            QQSM Conexion = new QQSM();
+            Lista = Conexion.TraerListaGoleadores(IDTorneo);
+            if (Lista != null)
+            {
+                return Ok(Lista);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }
