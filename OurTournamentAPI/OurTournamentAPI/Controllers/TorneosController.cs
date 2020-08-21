@@ -20,6 +20,7 @@ namespace OurTournamentAPI.Controllers
             {
                 return Ok(T);
             }
+
             else
             {
                 return NotFound();
