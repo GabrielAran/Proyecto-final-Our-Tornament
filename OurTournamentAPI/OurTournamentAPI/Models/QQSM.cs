@@ -143,6 +143,7 @@ namespace OurTournamentAPI
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "insert into SeguidoresXTorneos (IDUsuario,IDTorneo,IDEquipoFavorito) values (" + IDUsuario + "," + IDTorneo + "," + IDEquipo + ")";
+            Consulta.ExecuteNonQuery();
             Desconectar(con);
         }
 

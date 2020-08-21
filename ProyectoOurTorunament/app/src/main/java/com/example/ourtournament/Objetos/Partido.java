@@ -5,24 +5,26 @@ import java.util.Date;
 public class Partido
 {
 
-    public int _IDPartido;
-    public Date _FechaDeEncuentro;
-    public String _NombreELocal;
-    public String _NombreEVisitante;
-    public int _GolesLocal;
-    public int _GolesVisitante;
-    public int _Jornada;
+    public int IDPartido;
+    public String FechaDeEncuentro;
+    public String NombreEquipoLocal;
+    public String NombreEquipoVisitante;
+    public int GolesLocal;
+    public int GolesVisitante;
+    public int Jornada;
+    //public int IDTorneo;
 
 
-    public Partido(int IDPartido, Date FechaDeEncuentro, String NombreLocal, String NombreVisitante, int GolesLocal, int GolesVisitante,int Jornada)
+    public Partido(int idpartido, String fechadeencuentro, String nombrelocal, String nombrevisitante, int goleslocal, int golesvisitante,int jornada)
     {
-        _IDPartido = IDPartido;
-        _NombreELocal = NombreLocal;
-        _NombreEVisitante = NombreVisitante;
-        _GolesLocal = GolesLocal;
-        _GolesVisitante = GolesVisitante;
-        _FechaDeEncuentro = FechaDeEncuentro;
-        _Jornada = Jornada;
+        IDPartido = idpartido;
+        NombreEquipoLocal = nombrelocal;
+        NombreEquipoVisitante = nombrevisitante;
+        GolesLocal = goleslocal;
+        GolesVisitante = golesvisitante;
+        FechaDeEncuentro = fechadeencuentro;
+        Jornada = jornada;
+        //IDTorneo = idtorneo;
     }
 
     public Partido()

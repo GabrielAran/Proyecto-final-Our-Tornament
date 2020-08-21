@@ -23,7 +23,9 @@ import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -33,6 +35,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Fixture extends Fragment {
     FragmentManager AdminFragments;
@@ -87,17 +90,10 @@ public class Fixture extends Fragment {
                     JsonArray VecPartidos = parseador.parse(lectorJSon).getAsJsonArray();
                     for (int i = 0; i < VecPartidos.size(); i++) {
 
-                        JsonObject Partido = VecPartidos.get(i).getAsJsonObject();
-
-                        int IDPartido = Partido.get("IDPartido").getAsInt();
-                        String NombreEquipoLocal = Partido.get("NombreEquipoLocal").getAsString();
-                        String NombreEquipoVisitante = Partido.get("NombreEquipoVisitante").getAsString();
-                        int GolesLocal= Partido.get("GolesLocal").getAsInt();
-                        int GolesVisitante= Partido.get("GolesVisitante").getAsInt();
-                        int Jorn = Partido.get("Jornada").getAsInt();
-
-                        Partido P = new Partido(IDPartido,null,NombreEquipoLocal,NombreEquipoVisitante,GolesLocal,GolesVisitante,Jorn);
-                        listaPartidos.add(P);
+                        JsonElement Elemento = VecPartidos.get(i);
+                        Gson gson = new Gson();
+                        Partido Part = gson.fromJson(Elemento, Partido.class);
+                        listaPartidos.add(Part);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");

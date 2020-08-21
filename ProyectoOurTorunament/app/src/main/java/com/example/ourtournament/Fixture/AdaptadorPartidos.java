@@ -58,15 +58,15 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
         {
             renglon.setVisibility(View.GONE);
         }
-        if (P._GolesLocal == -1)
+        if (P.GolesLocal == -1)
         {
             jugado.setText("No jugado");
         }else
         {
             jugado.setText("Jugado");
         }
-        Equipo1.setText(P._NombreELocal);
-        Equipo2.setText(P._NombreEVisitante);
+        Equipo1.setText(P.NombreEquipoLocal);
+        Equipo2.setText(P.NombreEquipoVisitante);
 
         return VistaADevolver;
     }
