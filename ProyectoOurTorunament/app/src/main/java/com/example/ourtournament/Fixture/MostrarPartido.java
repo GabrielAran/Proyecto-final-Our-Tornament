@@ -79,7 +79,7 @@ public class MostrarPartido extends Fragment {
 
         if (Par._GolesLocal == -1)
         {
-            jugado.setText("No jugado");
+            jugado.setText("Partido no jugado");
             Resultado.setText("-:-");
             Fecha.setText("-/-/-");
 
@@ -97,7 +97,7 @@ public class MostrarPartido extends Fragment {
         }else
         {
             Resultado.setText(Par._GolesLocal + " - "+ Par._GolesVisitante);
-            jugado.setText("Jugado");
+            jugado.setText("Partido jugado");
             Fecha.setText(String.valueOf(Par._FechaDeEncuentro));
 
             ArrayList<String> Goles1 = new ArrayList<>();
