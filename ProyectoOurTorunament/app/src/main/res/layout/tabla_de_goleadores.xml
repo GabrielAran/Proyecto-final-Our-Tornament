@@ -92,12 +92,11 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/FragmentoTablaGoleadores"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
+        <ListView
+            android:id="@+id/ListaDeGoleadores"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </LinearLayout>
