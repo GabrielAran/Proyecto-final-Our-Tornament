@@ -12,7 +12,6 @@ public class Partido
     public int GolesLocal;
     public int GolesVisitante;
     public int Jornada;
-    //public int IDTorneo;
 
 
     public Partido(int idpartido, String fechadeencuentro, String nombrelocal, String nombrevisitante, int goleslocal, int golesvisitante,int jornada)
@@ -24,7 +23,6 @@ public class Partido
         GolesVisitante = golesvisitante;
         FechaDeEncuentro = fechadeencuentro;
         Jornada = jornada;
-        //IDTorneo = idtorneo;
     }
 
     public Partido()

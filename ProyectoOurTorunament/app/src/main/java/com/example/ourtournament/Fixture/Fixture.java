@@ -89,7 +89,6 @@ public class Fixture extends Fragment {
                     JsonParser parseador = new JsonParser();
                     JsonArray VecPartidos = parseador.parse(lectorJSon).getAsJsonArray();
                     for (int i = 0; i < VecPartidos.size(); i++) {
-
                         JsonElement Elemento = VecPartidos.get(i);
                         Gson gson = new Gson();
                         Partido Part = gson.fromJson(Elemento, Partido.class);

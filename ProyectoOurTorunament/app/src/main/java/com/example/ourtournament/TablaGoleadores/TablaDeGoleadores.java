@@ -3,7 +3,6 @@ package com.example.ourtournament.TablaGoleadores;
 import androidx.annotation.Nullable;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
-import com.example.ourtournament.Objetos.Usuarios;
+import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.InputStream;
@@ -52,10 +52,10 @@ public class TablaDeGoleadores extends Fragment {
         return VistaADevolver;
     }
 
-    private class TraerGoleadores extends AsyncTask<Integer,Void,ArrayList<Usuarios>> {
+    private class TraerGoleadores extends AsyncTask<Integer,Void,ArrayList<Usuario>> {
         @Override
-        protected ArrayList<Usuarios> doInBackground(Integer... voids) {
-            ArrayList<Usuarios> VecGoleadores = new ArrayList<>();
+        protected ArrayList<Usuario> doInBackground(Integer... voids) {
+            ArrayList<Usuario> VecGoleadores = new ArrayList<>();
             try {
                 String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/" + IdTorneo;
                 URL miRuta = new URL(miURL);
@@ -67,33 +67,12 @@ public class TablaDeGoleadores extends Fragment {
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
-                    JsonArray VecPos = parseador.parse(lectorJSon).getAsJsonArray();
+                    JsonArray VecGol = parseador.parse(lectorJSon).getAsJsonArray();
 
-                    for (int i = 0; i < VecPos.size(); i++) {
-                        JsonObject objeto = VecPos.get(i).getAsJsonObject();
-
-                        JsonElement Elemento = objeto.get("IdUsuario");
-                        int IdUsuario = Elemento.getAsInt();
-
-                        Elemento = objeto.get("NombreUsuario");
-                        String NombreUsuario = Elemento.getAsString();
-
-                        Elemento = objeto.get("Contrasenia");
-                        String Contrasenia = Elemento.getAsString();
-
-                        Elemento = objeto.get("FechaDeNacimiento");
-                        String FechaDeNacimiento = Elemento.getAsString();
-
-                        Elemento = objeto.get("Email");
-                        String Email = Elemento.getAsString();
-
-                        Elemento = objeto.get("GolesEnTorneo");
-                        int GolesEnTorneo = Elemento.getAsInt();
-
-                        Elemento = objeto.get("IDEquipo");
-                        int IDEquipo = Elemento.getAsInt();
-
-                        Usuarios U = new Usuarios(IdUsuario,NombreUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo,IDEquipo);
+                    for (int i = 0; i < VecGol.size(); i++) {
+                        JsonElement Elemento = VecGol.get(i);
+                        Gson gson = new Gson();
+                        Usuario U = gson.fromJson(Elemento, Usuario.class);
                         VecGoleadores.add(U);
                     }
                 } else {
@@ -105,7 +84,7 @@ public class TablaDeGoleadores extends Fragment {
             }
             return VecGoleadores;
         }
-        protected void onPostExecute(ArrayList<Usuarios> VecGoleadores)
+        protected void onPostExecute(ArrayList<Usuario> VecGoleadores)
         {
             final MainActivity Principal = (MainActivity) getActivity();
             AdaptadorListaGoleadores Adapter = new AdaptadorListaGoleadores(Principal,R.layout.item_tabla_goleadores,VecGoleadores);

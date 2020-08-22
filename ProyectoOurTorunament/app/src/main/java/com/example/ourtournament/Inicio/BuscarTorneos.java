@@ -20,7 +20,9 @@ import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -96,13 +98,9 @@ public class BuscarTorneos extends Fragment {
                     JsonArray VecTorneos = parseador.parse(lectorJSon).getAsJsonArray();
                     for (int i = 0; i < VecTorneos.size(); i++) {
 
-                        JsonObject Torneo = VecTorneos.get(i).getAsJsonObject();
-
-                        int IDTorneo = Torneo.get("IDTorneo").getAsInt();
-                        String NombreTorneo = Torneo.get("NombreTorneo").getAsString();
-                        String ContraseniaDeAdministrador = Torneo.get("ContraseniaDeAdministrador").getAsString();
-                        String LinkParaUnirse = Torneo.get("LinkParaUnirse").getAsString();
-                        Torneo T = new Torneo(IDTorneo, NombreTorneo, ContraseniaDeAdministrador, LinkParaUnirse);
+                        JsonElement Elemento = VecTorneos.get(i);
+                        Gson gson = new Gson();
+                        Torneo T = gson.fromJson(Elemento, Torneo.class);
                         listaTorneos.add(T);
                     }
                 } else {

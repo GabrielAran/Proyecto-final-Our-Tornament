@@ -47,12 +47,12 @@ public class AdaptadorListaPosiciones extends ArrayAdapter<Equipo>
         PartidosJugados = VistaADevolver.findViewById(R.id.PartidosJugados);
 
         Equipo E = getItem(pos);
-
+        pos++;
         Posicion.setText(String.valueOf(pos));
-        Equipo.setText(E._Nombre);
-        Puntos.setText(String.valueOf(E._Puntos));
-        Goles.setText(String.valueOf(E._GolesAFavor));
-        PartidosJugados.setText(String.valueOf(E._PartidosJugados));
+        Equipo.setText(E.Nombre);
+        Puntos.setText(String.valueOf(E.Puntos));
+        Goles.setText(String.valueOf(E.GolesAFavor));
+        PartidosJugados.setText(String.valueOf(E.PartidosJugados));
 
         return  VistaADevolver;
     }

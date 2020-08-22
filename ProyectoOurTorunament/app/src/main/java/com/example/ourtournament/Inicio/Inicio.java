@@ -51,7 +51,7 @@ public class Inicio extends Fragment {
             @Override
             public void onClick(View view) {
                 ObjectAnimator Animacion = ObjectAnimator.ofFloat(renglon,"X",-10);
-                Animacion.setDuration(500);
+                Animacion.setDuration(300);
                 AnimatorSet SetDeAnimacion = new AnimatorSet();
                 SetDeAnimacion.play(Animacion);
                 SetDeAnimacion.start();
@@ -67,7 +67,7 @@ public class Inicio extends Fragment {
             @Override
             public void onClick(View view) {
                 ObjectAnimator Animacion = ObjectAnimator.ofFloat(renglon,"X",540);
-                Animacion.setDuration(500);
+                Animacion.setDuration(300);
                 AnimatorSet SetDeAnimacion = new AnimatorSet();
                 SetDeAnimacion.play(Animacion);
                 SetDeAnimacion.start();
