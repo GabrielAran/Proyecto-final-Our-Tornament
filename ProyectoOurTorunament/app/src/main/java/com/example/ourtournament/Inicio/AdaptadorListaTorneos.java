@@ -1,5 +1,7 @@
 package com.example.ourtournament.Inicio;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
@@ -63,12 +65,22 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
             public void onClick(View view) {
                 if (bool[0] == false)
                 {
-                    VerEquipos.setBackgroundResource(R.drawable.flechita_abajo);
+                    ObjectAnimator Animacion = ObjectAnimator.ofFloat(VerEquipos,"rotation",0,-90);
+                    Animacion.setDuration(200);
+                    AnimatorSet SetDeAnimacion = new AnimatorSet();
+                    SetDeAnimacion.play(Animacion);
+                    SetDeAnimacion.start();
+                    //VerEquipos.setBackgroundResource(R.drawable.flechita_abajo);
                     lista.setVisibility(View.VISIBLE);
                     bool[0] = true;
                 }else
                 {
-                    VerEquipos.setBackgroundResource(R.drawable.flechita_izquierda);
+                    ObjectAnimator Animacion = ObjectAnimator.ofFloat(VerEquipos,"rotation",0,0);
+                    Animacion.setDuration(0);
+                    AnimatorSet SetDeAnimacion = new AnimatorSet();
+                    SetDeAnimacion.play(Animacion);
+                    SetDeAnimacion.start();
+                    //VerEquipos.setBackgroundResource(R.drawable.flechita_izquierda);
                     lista.setVisibility(View.GONE);
                     bool[0] = false;
                 }
