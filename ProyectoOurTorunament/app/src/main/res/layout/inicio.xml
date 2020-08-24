@@ -87,12 +87,32 @@
         android:layout_height="match_parent"
         android:layout_below="@id/subsubheader"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/Buscador"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Buscar torneos"
+            android:visibility="gone"
+            android:textColor="#212423"
+            android:textColorHint="#212423"
+            android:background="@drawable/input"
+            android:layout_marginTop="10dp"/>
 
         <FrameLayout
             android:id="@+id/FrameInicio"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+            <ListView
+                android:layout_marginTop="4dp"
+                android:id="@+id/lista"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"/>
+        </FrameLayout>
     </LinearLayout>
 
 </RelativeLayout>

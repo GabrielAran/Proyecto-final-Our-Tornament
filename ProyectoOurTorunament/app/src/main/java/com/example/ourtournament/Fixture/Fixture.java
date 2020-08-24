@@ -62,8 +62,8 @@ public class Fixture extends Fragment {
         AdminFragments=getFragmentManager();
 
         spinner.setVisibility(View.INVISIBLE);
-        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,3600);
-        Animacion.setDuration(10000);
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
+        Animacion.setDuration(6000);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();

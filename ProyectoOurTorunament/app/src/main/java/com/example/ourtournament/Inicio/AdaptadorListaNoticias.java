@@ -16,12 +16,12 @@ import com.example.ourtournament.R;
 
 import java.util.ArrayList;
 
-public class ListaNoticias extends BaseAdapter
+public class AdaptadorListaNoticias extends BaseAdapter
 {
     private ArrayList<Noticia> _Noticias;
     private Context _Contexto;
 
-    public ListaNoticias(ArrayList<Noticia> Noticias, Context contexto)
+    public AdaptadorListaNoticias(ArrayList<Noticia> Noticias, Context contexto)
     {
         _Noticias = Noticias;
         _Contexto = contexto;
