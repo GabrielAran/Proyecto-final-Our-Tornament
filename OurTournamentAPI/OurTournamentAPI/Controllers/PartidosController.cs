@@ -44,5 +44,25 @@ namespace OurTournamentAPI.Controllers
             }
 
         }
+
+        /*
+        [HttpGet]
+        [Route("api/GetGolesXPartido/Partido/{IDPartido}")]
+        public IHttpActionResult ObtenerGolesXPartido(int IDPartido)
+        {
+            List<Models.Partido> Lista = new List<Models.Partido>();
+            QQSM Conexion = new QQSM();
+            Lista = Conexion.TraerPartidosPorJornada(IDJornada, IDTorneo);
+            if (Lista != null)
+            {
+                return Ok(Lista);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+        */
     }
 }
