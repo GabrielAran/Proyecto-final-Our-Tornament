@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Noticia;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.PropertyResourceBundle;
 
 public class Inicio extends Fragment {
     Button Noticias,Buscar;
@@ -162,7 +164,9 @@ public class Inicio extends Fragment {
 
         protected void onPostExecute(ArrayList<Torneo> lista) {
             MainActivity Principal = (MainActivity) getActivity();
-            AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista);
+            Preferencias P = Principal.CargarSharedPreferences();
+            int IDTorneo = P.ObtenerInt("IDTorneo",-1);
+            AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo);
             listatorneos.setAdapter(Adaptador);
         }
     }
