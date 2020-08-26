@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class AdaptadorListaNoticias extends BaseAdapter
     {
         View VistaADevolver;
         TextView Titulo,Fecha,Descripcion;
-        ImageView Destacada;
+        ImageView Destacada,imageView;
         Noticia Not;
 
 
@@ -57,6 +58,7 @@ public class AdaptadorListaNoticias extends BaseAdapter
         Fecha=VistaADevolver.findViewById(R.id.Fecha);
         Descripcion=VistaADevolver.findViewById(R.id.Descripcion);
         Destacada=VistaADevolver.findViewById(R.id.Destacada);
+        imageView =VistaADevolver.findViewById(R.id.imageView);
 
         Not = getItem(pos);
         if(pos != 0)
@@ -68,6 +70,8 @@ public class AdaptadorListaNoticias extends BaseAdapter
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
         Descripcion.setText(Not.Descripcion);
+        //String Ruta = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg";
+        //Picasso.get().load(Ruta).into(imageView);
         return  VistaADevolver;
     }
 }

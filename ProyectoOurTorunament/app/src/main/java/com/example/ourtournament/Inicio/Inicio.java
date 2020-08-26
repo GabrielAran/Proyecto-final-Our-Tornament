@@ -49,7 +49,7 @@ public class Inicio extends Fragment {
     EditText Buscador;
     ArrayList<Torneo> ListaTorneosSeleccionados = new ArrayList<>();
     ListView listatorneos;
-    String NombreABuscar ="NULL";
+    String NombreABuscar ="()";
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
@@ -71,22 +71,23 @@ public class Inicio extends Fragment {
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Buscador.setVisibility(View.GONE);
-                listanoticias = VistaADevolver.findViewById(R.id.lista);
-                Animacion(renglon,"X",-10);
-                Buscar.setTextColor(Color.rgb(255,255,255));
-                Noticias.setTextColor(Color.rgb(60,188,128));
                 ListaNoticias = Principal.getNoticias();
                 AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(ListaNoticias, Principal);
                 listanoticias.setAdapter(Adaptador);
+                Buscador.setVisibility(View.GONE);
+                listanoticias = VistaADevolver.findViewById(R.id.lista);
+                Buscar.setTextColor(Color.rgb(255,255,255));
+                Noticias.setTextColor(Color.rgb(60,188,128));
+                Animacion(renglon,"X",-10);
             }
         });
         Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Buscador.setVisibility(View.VISIBLE);
+                LLenarListaTorneos Tarea = new LLenarListaTorneos();
+                Tarea.execute();
                 listatorneos = VistaADevolver.findViewById(R.id.lista);
-                Animacion(renglon,"X",540);
+                listatorneos.setVisibility(View.GONE);
                 Noticias.setTextColor(Color.rgb(255,255,255));
                 Buscar.setTextColor(Color.rgb(60,188,128));
                 Buscador.addTextChangedListener(new TextWatcher()
@@ -103,7 +104,7 @@ public class Inicio extends Fragment {
                         ListaTorneosSeleccionados.removeAll(ListaTorneosSeleccionados);
                         if(s.length() == 0)
                         {
-                            NombreABuscar = "NULL";
+                            NombreABuscar = "()";
                         }else
                         {
                             NombreABuscar = String.valueOf(s);
@@ -112,8 +113,8 @@ public class Inicio extends Fragment {
                         Tarea.execute();
                     }
                 });
-                LLenarListaTorneos Tarea = new LLenarListaTorneos();
-                Tarea.execute();
+                Buscador.setVisibility(View.VISIBLE);
+                Animacion(renglon,"X",540);
             }
         });
 
@@ -152,6 +153,7 @@ public class Inicio extends Fragment {
                         Torneo T = gson.fromJson(Elemento, Torneo.class);
                         listaTorneos.add(T);
                     }
+                    Log.d("conexion",String.valueOf(listaTorneos.size()));
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
                 }
@@ -166,6 +168,7 @@ public class Inicio extends Fragment {
             MainActivity Principal = (MainActivity) getActivity();
             Preferencias P = Principal.CargarSharedPreferences();
             int IDTorneo = P.ObtenerInt("IDTorneo",-1);
+            listatorneos.setVisibility(View.VISIBLE);
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo);
             listatorneos.setAdapter(Adaptador);
         }
