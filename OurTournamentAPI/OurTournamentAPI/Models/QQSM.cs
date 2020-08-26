@@ -26,7 +26,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            if(Nombre =="NULL")
+            if(Nombre =="()")
             {
                 Consulta.CommandText = "SELECT * FROM Torneos order by NombreTorneo ASC";
             }else
