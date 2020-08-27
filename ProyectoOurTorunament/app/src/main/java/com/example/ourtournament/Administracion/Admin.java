@@ -1,4 +1,5 @@
 package com.example.ourtournament.Administracion;
 
-public class Admin {
+public class Admin{
+
 }

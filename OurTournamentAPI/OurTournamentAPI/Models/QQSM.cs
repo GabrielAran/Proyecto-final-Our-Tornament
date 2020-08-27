@@ -151,7 +151,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select * From usuarios where IDTorneo = " + IDTorneo + "Order by Goles asc";
+            Consulta.CommandText = "select Usuarios.IDUsuario,NombreDeUsuario, Equipos.NombreEquipo,GolesEnTorneo from Usuarios inner join TorneosParticipadosXUsuario on Usuarios.IDUsuario = TorneosParticipadosXUsuario.IDUsuario inner join JugadoresXEquipos on JugadoresXEquipos.IDUsuario = Usuarios.IDUsuario inner join Equipos on Equipos.IDEquipo = JugadoresXEquipos.IDEquipo where TorneosParticipadosXUsuario.IDTorneo = "+IDTorneo+" order by Usuarios.GolesEnTorneo desc";
 
             SqlDataReader Lector = Consulta.ExecuteReader();
         
