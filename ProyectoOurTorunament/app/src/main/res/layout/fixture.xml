@@ -17,17 +17,18 @@
         android:id="@+id/header"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:background="#000"
         android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/Fixture"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="Fixture"
-            android:textSize="25dp"
+            android:fontFamily="serif-monospace"
+            android:textSize="32dp"
             android:textColor="#FFF"
             android:layout_marginLeft="15dp"
             tools:ignore="HardcodedText,SpUsage" />
@@ -53,12 +54,19 @@
             android:spinnerMode="dropdown"
             android:gravity="left" />
 
+        <ImageView
+            android:id="@+id/Carga"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cargando"
+            />
+
         <ListView
             android:layout_marginTop="20dp"
             android:id="@+id/ListaPartidos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
 

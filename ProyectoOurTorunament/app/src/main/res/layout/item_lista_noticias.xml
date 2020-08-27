@@ -21,18 +21,17 @@
             android:id="@+id/Titulo"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:gravity="center"
             android:text="Titulo"
             android:textColor="#FFF"
-            android:textSize="30sp" />
+            android:textSize="26sp" />
         <ImageView
             android:id="@+id/Destacada"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
             app:srcCompat="@drawable/estrella" />
     </LinearLayout>
 

@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:text="No jugado"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:textColor="#FFF"
             android:gravity="center"
             android:layout_gravity="center"
@@ -70,6 +70,7 @@
         android:id="@+id/Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
@@ -99,28 +100,16 @@
         app:srcCompat="@drawable/icono_equipo" />
 
     <TextView
-        android:id="@+id/guion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="-"
-        android:textColor="#FFFFFF"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Resultado" />
-
-    <TextView
         android:id="@+id/Equipo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
         android:gravity="center"
         android:text="Equipo 2"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/guion"
+        app:layout_constraintEnd_toEndOf="@+id/FotoE2"
+        app:layout_constraintStart_toStartOf="@+id/FotoE2"
         app:layout_constraintTop_toBottomOf="@id/FotoE2" />
 
     <TextView
@@ -128,12 +117,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="40dp"
         android:gravity="center"
         android:text="Equipo 1"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guion"
+        app:layout_constraintEnd_toEndOf="@+id/FotoE1"
+        app:layout_constraintStart_toStartOf="@+id/FotoE1"
         app:layout_constraintTop_toBottomOf="@id/FotoE2" />
 
     <TextView

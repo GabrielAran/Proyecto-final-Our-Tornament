@@ -2,11 +2,14 @@ package com.example.ourtournament.Fixture;
 
 import androidx.annotation.Nullable;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +28,7 @@ import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -41,9 +46,11 @@ public class Fixture extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     ListView ListView;
+    ImageView Carga;
     int ID;
     private Spinner spinner;
     Preferencias P;
+    ArrayList<Partido> listaPartidos = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
@@ -51,8 +58,15 @@ public class Fixture extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
         ListView = VistaADevolver.findViewById(R.id.ListaPartidos);
         spinner = VistaADevolver.findViewById(R.id.Jornadas);
+        Carga = VistaADevolver.findViewById(R.id.Carga);
         AdminFragments=getFragmentManager();
 
+        spinner.setVisibility(View.INVISIBLE);
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
+        Animacion.setDuration(6000);
+        AnimatorSet SetDeAnimacion = new AnimatorSet();
+        SetDeAnimacion.play(Animacion);
+        SetDeAnimacion.start();
         final MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
         ID = P.ObtenerInt("IDTorneo",-1);
@@ -74,7 +88,6 @@ public class Fixture extends Fragment {
     private class TraerPartidos extends AsyncTask<Void,Void,ArrayList<Partido>> {
         @Override
         protected ArrayList<Partido> doInBackground(Void... voids) {
-            ArrayList<Partido> listaPartidos = new ArrayList<>();
             try {
                 int Jornada = P.ObtenerInt("JornadaElegida", -1);
                 String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+Jornada+"/Torneo/"+ID;
@@ -82,6 +95,7 @@ public class Fixture extends Fragment {
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
                 miConexion.setRequestMethod("GET");
+                listaPartidos.removeAll(listaPartidos);
                 if (miConexion.getResponseCode() == 200) {
                     Log.d("conexion", "me pude conectar perfectamente");
                     InputStream lector = miConexion.getInputStream();
@@ -89,9 +103,8 @@ public class Fixture extends Fragment {
                     JsonParser parseador = new JsonParser();
                     JsonArray VecPartidos = parseador.parse(lectorJSon).getAsJsonArray();
                     for (int i = 0; i < VecPartidos.size(); i++) {
-
                         JsonElement Elemento = VecPartidos.get(i);
-                        Gson gson = new Gson();
+                        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
                         Partido Part = gson.fromJson(Elemento, Partido.class);
                         listaPartidos.add(Part);
                     }
@@ -107,17 +120,16 @@ public class Fixture extends Fragment {
         }
         protected void onPostExecute(final ArrayList<Partido> lista)
         {
-            Log.d("conexion", "la lista tiene: "+lista.size());
+            Carga.setVisibility(View.GONE);
+            spinner.setVisibility(View.VISIBLE);
             MainActivity Principal = (MainActivity) getActivity();
             AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
             P.GuardarListaPartidos("ListaPartidos",lista);
-
             ListView.setAdapter(Adaptador);
             ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MainActivity Principal = (MainActivity) getActivity();
-                    Log.d("conexion", "se eligio el partido: "+i);
                     P.GuardarInt("PartidoElegido",i);
                     Principal.PartidoSeleccionado();
                 }

@@ -2,17 +2,17 @@ package com.example.ourtournament.Objetos;
 
 public class Torneo
 {
-    public int _IDTorneo;
-    public String _nombreTorneo;
-    public String _contraseniaDeAdministrador;
-    public String _linkParaUnirse;
+    public int IDTorneo;
+    public String NombreTorneo;
+    public String ContraseniaDeAdministrador;
+    public String LinkParaUnirse;
 
     public Torneo(int idtorneo, String nombreTorneo, String contraseniaDeAdministrador, String linkParaUnirse)
     {
-        _IDTorneo = idtorneo;
-        _nombreTorneo= nombreTorneo;
-        _contraseniaDeAdministrador = contraseniaDeAdministrador;
-        _linkParaUnirse = linkParaUnirse;
+        IDTorneo = idtorneo;
+        NombreTorneo= nombreTorneo;
+        ContraseniaDeAdministrador = contraseniaDeAdministrador;
+        LinkParaUnirse = linkParaUnirse;
     }
 
     public Torneo()

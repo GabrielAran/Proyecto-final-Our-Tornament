@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void PedirPermisoParaCarrete()
     {
-        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},RequestCode);
+
     }
 
     public Bitmap BuscarImagenEnCarrete(String Ubicacion)
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     {
         int IDNoticia=1;
         String Torneo = "Europa league";
-        String Titulo = "River le gana a boca";
+        String Titulo = "Boca y river empatan 8 a 8";
         String Descripcion = "el partido se llevo a cabo en una maniana calurosa donde river convertia 2 goles y boca 0";
         Boolean Destacada = true;
         ImageView Foto = null;
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
     public void IrAAdministracion(View vista) {
 
         CambiarColor();
-        BTNAdministracion.setBackgroundColor(R.drawable.icono_admin_verde);
+        BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
         /*
         Administracion admin = new Administracion();
         IrAlFragment2(admin);

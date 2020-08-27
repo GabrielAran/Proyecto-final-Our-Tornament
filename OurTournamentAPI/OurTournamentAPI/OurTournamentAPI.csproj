@@ -152,6 +152,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EquiposController.cs" />
+    <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\PartidosController.cs" />
     <Compile Include="Controllers\TorneosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />

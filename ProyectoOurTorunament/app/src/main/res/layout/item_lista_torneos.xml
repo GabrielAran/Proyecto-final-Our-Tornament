@@ -1,48 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bordes_rondeados"
-    android:layout_gravity="center"
-    android:orientation="horizontal"
     >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/PerfilTorneo"
-        android:layout_width="40dp"
-        android:layout_height="80dp"
+        android:layout_width="45dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icono_persona" />
 
     <TextView
         android:id="@+id/Torneo"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginLeft="18dp"
+        android:gravity="left"
         android:text="Nombre"
         android:textColor="#FFF"
         android:textSize="18dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintStart_toEndOf="@+id/PerfilTorneo"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/Fixture"
-        android:layout_width="100dp"
+        android:id="@+id/BTNSeguir"
+        android:layout_width="80dp"
         android:layout_height="30dp"
-        android:gravity="center"
         android:background="@drawable/bordes_rondeados"
         android:backgroundTint="#3CBC80"
+        android:gravity="center"
         android:text="Seguir"
+        android:textSize="12dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/VerEquipos"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/flechita_izquierda"
+        android:gravity="center"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Torneo"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PerfilTorneo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

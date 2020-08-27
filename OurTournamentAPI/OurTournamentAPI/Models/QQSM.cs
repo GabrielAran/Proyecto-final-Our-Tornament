@@ -26,7 +26,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            if(Nombre =="NULL")
+            if(Nombre =="()")
             {
                 Consulta.CommandText = "SELECT * FROM Torneos order by NombreTorneo ASC";
             }else
@@ -130,7 +130,7 @@ namespace OurTournamentAPI
                 int GolesAFavor = Convert.ToInt32(Lector["GolesAFavor"]);
                 int GolesEnContra = Convert.ToInt32(Lector["GolesEnContra"]);
                 int PartidosJugados = Convert.ToInt32(Lector["PartidosJugados"]);
-                UnEquipo = new Models.Equipo(IDEquipo, NobreEquipo, IDtorneo, Puntos, GolesAFavor, GolesEnContra, PartidosJugados);
+                UnEquipo = new Models.Equipo(IDEquipo, NobreEquipo, PartidosJugados, Puntos, GolesAFavor, GolesEnContra, IDtorneo);
                 ListaPosiciones.Add(UnEquipo);
             }
             Desconectar(con);

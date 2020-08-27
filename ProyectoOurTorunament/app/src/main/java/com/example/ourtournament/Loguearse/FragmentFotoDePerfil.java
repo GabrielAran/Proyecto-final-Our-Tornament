@@ -53,9 +53,8 @@ public class FragmentFotoDePerfil extends Fragment{
                 MainActivity Principal = (MainActivity) getActivity();
                 if (ContextCompat.checkSelfPermission(Principal,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 {
-                    Log.d("conexion", "entre a pedir el permiso");
-                    Principal.PedirPermisoParaCarrete();
-                    Log.d("conexion", "ya lo pedi");
+
+                    ActivityCompat.requestPermissions(Principal,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},RequestCode);
                 }else {
                     Log.d("conexion","entre a buscar la foto");
                     Intent ObtenerFoto = new Intent(Intent.ACTION_GET_CONTENT);

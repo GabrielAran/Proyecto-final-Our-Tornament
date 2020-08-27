@@ -7,35 +7,34 @@ namespace OurTournamentAPI.Models
 {
     public class Noticia
     {
-        private int IDNoticia;
-        private String Torneo;
-        private String Titulo;
-        private String Descripcion;
-        private Boolean Destacada;
-        private String Foto;
-        private DateTime Fecha;
+        private int idnoticia;
+        private String torneo;
+        private String titulo;
+        private String descripcion;
+        private Boolean destacada;
+        private String foto;
+        private int fecha;
 
-        public int IDNoticia1 { get => IDNoticia; set => IDNoticia = value; }
-        public String Torneo1 { get => Torneo; set => Torneo = value; }
-        public String Titulo1 { get => Titulo; set => Titulo = value; }
-        public String Descripcion1 { get => Descripcion; set => Descripcion = value; }
-        public bool Destacada1 { get => Destacada; set => Destacada = value; }
-        public String Foto1 { get => Foto; set => Foto = value; }
-        public DateTime Fecha1 { get => Fecha; set => Fecha = value; }
+        public int Idnoticia { get => idnoticia; set => idnoticia = value; }
+        public string Torneo { get => torneo; set => torneo = value; }
+        public string Titulo { get => titulo; set => titulo = value; }
+        public string Descripcion { get => descripcion; set => descripcion = value; }
+        public bool Destacada { get => destacada; set => destacada = value; }
+        public string Foto { get => foto; set => foto = value; }
+        public int Fecha { get => fecha; set => fecha = value; }
 
-        private Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, String foto, DateTime fecha)
+        public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, String foto, int fecha)
         {
-            IDNoticia1 = idNoticia;
-            Torneo1 = torneo;
-            Titulo1 = titulo;
-            Descripcion1 = descripcion;
-            Destacada1 = destacada;
-            Foto1 = foto;
-            Fecha1 = fecha;
+            idnoticia = idNoticia;
+            torneo = torneo;
+            titulo = titulo;
+            descripcion = descripcion;
+            destacada = destacada;
+            foto = foto;
+            fecha = fecha;
         }
         public Noticia()
         {
         }
-
     }
 }

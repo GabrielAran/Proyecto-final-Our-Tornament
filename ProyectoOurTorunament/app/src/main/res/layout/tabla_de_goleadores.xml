@@ -16,7 +16,7 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:background="@android:color/background_dark"
         android:orientation="horizontal"
@@ -27,8 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tabla de goleadores"
+            android:fontFamily="serif-monospace"
             android:textColor="@android:color/background_light"
-            android:textSize="25dp"
+            android:textSize="32dp"
             android:layout_marginLeft="15dp"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>

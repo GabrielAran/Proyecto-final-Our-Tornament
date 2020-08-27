@@ -19,6 +19,7 @@ import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -42,7 +43,7 @@ public class MostrarPartido extends Fragment {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
         Resultado = VistaADevolver.findViewById(R.id.Resultado);
-        Fecha = VistaADevolver.findViewById(R.id.Fecha);
+        //Fecha = VistaADevolver.findViewById(R.id.Fecha);
         jugado = VistaADevolver.findViewById(R.id.jugado);
         Jorn = VistaADevolver.findViewById(R.id.Jornada);
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
@@ -63,6 +64,7 @@ public class MostrarPartido extends Fragment {
                 Gson gson = new Gson();
                 Par = gson.fromJson(Elemento, Partido.class);
 
+
             } catch (Exception e) {
                 Log.d("conexion","Hubo un error:"+e);
             }
@@ -71,9 +73,9 @@ public class MostrarPartido extends Fragment {
 
         if (Par.GolesLocal == -1)
         {
-            jugado.setText("Partido no jugado");
+            jugado.setText("El partido se jugara el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
             Resultado.setText("-:-");
-            Fecha.setText("-/-/-");
+            //Fecha.setText("-/-/-");
 
             ArrayList<String> Goles1 = new ArrayList<>();
             ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
@@ -89,8 +91,8 @@ public class MostrarPartido extends Fragment {
         }else
         {
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
-            jugado.setText("Partido jugado");
-            Fecha.setText(String.valueOf(Par.FechaDeEncuentro));
+            jugado.setText("El partido se jugo el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
+            //Fecha.setText(String.valueOf(Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()));
 
             ArrayList<String> Goles1 = new ArrayList<>();
             ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);

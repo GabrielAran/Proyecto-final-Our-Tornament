@@ -2,7 +2,6 @@ package com.example.ourtournament.Objetos;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -66,7 +65,7 @@ public class Preferencias{
         editor.putString(Clave,json);
     }
 
-    public void GuardarListaGoleadores(String Clave, ArrayList<Usuarios> dato)
+    public void GuardarListaGoleadores(String Clave, ArrayList<Usuario> dato)
     {
         Gson gson = new Gson();
         String json = gson.toJson(dato);
