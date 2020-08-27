@@ -79,6 +79,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource,null);
         }
+
         NombreEquipo = VistaADevolver.findViewById(R.id.Nombre);
         Renglon = VistaADevolver.findViewById(R.id.renglon);
 

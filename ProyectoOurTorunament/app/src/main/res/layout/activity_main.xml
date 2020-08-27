@@ -7,7 +7,7 @@
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="#000"
         android:textColor="#3CBC80"
@@ -15,32 +15,32 @@
 
         <Button
             android:id="@+id/Fixture"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:onClick="IrAFixture"/>
 
         <Button
             android:id="@+id/TablaDeGoleadores"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrATablaGoleadores" />
         <Button
             android:id="@+id/Inicio"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrAInicio" />
         <Button
             android:id="@+id/TablaDePosiciones"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrATablaPosiciones" />
         <Button
             android:id="@+id/Administracion"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:onClick="IrAAdministracion"
             />
