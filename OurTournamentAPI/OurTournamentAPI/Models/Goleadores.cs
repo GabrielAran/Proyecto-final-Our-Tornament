@@ -23,7 +23,9 @@ namespace OurTournamentAPI.Models
             NombreUsuario = Nombreusuario;
             NombreEquipo = Nombreequipo;
             Goles = goles;
-       
+        }
+        public Goleadores()
+        {
         }
     }
 }
