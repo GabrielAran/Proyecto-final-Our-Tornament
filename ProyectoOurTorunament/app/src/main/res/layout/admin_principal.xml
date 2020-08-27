@@ -30,7 +30,7 @@
             android:fontFamily="serif-monospace"
             android:textColor="@android:color/background_light"
             android:textSize="32dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="70dp"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
 
@@ -52,7 +52,7 @@
         </ListView>
 
         <Button
-            android:id="@+id/btn_Conf"
+            android:id="@+id/btn_Config"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:backgroundTint="#3CBC80"

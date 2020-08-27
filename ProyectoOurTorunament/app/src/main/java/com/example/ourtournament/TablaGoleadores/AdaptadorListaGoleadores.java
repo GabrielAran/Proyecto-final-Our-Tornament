@@ -8,18 +8,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.ourtournament.Objetos.Usuario;
+import com.example.ourtournament.Objetos.Goleadores;
 import com.example.ourtournament.R;
 
 import java.util.ArrayList;
 
-public class AdaptadorListaGoleadores extends ArrayAdapter<Usuario>
+public class AdaptadorListaGoleadores extends ArrayAdapter<Goleadores>
 {
-    private ArrayList<Usuario> _ListaGoleadores;
+    private ArrayList<Goleadores> _ListaGoleadores;
     private Context _Contexto;
     private int _Resource;
 
-    public AdaptadorListaGoleadores(Context contexto,int Resource,ArrayList<Usuario> ListaGoleadores)
+    public AdaptadorListaGoleadores(Context contexto,int Resource,ArrayList<Goleadores> ListaGoleadores)
     {
         super(contexto,Resource,ListaGoleadores);
         this._ListaGoleadores = ListaGoleadores;
@@ -43,12 +43,12 @@ public class AdaptadorListaGoleadores extends ArrayAdapter<Usuario>
         eqp1 = VistaADevolver.findViewById(R.id.eqp1);
         Goles = VistaADevolver.findViewById(R.id.Goles);
 
-        Usuario U = getItem(pos);
+        Goleadores G = getItem(pos);
 
         pos1.setText(String.valueOf(pos));
-        jug1.setText(U.NombreUsuario);
-        eqp1.setText(String.valueOf(U.IDEquipo));
-        Goles.setText(String.valueOf(U.GolesEnTorneo));
+        jug1.setText(G.NombreUsuario1);
+        eqp1.setText(String.valueOf(G.NombreEquipo1));
+        Goles.setText(String.valueOf(G.Goles));
 
         return  VistaADevolver;
     }

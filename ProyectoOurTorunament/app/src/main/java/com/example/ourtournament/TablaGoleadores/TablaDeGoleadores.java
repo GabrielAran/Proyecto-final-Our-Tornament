@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Goleadores;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Usuario;
@@ -41,7 +42,7 @@ public class TablaDeGoleadores extends Fragment {
 
         final MainActivity Principal = (MainActivity) getActivity();
         Preferencias P = Principal.CargarSharedPreferences();
-        IdTorneo = P.ObtenerInt("IdUsuario",-1);
+        IdTorneo = P.ObtenerInt("IDUsuario1",-1);
 
         if(IdTorneo !=-1)
         {
@@ -52,10 +53,10 @@ public class TablaDeGoleadores extends Fragment {
         return VistaADevolver;
     }
 
-    private class TraerGoleadores extends AsyncTask<Integer,Void,ArrayList<Usuario>> {
+    private class TraerGoleadores extends AsyncTask<Integer,Void,ArrayList<Goleadores>> {
         @Override
-        protected ArrayList<Usuario> doInBackground(Integer... voids) {
-            ArrayList<Usuario> VecGoleadores = new ArrayList<>();
+        protected ArrayList<Goleadores> doInBackground(Integer... voids) {
+            ArrayList<Goleadores> VecGoleadores = new ArrayList<>();
             try {
                 String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/" + IdTorneo;
                 URL miRuta = new URL(miURL);
@@ -72,8 +73,8 @@ public class TablaDeGoleadores extends Fragment {
                     for (int i = 0; i < VecGol.size(); i++) {
                         JsonElement Elemento = VecGol.get(i);
                         Gson gson = new Gson();
-                        Usuario U = gson.fromJson(Elemento, Usuario.class);
-                        VecGoleadores.add(U);
+                        Goleadores G = gson.fromJson(Elemento, Goleadores.class);
+                        VecGoleadores.add(G);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -84,7 +85,7 @@ public class TablaDeGoleadores extends Fragment {
             }
             return VecGoleadores;
         }
-        protected void onPostExecute(ArrayList<Usuario> VecGoleadores)
+        protected void onPostExecute(ArrayList<Goleadores> VecGoleadores)
         {
             final MainActivity Principal = (MainActivity) getActivity();
             AdaptadorListaGoleadores Adapter = new AdaptadorListaGoleadores(Principal,R.layout.item_tabla_goleadores,VecGoleadores);
