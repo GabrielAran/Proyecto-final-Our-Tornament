@@ -147,7 +147,7 @@ namespace OurTournamentAPI
             Desconectar(con);
         }
 
-        public List<Models.Usuario> TraerListaGoleadores (int IDTorneo) {
+        public List<Models.Goleadores> TraerListaGoleadores (int IDTorneo) {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
@@ -155,20 +155,17 @@ namespace OurTournamentAPI
 
             SqlDataReader Lector = Consulta.ExecuteReader();
         
-            List<Models.Usuario> Tablagoleadores = new List<Models.Usuario>();
-            Models.Usuario UnUsuario = new Models.Usuario();
+            List<Models.Goleadores> Tablagoleadores = new List<Models.Goleadores>();
+            Models.Goleadores UnGoleador = new Models.Goleadores();
             while (Lector.Read())
             {
                 int IDUsuario = Convert.ToInt32(Lector["IdUsuario"]);
-                String NombreUsuario = Lector["NombreUsuario"].ToString();
-                String Contrasenia = Lector["Contrasenia"].ToString();
-                DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
-                String Email = Lector["Email"].ToString();
-                int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
-                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
+                String NombreUsuario = Lector["NombreDeUsuario"].ToString();
+                String NombreEquipo = Lector["NombreEquipo"].ToString();
+                int Goles = Convert.ToInt32(Lector["GolesEnTorneo"]);
 
-                UnUsuario = new Models.Usuario(IDUsuario, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, GolesEnTorneo, IDEquipo);
-                Tablagoleadores.Add(UnUsuario);
+                UnGoleador = new Models.Goleadores(IDUsuario, NombreUsuario, NombreEquipo, Goles);
+                Tablagoleadores.Add(UnGoleador);
             }
             Desconectar(con);
             return Tablagoleadores;

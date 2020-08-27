@@ -21,7 +21,7 @@ namespace OurTournamentAPI.Controllers
         [Route("api/GetGoleadores/Torneo/{IDTorneo}")]
         public IHttpActionResult TraerListaGoleadores(int IDTorneo)
         {
-            List<Models.Usuario> Lista = new List<Models.Usuario>();
+            List<Models.Goleadores> Lista = new List<Models.Goleadores>();
             QQSM Conexion = new QQSM();
             Lista = Conexion.TraerListaGoleadores(IDTorneo);
             if (Lista != null)
