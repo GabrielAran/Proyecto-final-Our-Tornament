@@ -47,7 +47,8 @@
             android:id="@+id/ListaDeAdministracion"
             android:layout_width="wrap_content"
             android:layout_height="437dp"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            android:background="#F3E6E6">
 
         </ListView>
 

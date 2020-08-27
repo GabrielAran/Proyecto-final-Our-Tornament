@@ -45,7 +45,7 @@ public class AdaptadorListaGoleadores extends ArrayAdapter<Goleadores>
 
         Goleadores G = getItem(pos);
 
-        pos1.setText(String.valueOf(pos));
+        pos1.setText(String.valueOf(pos + 1));
         jug1.setText(G.NombreUsuario1);
         eqp1.setText(String.valueOf(G.NombreEquipo1));
         Goles.setText(String.valueOf(G.Goles1));

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class Administracion extends Fragment {
     FragmentManager AdminFragments;
     Button btn_Perfil, btn_Config;
-    View VistaADevolver;
+    View VistaADevolver = null;
     private FragmentTransaction TransaccionesDeFragment;
     ArrayList<String> TorneosSeguidos = new ArrayList<String>();
     ArrayAdapter<String> adapter;
@@ -31,12 +31,14 @@ public class Administracion extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-        VistaADevolver = inflador.inflate(R.layout.admin_principal, GrupoDeLaVista, false);
-        AdminFragments=getFragmentManager();
+        if (VistaADevolver == null) {
+            VistaADevolver = inflador.inflate(R.layout.admin_principal, GrupoDeLaVista, false);
+            AdminFragments = getFragmentManager();
 
-        Referencias();
-        SetearListeners();
-        HardcodearLista();
+            Referencias();
+            SetearListeners();
+            HardcodearLista();
+        }
 
         return VistaADevolver;
     }
@@ -79,6 +81,10 @@ public class Administracion extends Fragment {
         TorneosSeguidos.add("Liga BBVA");
         TorneosSeguidos.add("Premier");
         TorneosSeguidos.add("Superliga");
+        TorneosSeguidos.add("Ligue One");
+        TorneosSeguidos.add("Liga MMX");
+        TorneosSeguidos.add("Torneo Clausura");
+        TorneosSeguidos.add("Torneo Apartura");
 
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, TorneosSeguidos);
         ListaDeAdministracion.setAdapter(adapter);
