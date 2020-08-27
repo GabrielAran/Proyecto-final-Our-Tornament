@@ -86,9 +86,6 @@ public class MainActivity extends AppCompatActivity {
         CargarGeneral();
         CargarInicio();
         CargarFixture();
-        CargarTablaGoleadores();
-        CargarTablaPosiciones();
-
     }
     //  GENERAL
     public void CargarGeneral()
@@ -155,33 +152,9 @@ public class MainActivity extends AppCompatActivity {
         IrAFragment(fixture);
     }
     //Tabla de goleadores
-    public void CargarTablaGoleadores()
-    {
-        ListaJugador = new ArrayList<>();
-        ListaJugador.add("Bochini");
-        ListaJugador.add("Maradona");
-        ListaJugador.add("Pumpido");
-        ListaJugador.add("Batistuta");
-        ListaJugador.add("Messi");
-
-        ListaGoles = new ArrayList<>();
-        ListaGoles.add("10");
-        ListaGoles.add("8");
-        ListaGoles.add("7");
-        ListaGoles.add("3");
-        ListaGoles.add("1");
-    }
 
     public ArrayList<String> getListaJugador() {return ListaJugador;}
     public ArrayList<String> getListaGoles() {return ListaGoles;}
-
-    //TablaPosiciones
-    public void CargarTablaPosiciones()
-    {
-
-    }
-
-
 
     //Navegacion
     public void IrAFixture(View vista)
