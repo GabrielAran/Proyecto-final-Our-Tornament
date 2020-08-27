@@ -42,12 +42,12 @@ public class TablaDeGoleadores extends Fragment {
 
         final MainActivity Principal = (MainActivity) getActivity();
         Preferencias P = Principal.CargarSharedPreferences();
-        IdTorneo = P.ObtenerInt("IDUsuario1",-1);
+        IdTorneo = P.ObtenerInt("IDTorneo",-1);
 
-        if(IdTorneo !=-1)
+        if(IdTorneo != -1)
         {
             TraerGoleadores ASync = new TraerGoleadores();
-            ASync.execute(IdTorneo);
+            ASync.execute();
         }
 
         return VistaADevolver;
@@ -58,13 +58,13 @@ public class TablaDeGoleadores extends Fragment {
         protected ArrayList<Goleadores> doInBackground(Integer... voids) {
             ArrayList<Goleadores> VecGoleadores = new ArrayList<>();
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/" + IdTorneo;
+                String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/1";
                 URL miRuta = new URL(miURL);
-
+                Log.d("conexion","estoy accediendo a la ruta: "+miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
                 miConexion.setRequestMethod("GET");
-
                 if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion","Me conecte perfectamente");
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
@@ -74,6 +74,7 @@ public class TablaDeGoleadores extends Fragment {
                         JsonElement Elemento = VecGol.get(i);
                         Gson gson = new Gson();
                         Goleadores G = gson.fromJson(Elemento, Goleadores.class);
+                        Log.d("conexion",String.valueOf(G.Goles1));
                         VecGoleadores.add(G);
                     }
                 } else {

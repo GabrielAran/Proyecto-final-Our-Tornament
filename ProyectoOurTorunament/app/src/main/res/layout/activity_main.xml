@@ -23,25 +23,25 @@
             android:id="@+id/TablaDeGoleadores"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="35dp"
             android:onClick="IrATablaGoleadores" />
         <Button
             android:id="@+id/Inicio"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="35dp"
             android:onClick="IrAInicio" />
         <Button
             android:id="@+id/TablaDePosiciones"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="35dp"
             android:onClick="IrATablaPosiciones" />
         <Button
             android:id="@+id/Administracion"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="35dp"
             android:onClick="IrAAdministracion"
             />
 

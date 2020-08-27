@@ -48,7 +48,7 @@ public class AdaptadorListaGoleadores extends ArrayAdapter<Goleadores>
         pos1.setText(String.valueOf(pos));
         jug1.setText(G.NombreUsuario1);
         eqp1.setText(String.valueOf(G.NombreEquipo1));
-        Goles.setText(String.valueOf(G.Goles));
+        Goles.setText(String.valueOf(G.Goles1));
 
         return  VistaADevolver;
     }
