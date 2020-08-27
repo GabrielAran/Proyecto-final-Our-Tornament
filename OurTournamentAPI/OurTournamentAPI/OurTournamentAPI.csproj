@@ -160,6 +160,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipo.cs" />
+    <Compile Include="Models\Goleadores.cs" />
     <Compile Include="Models\Noticia.cs" />
     <Compile Include="Models\Partido.cs" />
     <Compile Include="Models\QQSM.cs" />
