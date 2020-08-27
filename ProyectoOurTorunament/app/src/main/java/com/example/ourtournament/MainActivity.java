@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.ourtournament.Administracion.Administracion;
 import com.example.ourtournament.Fixture.Fixture;
 import com.example.ourtournament.Fixture.MostrarPartido;
 import com.example.ourtournament.Inicio.Inicio;
@@ -85,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         CargarGeneral();
         CargarInicio();
-        CargarFixture();
     }
     //  GENERAL
     public void CargarGeneral()
@@ -95,11 +95,6 @@ public class MainActivity extends AppCompatActivity {
         BTNInicio = findViewById(R.id.Inicio);
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
-    }
-
-    public void PedirPermisoParaCarrete()
-    {
-
     }
 
     public Bitmap BuscarImagenEnCarrete(String Ubicacion)
@@ -131,11 +126,6 @@ public class MainActivity extends AppCompatActivity {
         ListaNoticias.add(UnaNoticia);
 
         IrAInicio(null);
-    }
-    //Fixture
-    public void CargarFixture()
-    {
-
     }
 
     public void PartidoSeleccionado()
@@ -191,13 +181,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void IrAAdministracion(View vista) {
-
         CambiarColor();
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
-        /*
+
         Administracion admin = new Administracion();
-        IrAlFragment2(admin);
-         */
+        IrAFragment(admin);
     }
 
     //Inicio

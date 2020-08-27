@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/general"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/footer"
+    android:layout_below="@id/header"
+    android:gravity="center_horizontal"
+    android:background="#212423">
+
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/background_dark"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/Fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Administración"
+            android:fontFamily="serif-monospace"
+            android:textColor="@android:color/background_light"
+            android:textSize="32dp"
+            android:layout_marginLeft="15dp"
+            tools:ignore="HardcodedText,SpUsage" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/footer"
+        android:layout_below="@id/header"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/ListaDeAdministracion"
+            android:layout_width="wrap_content"
+            android:layout_height="437dp"
+            android:layout_marginTop="8dp">
+
+        </ListView>
+
+        <Button
+            android:id="@+id/btn_Conf"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:backgroundTint="#3CBC80"
+            android:text="Configuración"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_Perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="61dp"
+            android:backgroundTint="#3CBC80"
+            android:text="Perfil"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
