@@ -5,66 +5,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bordes_rondeados"
-    >
+    android:background="@drawable/bordes_rondeados">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/PerfilTorneo"
-        android:layout_width="45dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="10dp"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icono_persona" />
-
-    <TextView
-        android:id="@+id/Torneo"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:gravity="left"
-        android:text="Nombre"
-        android:textColor="#FFF"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/list"
-        app:layout_constraintStart_toEndOf="@+id/PerfilTorneo"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/BTNSeguir"
-        android:layout_width="80dp"
-        android:layout_height="30dp"
-        android:background="@drawable/bordes_rondeados"
-        android:backgroundTint="#3CBC80"
-        android:gravity="center"
-        android:text="Seguir"
-        android:textSize="12dp"
-
-        app:layout_constraintBottom_toTopOf="@+id/list"
-        app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/VerEquipos"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/flechita_izquierda"
-        android:gravity="center"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/list"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PerfilTorneo" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/PerfilTorneo"
+                android:layout_width="45dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icono_persona" />
+
+            <TextView
+                android:id="@+id/Torneo"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:gravity="left"
+                android:text="Nombre"
+                android:textColor="#FFF"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/list"
+                app:layout_constraintStart_toEndOf="@+id/PerfilTorneo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/BTNSeguir"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bordes_rondeados"
+                android:backgroundTint="#3CBC80"
+                android:gravity="center"
+                android:text="Seguir"
+                android:textSize="12dp"
+
+                app:layout_constraintBottom_toTopOf="@+id/list"
+                app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/VerEquipos"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/flechita_izquierda"
+                android:gravity="center"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PerfilTorneo" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

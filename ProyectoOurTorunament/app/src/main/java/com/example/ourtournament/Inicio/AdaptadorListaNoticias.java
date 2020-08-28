@@ -70,8 +70,8 @@ public class AdaptadorListaNoticias extends BaseAdapter
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
         Descripcion.setText(Not.Descripcion);
-        //String Ruta = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg";
-        //Picasso.get().load(Ruta).into(imageView);
+        String Ruta = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg";
+        Picasso.get().load(Ruta).into(imageView);
         return  VistaADevolver;
     }
 }

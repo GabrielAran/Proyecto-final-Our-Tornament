@@ -169,6 +169,7 @@ public class Inicio extends Fragment {
             Preferencias P = Principal.CargarSharedPreferences();
             int IDTorneo = P.ObtenerInt("IDTorneo",-1);
             listatorneos.setVisibility(View.VISIBLE);
+            Log.d("conexion",String.valueOf(listatorneos.getHeight()));
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo);
             listatorneos.setAdapter(Adaptador);
         }

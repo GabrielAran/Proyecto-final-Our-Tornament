@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,12 +40,14 @@ public class MostrarPartido extends Fragment {
     Partido Par;
     Preferencias P;
     Button Volver;
+    ImageView Foto1,Foto2;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
+        Foto1 = VistaADevolver.findViewById(R.id.FotoE1);
+        Foto2 = VistaADevolver.findViewById(R.id.FotoE2);
         Resultado = VistaADevolver.findViewById(R.id.Resultado);
-        //Fecha = VistaADevolver.findViewById(R.id.Fecha);
         jugado = VistaADevolver.findViewById(R.id.jugado);
         Jorn = VistaADevolver.findViewById(R.id.Jornada);
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
@@ -90,6 +94,10 @@ public class MostrarPartido extends Fragment {
             lista2.setAdapter(Adaptador2);
         }else
         {
+            String Ruta = "https://upload.wikimedia.org/wikipedia/commons/c/c9/Boca_escudo.png";
+            Picasso.get().load(Ruta).into(Foto1);
+            Ruta = "https://logodownload.org/wp-content/uploads/2015/05/river-plate-logo-0.png";
+            Picasso.get().load(Ruta).into(Foto2);
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
             jugado.setText("El partido se jugo el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
             //Fecha.setText(String.valueOf(Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()));

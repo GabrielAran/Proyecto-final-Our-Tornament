@@ -143,35 +143,45 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Goles"
-        android:textSize="50dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@id/Equipo2"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ListView
-        android:id="@+id/ListaGolesE1"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:background="#3CBC80"
-        app:layout_constraintEnd_toStartOf="@+id/Goles"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Goles" />
+        app:layout_constraintTop_toBottomOf="@id/Equipo2" />
 
-    <ListView
-        android:id="@+id/ListaGolesE2"
-        android:layout_width="160dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="60dp"
-        android:background="#3CBC80"
-        android:foregroundGravity="right"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Goles"
-        app:layout_constraintTop_toBottomOf="@id/Goles" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Goles">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Goles">
+
+            <ListView
+                android:id="@+id/ListaGolesE1"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginRight="10dp" />
+
+            <ListView
+                android:id="@+id/ListaGolesE2"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -99,20 +99,15 @@
             android:textColorHint="#212423"
             android:background="@drawable/input"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="20dp"/>
 
-        <FrameLayout
-            android:id="@+id/FrameInicio"
+        <ListView
+            android:id="@+id/lista"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/lista"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center"/>
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 </RelativeLayout>
