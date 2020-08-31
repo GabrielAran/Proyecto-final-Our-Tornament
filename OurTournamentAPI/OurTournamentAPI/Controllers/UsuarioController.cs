@@ -32,7 +32,6 @@ namespace OurTournamentAPI.Controllers
             {
                 return NotFound();
             }
-            //espero q a gluk le llegue el cambio
         }
 
     }

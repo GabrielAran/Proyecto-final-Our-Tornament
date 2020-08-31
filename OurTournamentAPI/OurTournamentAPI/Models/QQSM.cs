@@ -142,7 +142,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into SeguidoresXTorneos (IDUsuario,IDTorneo,IDEquipoFavorito) values (" + IDUsuario + "," + IDTorneo + "," + IDEquipo + ")";
+            Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + IDUsuario + "," + IDTorneo + "," + IDEquipo + ")";
             Consulta.ExecuteNonQuery();
             Desconectar(con);
         }
@@ -171,187 +171,32 @@ namespace OurTournamentAPI
             return Tablagoleadores;
         }
 
-        /*
-        public static List<Respuestas> TraerRespuestas()
+        public List<Models.GolesXUsuario> TraerGolesXusuario(int IDPartido)
         {
-
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "SELECT * FROM Respuestas where Respuestas.IDPregunta =" + PreguntaActual;
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "select IDPartido, GolesXUsuarioXPartidos.IDUsuario,NombreDeUsuario,CantidadGoles," +
+                "Equipos.NombreEquipo from GolesXUsuarioXPartidos inner join Usuarios on Usuarios.IDUsuario = " +
+                "GolesXUsuarioXPartidos.IDUsuario inner join JugadoresXEquipos on JugadoresXEquipos.IDUsuario = " +
+                "Usuarios.IDUsuario inner join Equipos on JugadoresXEquipos.IDEquipo = Equipos.IDEquipo where " +
+                "GolesXUsuarioXPartidos.IDPartido = "+IDPartido;
             SqlDataReader Lector = Consulta.ExecuteReader();
-            List<Respuestas> aux = new List<Respuestas>();
-            Respuestas A = new Respuestas();
+            List<Models.GolesXUsuario> Goles = new List<Models.GolesXUsuario>();
+            Models.GolesXUsuario Gol = new Models.GolesXUsuario();
             while (Lector.Read())
             {
-                int idrespuesta = Convert.ToInt32(Lector["IDRespuesta"]);
-                int idpregunta = Convert.ToInt32(Lector["IDPregunta"]);
-                char opcionrespuesta = Convert.ToChar(Lector["OpcionRespuesta"]);
-                string respuesta = Lector["Respuesta"].ToString();
-                bool correcta = Convert.ToBoolean(Lector["Correcta"]);
-                A = new Respuestas(idrespuesta, idpregunta, opcionrespuesta, respuesta, correcta);
-                aux.Add(A);
+                int IDpartido = Convert.ToInt32(Lector["IDPartido"]);
+                int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+                String NombreUsuario = Lector["NombreDeUsuario"].ToString();
+                int CantidadGoles = Convert.ToInt32(Lector["CantidadGoles"]);
+                String NombreEquipo = Lector["NombreEquipo"].ToString();
+
+                Gol = new Models.GolesXUsuario(IDpartido,IDUsuario, NombreUsuario, CantidadGoles, NombreEquipo);
+                Goles.Add(Gol);
             }
             Desconectar(con);
-            return aux;
+            return Goles;
         }
-
-        public static bool RespuestaUsuario(char Opción, char OpcionComodin)
-        {
-
-            Pozo PozoActual = new Pozo();
-            SqlConnection con = Conectar();
-            SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "SELECT * FROM Respuestas where Respuestas.IDPregunta =" + PreguntaActual + "and Respuestas.Correcta = '1'";
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            char OpResp = ' ';
-            bool Respuesta;
-
-            while (Lector.Read())
-            {
-                int idrespuesta = Convert.ToInt32(Lector["IDRespuesta"]);
-                int idpregunta = Convert.ToInt32(Lector["IDPregunta"]);
-                char opcionrespuesta = Convert.ToChar(Lector["OpcionRespuesta"]);
-                string respuesta = Lector["Respuesta"].ToString();
-                bool correcta = Convert.ToBoolean(Lector["Correcta"]);
-                OpResp = opcionrespuesta;
-            }
-            if (OpcionComodin == ' ' & OpResp == Opción)
-            {
-                Respuesta = true;
-                PosicionPozo++;
-                PozoActual = ListaPozo[PosicionPozo];
-                if (PozoActual.ValorSeguro == true)
-                {
-                    PozoGanado = PozoActual.Importe;
-                }
-                PreguntasRespondidas.Add(PreguntaActual);
-                Random random2 = new Random();
-                PreguntaActual = random2.Next(0, 16);
-                bool existe = PreguntasRespondidas.Contains(PreguntaActual);
-                while (existe == true)
-                {
-                    PreguntaActual = random2.Next(0, 16);
-                }
-
-            }
-            else
-            {
-                if (OpcionComodin != ' ' & OpcionComodin == OpResp & ComodinDobleChance == true)
-                {
-                    ComodinDobleChance = false;
-                    Respuesta = true;
-                    PosicionPozo++;
-                    PozoActual = ListaPozo[PosicionPozo];
-                    if (PozoActual.ValorSeguro == true)
-                    {
-                        PozoGanado = PozoActual.Importe;
-                    }
-                    PreguntasRespondidas.Add(PreguntaActual);
-                    Random random2 = new Random();
-                    PreguntaActual = random2.Next(0, 16);
-                    bool existe = PreguntasRespondidas.Contains(PreguntaActual);
-                    while (existe == true)
-                    {
-                        PreguntaActual = random2.Next(0, 16);
-                    }
-
-                }
-                else
-                {
-                    Respuesta = false;
-                }
-            }
-            Desconectar(con);
-            return Respuesta;
-        }
-
-        public static List<Pozo> ListarPozo()
-        {
-            return ListaPozo;
-        }
-
-        public static Pozo DevolverPozoJugadaActual()
-        {
-            Pozo PozoActual = new Pozo();
-            PozoActual = ListaPozo[PosicionPozo];
-
-            return PozoActual;
-        }
-
-        public static List<char> Descartar50()
-        {
-            List<char> CaracteresIncorrectos = new List<char>();
-            if (Comodin5050 == false)
-            {
-                Comodin5050 = true;
-
-                SqlConnection con = Conectar();
-                SqlCommand Consulta = con.CreateCommand();
-                Consulta.CommandType = System.Data.CommandType.Text;
-                Consulta.CommandText = "SELECT * FROM Respuestas where Respuestas.IDPregunta =" + PreguntaActual + "and Respuestas.Correcta = '0'";
-                SqlDataReader Lector = Consulta.ExecuteReader();
-                while (Lector.Read())
-                {
-                    char opcionrespuesta = Convert.ToChar(Lector["OpcionRespuesta"]);
-                    CaracteresIncorrectos.Add(opcionrespuesta);
-                }
-                Random ran = new Random();
-                int CaracterQueDejo = ran.Next(0, 2);
-                CaracteresIncorrectos.RemoveAt(CaracterQueDejo);
-                Desconectar(con);
-                return CaracteresIncorrectos;
-            }
-            else
-            {
-                return CaracteresIncorrectos;
-            }
-        }
-
-        public static Preguntas SaltearPregunta()
-        {
-            Preguntas NuevaPregunta = new Preguntas();
-            if (ComodinSaltearPregunta == false)
-            {
-                PreguntasRespondidas.Add(PreguntaActual);
-                Random random2 = new Random();
-                PreguntaActual = random2.Next(0, 16);
-                bool existe = PreguntasRespondidas.Contains(PreguntaActual);
-                while (existe == true)
-                {
-                    PreguntaActual = random2.Next(0, 16);
-                }
-                SqlConnection con = Conectar();
-                SqlCommand Consulta = con.CreateCommand();
-                Consulta.CommandType = System.Data.CommandType.Text;
-                Consulta.CommandText = "SELECT * FROM Preguntas where Preguntas.IDPregunta =" + PreguntaActual;
-                SqlDataReader Lector = Consulta.ExecuteReader();
-                Preguntas Actual = new Preguntas();
-                while (Lector.Read())
-                {
-                    int idpregunta = Convert.ToInt32(Lector["IDPregunta"]);
-                    string textopregunta = Lector["TextoPregunta"].ToString();
-                    int dificultad = Convert.ToInt32(Lector["DNI"]);
-                    Actual = new Preguntas(idpregunta, textopregunta, dificultad);
-                }
-                Desconectar(con);
-                return NuevaPregunta;
-            }
-            else
-            {
-                return NuevaPregunta;
-            }
-        }
-
-        public static Dictionary<string, int> DevolverResultados()
-        {
-            Dictionary<string, int> DicResultados = new Dictionary<string, int>();
-            DicResultados.Add("Cantidad de correctas", PosicionPozo);
-            DicResultados.Add("Pozo Ganado ", PozoGanado);
-            DicResultados.Add("Pozo a Ganar", PozoaGanar);
-            return DicResultados;
-        }
-        */
     }
 }

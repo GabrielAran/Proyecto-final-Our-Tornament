@@ -45,14 +45,13 @@ namespace OurTournamentAPI.Controllers
 
         }
 
-        /*
         [HttpGet]
         [Route("api/GetGolesXPartido/Partido/{IDPartido}")]
         public IHttpActionResult ObtenerGolesXPartido(int IDPartido)
         {
-            List<Models.Partido> Lista = new List<Models.Partido>();
+            List<Models.GolesXUsuario> Lista = new List<Models.GolesXUsuario>();
             QQSM Conexion = new QQSM();
-            Lista = Conexion.TraerPartidosPorJornada(IDJornada, IDTorneo);
+            Lista = Conexion.TraerGolesXusuario(IDPartido);
             if (Lista != null)
             {
                 return Ok(Lista);
@@ -61,8 +60,7 @@ namespace OurTournamentAPI.Controllers
             {
                 return NotFound();
             }
-
         }
-        */
+
     }
 }

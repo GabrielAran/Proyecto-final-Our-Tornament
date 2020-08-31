@@ -2,12 +2,14 @@ package com.example.ourtournament.Fixture;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,7 +33,11 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +51,8 @@ public class MostrarPartido extends Fragment {
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
-        Foto1 = VistaADevolver.findViewById(R.id.FotoE1);
-        Foto2 = VistaADevolver.findViewById(R.id.FotoE2);
-        Resultado = VistaADevolver.findViewById(R.id.Resultado);
-        jugado = VistaADevolver.findViewById(R.id.jugado);
-        Jorn = VistaADevolver.findViewById(R.id.Jornada);
-        E1 = VistaADevolver.findViewById(R.id.Equipo1);
-        E2 = VistaADevolver.findViewById(R.id.Equipo2);
-        Volver = VistaADevolver.findViewById(R.id.Volver);
 
+        finds(VistaADevolver);
         MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
         String JSON = P.ObtenerString("ListaPartidos","...");
@@ -67,7 +66,6 @@ public class MostrarPartido extends Fragment {
                 JsonElement Elemento = VecPartidos.get(PartidoElegido);
                 Gson gson = new Gson();
                 Par = gson.fromJson(Elemento, Partido.class);
-
 
             } catch (Exception e) {
                 Log.d("conexion","Hubo un error:"+e);
@@ -94,6 +92,7 @@ public class MostrarPartido extends Fragment {
             lista2.setAdapter(Adaptador2);
         }else
         {
+
             String Ruta = "https://upload.wikimedia.org/wikipedia/commons/c/c9/Boca_escudo.png";
             Picasso.get().load(Ruta).into(Foto1);
             Ruta = "https://logodownload.org/wp-content/uploads/2015/05/river-plate-logo-0.png";
@@ -137,5 +136,70 @@ public class MostrarPartido extends Fragment {
         });
 
         return VistaADevolver;
+    }
+
+    public void finds(View VistaADevolver)
+    {
+        Foto1 = VistaADevolver.findViewById(R.id.FotoE1);
+        Foto2 = VistaADevolver.findViewById(R.id.FotoE2);
+        Resultado = VistaADevolver.findViewById(R.id.Resultado);
+        jugado = VistaADevolver.findViewById(R.id.jugado);
+        Jorn = VistaADevolver.findViewById(R.id.Jornada);
+        E1 = VistaADevolver.findViewById(R.id.Equipo1);
+        E2 = VistaADevolver.findViewById(R.id.Equipo2);
+        Volver = VistaADevolver.findViewById(R.id.Volver);
+    }
+
+    private class TraerGoles extends AsyncTask<Void,Void,ArrayList<Partido>> {
+        @Override
+        protected ArrayList<Partido> doInBackground(Void... voids) {
+            try {
+                int Jornada = P.ObtenerInt("JornadaElegida", -1);
+                String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+Jornada+"/Torneo/"+ID;
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setRequestMethod("GET");
+                listaPartidos.removeAll(listaPartidos);
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "me pude conectar perfectamente");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonArray VecPartidos = parseador.parse(lectorJSon).getAsJsonArray();
+                    for (int i = 0; i < VecPartidos.size(); i++) {
+                        JsonElement Elemento = VecPartidos.get(i);
+                        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                        Partido Part = gson.fromJson(Elemento, Partido.class);
+                        listaPartidos.add(Part);
+                    }
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return listaPartidos;
+        }
+        protected void onPostExecute(final ArrayList<Partido> lista)
+        {
+            Carga.setVisibility(View.GONE);
+            spinner.setVisibility(View.VISIBLE);
+            MainActivity Principal = (MainActivity) getActivity();
+            AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
+            P.GuardarListaPartidos("ListaPartidos",lista);
+            ListView.setAdapter(Adaptador);
+            ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    MainActivity Principal = (MainActivity) getActivity();
+                    P.GuardarInt("PartidoElegido",i);
+                    Principal.PartidoSeleccionado();
+                }
+            });
+
+        }
     }
 }
