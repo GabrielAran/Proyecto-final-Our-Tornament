@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.GolesXUsuario;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
@@ -47,6 +48,7 @@ public class MostrarPartido extends Fragment {
     Preferencias P;
     Button Volver;
     ImageView Foto1,Foto2;
+    ListView lista1,lista2;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -92,6 +94,8 @@ public class MostrarPartido extends Fragment {
             lista2.setAdapter(Adaptador2);
         }else
         {
+            TraerGoles Tarea = new TraerGoles();
+            Tarea.execute();
 
             String Ruta = "https://upload.wikimedia.org/wikipedia/commons/c/c9/Boca_escudo.png";
             Picasso.get().load(Ruta).into(Foto1);
@@ -99,27 +103,7 @@ public class MostrarPartido extends Fragment {
             Picasso.get().load(Ruta).into(Foto2);
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
             jugado.setText("El partido se jugo el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
-            //Fecha.setText(String.valueOf(Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()));
 
-            ArrayList<String> Goles1 = new ArrayList<>();
-            ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
-            Goles1.add(Par.NombreEquipoLocal);
-            for(int i=0;i<Par.GolesLocal;i++)
-            {
-                Goles1.add("Nombre");
-            }
-            ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
-            lista1.setAdapter(Adaptador);
-
-            ArrayList<String> Goles2 = new ArrayList<>();
-            ListView lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
-            ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
-            Goles2.add(Par.NombreEquipoVisitante);
-            for(int i=0;i<Par.GolesVisitante;i++)
-            {
-                Goles2.add("Nombre");
-            }
-            lista2.setAdapter(Adaptador2);
         }
 
         Jorn.setText("Jornada "+Par.Jornada);
@@ -148,19 +132,23 @@ public class MostrarPartido extends Fragment {
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
         E2 = VistaADevolver.findViewById(R.id.Equipo2);
         Volver = VistaADevolver.findViewById(R.id.Volver);
+
+        lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
+        lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
     }
 
-    private class TraerGoles extends AsyncTask<Void,Void,ArrayList<Partido>> {
+    private class TraerGoles extends AsyncTask<Void,Void,ArrayList<GolesXUsuario>> {
+        ArrayList<GolesXUsuario> listaGoles = new ArrayList<>();
         @Override
-        protected ArrayList<Partido> doInBackground(Void... voids) {
+        protected ArrayList<GolesXUsuario> doInBackground(Void... voids) {
             try {
                 int Jornada = P.ObtenerInt("JornadaElegida", -1);
-                String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+Jornada+"/Torneo/"+ID;
+                String miURL = "http://10.0.2.2:55859/api/GetGolesXPartido/Partido/1";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
                 miConexion.setRequestMethod("GET");
-                listaPartidos.removeAll(listaPartidos);
+
                 if (miConexion.getResponseCode() == 200) {
                     Log.d("conexion", "me pude conectar perfectamente");
                     InputStream lector = miConexion.getInputStream();
@@ -169,9 +157,9 @@ public class MostrarPartido extends Fragment {
                     JsonArray VecPartidos = parseador.parse(lectorJSon).getAsJsonArray();
                     for (int i = 0; i < VecPartidos.size(); i++) {
                         JsonElement Elemento = VecPartidos.get(i);
-                        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
-                        Partido Part = gson.fromJson(Elemento, Partido.class);
-                        listaPartidos.add(Part);
+                        Gson gson = new Gson();
+                        GolesXUsuario G = gson.fromJson(Elemento, GolesXUsuario.class);
+                        listaGoles.add(G);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -181,25 +169,27 @@ public class MostrarPartido extends Fragment {
 
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
-            return listaPartidos;
+            return listaGoles;
         }
-        protected void onPostExecute(final ArrayList<Partido> lista)
+        protected void onPostExecute(ArrayList<GolesXUsuario> lista)
         {
-            Carga.setVisibility(View.GONE);
-            spinner.setVisibility(View.VISIBLE);
-            MainActivity Principal = (MainActivity) getActivity();
-            AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
-            P.GuardarListaPartidos("ListaPartidos",lista);
-            ListView.setAdapter(Adaptador);
-            ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    MainActivity Principal = (MainActivity) getActivity();
-                    P.GuardarInt("PartidoElegido",i);
-                    Principal.PartidoSeleccionado();
-                }
-            });
+            ArrayList<String> Goles1 = new ArrayList<>();
+            Goles1.add(Par.NombreEquipoLocal);
+            for(int i=0;i<lista.size();i++)
+            {
+                Goles1.add("Nombre");
+            }
+            ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
+            lista1.setAdapter(Adaptador);
 
+            ArrayList<String> Goles2 = new ArrayList<>();
+            ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
+            Goles2.add(Par.NombreEquipoVisitante);
+            for(int i=0;i<Par.GolesVisitante;i++)
+            {
+                Goles2.add("Nombre");
+            }
+            lista2.setAdapter(Adaptador2);
         }
     }
 }
