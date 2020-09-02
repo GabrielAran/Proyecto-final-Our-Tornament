@@ -35,6 +35,13 @@
     </LinearLayout>
 
 
+    <ImageView
+        android:id="@+id/Carga"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cargando"
+        />
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

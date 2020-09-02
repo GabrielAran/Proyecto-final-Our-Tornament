@@ -19,7 +19,7 @@ namespace OurTournamentAPI.Models
         public int Cantgoles { get => CantGoles; set => CantGoles = value; }
         public string Nombreequipo { get => NombreEquipo; set => NombreEquipo = value; }
 
-        public GolesXUsuario(int iDPartido, int iDUsuario, string nombre, int cantGoles,String nombreequipo)
+        public GolesXUsuario(int iDPartido, int iDUsuario, String nombre, int cantGoles,String nombreequipo)
         {
             IDPartido = iDPartido;
             IDUsuario = iDUsuario;

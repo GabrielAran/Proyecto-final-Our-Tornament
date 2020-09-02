@@ -61,9 +61,8 @@ public class Fixture extends Fragment {
         Carga = VistaADevolver.findViewById(R.id.Carga);
         AdminFragments=getFragmentManager();
 
-        spinner.setVisibility(View.INVISIBLE);
         ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
-        Animacion.setDuration(6000);
+        Animacion.setDuration(7000);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
@@ -121,7 +120,6 @@ public class Fixture extends Fragment {
         protected void onPostExecute(final ArrayList<Partido> lista)
         {
             Carga.setVisibility(View.GONE);
-            spinner.setVisibility(View.VISIBLE);
             MainActivity Principal = (MainActivity) getActivity();
             AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
             P.GuardarListaPartidos("ListaPartidos",lista);

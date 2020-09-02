@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ import java.util.PropertyResourceBundle;
 public class Inicio extends Fragment {
     Button Noticias,Buscar;
     TextView renglon;
+    ImageView Carga;
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     ListView listanoticias;
@@ -57,35 +59,47 @@ public class Inicio extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
         listanoticias = VistaADevolver.findViewById(R.id.lista);
+        Carga = VistaADevolver.findViewById(R.id.Carga);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
         Buscador = VistaADevolver.findViewById(R.id.Buscador);
         renglon = VistaADevolver.findViewById(R.id.ren);
         AdminFragments=getFragmentManager();
 
+        Rotacion(Carga);
         final MainActivity Principal = (MainActivity) getActivity();
 
         ListaNoticias = Principal.getNoticias();
         AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(ListaNoticias, Principal);
         listanoticias.setAdapter(Adaptador);
+        Carga.setVisibility(View.GONE);
 
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Carga.setVisibility(View.VISIBLE);
+                Rotacion(Carga);
+
                 ListaNoticias = Principal.getNoticias();
                 AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(ListaNoticias, Principal);
                 listanoticias.setAdapter(Adaptador);
+
                 Buscador.setVisibility(View.GONE);
                 listanoticias = VistaADevolver.findViewById(R.id.lista);
                 Buscar.setTextColor(Color.rgb(255,255,255));
                 Noticias.setTextColor(Color.rgb(60,188,128));
                 Animacion(renglon,"X",-10);
+                Carga.setVisibility(View.GONE);
             }
         });
         Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Carga.setVisibility(View.VISIBLE);
+                Rotacion(Carga);
+
                 LLenarListaTorneos Tarea = new LLenarListaTorneos();
                 Tarea.execute();
+
                 listatorneos = VistaADevolver.findViewById(R.id.lista);
                 listatorneos.setVisibility(View.GONE);
                 Noticias.setTextColor(Color.rgb(255,255,255));
@@ -125,6 +139,14 @@ public class Inicio extends Fragment {
     {
         ObjectAnimator Animacion = ObjectAnimator.ofFloat(objeto,Nombre,value);
         Animacion.setDuration(300);
+        AnimatorSet SetDeAnimacion = new AnimatorSet();
+        SetDeAnimacion.play(Animacion);
+        SetDeAnimacion.start();
+    }
+    public void Rotacion(ImageView carga)
+    {
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(carga,"rotation",0,8000);
+        Animacion.setDuration(7000);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
@@ -172,6 +194,7 @@ public class Inicio extends Fragment {
             Log.d("conexion",String.valueOf(listatorneos.getHeight()));
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo);
             listatorneos.setAdapter(Adaptador);
+            Carga.setVisibility(View.GONE);
         }
     }
 }

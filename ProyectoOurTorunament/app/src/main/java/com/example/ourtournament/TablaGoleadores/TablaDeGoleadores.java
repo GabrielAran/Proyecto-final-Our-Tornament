@@ -1,6 +1,9 @@
 package com.example.ourtournament.TablaGoleadores;
 
 import androidx.annotation.Nullable;
+
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.AsyncTask;
@@ -9,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.ourtournament.MainActivity;
@@ -33,13 +37,20 @@ public class TablaDeGoleadores extends Fragment {
     FragmentManager AdminFragments;
     ListView ListaView;
     int IdTorneo;
+    ImageView Carga;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.tabla_de_goleadores, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
         ListaView = VistaADevolver.findViewById(R.id.ListaDeGoleadores);
+        Carga = VistaADevolver.findViewById(R.id.Carga);
 
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
+        Animacion.setDuration(7000);
+        AnimatorSet SetDeAnimacion = new AnimatorSet();
+        SetDeAnimacion.play(Animacion);
+        SetDeAnimacion.start();
         final MainActivity Principal = (MainActivity) getActivity();
         Preferencias P = Principal.CargarSharedPreferences();
         IdTorneo = P.ObtenerInt("IDTorneo",-1);
@@ -91,6 +102,7 @@ public class TablaDeGoleadores extends Fragment {
             final MainActivity Principal = (MainActivity) getActivity();
             AdaptadorListaGoleadores Adapter = new AdaptadorListaGoleadores(Principal,R.layout.item_tabla_goleadores,VecGoleadores);
             ListaView.setAdapter(Adapter);
+            Carga.setVisibility(View.GONE);
         }
     }
 }
