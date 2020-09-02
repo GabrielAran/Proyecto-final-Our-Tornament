@@ -2,6 +2,7 @@ package com.example.ourtournament.Fixture;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Telephony;
@@ -142,8 +143,7 @@ public class MostrarPartido extends Fragment {
         @Override
         protected ArrayList<GolesXUsuario> doInBackground(Void... voids) {
             try {
-                int Jornada = P.ObtenerInt("JornadaElegida", -1);
-                String miURL = "http://10.0.2.2:55859/api/GetGolesXPartido/Partido/1";
+                String miURL = "http://10.0.2.2:55859/api/GetGolesXPartido/Partido/"+Par.IDPartido;
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -160,6 +160,7 @@ public class MostrarPartido extends Fragment {
                         Gson gson = new Gson();
                         GolesXUsuario G = gson.fromJson(Elemento, GolesXUsuario.class);
                         listaGoles.add(G);
+                        Log.d("conexion","Traje "+G.NombreUsuario+" con cantidad de goles "+G.Cantgoles);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -174,21 +175,24 @@ public class MostrarPartido extends Fragment {
         protected void onPostExecute(ArrayList<GolesXUsuario> lista)
         {
             ArrayList<String> Goles1 = new ArrayList<>();
+            ArrayList<String> Goles2 = new ArrayList<>();
             Goles1.add(Par.NombreEquipoLocal);
+            Goles2.add(Par.NombreEquipoVisitante);
             for(int i=0;i<lista.size();i++)
             {
-                Goles1.add("Nombre");
+                if (lista.get(i).Nombreequipo.equals(Par.NombreEquipoLocal))
+                {
+                    Goles1.add(lista.get(i).Cantgoles+" - "+ lista.get(i).NombreUsuario);
+                }else if (lista.get(i).Nombreequipo.equals(Par.NombreEquipoVisitante))
+                {
+                    Goles2.add(lista.get(i).Cantgoles+" - "+ lista.get(i).NombreUsuario);
+                }
             }
+
             ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
             lista1.setAdapter(Adaptador);
 
-            ArrayList<String> Goles2 = new ArrayList<>();
             ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
-            Goles2.add(Par.NombreEquipoVisitante);
-            for(int i=0;i<Par.GolesVisitante;i++)
-            {
-                Goles2.add("Nombre");
-            }
             lista2.setAdapter(Adaptador2);
         }
     }

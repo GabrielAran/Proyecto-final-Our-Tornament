@@ -1,6 +1,9 @@
 package com.example.ourtournament.TablaPosiciones;
 
 import androidx.annotation.Nullable;
+
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.ourtournament.Fixture.Fixture;
@@ -41,6 +45,7 @@ public class TablaPosiciones extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     ListView listaposiciones;
+    ImageView Carga;
     int ID;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -48,7 +53,13 @@ public class TablaPosiciones extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.tabla_de_posiciones, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
         listaposiciones = VistaADevolver.findViewById(R.id.ListaDePosiciones);
+        Carga = VistaADevolver.findViewById(R.id.Carga);
 
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
+        Animacion.setDuration(7000);
+        AnimatorSet SetDeAnimacion = new AnimatorSet();
+        SetDeAnimacion.play(Animacion);
+        SetDeAnimacion.start();
         final MainActivity Principal = (MainActivity) getActivity();
         Preferencias P = Principal.CargarSharedPreferences();
         ID = P.ObtenerInt("IDTorneo",-1);
@@ -98,6 +109,7 @@ public class TablaPosiciones extends Fragment {
             final MainActivity Principal = (MainActivity) getActivity();
             AdaptadorListaPosiciones Adaptador = new AdaptadorListaPosiciones(Principal,R.layout.item_lista_posiciones,VecPosiciones);
             listaposiciones.setAdapter(Adaptador);
+            Carga.setVisibility(View.GONE);
         }
     }
 

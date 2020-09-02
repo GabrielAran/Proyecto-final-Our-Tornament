@@ -73,7 +73,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
             public void onClick(View view) {
                 if (bool[0] == false)
                 {
-                    Animacion(VerEquipos,"rotation",0,-90,200);
+                    Animacion(VerEquipos,"rotation",0,-180,400);
                     lista.setVisibility(View.VISIBLE);
                     Lista = lista;
                     TraerEquipos Tarea = new TraerEquipos();
