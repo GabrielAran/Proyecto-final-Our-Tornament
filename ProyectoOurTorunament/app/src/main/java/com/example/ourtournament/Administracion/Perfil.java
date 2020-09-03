@@ -56,10 +56,10 @@ public class Perfil extends Fragment {
         Foto = VistaADevolver.findViewById(R.id.Foto);
     }
 
-    private class TraerUsuariosDatos extends AsyncTask<Integer,Void, ArrayList<Usuario>> {
+    private class TraerUsuariosDatos extends AsyncTask<Integer,Void, Usuario> {
         @Override
-        protected ArrayList<Usuario> doInBackground(Integer... voids) {
-            ArrayList<Usuario> VecUsuarios = new ArrayList<>();
+        protected Usuario doInBackground(Integer... voids) {
+            Usuario Usu = new Usuario();
             try {
                 String miURL = "http://10.0.2.2:55859/api/GetUsuario/Id/1";
                 URL miRuta = new URL(miURL);
@@ -71,14 +71,12 @@ public class Perfil extends Fragment {
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
-                    JsonArray VecGol = parseador.parse(lectorJSon).getAsJsonArray();
+                    JsonArray VecUsu = parseador.parse(lectorJSon).getAsJsonArray();
 
-                    for (int i = 0; i < VecGol.size(); i++) {
-                        JsonElement Elemento = VecGol.get(i);
+                    for (int i = 0; i < VecUsu.size(); i++) {
+                        JsonElement Elemento = VecUsu.get(i);
                         Gson gson = new Gson();
-                        Goleadores G = gson.fromJson(Elemento, Goleadores.class);
-                        Log.d("conexion",String.valueOf(G.Goles1));
-                        VecUsuarios.add(G);
+                        Usu = gson.fromJson(Elemento, Usuario.class);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -87,11 +85,14 @@ public class Perfil extends Fragment {
             } catch (Exception ErrorOcurrido) {
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
-            return VecUsuarios;
+            return Usu;
         }
-        protected void onPostExecute(ArrayList<Goleadores> VecGoleadores)
+        protected void onPostExecute(Usuario Usu)
         {
-
+            txt_Nombre.setText(Usu.NombreUsuario);
+            txt_Fecha.setText(Usu.FechaDeNacimiento);
+            txt_Email.setText(Usu.Email);
+            txt_Equipo.setText(Usu.IDEquipo);
         }
     }
 }
