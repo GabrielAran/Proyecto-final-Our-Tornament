@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.ourtournament.MainActivity;
-import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 
 import java.util.ArrayList;

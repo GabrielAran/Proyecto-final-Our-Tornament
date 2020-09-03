@@ -6,11 +6,13 @@
     android:backgroundTint="#0C0A0A">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="En Proceso de Programacion"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="80dp"
+        android:fontFamily="serif-monospace"
+        android:text="Configuración"
         android:textColor="#3CBC80"
-        android:textSize="36sp" />
+        android:textSize="32dp" />
+
 </LinearLayout>
