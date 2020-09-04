@@ -138,12 +138,12 @@ namespace OurTournamentAPI
             return ListaPosiciones;
         }
 
-        public void InsertarTorneoSeguidoPorUsuario(int IDUsuario, int IDTorneo, int IDEquipo)
+        public void InsertarTorneoSeguidoPorUsuario(List<int> lista)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + IDUsuario + "," + IDTorneo + "," + IDEquipo + ")";
+            Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + lista[2] + ")";
             Consulta.ExecuteNonQuery();
             Desconectar(con);
         }

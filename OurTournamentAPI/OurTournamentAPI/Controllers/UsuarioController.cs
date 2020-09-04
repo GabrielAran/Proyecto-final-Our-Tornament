@@ -8,12 +8,12 @@ namespace OurTournamentAPI.Controllers
 {
     public class UsuarioController : ApiController
     {
-        [System.Web.Http.Route("api/InsertTorneosSeguidos/Usuario/{IDUsuario}/Torneo/{IDTorneo}/Equipo/{IDEquipo}")]
+        [System.Web.Http.Route("api/InsertTorneosSeguidos")]
         [System.Web.Http.HttpPost]
-        public IHttpActionResult InsertarTorneoSeguidoPorUsuario(int IDUsuario,int IDTorneo,int IDEquipo)
+        public IHttpActionResult InsertarTorneoSeguidoPorUsuario(List<int> LISTA)
         {
             QQSM Conexion = new QQSM();
-            Conexion.InsertarTorneoSeguidoPorUsuario(IDUsuario,IDTorneo,IDEquipo);
+            Conexion.InsertarTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo,IDEquipo
             return Ok();
         }
 
