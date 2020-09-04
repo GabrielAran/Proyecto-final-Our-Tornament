@@ -2,6 +2,7 @@ package com.example.ourtournament.Objetos;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
