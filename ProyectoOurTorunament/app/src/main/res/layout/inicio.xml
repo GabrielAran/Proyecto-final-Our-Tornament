@@ -104,8 +104,8 @@
             android:gravity="center"
             android:hint="Buscar torneos"
             android:visibility="gone"
-            android:textColor="#212423"
-            android:textColorHint="#212423"
+            android:textColor="#000"
+            android:textColorHint="#787878"
             android:background="@drawable/input"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"/>

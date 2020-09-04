@@ -34,5 +34,24 @@ namespace OurTournamentAPI.Controllers
             }
         }
 
+        /*
+        [HttpGet]
+        [Route("api/GetUsuario/Usuario/{IDUsuario}")]
+        public IHttpActionResult ObtenerGolesXPartido(int IDUsuario)
+        {
+            List<Models.GolesXUsuario> Lista = new List<Models.GolesXUsuario>();
+            QQSM Conexion = new QQSM();
+            Lista = Conexion.TraerUsuariosPorID(IDUsuario);
+            if (Lista != null)
+            {
+                return Ok(Lista);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+        */
+
     }
 }

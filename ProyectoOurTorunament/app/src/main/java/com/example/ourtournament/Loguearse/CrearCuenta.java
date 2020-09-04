@@ -47,7 +47,7 @@ public class CrearCuenta extends Fragment {
                     if (!contraText.equals(confContraText)){
                         Log.d("conexion", "Las contrasenias no coinciden");
                     }else {
-                        Log.d("conexion", "Las contrasenias coinciden");
+
                         FragmentFotoDePerfil CrearFoto = new FragmentFotoDePerfil();
                         TransaccionesDeFragment=AdminFragments.beginTransaction();
                         TransaccionesDeFragment.replace(R.id.inputs, CrearFoto);

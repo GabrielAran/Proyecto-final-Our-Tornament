@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -23,17 +25,23 @@ public class IniciarSesion extends Fragment {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Button ConfirmarLogueo;
-    static SharedPreferences DatosGenerales;
+    TextView Nombre,Contrasenia;
+    Preferencias P;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.iniciar_sesion, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
         ConfirmarLogueo = VistaADevolver.findViewById(R.id.button);
+        Nombre=VistaADevolver.findViewById(R.id.Nombre);
+        Contrasenia=VistaADevolver.findViewById(R.id.Contrasenia);
         ConfirmarLogueo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final MainActivity Principal = (MainActivity) getActivity();
+                P = Principal.CargarSharedPreferences();
+                P.GuardarString("NombreDeUsuario",Nombre.getText().toString());
+                P.GuardarString("Contrasenia",Contrasenia.getText().toString());
                 Principal.Entrar();
             }
         });

@@ -35,23 +35,18 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments;
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
-    int CodeElegirFoto = 3,RequestCode;
+
     Button BTNFixture;
     Button BTNTablaDePosiciones;
     Button BTNInicio;
     Button BTNTablaDeGoleadores;
     Button BTNAdministracion;
-    //fixture
+
     Fixture fixture = new Fixture();
-    boolean Volver= false;
-
-    //Tabla de Goleadores
-    ArrayList<String> ListaJugador;
-    ArrayList<String> ListaGoles;
-
-    // Tabla de Posiciones
-    ArrayList<Equipo> ListaPosiciones;
-    //Inicio
+    TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
+    Inicio inicio = new Inicio();
+    TablaPosiciones tabladeposiciones = new TablaPosiciones();
+    Administracion admin = new Administracion();
 
     ArrayList<Noticia> ListaNoticias;
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,10 +137,6 @@ public class MainActivity extends AppCompatActivity {
         IrAFragment(fixture);
     }
     //Tabla de goleadores
-
-    public ArrayList<String> getListaJugador() {return ListaJugador;}
-    public ArrayList<String> getListaGoles() {return ListaGoles;}
-
     //Navegacion
     public void IrAFixture(View vista)
     {
@@ -160,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
         CambiarColor();
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
 
-        TablaDeGoleadores tablaDeGoleadores = new TablaDeGoleadores();
         IrAFragment(tablaDeGoleadores);
     }
 
@@ -168,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
         CambiarColor();
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
 
-        Inicio inicio = new Inicio();
         IrAFragment(inicio);
     }
 
@@ -176,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         CambiarColor();
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
 
-        TablaPosiciones tabladeposiciones = new TablaPosiciones();
         IrAFragment(tabladeposiciones);
     }
 
@@ -184,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
         CambiarColor();
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
 
-        Administracion admin = new Administracion();
         IrAFragment(admin);
     }
 

@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Goleadores;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.example.ourtournament.TablaGoleadores.AdaptadorListaGoleadores;
@@ -34,17 +35,19 @@ public class Perfil extends Fragment {
     TextView txt_Nombre, txt_Fecha, txt_Email, txt_Equipo;
     ImageView Foto;
     View VistaADevolver;
-
+    Preferencias P;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         VistaADevolver = inflador.inflate(R.layout.admin_perfil, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
 
         Referencias();
-
-        TraerUsuariosDatos UsuariosAsync = new TraerUsuariosDatos();
-        UsuariosAsync.execute();
-
+        MainActivity Principal = (MainActivity) getActivity();
+        P = Principal.CargarSharedPreferences();
+        txt_Nombre.setText("Nombre de usuario: "+P.ObtenerString("NombreDeUsuario","Nombre"));
+        txt_Fecha.setText("Fecha de nacimiento: "+P.ObtenerString("FechaDeNacimiento","Nacimiento"));
+        txt_Email.setText("Email: "+P.ObtenerString("Email","Email"));
+        txt_Equipo.setText("Equipo Favorito: "+P.ObtenerString("NombreEquipoFavorito","Equipo favorito"));
         return VistaADevolver;
     }
 
@@ -56,44 +59,4 @@ public class Perfil extends Fragment {
         Foto = VistaADevolver.findViewById(R.id.Foto);
     }
 
-    private class TraerUsuariosDatos extends AsyncTask<Integer,Void, Usuario> {
-        @Override
-        protected Usuario doInBackground(Integer... voids) {
-            Usuario Usu = new Usuario();
-            try {
-                String miURL = "http://10.0.2.2:55859/api/GetUsuario/Id/1";
-                URL miRuta = new URL(miURL);
-                Log.d("conexion","estoy accediendo a la ruta: "+miURL);
-                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
-                miConexion.setRequestMethod("GET");
-                if (miConexion.getResponseCode() == 200) {
-                    Log.d("conexion","Me conecte perfectamente");
-                    InputStream lector = miConexion.getInputStream();
-                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
-                    JsonParser parseador = new JsonParser();
-                    JsonArray VecUsu = parseador.parse(lectorJSon).getAsJsonArray();
-
-                    for (int i = 0; i < VecUsu.size(); i++) {
-                        JsonElement Elemento = VecUsu.get(i);
-                        Gson gson = new Gson();
-                        Usu = gson.fromJson(Elemento, Usuario.class);
-                        Log.d("conexion",Usu.NombreUsuario);
-                    }
-                } else {
-                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
-                }
-                miConexion.disconnect();
-            } catch (Exception ErrorOcurrido) {
-                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
-            }
-            return Usu;
-        }
-        protected void onPostExecute(Usuario Usu)
-        {
-            txt_Nombre.setText(Usu.NombreUsuario);
-            txt_Fecha.setText(Usu.FechaDeNacimiento);
-            txt_Email.setText(Usu.Email);
-            txt_Equipo.setText(Usu.IDEquipo);
-        }
-    }
 }
