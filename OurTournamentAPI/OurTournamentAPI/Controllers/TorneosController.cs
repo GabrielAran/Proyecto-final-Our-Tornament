@@ -45,9 +45,5 @@ namespace OurTournamentAPI.Controllers
             }
 
         }
-        
-
-
-
     }
 }

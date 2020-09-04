@@ -77,6 +77,7 @@ public class Perfil extends Fragment {
                         JsonElement Elemento = VecUsu.get(i);
                         Gson gson = new Gson();
                         Usu = gson.fromJson(Elemento, Usuario.class);
+                        Log.d("conexion",Usu.NombreUsuario);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
