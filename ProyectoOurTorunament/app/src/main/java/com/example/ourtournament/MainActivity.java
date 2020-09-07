@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
 
+    //HOla q pasa chavales
+
     Button BTNFixture;
     Button BTNTablaDePosiciones;
     Button BTNInicio;
