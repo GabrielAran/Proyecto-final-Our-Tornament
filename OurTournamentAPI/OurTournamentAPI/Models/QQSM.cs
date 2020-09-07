@@ -13,7 +13,7 @@ namespace OurTournamentAPI
             //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
             string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
-            a.Open();//ola rey
+            a.Open();
             return a;
         }
 
