@@ -318,3 +318,4 @@ C:\Users\usuario\Documents\Proyecto-final-Our-Tornament\OurTournamentAPI\OurTour
 C:\Users\usuario\Documents\Proyecto-final-Our-Tornament\OurTournamentAPI\OurTournamentAPI\obj\Debug\OurTournamentAPI.csproj.CopyComplete
 C:\Users\usuario\Documents\Proyecto-final-Our-Tornament\OurTournamentAPI\OurTournamentAPI\obj\Debug\OurTournamentAPI.dll
 C:\Users\usuario\Documents\Proyecto-final-Our-Tornament\OurTournamentAPI\OurTournamentAPI\obj\Debug\OurTournamentAPI.pdb
+C:\Users\usuario\Documents\Proyecto-final-Our-Tornament\OurTournamentAPI\OurTournamentAPI\bin\OurTournamentAPI.dll.config
