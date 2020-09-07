@@ -54,7 +54,7 @@ public class TablaDeGoleadores extends Fragment {
         final MainActivity Principal = (MainActivity) getActivity();
         Preferencias P = Principal.CargarSharedPreferences();
         IdTorneo = P.ObtenerInt("IDTorneo",-1);
-
+        Log.d("conexion", "res" + IdTorneo);
         if(IdTorneo != -1)
         {
             TraerGoleadores ASync = new TraerGoleadores();
@@ -68,6 +68,7 @@ public class TablaDeGoleadores extends Fragment {
         @Override
         protected ArrayList<Goleadores> doInBackground(Integer... voids) {
             ArrayList<Goleadores> VecGoleadores = new ArrayList<>();
+            Log.d("conexion", "OLa estoy en goleadores");
             try {
                 String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/1";
                 URL miRuta = new URL(miURL);
