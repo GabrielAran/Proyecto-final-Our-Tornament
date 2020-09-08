@@ -175,7 +175,6 @@ public class Inicio extends Fragment {
                         Torneo T = gson.fromJson(Elemento, Torneo.class);
                         listaTorneos.add(T);
                     }
-                    Log.d("conexion",String.valueOf(listaTorneos.size()));
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
                 }
@@ -192,7 +191,6 @@ public class Inicio extends Fragment {
             int IDTorneo = P.ObtenerInt("IDTorneo",-1);
             int IDUsuario = P.ObtenerInt("IDUsuario",-1);
             listatorneos.setVisibility(View.VISIBLE);
-            Log.d("conexion",String.valueOf(listatorneos.getHeight()));
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo,IDUsuario);
             listatorneos.setAdapter(Adaptador);
             Carga.setVisibility(View.GONE);
