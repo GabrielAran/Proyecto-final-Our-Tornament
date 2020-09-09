@@ -27,6 +27,7 @@ import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
+import com.example.ourtournament.TablaPosiciones.MostrarEquipo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -129,7 +130,8 @@ public class Fixture extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MainActivity Principal = (MainActivity) getActivity();
                     P.GuardarInt("PartidoElegido",i);
-                    Principal.PartidoSeleccionado();
+                    MostrarPartido MP = new MostrarPartido();
+                    Principal.IrAFragment(MP);
                 }
             });
 
@@ -181,7 +183,6 @@ public class Fixture extends Fragment {
                         i++;
                         P.GuardarInt("JornadaElegida",i);
                         MostrarListaPartidos();
-
                 }
                 public void onNothingSelected(AdapterView<?> parent) {
 

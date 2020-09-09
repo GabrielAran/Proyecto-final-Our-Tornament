@@ -58,9 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(Nombre=="no hay contrasenia")
         {
-            setContentView(R.layout.pantalla_vacia_con_fragment);
             Loguear logueo = new Loguear();
-            IrAFragment(logueo);
+            IrAFragmentDePantallaVacia(logueo);
         }else
         {
             CargarGeneral();
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
         CargarInicio();
+        IrAInicio(null);
     }
 
     //Inicio
@@ -101,17 +101,6 @@ public class MainActivity extends AppCompatActivity {
         ListaNoticias.add(UnaNoticia);
         ListaNoticias.add(UnaNoticia);
         ListaNoticias.add(UnaNoticia);
-
-        IrAInicio(null);
-    }
-
-    public void PartidoSeleccionado()
-    {
-        MostrarPartido partido = new MostrarPartido();
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,partido);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
     }
 
     //Navegacion
@@ -167,6 +156,13 @@ public class MainActivity extends AppCompatActivity {
     public void IrAFragment(Fragment fragment){
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fragment);
+        TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
+    }
+    public void IrAFragmentDePantallaVacia(Fragment fragment){
+        setContentView(R.layout.pantalla_vacia_con_fragment);
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.fragmentodepantallacompleta,fragment);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
     }

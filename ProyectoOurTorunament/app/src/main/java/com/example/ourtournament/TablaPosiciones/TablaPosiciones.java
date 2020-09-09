@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.ourtournament.Fixture.Fixture;
+import com.example.ourtournament.Fixture.MostrarPartido;
 import com.example.ourtournament.Loguearse.Loguear;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
@@ -64,6 +65,13 @@ public class TablaPosiciones extends Fragment {
         Preferencias P = Principal.CargarSharedPreferences();
         ID = P.ObtenerInt("IDTorneo",-1);
 
+        listaposiciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MostrarEquipo MP = new MostrarEquipo();
+                Principal.IrAFragment(MP);
+            }
+        });
         if(ID!=-1)
         {
             TraerPosiciones Tarea = new TraerPosiciones();
