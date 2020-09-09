@@ -52,7 +52,7 @@ public class MostrarPartido extends Fragment {
     ListView lista1,lista2;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-        View VistaADevolver;
+        final View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
 
         finds(VistaADevolver);
@@ -115,7 +115,7 @@ public class MostrarPartido extends Fragment {
             @Override
             public void onClick(View view) {
                 MainActivity Principal = (MainActivity) getActivity();
-                Principal.Volver();
+                Principal.IrAFixture(VistaADevolver);
             }
 
         });

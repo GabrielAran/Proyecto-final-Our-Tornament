@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,8 @@ import androidx.core.content.ContextCompat;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
+
+import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -79,9 +82,13 @@ public class FragmentFotoDePerfil extends Fragment{
 
         if(RequestCode == CodeElegirFoto && ResultCode == -1)
         {
-            MainActivity Principal = (MainActivity) getActivity();
             String Ubicacion = String.valueOf(DatosRecibidos.getData());
-            Imagen = Principal.BuscarImagenEnCarrete(Ubicacion);
+            ContentResolver resolver = getActivity().getContentResolver();
+            try {
+                Imagen = MediaStore.Images.Media.getBitmap(resolver, Uri.parse(Ubicacion));
+            } catch (Exception e) {
+                Log.d("conexion","Ocurrio un error: "+e);
+            }
             Foto.setImageBitmap(Imagen);
         }
     }
