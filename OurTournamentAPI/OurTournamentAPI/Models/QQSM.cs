@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -200,16 +200,15 @@ namespace OurTournamentAPI
             return Goles;
         }
 
-        public List<Models.Equipo> TraerEquiposPorIDTorneoYIDEquipo(int IDTorneo, int IDEquipo)
+        public Models.Equipo TraerEquipoPorIDTorneoYIDEquipo(int IDTorneo, int IDEquipo)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select NombreEquipo from Equipos where Equipos.IDTorneo =+ IDTorneo  and Equipos.IDEquipo = +IDEquipo";
+            Consulta.CommandText = "Select NombreEquipo from Equipos where Equipos.IDTorneo = "+IDTorneo+" and Equipos.IDEquipo = "+IDEquipo;
             SqlDataReader Lector = Consulta.ExecuteReader();
-            List<Models.Equipo> TraerEquiposPorIDTorneoYIDEquipo = new List<Models.Equipo>();
             Models.Equipo ElEquipo = new Models.Equipo();
-            while (Lector.Read())
+            if (Lector.Read())
             {
                 int IDEquipos = Convert.ToInt32(Lector["IDEquipo"]);
                 String NobreEquipo = Lector["NombreEquipo"].ToString();
@@ -220,10 +219,9 @@ namespace OurTournamentAPI
                 int IDTorneos = Convert.ToInt32(Lector["IDTorneo"]);
 
                 ElEquipo = new Models.Equipo(IDEquipos, NobreEquipo, PartidosJugados, Puntos, GolesAFavor, GolesEnContra, IDTorneos);
-                TraerEquiposPorIDTorneoYIDEquipo.Add(ElEquipo);
             }
             Desconectar(con);
-            return TraerEquiposPorIDTorneoYIDEquipo;
+            return ElEquipo;
         }
 
         public List<Models.Usuario> TraerUsuariosPorUsuarioContrasenia(string NombreDeUsuario, string Contrasenia)
