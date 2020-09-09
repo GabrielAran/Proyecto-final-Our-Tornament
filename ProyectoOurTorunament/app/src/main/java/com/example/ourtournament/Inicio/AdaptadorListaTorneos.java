@@ -9,10 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Torneo;
@@ -83,6 +87,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
                     TraerEquipos Tarea = new TraerEquipos();
                     Tarea.execute();
                     bool[0] = true;
+
                 }else
                 {
                     Animacion(VerEquipos,"rotation",0,0,0);
@@ -127,14 +132,12 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
                     JsonArray VecEquipos = parseador.parse(lectorJSon).getAsJsonArray();
-                    Log.d("conexion",String.valueOf(VecEquipos.size()));
                     for (int i = 0; i < VecEquipos.size(); i++) {
 
                         JsonElement Elemento = VecEquipos.get(i);
                         Gson gson = new Gson();
                         Equipo E = gson.fromJson(Elemento, Equipo.class);
                         listaEquipos.add(E);
-                        Log.d("conexion", listaEquipos.get(i).IDTorneo+" "+listaEquipos.get(i).Nombre);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -150,13 +153,13 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
             Context contexto = getContext();
             AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto,R.layout.item_equipos_por_torneo,listaE);
             Lista.setAdapter(Adaptador);
+            Lista.getLayoutParams().height = 134*listaE.size();
         }
     }
 
     private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Void> {
         @Override
         protected Void doInBackground(Integer... IDS) {
-            ArrayList<Equipo> listaEquipos = new ArrayList<>();
             try {
                 String miURL = "http://10.0.2.2:55859/api/InsertTorneosSeguidos";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);

@@ -32,11 +32,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    FragmentManager AdminFragments;
+    FragmentManager AdminFragments=getFragmentManager();
     FragmentTransaction TransaccionesDeFragment;
     Preferencias DatosGenerales;
-
-    //HOla q pasa chavales
 
     Button BTNFixture;
     Button BTNTablaDePosiciones;
@@ -53,21 +51,19 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Noticia> ListaNoticias;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AdminFragments=getFragmentManager();
+
         DatosGenerales = CargarSharedPreferences();
         DatosGenerales.EliminarString("contrasenia");
         String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
+
         if(Nombre=="no hay contrasenia")
         {
             setContentView(R.layout.pantalla_vacia_con_fragment);
             Loguear logueo = new Loguear();
-            TransaccionesDeFragment=AdminFragments.beginTransaction();
-            TransaccionesDeFragment.replace(R.id.fragmentodepantallacompleta,logueo);
-            TransaccionesDeFragment.commit();
-            TransaccionesDeFragment.addToBackStack(null);
+            IrAFragment(logueo);
         }else
         {
-            Entrar();
+            CargarGeneral();
         }
 
     }
@@ -78,32 +74,16 @@ public class MainActivity extends AppCompatActivity {
         Preferencias P = new Preferencias(aux,editor);
         return P;
     }
-    public void Entrar()
-    {
-        setContentView(R.layout.activity_main);
-        CargarGeneral();
-        CargarInicio();
-    }
     //  GENERAL
     public void CargarGeneral()
     {
+        setContentView(R.layout.activity_main);
         BTNFixture = findViewById(R.id.Fixture);
         BTNTablaDePosiciones = findViewById(R.id.TablaDePosiciones);
         BTNInicio = findViewById(R.id.Inicio);
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
-    }
-
-    public Bitmap BuscarImagenEnCarrete(String Ubicacion)
-    {
-        Bitmap Imagen = null;
-        try {
-            Imagen = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(Ubicacion));
-        }catch (Exception Error)
-        {
-            Log.d("conexion", "Hay un error: "+Error);
-        }
-        return Imagen;
+        CargarInicio();
     }
 
     //Inicio
@@ -134,11 +114,6 @@ public class MainActivity extends AppCompatActivity {
         TransaccionesDeFragment.addToBackStack(null);
     }
 
-
-    public void Volver(){
-        IrAFragment(fixture);
-    }
-    //Tabla de goleadores
     //Navegacion
     public void IrAFixture(View vista)
     {

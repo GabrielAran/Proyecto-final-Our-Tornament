@@ -57,13 +57,8 @@ public class Inicio extends Fragment {
 
         final View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.inicio, GrupoDeLaVista, false);
-        Noticias = VistaADevolver.findViewById(R.id.Noticias);
-        listanoticias = VistaADevolver.findViewById(R.id.lista);
-        Carga = VistaADevolver.findViewById(R.id.Carga);
-        Buscar = VistaADevolver.findViewById(R.id.Buscar);
-        Buscador = VistaADevolver.findViewById(R.id.Buscador);
-        renglon = VistaADevolver.findViewById(R.id.ren);
-        AdminFragments=getFragmentManager();
+
+        FindView(VistaADevolver);
 
         Rotacion(Carga);
         final MainActivity Principal = (MainActivity) getActivity();
@@ -106,12 +101,8 @@ public class Inicio extends Fragment {
                 Buscar.setTextColor(Color.rgb(60,188,128));
                 Buscador.addTextChangedListener(new TextWatcher()
                 {
-                    public void afterTextChanged(Editable s)
-                    {
-                    }
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after)
-                    {
-                    }
+                    public void afterTextChanged(Editable s){}
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
                     public void onTextChanged(CharSequence s, int start, int before, int count)
                     {
                         listatorneos = VistaADevolver.findViewById(R.id.lista);
@@ -135,6 +126,16 @@ public class Inicio extends Fragment {
         return VistaADevolver;
     }
 
+    public void FindView(View VistaADevolver)
+    {
+        AdminFragments=getFragmentManager();
+        Noticias = VistaADevolver.findViewById(R.id.Noticias);
+        listanoticias = VistaADevolver.findViewById(R.id.lista);
+        Carga = VistaADevolver.findViewById(R.id.Carga);
+        Buscar = VistaADevolver.findViewById(R.id.Buscar);
+        Buscador = VistaADevolver.findViewById(R.id.Buscador);
+        renglon = VistaADevolver.findViewById(R.id.ren);
+    }
     public void Animacion(TextView objeto,String Nombre,int value)
     {
         ObjectAnimator Animacion = ObjectAnimator.ofFloat(objeto,Nombre,value);
@@ -175,7 +176,6 @@ public class Inicio extends Fragment {
                         Torneo T = gson.fromJson(Elemento, Torneo.class);
                         listaTorneos.add(T);
                     }
-                    Log.d("conexion",String.valueOf(listaTorneos.size()));
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
                 }
@@ -192,7 +192,6 @@ public class Inicio extends Fragment {
             int IDTorneo = P.ObtenerInt("IDTorneo",-1);
             int IDUsuario = P.ObtenerInt("IDUsuario",-1);
             listatorneos.setVisibility(View.VISIBLE);
-            Log.d("conexion",String.valueOf(listatorneos.getHeight()));
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo,IDUsuario);
             listatorneos.setAdapter(Adaptador);
             Carga.setVisibility(View.GONE);

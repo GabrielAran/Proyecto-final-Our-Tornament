@@ -44,7 +44,7 @@ public class IniciarSesion extends Fragment {
                 P.GuardarString("Contrasenia",Contrasenia.getText().toString());
                 P.GuardarInt("IDUsuario",1);
                 P.GuardarInt("IDTorneo", 1);
-                Principal.Entrar();
+                Principal.CargarGeneral();
             }
         });
 
