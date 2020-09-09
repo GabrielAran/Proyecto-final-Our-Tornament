@@ -26,16 +26,17 @@ namespace OurTournamentAPI.Controllers
             }
 
         }
+
         [HttpGet]
-        [Route("api/GetEquipoPorID/Torneo/{IDTorneo}/Equipo/{IDEquipo}")]
-        public IHttpActionResult TraerEquipo(int IDTorneo,int IDEquipo)
+        [Route("api/GetEquipoPorID/Equipo/{IDEquipo}")]
+        public IHttpActionResult TraerEquipo(int IDEquipo)
         {
-            List<Models.Equipo> Lista = new List<Models.Equipo>();
+            Models.Equipo UnEquipo = new Models.Equipo();
             QQSM Conexion = new QQSM();
-            Lista = Conexion.TraerListaDePosiciones(IDTorneo);
-            if (Lista != null)
+            UnEquipo = Conexion.TraerEquipoPorIDEquipo(IDEquipo);
+            if (UnEquipo != null)
             {
-                return Ok(Lista);
+                return Ok(UnEquipo);
             }
             else
             {

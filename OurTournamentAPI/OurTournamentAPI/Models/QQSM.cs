@@ -200,12 +200,12 @@ namespace OurTournamentAPI
             return Goles;
         }
 
-        public Models.Equipo TraerEquipoPorIDTorneoYIDEquipo(int IDTorneo, int IDEquipo)
+        public Models.Equipo TraerEquipoPorIDEquipo(int IDEquipo)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select NombreEquipo from Equipos where Equipos.IDTorneo = "+IDTorneo+" and Equipos.IDEquipo = "+IDEquipo;
+            Consulta.CommandText = "Select * from Equipos where Equipos.IDEquipo = "+IDEquipo;
             SqlDataReader Lector = Consulta.ExecuteReader();
             Models.Equipo ElEquipo = new Models.Equipo();
             if (Lector.Read())
