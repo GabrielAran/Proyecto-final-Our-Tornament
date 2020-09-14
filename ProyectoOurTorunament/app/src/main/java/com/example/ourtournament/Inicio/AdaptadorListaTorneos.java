@@ -84,6 +84,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
                     Animacion(VerEquipos,"rotation",0,-180,400);
                     lista.setVisibility(View.VISIBLE);
                     Lista = lista;
+                    _IDTorneo = T.IDTorneo;
                     TraerEquipos Tarea = new TraerEquipos();
                     Tarea.execute();
                     bool[0] = true;

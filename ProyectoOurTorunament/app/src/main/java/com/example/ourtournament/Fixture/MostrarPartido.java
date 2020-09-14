@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MostrarPartido extends Fragment {
-    TextView Jorn,E1,E2,jugado,Fecha,Resultado;
+    TextView Jorn,E1,E2,jugado,Resultado;
     Partido Par;
     Preferencias P;
     Button Volver;
@@ -80,7 +80,6 @@ public class MostrarPartido extends Fragment {
         {
             jugado.setText("El partido se jugara el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
             Resultado.setText("-:-");
-            //Fecha.setText("-/-/-");
 
             ArrayList<String> Goles1 = new ArrayList<>();
             ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);

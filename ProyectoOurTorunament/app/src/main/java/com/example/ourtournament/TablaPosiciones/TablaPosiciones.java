@@ -48,6 +48,8 @@ public class TablaPosiciones extends Fragment {
     ListView listaposiciones;
     ImageView Carga;
     int ID;
+    MainActivity Principal;
+    Preferencias P;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -55,19 +57,20 @@ public class TablaPosiciones extends Fragment {
         AdminFragments=getFragmentManager();
         listaposiciones = VistaADevolver.findViewById(R.id.ListaDePosiciones);
         Carga = VistaADevolver.findViewById(R.id.Carga);
+        Principal = (MainActivity) getActivity();
+        P = Principal.CargarSharedPreferences();
 
         ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
         Animacion.setDuration(7000);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
-        final MainActivity Principal = (MainActivity) getActivity();
-        Preferencias P = Principal.CargarSharedPreferences();
         ID = P.ObtenerInt("IDTorneo",-1);
 
         listaposiciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                P.GuardarInt("EquipoElegido",i);
                 MostrarEquipo MP = new MostrarEquipo();
                 Principal.IrAFragment(MP);
             }
@@ -114,7 +117,7 @@ public class TablaPosiciones extends Fragment {
         }
         protected void onPostExecute(ArrayList<Equipo> VecPosiciones)
         {
-            final MainActivity Principal = (MainActivity) getActivity();
+            P.GuardarListaEquipos("ListaEquipos",VecPosiciones);
             AdaptadorListaPosiciones Adaptador = new AdaptadorListaPosiciones(Principal,R.layout.item_lista_posiciones,VecPosiciones);
             listaposiciones.setAdapter(Adaptador);
             Carga.setVisibility(View.GONE);

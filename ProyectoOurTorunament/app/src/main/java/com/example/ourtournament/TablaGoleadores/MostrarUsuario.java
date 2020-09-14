@@ -1,4 +1,5 @@
-package com.example.ourtournament.TablaPosiciones;
+package com.example.ourtournament.TablaGoleadores;
+
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
@@ -23,7 +24,9 @@ import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.GolesXUsuario;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
+import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
+import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -43,29 +46,29 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-public class MostrarEquipo extends Fragment {
-    TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra;
+/*
+public class MostrarUsuario extends Fragment {
+    TextView Nombre,Edad, Email, Equipo, Contrasenia;
     Button Volver;
     ListView lista;
     MainActivity Principal;
     Preferencias P;
-    Equipo E;
+    Usuario U;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         final View VistaADevolver;
-        VistaADevolver = inflador.inflate(R.layout.un_equipo, GrupoDeLaVista, false);
+        VistaADevolver = inflador.inflate(R.layout.un_usuario, GrupoDeLaVista, false);
 
         Nombre  = VistaADevolver.findViewById(R.id.Nombre);
-        Puntos = VistaADevolver.findViewById(R.id.Puntos);
-        PJugados = VistaADevolver.findViewById(R.id.PartidosJugados);
-        GolesAFavor = VistaADevolver.findViewById(R.id.GolesAFavor);
-        GolesEnContra = VistaADevolver.findViewById(R.id.GolesEnContra);
+        Edad = VistaADevolver.findViewById(R.id.Edad);
+        Email = VistaADevolver.findViewById(R.id.Email);
+        Equipo = VistaADevolver.findViewById(R.id.Equipo);
+        Contrasenia = VistaADevolver.findViewById(R.id.Contrasenia);
         Volver =  VistaADevolver.findViewById(R.id.Volver);
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
 
-        String JSON = P.ObtenerString("ListaEquipos","...");
+        String JSON = P.ObtenerString("ListaGoleadores","...");
         int EquipoElegido = P.ObtenerInt("EquipoElegido",-1);
 
         if (!JSON.equals("..."))
@@ -101,4 +104,7 @@ public class MostrarEquipo extends Fragment {
         });
         return VistaADevolver;
     }
+
 }
+
+ */
