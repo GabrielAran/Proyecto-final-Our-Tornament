@@ -244,37 +244,34 @@ namespace OurTournamentAPI
                 int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
                 int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
 
-                ElUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, contrasenia, FechaDeNacimiento, Email, GolesEnTorneo, IDEquipo);
+                ElUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, contrasenia, FechaDeNacimiento, Email, GolesEnTorneo);
                 ListaUsuarios.Add(ElUsuario);
             }
             Desconectar(con);
             return ListaUsuarios;
         }
 
-        public List<Models.Usuario> TraerUsuariosPorID(int IDUsuario)
+        public Models.Usuario TraerUsuariosPorID(int IDUsuario)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.CommandText = "Select * from Usuarios where Usuarios.IDUsuario =+ " + IDUsuario;
             SqlDataReader Lector = Consulta.ExecuteReader();
-            List<Models.Usuario> ListaUsuariosPorID = new List<Models.Usuario>();
-            Models.Usuario ElUUsuario = new Models.Usuario();
+            Models.Usuario UnUsuario = new Models.Usuario();
             while (Lector.Read())
             {
                 int IDUsuarios = Convert.ToInt32(Lector["IdUsuario"]);
-                string NombreUsuario = Convert.ToString(Lector["NombreUsuario"]);
-                string Contrasenia = Convert.ToString(Lector["Comtrasenia"]);
+                string NombreUsuario = Convert.ToString(Lector["NombreDeUsuario"]);
+                string Contrasenia = Convert.ToString(Lector["Contrasenia"]);
                 DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
                 string Email = Convert.ToString(Lector["Email"]);
                 int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
-                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
 
-                ElUUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, GolesEnTorneo, IDEquipo);
-                ListaUsuariosPorID.Add(ElUUsuario);
+                UnUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, GolesEnTorneo);
             }
             Desconectar(con);
-            return ListaUsuariosPorID;
+            return UnUsuario;
         }
     }
 }
