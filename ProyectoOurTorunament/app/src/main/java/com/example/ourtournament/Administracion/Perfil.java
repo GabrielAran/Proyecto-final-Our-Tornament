@@ -59,4 +59,13 @@ public class Perfil extends Fragment {
         Foto = VistaADevolver.findViewById(R.id.Foto);
     }
 
+    /*
+    gabi: usa este for para mostrar la contrasenia en forma de asteriscos
+      String contra = "";
+      for (int i = 0;i<U.Contrasenia.length();i++)
+      {
+          contra += "*";
+      }
+      Contrasenia.setText(String.valueOf(contra));
+     */
 }

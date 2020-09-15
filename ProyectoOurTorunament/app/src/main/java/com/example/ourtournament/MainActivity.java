@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments=getFragmentManager();
     FragmentTransaction TransaccionesDeFragment;
-    Preferencias DatosGenerales;
+    Preferencias P;
 
     Button BTNFixture;
     Button BTNTablaDePosiciones;
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DatosGenerales = CargarSharedPreferences();
-        DatosGenerales.EliminarString("contrasenia");
-        String Nombre = DatosGenerales.ObtenerString("contrasenia","no hay contrasenia");
+        P = CargarSharedPreferences();
+        //P.EliminarString("contrasenia");
+        String Nombre = P.ObtenerString("contrasenia","no hay contrasenia");
 
         if(Nombre=="no hay contrasenia")
         {

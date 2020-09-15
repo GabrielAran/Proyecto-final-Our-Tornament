@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
+import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -40,9 +41,8 @@ public class IniciarSesion extends Fragment {
             public void onClick(View view) {
                 final MainActivity Principal = (MainActivity) getActivity();
                 P = Principal.CargarSharedPreferences();
-                P.GuardarString("NombreDeUsuario",Nombre.getText().toString());
-                P.GuardarString("Contrasenia",Contrasenia.getText().toString());
-                P.GuardarInt("IDUsuario",1);
+                Usuario U = new Usuario(1,"Damian","abc",null,"damigluk@gmail.com",10);
+                P.GuardarUsuario("InformacionUsuario",U);
                 P.GuardarInt("IDTorneo", 1);
                 Principal.CargarGeneral();
             }

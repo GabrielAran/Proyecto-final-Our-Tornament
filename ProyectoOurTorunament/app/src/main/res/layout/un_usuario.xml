@@ -10,22 +10,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="#000">
 
         <TextView
-            android:id="@+id/Nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="Nombre usuario"
+            android:text="Perfil"
             android:textColor="#FFF"
             android:textSize="30sp"
+            android:fontFamily="serif-monospace"
             app:layout_constraintBottom_toBottomOf="@+id/header"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/Volver"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlHardcoded" />
 
@@ -64,82 +64,83 @@
                 android:id="@+id/TXT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:text="Nombre usuario:"
+                android:textColor="#FFF"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/foto"
+                tools:ignore="RtlHardcoded"/>
+            <TextView
+                android:id="@+id/Nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:text="null"
+                android:textColor="#FFF"
+                android:textSize="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/foto" />
+            <TextView
+                android:id="@+id/TXT2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:text="Edad:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/foto" />
+                app:layout_constraintTop_toBottomOf="@+id/TXT1" />
 
             <TextView
                 android:id="@+id/Edad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="20dp"
-                android:text="0"
+                android:text="null"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/foto" />
-
-            <TextView
-                android:id="@+id/TXT2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
-                android:text="Email:"
-                android:textColor="#FFF"
-                android:textSize="28dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TXT1" />
-
-            <TextView
-                android:id="@+id/Email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="60dp"
-                android:layout_marginTop="20dp"
-                android:text="0"
-                android:textColor="#FFF"
-                android:textSize="28dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Edad" />
+                app:layout_constraintTop_toBottomOf="@+id/Nombre" />
 
             <TextView
                 android:id="@+id/TXT3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:text="Equipo:"
+                android:text="Email:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TXT2" />
 
             <TextView
-                android:id="@+id/Equipo"
+                android:id="@+id/Email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="20dp"
-                android:text="0"
+                android:text="null"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Email" />
+                app:layout_constraintTop_toBottomOf="@+id/Edad" />
+
             <TextView
                 android:id="@+id/TXT4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:text="Contrasenia:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TXT3" />
 
@@ -147,13 +148,13 @@
                 android:id="@+id/Contrasenia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="60dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginTop="20dp"
-                android:text="0"
+                android:text="null"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Equipo" />
+                app:layout_constraintTop_toBottomOf="@+id/Email" />
 
             <ListView
                 android:layout_width="match_parent"

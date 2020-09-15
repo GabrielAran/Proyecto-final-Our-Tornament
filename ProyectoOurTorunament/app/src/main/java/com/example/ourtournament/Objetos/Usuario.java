@@ -7,13 +7,12 @@ public class Usuario {
     public int IdUsuario;
     public String NombreUsuario;
     public String Contrasenia;
-    public String FechaDeNacimiento;
+    public Date FechaDeNacimiento;
     public String Email;
     public int GolesEnTorneo;
-    public int IDEquipo;
 
 
-    public Usuario(int idusuario, String nombreusuario, String contrasenia, String fechadenacimiento, String email, int golesentorneo, int idequipo)
+    public Usuario(int idusuario, String nombreusuario, String contrasenia, Date fechadenacimiento, String email, int golesentorneo)
     {
         IdUsuario = idusuario;
         NombreUsuario = nombreusuario;
@@ -21,7 +20,6 @@ public class Usuario {
         FechaDeNacimiento = fechadenacimiento;
         Email = email;
         GolesEnTorneo = golesentorneo;
-        IDEquipo = idequipo;
     }
 
     public Usuario()

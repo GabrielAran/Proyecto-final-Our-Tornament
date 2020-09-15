@@ -2,27 +2,19 @@ package com.example.ourtournament.TablaGoleadores;
 
 
 import android.app.Fragment;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
-import com.example.ourtournament.Objetos.Equipo;
-import com.example.ourtournament.Objetos.GolesXUsuario;
-import com.example.ourtournament.Objetos.Partido;
+import com.example.ourtournament.Objetos.Goleadores;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
@@ -33,33 +25,28 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-/*
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 public class MostrarUsuario extends Fragment {
-    TextView Nombre,Edad, Email, Equipo, Contrasenia;
+    TextView Nombre,Edad, Email, Equipo, Contrasenia,TXT4;
     Button Volver;
     ListView lista;
     MainActivity Principal;
     Preferencias P;
-    Usuario U;
+    Goleadores G;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         final View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_usuario, GrupoDeLaVista, false);
 
-        Nombre  = VistaADevolver.findViewById(R.id.Nombre);
+        TXT4 = VistaADevolver.findViewById(R.id.TXT4);
+        Nombre = VistaADevolver.findViewById(R.id.Nombre);
         Edad = VistaADevolver.findViewById(R.id.Edad);
         Email = VistaADevolver.findViewById(R.id.Email);
         Equipo = VistaADevolver.findViewById(R.id.Equipo);
@@ -69,18 +56,16 @@ public class MostrarUsuario extends Fragment {
         P = Principal.CargarSharedPreferences();
 
         String JSON = P.ObtenerString("ListaGoleadores","...");
-        int EquipoElegido = P.ObtenerInt("EquipoElegido",-1);
+        int GoleadorElegido = P.ObtenerInt("GoleadorElegido",-1);
 
         if (!JSON.equals("..."))
         {
             try {
                 JsonParser parseador = new JsonParser();
-                JsonArray VecPartidos = parseador.parse(JSON).getAsJsonArray();
-                JsonElement Elemento = VecPartidos.get(EquipoElegido);
+                JsonArray VecGoleadores = parseador.parse(JSON).getAsJsonArray();
+                JsonElement Elemento = VecGoleadores.get(GoleadorElegido);
                 Gson gson = new Gson();
-                Log.d("conexion","hasta aca estoy bien");
-                E = gson.fromJson(Elemento, Equipo.class);
-                Log.d("conexion",E.Nombre);
+                G = gson.fromJson(Elemento, Goleadores.class);
 
             } catch (Exception e) {
                 Log.d("conexion","Hubo un error:"+e);
@@ -88,23 +73,63 @@ public class MostrarUsuario extends Fragment {
 
         }
 
-        Nombre.setText(E.Nombre);
-        Puntos.setText(String.valueOf(E.Puntos));
-        PJugados.setText(String.valueOf(E.PartidosJugados));
-        GolesAFavor.setText(String.valueOf(E.GolesAFavor));
-        GolesEnContra.setText(String.valueOf(E.GolesEnContra));
+        TraerUsuario Tarea = new TraerUsuario();
+        Tarea.execute();
+        Nombre.setText(G.NombreUsuario1);
+        Contrasenia.setVisibility(View.GONE);
+        TXT4.setVisibility(View.GONE);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MainActivity Principal = (MainActivity) getActivity();
-                TablaPosiciones TP = new TablaPosiciones();
-                Principal.IrAFragment(TP);
+                TablaDeGoleadores TG = new TablaDeGoleadores();
+                Principal.IrAFragment(TG);
             }
         });
         return VistaADevolver;
     }
 
-}
+    private class TraerUsuario extends AsyncTask<Void,Void,Usuario> {
+        Usuario U;
+        @Override
+        protected Usuario doInBackground(Void... voids) {
+            try {
+                String miURL = "http://10.0.2.2:55859/api/GetUsuario/Usuario/"+G.IDUsuario1;
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setRequestMethod("GET");
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "me pude conectar perfectamente");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonObject Us = parseador.parse(lectorJSon).getAsJsonObject();
+                    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                    U = gson.fromJson(Us, Usuario.class);
+                    Log.d("conexion","Traje al usuario: "+U.NombreUsuario);
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
 
- */
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return U;
+        }
+        protected void onPostExecute(Usuario U)
+        {
+            /*
+            Date hoy = new Date();
+            long edad = ChronoUnit.YEARS.between(U.FechaDeNacimiento, hoy);
+            Edad.setText(String.valueOf(U.E))
+            ;
+             */
+            Email.setText(String.valueOf(U.Email));
+        }
+    }
+
+
+}

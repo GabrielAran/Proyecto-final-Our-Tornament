@@ -73,7 +73,14 @@ public class Preferencias{
         editor.putString(Clave,json);
     }
 
-    public void GuardarListaGoleadores(String Clave, ArrayList<Usuario> dato)
+    public void GuardarUsuario(String Clave, Usuario dato)
+    {
+        Gson gson = new Gson();
+        String json = gson.toJson(dato);
+        editor.putString(Clave,json);
+    }
+
+    public void GuardarListaGoleadores(String Clave, ArrayList<Goleadores> dato)
     {
         Gson gson = new Gson();
         String json = gson.toJson(dato);

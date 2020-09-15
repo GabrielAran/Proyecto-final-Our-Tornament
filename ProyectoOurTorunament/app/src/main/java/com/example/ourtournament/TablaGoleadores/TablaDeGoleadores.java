@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -38,6 +39,8 @@ public class TablaDeGoleadores extends Fragment {
     ListView ListaView;
     int IdTorneo;
     ImageView Carga;
+    MainActivity Principal;
+    Preferencias P;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -51,15 +54,22 @@ public class TablaDeGoleadores extends Fragment {
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
-        final MainActivity Principal = (MainActivity) getActivity();
-        Preferencias P = Principal.CargarSharedPreferences();
+        Principal = (MainActivity) getActivity();
+        P = Principal.CargarSharedPreferences();
         IdTorneo = P.ObtenerInt("IDTorneo",-1);
-        Log.d("conexion", "res" + IdTorneo);
         if(IdTorneo != -1)
         {
             TraerGoleadores ASync = new TraerGoleadores();
             ASync.execute();
         }
+        ListaView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                P.GuardarInt("GoleadorElegido",i);
+                MostrarUsuario MU = new MostrarUsuario();
+                Principal.IrAFragment(MU);
+            }
+        });
 
         return VistaADevolver;
     }
@@ -68,7 +78,6 @@ public class TablaDeGoleadores extends Fragment {
         @Override
         protected ArrayList<Goleadores> doInBackground(Integer... voids) {
             ArrayList<Goleadores> VecGoleadores = new ArrayList<>();
-            Log.d("conexion", "OLa estoy en goleadores");
             try {
                 String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/1";
                 URL miRuta = new URL(miURL);
@@ -86,7 +95,6 @@ public class TablaDeGoleadores extends Fragment {
                         JsonElement Elemento = VecGol.get(i);
                         Gson gson = new Gson();
                         Goleadores G = gson.fromJson(Elemento, Goleadores.class);
-                        Log.d("conexion",String.valueOf(G.Goles1));
                         VecGoleadores.add(G);
                     }
                 } else {
@@ -100,7 +108,7 @@ public class TablaDeGoleadores extends Fragment {
         }
         protected void onPostExecute(ArrayList<Goleadores> VecGoleadores)
         {
-            final MainActivity Principal = (MainActivity) getActivity();
+            P.GuardarListaGoleadores("ListaGoleadores",VecGoleadores);
             AdaptadorListaGoleadores Adapter = new AdaptadorListaGoleadores(Principal,R.layout.item_tabla_goleadores,VecGoleadores);
             ListaView.setAdapter(Adapter);
             Carga.setVisibility(View.GONE);
