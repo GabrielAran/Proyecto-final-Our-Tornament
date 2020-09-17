@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Goleadores;
+import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 import com.example.ourtournament.TablaGoleadores.AdaptadorListaGoleadores;
 import com.google.gson.Gson;
@@ -36,7 +37,6 @@ public class Administracion extends Fragment {
     Button btn_Perfil, btn_Config;
     View VistaADevolver = null;
     private FragmentTransaction TransaccionesDeFragment;
-    ArrayList<String> TorneosSeguidos = new ArrayList<String>();
     ArrayAdapter<String> adapter;
     ListView ListaDeAdministracion;
 
@@ -48,17 +48,17 @@ public class Administracion extends Fragment {
 
             Referencias();
             SetearListeners();
-            HardcodearLista();
+            AsyncTasks();
         }
         return VistaADevolver;
     }
 
-    /*private class TraerTorneosSeguidos extends AsyncTask<Integer,Void,ArrayList<Goleadores>> {
+    private class TraerTorneosSeguidosPorUsuario extends AsyncTask<Integer,Void,ArrayList<String>> {
         @Override
-        protected ArrayList<Goleadores> doInBackground(Integer... voids) {
-            ArrayList<Goleadores> VecGoleadores = new ArrayList<>();
+        protected ArrayList<String> doInBackground(Integer... voids) {
+            ArrayList<String> ArrayTorneos = new ArrayList<>();
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetGoleadores/Torneo/1";
+                String miURL = "http://10.0.2.2:55859/api/GetTorneosSeguidosPorUsuario/Usuario/1";
                 URL miRuta = new URL(miURL);
                 Log.d("conexion","estoy accediendo a la ruta: "+miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -68,14 +68,13 @@ public class Administracion extends Fragment {
                     InputStream lector = miConexion.getInputStream();
                     InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
                     JsonParser parseador = new JsonParser();
-                    JsonArray VecGol = parseador.parse(lectorJSon).getAsJsonArray();
+                    JsonArray VecTorneos = parseador.parse(lectorJSon).getAsJsonArray();
 
-                    for (int i = 0; i < VecGol.size(); i++) {
-                        JsonElement Elemento = VecGol.get(i);
+                    for (int i = 0; i < VecTorneos.size(); i++) {
+                        JsonElement Elemento = VecTorneos.get(i);
                         Gson gson = new Gson();
-                        Goleadores G = gson.fromJson(Elemento, Goleadores.class);
-                        Log.d("conexion",String.valueOf(G.Goles1));
-                        VecGoleadores.add(G);
+                        Torneo T = gson.fromJson(Elemento, Torneo.class);
+                        ArrayTorneos.add(T.NombreTorneo);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -84,16 +83,14 @@ public class Administracion extends Fragment {
             } catch (Exception ErrorOcurrido) {
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
-            return VecGoleadores;
+            return ArrayTorneos;
         }
-        protected void onPostExecute(ArrayList<Goleadores> VecGoleadores)
+        protected void onPostExecute(ArrayList<String> ArrayTorneos)
         {
-            final MainActivity Principal = (MainActivity) getActivity();
-            AdaptadorListaGoleadores Adapter = new AdaptadorListaGoleadores(Principal,R.layout.item_tabla_goleadores,VecGoleadores);
-            ListaDeAdministracion.setAdapter(Adapter);
-            //Carga.setVisibility(View.GONE);
+            adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, ArrayTorneos);
+            ListaDeAdministracion.setAdapter(adapter);
         }
-    }*/
+    }
 
     private void SetearListeners() {
         btn_Perfil.setOnClickListener(clickP);
@@ -104,6 +101,11 @@ public class Administracion extends Fragment {
         ListaDeAdministracion = VistaADevolver.findViewById(R.id.ListaDeAdministracion);
         btn_Perfil = VistaADevolver.findViewById(R.id.btn_Perfil);
         btn_Config = VistaADevolver.findViewById(R.id.btn_Config);
+    }
+
+    private void AsyncTasks(){
+        TraerTorneosSeguidosPorUsuario TorneoXusuario = new TraerTorneosSeguidosPorUsuario();
+        TorneoXusuario.execute();
     }
 
     private View.OnClickListener clickP = new View.OnClickListener() {
@@ -127,18 +129,5 @@ public class Administracion extends Fragment {
         TransaccionesDeFragment.replace(R.id.Frame,fragment);
         TransaccionesDeFragment.commit();
         TransaccionesDeFragment.addToBackStack(null);
-    }
-
-    private void HardcodearLista() {
-        TorneosSeguidos.add("Liga BBVA");
-        TorneosSeguidos.add("Premier");
-        TorneosSeguidos.add("Superliga");
-        TorneosSeguidos.add("Ligue One");
-        TorneosSeguidos.add("Liga MMX");
-        TorneosSeguidos.add("Torneo Clausura");
-        TorneosSeguidos.add("Torneo Apartura");
-
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, TorneosSeguidos);
-        ListaDeAdministracion.setAdapter(adapter);
     }
 }

@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -205,7 +205,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select * from Equipos where Equipos.IDEquipo = "+IDEquipo;
+            Consulta.CommandText = "Select * from Equipos where Equipos.IDEquipo = " + IDEquipo;
             SqlDataReader Lector = Consulta.ExecuteReader();
             Models.Equipo ElEquipo = new Models.Equipo();
             if (Lector.Read())
@@ -272,6 +272,31 @@ namespace OurTournamentAPI
             }
             Desconectar(con);
             return UnUsuario;
+        }
+
+        public List<Models.Torneo> TorneosSeguidosPorUsuario(int IDUsuario)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "Select Torneos.IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse,TorneosParticipadosXUsuario.IDUsuario from Torneos inner join TorneosParticipadosXUsuario on Torneos.IDTorneo = TorneosParticipadosXUsuario.IDTorneo where TorneosParticipadosXUsuario.IDUsuario =  " + IDUsuario;
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
+            Models.Torneo UnTorneo = new Models.Torneo();
+
+            while (Lector.Read())
+            {
+                int IdTorneo = Convert.ToInt32(Lector["IDTorneo"]);
+                string NombreTorneo = Convert.ToString(Lector["NombreTorneo"]);
+                string ContraseniaDeAdministrador = Convert.ToString(Lector["ContraseniaDeAdministrador"]);
+                string LinkParaUnirse = Convert.ToString(Lector["LinkParaUnirse"]);
+                int IdUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+
+                UnTorneo = new Models.Torneo(IdTorneo, NombreTorneo, ContraseniaDeAdministrador, LinkParaUnirse);
+                TorneosSeguidosPorUsuario.Add(UnTorneo);
+            }
+            Desconectar(con);
+            return TorneosSeguidosPorUsuario;
         }
     }
 }

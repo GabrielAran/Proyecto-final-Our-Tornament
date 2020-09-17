@@ -18,6 +18,23 @@ namespace OurTournamentAPI.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetTorneosSeguidosPorUsuario/Usuario/{IDUsuario}")]
+        public IHttpActionResult ObtenerTorneosSeguidosPorUsuario(int IDUsuario)
+        {
+            List<Models.Torneo> Lista = new List<Models.Torneo>();
+            QQSM Conexion = new QQSM();
+            Lista = Conexion.TorneosSeguidosPorUsuario(IDUsuario);
+            if (Lista != null)
+            {
+                return Ok(Lista);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet]
         [Route("api/GetGoleadores/Torneo/{IDTorneo}")]
         public IHttpActionResult TraerListaGoleadores(int IDTorneo)
         {
