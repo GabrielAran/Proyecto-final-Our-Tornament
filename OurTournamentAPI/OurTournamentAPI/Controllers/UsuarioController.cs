@@ -12,9 +12,10 @@ namespace OurTournamentAPI.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarTorneoSeguidoPorUsuario(List<int> LISTA)
         {
+            bool Devolver;
             QQSM Conexion = new QQSM();
-            Conexion.InsertarTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo,IDEquipo
-            return Ok();
+            Devolver = Conexion.InsertarTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo,IDEquipo
+            return Ok(Devolver);
         }
 
         [HttpGet]

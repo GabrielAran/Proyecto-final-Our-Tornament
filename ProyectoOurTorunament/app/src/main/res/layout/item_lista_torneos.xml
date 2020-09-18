@@ -56,7 +56,6 @@
                 android:gravity="center"
                 android:text="Seguir"
                 android:textSize="12dp"
-
                 app:layout_constraintBottom_toTopOf="@+id/list"
                 app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
                 app:layout_constraintTop_toTopOf="parent" />

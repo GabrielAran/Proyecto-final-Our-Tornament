@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -138,14 +138,33 @@ namespace OurTournamentAPI
             return ListaPosiciones;
         }
 
-        public void InsertarTorneoSeguidoPorUsuario(List<int> lista)
+        public bool InsertarTorneoSeguidoPorUsuario(List<int> lista)
         {
+            bool Devolver = false;
+            String EFav;
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + lista[2] + ")";
-            Consulta.ExecuteNonQuery();
+            if(lista[2]==-1)
+            {
+                EFav = "null";
+            }
+            else
+            {
+                EFav = lista[2].ToString();
+            }
+            try
+            {
+                Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + EFav + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }catch(Exception E)
+            {
+
+            }
+            
             Desconectar(con);
+            return Devolver;
         }
 
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {

@@ -4,19 +4,17 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TableRow;
 import android.widget.TextView;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Torneo;
@@ -103,6 +101,9 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
             public void onClick(View view) {
                 InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
                 Tarea.execute(IDUsuario,T.IDTorneo,-1);
+                Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33,36,35)));
+                Seguir.setText("Siguiendo");
+                Seguir.setTextColor(Color.rgb(60,188,128));
             }
         });
 
@@ -158,9 +159,10 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
         }
     }
 
-    private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Void> {
+    private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
+        Boolean Resultado;
         @Override
-        protected Void doInBackground(Integer... IDS) {
+        protected Boolean doInBackground(Integer... IDS) {
             try {
                 String miURL = "http://10.0.2.2:55859/api/InsertTorneosSeguidos";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
@@ -172,18 +174,48 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
                 miConexion.setRequestProperty("Accept","application/json");
                 miConexion.setRequestMethod("POST");
 
-
                 Gson gson = new Gson();
                 String json = gson.toJson(IDS);
+                Log.d("conexion", json);
                 OutputStream OS = miConexion.getOutputStream();
                 OS.write(json.getBytes());
                 OS.flush();
 
+                int ResponseCode = miConexion.getResponseCode();
+                Log.d("conexion",String.valueOf(ResponseCode));
+                /*
+                switch (ResponseCode)
+                {
+                    case 200:
+                        Context C = getContext();
+                        Toast T = Toast.makeText(C,"Seguimos el torneo con exito!", Toast.LENGTH_SHORT);
+                        T.show();
+                        break;
+                    case 400:
+                        Context Co = getContext();
+                        Toast To = Toast.makeText(Co,"Bad request", Toast.LENGTH_SHORT);
+                        To.show();
+                        break;
+                    case 404:
+                        Context Con = getContext();
+                        Toast Toa = Toast.makeText(Con,"Not Found", Toast.LENGTH_SHORT);
+                        Toa.show();
+                        break;
+                }
+                 */
+                InputStream lector = miConexion.getInputStream();
+                InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                JsonParser parseador = new JsonParser();
+                Resultado = parseador.parse(lectorJSon).getAsBoolean();
                 miConexion.disconnect();
             } catch (Exception ErrorOcurrido) {
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
-            return null;
+            return Resultado;
+        }
+        protected void onPostExecute(Boolean R)
+        {
+            Log.d("conexion",String.valueOf(R));
         }
 
     }
