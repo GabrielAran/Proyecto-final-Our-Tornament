@@ -44,6 +44,7 @@ public class IniciarSesion extends Fragment {
                 Usuario U = new Usuario(1,"Damian","abc",null,"damigluk@gmail.com",10);
                 P.GuardarUsuario("InformacionUsuario",U);
                 P.GuardarInt("IDTorneo", 1);
+                P.GuardarInt("IDUsuario",U.IdUsuario);
                 Principal.CargarGeneral();
             }
         });

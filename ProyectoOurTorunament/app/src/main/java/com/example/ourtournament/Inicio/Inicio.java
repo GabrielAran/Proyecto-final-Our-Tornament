@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,18 +41,25 @@ import java.util.ArrayList;
 import java.util.PropertyResourceBundle;
 
 public class Inicio extends Fragment {
+    FragmentManager AdminFragments;
+    MainActivity Principal;
+    Preferencias P;
+    int IDUsuario;
+
     Button Noticias,Buscar;
+
     TextView renglon;
     ImageView Carga;
-    FragmentManager AdminFragments;
-    FragmentTransaction TransaccionesDeFragment;
+
     ListView listanoticias;
     ArrayList<Noticia> ListaNoticias;
 
     EditText Buscador;
-    ArrayList<Torneo> ListaTorneosSeleccionados = new ArrayList<>();
+    ArrayList<Torneo> ListaTorneos = new ArrayList<>();
+    ArrayList<Torneo> ListaTorneosSeguidos = new ArrayList<>();
     ListView listatorneos;
     String NombreABuscar ="()";
+
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
 
@@ -61,12 +69,14 @@ public class Inicio extends Fragment {
         FindView(VistaADevolver);
 
         Rotacion(Carga);
-        final MainActivity Principal = (MainActivity) getActivity();
+        Principal = (MainActivity) getActivity();
+        P = Principal.CargarSharedPreferences();
 
         ListaNoticias = Principal.getNoticias();
         AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(ListaNoticias, Principal);
         listanoticias.setAdapter(Adaptador);
         Carga.setVisibility(View.GONE);
+        IDUsuario = P.ObtenerInt("IDUsuario",-1);
 
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +102,7 @@ public class Inicio extends Fragment {
                 Carga.setVisibility(View.VISIBLE);
                 Rotacion(Carga);
 
-                LLenarListaTorneos Tarea = new LLenarListaTorneos();
+                TraerTorneosSeguidosPorUsuario Tarea = new TraerTorneosSeguidosPorUsuario();
                 Tarea.execute();
 
                 listatorneos = VistaADevolver.findViewById(R.id.lista);
@@ -106,7 +116,7 @@ public class Inicio extends Fragment {
                     public void onTextChanged(CharSequence s, int start, int before, int count)
                     {
                         listatorneos = VistaADevolver.findViewById(R.id.lista);
-                        ListaTorneosSeleccionados.removeAll(ListaTorneosSeleccionados);
+                        ListaTorneos.removeAll(ListaTorneos);
                         if(s.length() == 0)
                         {
                             NombreABuscar = "()";
@@ -114,7 +124,7 @@ public class Inicio extends Fragment {
                         {
                             NombreABuscar = String.valueOf(s);
                         }
-                        LLenarListaTorneos Tarea = new LLenarListaTorneos();
+                        TraerTorneosSeguidosPorUsuario Tarea = new TraerTorneosSeguidosPorUsuario();
                         Tarea.execute();
                     }
                 });
@@ -187,14 +197,55 @@ public class Inicio extends Fragment {
         }
 
         protected void onPostExecute(ArrayList<Torneo> lista) {
-            MainActivity Principal = (MainActivity) getActivity();
-            Preferencias P = Principal.CargarSharedPreferences();
             int IDTorneo = P.ObtenerInt("IDTorneo",-1);
-            int IDUsuario = P.ObtenerInt("IDUsuario",-1);
             listatorneos.setVisibility(View.VISIBLE);
-            AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo,IDUsuario);
+            AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,ListaTorneosSeguidos,IDTorneo,IDUsuario);
             listatorneos.setAdapter(Adaptador);
             Carga.setVisibility(View.GONE);
+        }
+    }
+
+    private class TraerTorneosSeguidosPorUsuario extends AsyncTask<Integer,Void,ArrayList<Torneo>> {
+        @Override
+        protected ArrayList<Torneo> doInBackground(Integer... voids) {
+            ArrayList<Torneo> ArrayTorneos = new ArrayList<>();
+            try {
+                String miURL = "http://10.0.2.2:55859/api/GetTorneosSeguidosPorUsuario/Usuario/" + IDUsuario;
+                URL miRuta = new URL(miURL);
+                Log.d("conexion", "estoy accediendo a la ruta: " + miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setRequestMethod("GET");
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "Me conecte perfectamente");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonArray VecTorneos = parseador.parse(lectorJSon).getAsJsonArray();
+
+                    for (int i = 0; i < VecTorneos.size(); i++) {
+                        JsonElement Elemento = VecTorneos.get(i);
+                        Gson gson = new Gson();
+                        Torneo T = gson.fromJson(Elemento, Torneo.class);
+                        ArrayTorneos.add(T);
+                    }
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return ArrayTorneos;
+        }
+        protected void onPostExecute(ArrayList<Torneo> ArrayTorneos) {
+            Log.d("conexion","Entre al OnPost");
+            for (int i = 0;i<ArrayTorneos.size();i++)
+            {
+                Log.d("conexion",ArrayTorneos.get(i).NombreTorneo);
+                ListaTorneosSeguidos.add(ArrayTorneos.get(i));
+            }
+            LLenarListaTorneos Tarea = new LLenarListaTorneos();
+            Tarea.execute();
         }
     }
 }
