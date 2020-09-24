@@ -80,5 +80,15 @@ namespace OurTournamentAPI.Controllers
             }
         }
 
+        [System.Web.Http.Route("api/InsertUsuario")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult InsertarUsuarios(List<int> ListaUsuarios)
+        {
+            bool Devolver;
+            QQSM Conexion = new QQSM();
+            Devolver = Conexion.InsertarUsuarios(ListaUsuarios); //IDUsuario, IDTorneo,IDEquipo
+            return Ok(Devolver);
+        }
+
     }
 }

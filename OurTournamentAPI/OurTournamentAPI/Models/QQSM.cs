@@ -325,6 +325,36 @@ namespace OurTournamentAPI
 
             return TraerNoticiasPorTorneo;
         }
-}
+
+        public void InsertarTorneos(List<int> ListaTorneos)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "insert into Torneos(IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse) values (" + ListaTorneos[0] + "," + ListaTorneos[1] + "," + ListaTorneos[2] + "," + ListaTorneos[3] + ")";
+            Consulta.ExecuteNonQuery();
+            Desconectar(con);
+        }
+
+        public void InsertarEquipos(List<int> ListaEquipos)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "insert into Equipos(IDEquipo,Nombre,PartidosJugados,Puntos,GolesAFavor,GolesEnContra,IDTorneo) values (" + ListaEquipos[0] + "," + ListaEquipos[1] + "," + ListaEquipos[2] + "," + ListaEquipos[3] + "," + ListaEquipos[4] + "," + ListaEquipos[5] + "," + ListaEquipos[6] + ")";
+            Consulta.ExecuteNonQuery();
+            Desconectar(con);
+        }
+
+        public void InsertarUsuarios(List<int> ListaUsuarios)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "insert into Usuarios(IdUsuario,NombreUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values (" + ListaUsuarios[0] + "," + ListaUsuarios[1] + "," + ListaUsuarios[2] + "," + ListaUsuarios[3] + "," + ListaUsuarios[4] + "," + ListaUsuarios[5] + ")";
+            Consulta.ExecuteNonQuery();
+            Desconectar(con);
+        }
+    }
 }
 

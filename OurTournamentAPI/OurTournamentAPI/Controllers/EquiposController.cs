@@ -44,5 +44,15 @@ namespace OurTournamentAPI.Controllers
             }
 
         }
+
+        [System.Web.Http.Route("api/InsertEquipos")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult InsertarEquipos(List<int> ListaEquipos)
+        {
+            bool Devolver;
+            QQSM Conexion = new QQSM();
+            Devolver = Conexion.InsertarEquipos(ListaEquipos); //IDUsuario, IDTorneo,IDEquipo
+            return Ok(Devolver);
+        }
     }
 }
