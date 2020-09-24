@@ -138,35 +138,6 @@ namespace OurTournamentAPI
             return ListaPosiciones;
         }
 
-        public bool InsertarTorneoSeguidoPorUsuario(List<int> lista)
-        {
-            bool Devolver = false;
-            String EFav;
-            SqlConnection con = Conectar();
-            SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = CommandType.Text;
-            if(lista[2]==-1)
-            {
-                EFav = "null";
-            }
-            else
-            {
-                EFav = lista[2].ToString();
-            }
-            try
-            {
-                Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + EFav + ")";
-                Consulta.ExecuteNonQuery();
-                Devolver = true;
-            }catch(Exception E)
-            {
-
-            }
-            
-            Desconectar(con);
-            return Devolver;
-        }
-
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
@@ -298,7 +269,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select Torneos.IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse,TorneosParticipadosXUsuario.IDUsuario from Torneos inner join TorneosParticipadosXUsuario on Torneos.IDTorneo = TorneosParticipadosXUsuario.IDTorneo where TorneosParticipadosXUsuario.IDUsuario =  " + IDUsuario;
+            Consulta.CommandText = "Select * from Torneos inner join SeguidoresXTorneos on Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo where SeguidoresXTorneos.IDUsuario = " + IDUsuario;
             SqlDataReader Lector = Consulta.ExecuteReader();
             List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
             Models.Torneo UnTorneo = new Models.Torneo();
@@ -316,6 +287,54 @@ namespace OurTournamentAPI
             }
             Desconectar(con);
             return TorneosSeguidosPorUsuario;
+        }
+        public bool InsertarTorneoSeguidoPorUsuario(List<int> lista)
+        {
+            bool Devolver = false;
+            String EFav;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            if (lista[2] == -1)
+            {
+                EFav = "null";
+            }
+            else
+            {
+                EFav = lista[2].ToString();
+            }
+            try
+            {
+                Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + EFav + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception E)
+            {
+
+            }
+
+            Desconectar(con);
+            return Devolver;
+        }
+        public bool DeleteTorneoSeguidoPorUsuario(List<int> lista)
+        {
+            bool Devolver = false;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            try
+            {
+                Consulta.CommandText = "delete from SeguidoresXTorneos where IDUsuario = " + lista[0] + " and IDTorneo = " + lista[1];
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception E)
+            {
+
+            }
+            Desconectar(con);
+            return Devolver;
         }
     }
 }
