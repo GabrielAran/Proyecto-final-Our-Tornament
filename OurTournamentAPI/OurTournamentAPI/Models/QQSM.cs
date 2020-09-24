@@ -299,7 +299,7 @@ namespace OurTournamentAPI
             return TorneosSeguidosPorUsuario;
         }
 
-        public List<Models.Noticia> TraerNoticiasPorTorneo (int IDTorneo, int IDNoticia)  
+        public List<Models.Noticia> TraerNoticiasPorTorneo (int IDTorneo)  
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
