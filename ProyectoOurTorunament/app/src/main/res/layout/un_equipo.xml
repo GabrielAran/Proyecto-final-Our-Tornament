@@ -7,6 +7,7 @@
     android:background="#212423"
     android:orientation="vertical">
     <!-- HEADER -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -45,9 +46,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -157,13 +159,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/GolesAFavor" />
 
+            <TextView
+                android:id="@+id/TXT5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Jugadores"
+                android:textColor="#FFFFFF"
+                android:textSize="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TXT4" />
             <ListView
+                android:id="@+id/ListaJugadores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/GolesEnContra" />
+                app:layout_constraintTop_toBottomOf="@+id/TXT5" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
