@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -136,16 +136,6 @@ namespace OurTournamentAPI
             }
             Desconectar(con);
             return ListaPosiciones;
-        }
-
-        public void InsertarTorneoSeguidoPorUsuario(List<int> lista)
-        {
-            SqlConnection con = Conectar();
-            SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + lista[2] + ")";
-            Consulta.ExecuteNonQuery();
-            Desconectar(con);
         }
 
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {
@@ -279,7 +269,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select Torneos.IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse,TorneosParticipadosXUsuario.IDUsuario from Torneos inner join TorneosParticipadosXUsuario on Torneos.IDTorneo = TorneosParticipadosXUsuario.IDTorneo where TorneosParticipadosXUsuario.IDUsuario =  " + IDUsuario;
+            Consulta.CommandText = "Select * from Torneos inner join SeguidoresXTorneos on Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo where SeguidoresXTorneos.IDUsuario = " + IDUsuario;
             SqlDataReader Lector = Consulta.ExecuteReader();
             List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
             Models.Torneo UnTorneo = new Models.Torneo();
@@ -298,33 +288,54 @@ namespace OurTournamentAPI
             Desconectar(con);
             return TorneosSeguidosPorUsuario;
         }
-
-        public List<Models.Noticia> TraerNoticiasPorTorneo (int IDTorneo, int IDNoticia)  
+        public bool InsertarTorneoSeguidoPorUsuario(List<int> lista)
         {
+            bool Devolver = false;
+            String EFav;
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select * from Noticias where IDTorneo = + IDTorneo ";
-            SqlDataReader Lector = Consulta.ExecuteReader();
-            Models.Noticia UnaNoticia = new Models.Noticia();
-
-            List<Models.Noticia> TraerNoticiasPorTorneo = new List<Models.Noticia>();
-            while(Lector.Read())
+            Consulta.CommandType = CommandType.Text;
+            if (lista[2] == -1)
             {
-                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
-                int IDnoticia = Convert.ToInt32(Lector["IDNoticia"]);
-                String Titulo = Lector["Titulo"].ToString();
-                String Descripcion = Lector["Descripcion"].ToString();
-                Boolean Destacada = Convert.ToBoolean(Lector["Destacada"]);
-                String Foto = Lector["Foto"].ToString();
-                int Fecha = Convert.ToInt32(Lector["Fecha"]);
-                UnaNoticia = new Models.Noticia(IDtorneo, IDnoticia, Titulo, Descripcion, Destacada, Foto, Fecha);
-                TraerNoticiasPorTorneo.Add(UnaNoticia);
+                EFav = "null";
+            }
+            else
+            {
+                EFav = lista[2].ToString();
+            }
+            try
+            {
+                Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + EFav + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception E)
+            {
+
+            }
+
+            Desconectar(con);
+            return Devolver;
+        }
+        public bool DeleteTorneoSeguidoPorUsuario(List<int> lista)
+        {
+            bool Devolver = false;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            try
+            {
+                Consulta.CommandText = "delete from SeguidoresXTorneos where IDUsuario = " + lista[0] + " and IDTorneo = " + lista[1];
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception E)
+            {
+
             }
             Desconectar(con);
-
-            return TraerNoticiasPorTorneo;
+            return Devolver;
         }
-}
+    }
 }
 
