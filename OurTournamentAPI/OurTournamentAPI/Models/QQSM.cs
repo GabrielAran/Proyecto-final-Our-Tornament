@@ -298,6 +298,33 @@ namespace OurTournamentAPI
             Desconectar(con);
             return TorneosSeguidosPorUsuario;
         }
-    }
+
+        public List<Models.Noticia> TraerNoticiasPorTorneo (int IDTorneo, int IDNoticia)  
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "Select * from Noticias where IDTorneo = + IDTorneo ";
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            Models.Noticia UnaNoticia = new Models.Noticia();
+
+            List<Models.Noticia> TraerNoticiasPorTorneo = new List<Models.Noticia>();
+            while(Lector.Read())
+            {
+                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
+                int IDnoticia = Convert.ToInt32(Lector["IDNoticia"]);
+                String Titulo = Lector["Titulo"].ToString();
+                String Descripcion = Lector["Descripcion"].ToString();
+                Boolean Destacada = Convert.ToBoolean(Lector["Destacada"]);
+                String Foto = Lector["Foto"].ToString();
+                int Fecha = Convert.ToInt32(Lector["Fecha"]);
+                UnaNoticia = new Models.Noticia(IDtorneo, IDnoticia, Titulo, Descripcion, Destacada, Foto, Fecha);
+                TraerNoticiasPorTorneo.Add(UnaNoticia);
+            }
+            Desconectar(con);
+
+            return TraerNoticiasPorTorneo;
+        }
+}
 }
 
