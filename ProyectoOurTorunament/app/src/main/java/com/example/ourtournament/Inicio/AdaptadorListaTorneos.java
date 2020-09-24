@@ -32,19 +32,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
-{
+public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
     private ArrayList<Torneo> _ListaTorneos;
+    private ArrayList<Torneo> _TorneosSeguidos;
     private Context _Contexto;
     private int _Resource;
     private int _IDTorneo;
     private ListView Lista;
     private int IDUsuario;
 
-    public AdaptadorListaTorneos(Context contexto,int Resource,ArrayList<Torneo> ListaTorneos,int IDTorneo,int Idusuario)
-    {
-        super(contexto,Resource,ListaTorneos);
+    public AdaptadorListaTorneos(Context contexto, int Resource, ArrayList<Torneo> ListaTorneos,ArrayList<Torneo> S, int IDTorneo, int Idusuario) {
+        super(contexto, Resource, ListaTorneos);
         this._ListaTorneos = ListaTorneos;
+        this._TorneosSeguidos = S;
         this._Contexto = contexto;
         this._Resource = Resource;
         this._IDTorneo = IDTorneo;
@@ -52,18 +52,17 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
     }
 
     @SuppressLint("ViewHolder")
-    public View getView(final int pos, View VistaADevolver, ViewGroup GrupoActual)
-    {
+    public View getView(final int pos, View VistaADevolver, ViewGroup GrupoActual) {
         final ListView lista;
         final boolean[] bool = {false};
-        final Button Seguir,VerEquipos;
+        final Button Seguir, VerEquipos;
+        final boolean[] Seguido = {false};
         CircleImageView FotoPerfil;
         TextView NombreTorneo;
         LayoutInflater MiInflador;
-        if(VistaADevolver == null)
-        {
+        if (VistaADevolver == null) {
             MiInflador = LayoutInflater.from(this._Contexto);
-            VistaADevolver = MiInflador.inflate(_Resource,null);
+            VistaADevolver = MiInflador.inflate(_Resource, null);
         }
         FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
         NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
@@ -71,15 +70,32 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
         Seguir = VistaADevolver.findViewById(R.id.BTNSeguir);
         lista = VistaADevolver.findViewById(R.id.list);
         final Torneo T = getItem(pos);
+        int i = 0;
+        while (i<_TorneosSeguidos.size() && T.IDTorneo != _TorneosSeguidos.get(i).IDTorneo)
+        {
+            i++;
+        }
+        if (i<_TorneosSeguidos.size())
+        {
+            Seguido[0] = true;
+        }else
+        {
+            Seguido[0] = false;
+        }
 
+        if (Seguido[0])
+        {
+            Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
+            Seguir.setText("Siguiendo");
+            Seguir.setTextColor(Color.rgb(60, 188, 128));
+        }
         FotoPerfil.setImageResource(R.drawable.icono_torneo);
         NombreTorneo.setText(T.NombreTorneo);
         VerEquipos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (bool[0] == false)
-                {
-                    Animacion(VerEquipos,"rotation",0,-180,400);
+                if (!bool[0]) {
+                    Animacion(VerEquipos, "rotation", 0, -180, 400);
                     lista.setVisibility(View.VISIBLE);
                     Lista = lista;
                     _IDTorneo = T.IDTorneo;
@@ -87,9 +103,8 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
                     Tarea.execute();
                     bool[0] = true;
 
-                }else
-                {
-                    Animacion(VerEquipos,"rotation",0,0,0);
+                } else {
+                    Animacion(VerEquipos, "rotation", 0, 0, 0);
                     lista.setVisibility(View.GONE);
                     bool[0] = false;
                 }
@@ -99,26 +114,37 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
         Seguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
-                Tarea.execute(IDUsuario,T.IDTorneo,-1);
-                Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33,36,35)));
-                Seguir.setText("Siguiendo");
-                Seguir.setTextColor(Color.rgb(60,188,128));
+                if (!Seguido[0]) {
+                    InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
+                    Tarea.execute(IDUsuario, T.IDTorneo, -1);
+                    Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
+                    Seguir.setText("Siguiendo");
+                    Seguir.setTextColor(Color.rgb(60, 188, 128));
+                    Seguido[0] = true;
+                } else {
+                    EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
+                    Tarea.execute(IDUsuario,T.IDTorneo);
+                    Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
+                    Seguir.setText("seguir");
+                    Seguir.setTextColor(Color.rgb(0, 0, 0));
+                    Seguido[0] = false;
+                }
+
             }
         });
 
-        return  VistaADevolver;
+        return VistaADevolver;
     }
 
-    public void Animacion(TextView objeto,String Nombre,int value,int value2,int Duracion)
-    {
-        ObjectAnimator Animacion = ObjectAnimator.ofFloat(objeto,Nombre,value,value2);
+    public void Animacion(TextView objeto, String Nombre, int value, int value2, int Duracion) {
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(objeto, Nombre, value, value2);
         Animacion.setDuration(Duracion);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
     }
-    private class TraerEquipos extends AsyncTask<Void,Void,ArrayList<Equipo>> {
+
+    private class TraerEquipos extends AsyncTask<Void, Void, ArrayList<Equipo>> {
         @Override
         protected ArrayList<Equipo> doInBackground(Void... voids) {
             ArrayList<Equipo> listaEquipos = new ArrayList<>();
@@ -153,14 +179,15 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
 
         protected void onPostExecute(ArrayList<Equipo> listaE) {
             Context contexto = getContext();
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto,R.layout.item_equipos_por_torneo,listaE);
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
             Lista.setAdapter(Adaptador);
-            Lista.getLayoutParams().height = 134*listaE.size();
+            Lista.getLayoutParams().height = 134 * listaE.size();
         }
     }
 
     private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
         Boolean Resultado;
+
         @Override
         protected Boolean doInBackground(Integer... IDS) {
             try {
@@ -170,19 +197,18 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
                 miConexion.setDoInput(true);
                 miConexion.setDoOutput(true);
-                miConexion.setRequestProperty("Content-Type","application/json");
-                miConexion.setRequestProperty("Accept","application/json");
+                miConexion.setRequestProperty("Content-Type", "application/json");
+                miConexion.setRequestProperty("Accept", "application/json");
                 miConexion.setRequestMethod("POST");
 
                 Gson gson = new Gson();
                 String json = gson.toJson(IDS);
-                Log.d("conexion", json);
                 OutputStream OS = miConexion.getOutputStream();
                 OS.write(json.getBytes());
                 OS.flush();
 
                 int ResponseCode = miConexion.getResponseCode();
-                Log.d("conexion",String.valueOf(ResponseCode));
+                Log.d("conexion", String.valueOf(ResponseCode));
                 /*
                 switch (ResponseCode)
                 {
@@ -213,10 +239,49 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo>
             }
             return Resultado;
         }
-        protected void onPostExecute(Boolean R)
-        {
-            Log.d("conexion",String.valueOf(R));
+
+        protected void onPostExecute(Boolean R) {
+            Log.d("conexion", String.valueOf(R));
+        }
+    }
+
+    private class EliminarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
+        Boolean Resultado;
+        @Override
+        protected Boolean doInBackground(Integer... IDS) {
+            try {
+                String miURL = "http://10.0.2.2:55859/api/DeleteTorneosSeguidos";
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setDoInput(true);
+                miConexion.setDoOutput(true);
+                miConexion.setRequestProperty("Content-Type", "application/json");
+                miConexion.setRequestProperty("Accept", "application/json");
+                miConexion.setRequestMethod("DELETE");
+
+                Gson gson = new Gson();
+                String json = gson.toJson(IDS);
+                OutputStream OS = miConexion.getOutputStream();
+                OS.write(json.getBytes());
+                OS.flush();
+
+                int ResponseCode = miConexion.getResponseCode();
+                Log.d("conexion", String.valueOf(ResponseCode));
+
+                InputStream lector = miConexion.getInputStream();
+                InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                JsonParser parseador = new JsonParser();
+                Resultado = parseador.parse(lectorJSon).getAsBoolean();
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return Resultado;
         }
 
+        protected void onPostExecute(Boolean R) {
+            Log.d("conexion", String.valueOf(R));
+        }
     }
 }
