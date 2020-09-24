@@ -47,7 +47,6 @@ import java.util.List;
 public class MostrarEquipo extends Fragment {
     TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra;
     Button Volver;
-    ListView lista;
     MainActivity Principal;
     Preferencias P;
     Equipo E;
@@ -101,4 +100,46 @@ public class MostrarEquipo extends Fragment {
         });
         return VistaADevolver;
     }
+
+/*
+    private class TraerGoles extends AsyncTask<Void,Void,ArrayList<GolesXUsuario>> {
+        ArrayList<GolesXUsuario> listaGoles = new ArrayList<>();
+        @Override
+        protected ArrayList<GolesXUsuario> doInBackground(Void... voids) {
+            try {
+                String miURL = "http://10.0.2.2:55859/api/GetJugadoresXEquipos/Equipo/"+E.IDEquipo;
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setRequestMethod("GET");
+
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "me pude conectar perfectamente");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonArray VecPartidos = parseador.parse(lectorJSon).getAsJsonArray();
+                    for (int i = 0; i < VecPartidos.size(); i++) {
+                        JsonElement Elemento = VecPartidos.get(i);
+                        Gson gson = new Gson();
+                        GolesXUsuario G = gson.fromJson(Elemento, GolesXUsuario.class);
+                        listaGoles.add(G);
+                        Log.d("conexion","Traje "+G.NombreUsuario+" con cantidad de goles "+G.Cantgoles);
+                    }
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return listaGoles;
+        }
+        protected void onPostExecute(ArrayList<GolesXUsuario> lista)
+        {
+        }
+    }
+
+ */
 }
