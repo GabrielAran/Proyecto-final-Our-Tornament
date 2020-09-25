@@ -181,7 +181,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
             Context contexto = getContext();
             AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
             Lista.setAdapter(Adaptador);
-            Lista.getLayoutParams().height = 154 * listaE.size();
+            Lista.getLayoutParams().height = 134 * listaE.size();
         }
     }
 
