@@ -50,6 +50,16 @@ namespace OurTournamentAPI
             return ListaTorneos;
         }
 
+        public void InsertarTorneos(List<int> ListaTorneos)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "insert into Torneos(IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse) values (" + ListaTorneos[0] + "," + ListaTorneos[1] + "," + ListaTorneos[2] + "," + ListaTorneos[3] + ")";
+            Consulta.ExecuteNonQuery();
+            Desconectar(con);
+        }
+
         public Models.Torneo TraerTorneoPorID(int ID)
         {
             SqlConnection con = Conectar();
@@ -138,6 +148,16 @@ namespace OurTournamentAPI
             return ListaPosiciones;
         }
 
+        public void InsertarEquipos(List<int> ListaEquipos)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "insert into Equipos(IDEquipo,Nombre,PartidosJugados,Puntos,GolesAFavor,GolesEnContra,IDTorneo) values (" + ListaEquipos[0] + "," + ListaEquipos[1] + "," + ListaEquipos[2] + "," + ListaEquipos[3] + "," + ListaEquipos[4] + "," + ListaEquipos[5] + "," + ListaEquipos[6] + ")";
+            Consulta.ExecuteNonQuery();
+            Desconectar(con);
+        }
+
         public void InsertarTorneoSeguidoPorUsuario(List<int> lista)
         {
             SqlConnection con = Conectar();
@@ -146,6 +166,26 @@ namespace OurTournamentAPI
             Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + lista[2] + ")";
             Consulta.ExecuteNonQuery();
             Desconectar(con);
+        }
+
+        public bool DeleteTorneoSeguidoPorUsuario(List<int> lista)
+        {
+            bool Devolver = false;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            try
+            {
+                Consulta.CommandText = "delete from SeguidoresXTorneos where IDUsuario = " + lista[0] + " and IDTorneo = " + lista[1];
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception E)
+            {
+
+            }
+            Desconectar(con);
+            return Devolver;
         }
 
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {
@@ -251,6 +291,16 @@ namespace OurTournamentAPI
             return ListaUsuarios;
         }
 
+        public void InsertarUsuarios(List<int> ListaUsuarios)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            Consulta.CommandText = "insert into Usuarios(IdUsuario,NombreUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values (" + ListaUsuarios[0] + "," + ListaUsuarios[1] + "," + ListaUsuarios[2] + "," + ListaUsuarios[3] + "," + ListaUsuarios[4] + "," + ListaUsuarios[5] + ")";
+            Consulta.ExecuteNonQuery();
+            Desconectar(con);
+        }
+
         public Models.Usuario TraerUsuariosPorID(int IDUsuario)
         {
             SqlConnection con = Conectar();
@@ -326,35 +376,31 @@ namespace OurTournamentAPI
             return TraerNoticiasPorTorneo;
         }
 
-        public void InsertarTorneos(List<int> ListaTorneos)
+        public List<Models.Usuario> TraerJugadoresXEquipos(int IDEquipo)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into Torneos(IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse) values (" + ListaTorneos[0] + "," + ListaTorneos[1] + "," + ListaTorneos[2] + "," + ListaTorneos[3] + ")";
-            Consulta.ExecuteNonQuery();
-            Desconectar(con);
-        }
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "select * from Usuarios inner join JugadoresXEquipos on Usuarios.IDUsuario = JugadoresXEquipos.IDUsuario where JugadoresXEquipos.IDEquipo = " + IDEquipo;
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            List<Models.Usuario> ListaUsuarios = new List<Models.Usuario>();
+            Models.Usuario UnUsuario = new Models.Usuario();
+            while (Lector.Read())
+            {
+                int IDUsuarios = Convert.ToInt32(Lector["IDUsuario"]);
+                string NombreUsuario = Convert.ToString(Lector["NombreDeUsuario"]);
+                string Contrasenia = Convert.ToString(Lector["Contrasenia"]);
+                DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
+                string Email = Convert.ToString(Lector["Email"]);
+                int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
 
-        public void InsertarEquipos(List<int> ListaEquipos)
-        {
-            SqlConnection con = Conectar();
-            SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into Equipos(IDEquipo,Nombre,PartidosJugados,Puntos,GolesAFavor,GolesEnContra,IDTorneo) values (" + ListaEquipos[0] + "," + ListaEquipos[1] + "," + ListaEquipos[2] + "," + ListaEquipos[3] + "," + ListaEquipos[4] + "," + ListaEquipos[5] + "," + ListaEquipos[6] + ")";
-            Consulta.ExecuteNonQuery();
+                UnUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, GolesEnTorneo);
+                ListaUsuarios.Add(UnUsuario);
+            }
             Desconectar(con);
-        }
-
-        public void InsertarUsuarios(List<int> ListaUsuarios)
-        {
-            SqlConnection con = Conectar();
-            SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into Usuarios(IdUsuario,NombreUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values (" + ListaUsuarios[0] + "," + ListaUsuarios[1] + "," + ListaUsuarios[2] + "," + ListaUsuarios[3] + "," + ListaUsuarios[4] + "," + ListaUsuarios[5] + ")";
-            Consulta.ExecuteNonQuery();
-            Desconectar(con);
+            return ListaUsuarios;
         }
     }
+}
 }
 
