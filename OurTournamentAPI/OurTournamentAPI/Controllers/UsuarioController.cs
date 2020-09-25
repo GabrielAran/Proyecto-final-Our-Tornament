@@ -62,7 +62,6 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
         }
-
         
         [HttpGet]
         [Route("api/GetUsuario/Usuario/{IDUsuario}")]

@@ -45,6 +45,23 @@ namespace OurTournamentAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("api/GetJugadoresXEquipos/Equipo/{IDEquipo}")]
+        public IHttpActionResult TraerJugadoresXEquipo(int IDEquipo)
+        {
+            QQSM Conexion = new QQSM();
+            List<Models.Usuario> Lista = Conexion.TraerJugadoresXEquipos(IDEquipo);
+            if (Lista != null)
+            {
+                return Ok(Lista);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
         [System.Web.Http.Route("api/InsertEquipos")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarEquipos(List<int> ListaEquipos)
