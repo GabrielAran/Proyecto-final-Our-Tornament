@@ -336,6 +336,30 @@ namespace OurTournamentAPI
             Desconectar(con);
             return Devolver;
         }
+        public List<Models.Usuario> TraerJugadoresXEquipos(int IDEquipo)
+        {
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandText = "select * from Usuarios inner join JugadoresXEquipos on Usuarios.IDUsuario = JugadoresXEquipos.IDUsuario where JugadoresXEquipos.IDEquipo = " + IDEquipo;
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            List<Models.Usuario> ListaUsuarios = new List<Models.Usuario>();
+            Models.Usuario UnUsuario = new Models.Usuario();
+            while (Lector.Read())
+            {
+                int IDUsuarios = Convert.ToInt32(Lector["IDUsuario"]);
+                string NombreUsuario = Convert.ToString(Lector["NombreDeUsuario"]);
+                string Contrasenia = Convert.ToString(Lector["Contrasenia"]);
+                DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
+                string Email = Convert.ToString(Lector["Email"]);
+                int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
+
+                UnUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, GolesEnTorneo);
+                ListaUsuarios.Add(UnUsuario);
+            }
+            Desconectar(con);
+            return ListaUsuarios;
+        }
     }
 }
 
