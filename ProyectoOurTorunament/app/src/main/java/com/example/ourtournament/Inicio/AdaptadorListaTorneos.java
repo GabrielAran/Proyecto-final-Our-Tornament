@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.Equipo;
-import com.example.ourtournament.Objetos.Torneo;
+import com.example.ourtournament.Objetos.TorneoSeguido;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -32,19 +32,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
-    private ArrayList<Torneo> _ListaTorneos;
-    private ArrayList<Torneo> _TorneosSeguidos;
+public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
+    private ArrayList<TorneoSeguido> _ListaTorneos;
     private Context _Contexto;
     private int _Resource;
     private int _IDTorneo;
     private ListView Lista;
     private int IDUsuario;
 
-    public AdaptadorListaTorneos(Context contexto, int Resource, ArrayList<Torneo> ListaTorneos,ArrayList<Torneo> S, int IDTorneo, int Idusuario) {
+    public AdaptadorListaTorneos(Context contexto, int Resource, ArrayList<TorneoSeguido> ListaTorneos, int IDTorneo, int Idusuario) {
         super(contexto, Resource, ListaTorneos);
         this._ListaTorneos = ListaTorneos;
-        this._TorneosSeguidos = S;
         this._Contexto = contexto;
         this._Resource = Resource;
         this._IDTorneo = IDTorneo;
@@ -56,7 +54,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
         final ListView lista;
         final boolean[] bool = {false};
         final Button Seguir, VerEquipos;
-        final boolean[] Seguido = {false};
         CircleImageView FotoPerfil;
         TextView NombreTorneo;
         LayoutInflater MiInflador;
@@ -67,30 +64,26 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
         FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
         NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
         VerEquipos = VistaADevolver.findViewById(R.id.VerEquipos);
+
         Seguir = VistaADevolver.findViewById(R.id.BTNSeguir);
         lista = VistaADevolver.findViewById(R.id.list);
-        final Torneo T = getItem(pos);
-        int i = 0;
-        while (i<_TorneosSeguidos.size() && T.IDTorneo != _TorneosSeguidos.get(i).IDTorneo)
-        {
-            i++;
-        }
-        if (i<_TorneosSeguidos.size())
-        {
-            Seguido[0] = true;
-        }else
-        {
-            Seguido[0] = false;
-        }
+        final TorneoSeguido T = getItem(pos);
 
-        if (Seguido[0])
+        Log.d("conexion",String.valueOf(T.NombreTorneo+" "+T.Siguiendo));
+        if (T.Siguiendo)
         {
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
             Seguir.setText("Siguiendo");
             Seguir.setTextColor(Color.rgb(60, 188, 128));
+        }else
+        {
+            Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
+            Seguir.setText("seguir");
+            Seguir.setTextColor(Color.rgb(0, 0, 0));
         }
         FotoPerfil.setImageResource(R.drawable.icono_torneo);
         NombreTorneo.setText(T.NombreTorneo);
+
         VerEquipos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,25 +107,24 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
         Seguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!Seguido[0]) {
+                if (!T.Siguiendo) {
                     InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
                     Tarea.execute(IDUsuario, T.IDTorneo, -1);
                     Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
                     Seguir.setText("Siguiendo");
                     Seguir.setTextColor(Color.rgb(60, 188, 128));
-                    Seguido[0] = true;
-                } else {
+                    T.Siguiendo = true;
+                } else{
                     EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
                     Tarea.execute(IDUsuario,T.IDTorneo);
                     Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
                     Seguir.setText("seguir");
                     Seguir.setTextColor(Color.rgb(0, 0, 0));
-                    Seguido[0] = false;
+                    T.Siguiendo = false;
                 }
 
             }
         });
-
         return VistaADevolver;
     }
 
@@ -187,7 +179,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
 
     private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
         Boolean Resultado;
-
         @Override
         protected Boolean doInBackground(Integer... IDS) {
             try {
@@ -201,6 +192,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<Torneo> {
                 miConexion.setRequestProperty("Accept", "application/json");
                 miConexion.setRequestMethod("POST");
 
+                Log.d("conexion","Estoy insertando IDUsuario: "+IDS[0]+" y IDTorneo: "+IDS[1]);
                 Gson gson = new Gson();
                 String json = gson.toJson(IDS);
                 OutputStream OS = miConexion.getOutputStream();

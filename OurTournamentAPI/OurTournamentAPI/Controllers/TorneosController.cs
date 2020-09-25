@@ -29,12 +29,12 @@ namespace OurTournamentAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/GetTorneosPorNombre/Nombre/{Nombre}")]
-        public IHttpActionResult ObtenerTorneosPorNombre(String Nombre)
+        [Route("api/GetTorneosPorNombre/Nombre/{Nombre}/Usuario/{IDUsuario}")]
+        public IHttpActionResult ObtenerTorneosPorNombre(String Nombre,int IDUsuario)
         {
-            List<Models.Torneo> T = new List<Models.Torneo>();
+            List<Models.TorneoSeguido> T = new List<Models.TorneoSeguido>();
             QQSM Conexion = new QQSM();
-            T = Conexion.TraerTorneosPorNombre(Nombre);
+            T = Conexion.TraerTorneosPorNombre(Nombre,IDUsuario);
             if (T != null)
             {
                 return Ok(T);
@@ -45,7 +45,7 @@ namespace OurTournamentAPI.Controllers
             }
 
         }
-
+        /*
         [System.Web.Http.Route("api/InsertTorneo")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarTorneos(List<int> ListaTorneos)
@@ -55,5 +55,6 @@ namespace OurTournamentAPI.Controllers
             Devolver = Conexion.InsertarTorneos(ListaTorneos); //IDUsuario, IDTorneo,IDEquipo
             return Ok(Devolver);
         }
+        */
     }
 }

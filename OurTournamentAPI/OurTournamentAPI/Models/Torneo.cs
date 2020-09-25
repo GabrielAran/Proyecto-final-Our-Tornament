@@ -25,9 +25,9 @@ namespace OurTournamentAPI.Models
            _linkParaUnirse = linkParaUnirse;
         }
 
-        public Torneo()
+        public Torneo() : this(0, "", "", "")
         {
-
+           
         }
 
 

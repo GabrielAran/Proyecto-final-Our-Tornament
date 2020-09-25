@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -22,28 +22,33 @@ namespace OurTournamentAPI
             con.Close();
         }
 
-        public List<Models.Torneo> TraerTorneosPorNombre(String Nombre)
+        public List<Models.TorneoSeguido> TraerTorneosPorNombre(String Nombre,int IDUsuario)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
             if (Nombre == "()")
             {
-                Consulta.CommandText = "SELECT * FROM Torneos order by NombreTorneo ASC";
+                Consulta.CommandText = "SELECT Torneos.*, CASE WHEN SeguidoresXTorneos.IDUsuario IS NOT NULL THEN 1 ELSE 0 END AS Siguiendo FROM Torneos LEFT JOIN SeguidoresXTorneos ON Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo AND SeguidoresXTorneos.IDUsuario = " +IDUsuario+ " order by Torneos.NombreTorneo ASC";
             } else
             {
-                Consulta.CommandText = "SELECT * FROM Torneos where NombreTorneo LIKE '%" + Nombre + "%'order by NombreTorneo ASC";
+                Consulta.CommandText = "SELECT Torneos.*," +
+                    "CASE WHEN SeguidoresXTorneos.IDUsuario IS NOT NULL THEN 1 ELSE 0 END AS Siguiendo" +
+                    " FROM Torneos LEFT JOIN SeguidoresXTorneos ON Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo AND SeguidoresXTorneos.IDUsuario = " + IDUsuario +
+                    " where NombreTorneo LIKE '%" + Nombre + "%'" +
+                    " order by Torneos.NombreTorneo ASC";
             }
             SqlDataReader Lector = Consulta.ExecuteReader();
-            Models.Torneo UnTorneo;
-            List<Models.Torneo> ListaTorneos = new List<Models.Torneo>();
+            Models.TorneoSeguido UnTorneo;
+            List<Models.TorneoSeguido> ListaTorneos = new List<Models.TorneoSeguido>();
             while (Lector.Read())
             {
                 int idtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 string nombretorneo = Lector["NombreTorneo"].ToString();
                 string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
                 string linkparaunirse = Lector["LinkParaUnirse"].ToString();
-                UnTorneo = new Models.Torneo(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse);
+                Boolean Siguiendo = Convert.ToBoolean(Lector["Siguiendo"]);
+                UnTorneo = new Models.TorneoSeguido(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse,Siguiendo);
                 ListaTorneos.Add(UnTorneo);
             }
             Desconectar(con);
@@ -158,14 +163,32 @@ namespace OurTournamentAPI
             Desconectar(con);
         }
 
-        public void InsertarTorneoSeguidoPorUsuario(List<int> lista)
+        public Boolean InsertarTorneoSeguidoPorUsuario(List<int> lista)
         {
+            Boolean Devolver = false;
+            String EFav = "null";
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + lista[2] + ")";
-            Consulta.ExecuteNonQuery();
+            if(lista[2]==-1)
+            {
+                EFav = "NULL";
+            }else
+            {
+                EFav = lista[2].ToString();
+            }
+            try
+            {
+                Consulta.CommandText = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values (" + lista[0] + "," + lista[1] + "," + EFav + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception E)
+            {
+
+            }
             Desconectar(con);
+            return Devolver;
         }
 
         public bool DeleteTorneoSeguidoPorUsuario(List<int> lista)

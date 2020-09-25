@@ -25,7 +25,7 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
         }
-
+        
         [System.Web.Http.Route("api/InsertTorneosSeguidos")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarTorneoSeguidoPorUsuario(List<int> LISTA)
@@ -78,7 +78,7 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
         }
-
+        /*
         [System.Web.Http.Route("api/InsertUsuario")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarUsuarios(List<int> ListaUsuarios)
@@ -88,6 +88,7 @@ namespace OurTournamentAPI.Controllers
             Devolver = Conexion.InsertarUsuarios(ListaUsuarios); //IDUsuario, IDTorneo,IDEquipo
             return Ok(Devolver);
         }
+       */
 
     }
 }
