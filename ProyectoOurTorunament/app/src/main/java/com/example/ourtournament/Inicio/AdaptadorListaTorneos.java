@@ -88,7 +88,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
             @Override
             public void onClick(View view) {
                 if (!bool[0]) {
-                    Animacion(VerEquipos, "rotation", 0, -180, 400);
+                    Animacion(VerEquipos, "rotation", 0, -180, 0);
                     lista.setVisibility(View.VISIBLE);
                     Lista = lista;
                     _IDTorneo = T.IDTorneo;
@@ -153,10 +153,11 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                     JsonParser parseador = new JsonParser();
                     JsonArray VecEquipos = parseador.parse(lectorJSon).getAsJsonArray();
                     for (int i = 0; i < VecEquipos.size(); i++) {
-
                         JsonElement Elemento = VecEquipos.get(i);
                         Gson gson = new Gson();
                         Equipo E = gson.fromJson(Elemento, Equipo.class);
+                        listaEquipos.add(E);
+                        listaEquipos.add(E);
                         listaEquipos.add(E);
                     }
                 } else {
@@ -173,7 +174,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
             Context contexto = getContext();
             AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
             Lista.setAdapter(Adaptador);
-            Lista.getLayoutParams().height = 134 * listaE.size();
+            Lista.getLayoutParams().height = 154 * listaE.size();
         }
     }
 

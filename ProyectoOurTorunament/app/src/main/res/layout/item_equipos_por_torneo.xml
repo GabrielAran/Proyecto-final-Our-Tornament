@@ -22,6 +22,7 @@
     android:gravity="center"
     >
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/foto"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
@@ -35,9 +36,10 @@
         android:textSize="16dp"
         android:layout_marginLeft="10dp"/>
     <Button
+        android:id="@+id/Destacada"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:background="@drawable/equipo_favorito"
+        android:background="@drawable/estrella_equipos"
         android:layout_marginLeft="5dp"/>
 
 </LinearLayout>

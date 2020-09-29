@@ -30,6 +30,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +45,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,6 +75,8 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
     @SuppressLint("ViewHolder")
     public View getView(int pos, View VistaADevolver, ViewGroup GrupoActual)
     {
+        final ImageView[] Foto = new ImageView[1];
+        final Button Destacada;
         TextView NombreEquipo,Renglon;
         LayoutInflater MiInflador;
         if(VistaADevolver == null)
@@ -82,14 +87,32 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
 
         NombreEquipo = VistaADevolver.findViewById(R.id.Nombre);
         Renglon = VistaADevolver.findViewById(R.id.renglon);
+        Foto[0] = VistaADevolver.findViewById(R.id.foto);
+        Destacada = VistaADevolver.findViewById(R.id.Destacada);
 
         if(pos!= 0)
         {
             Renglon.setVisibility(View.GONE);
         }
         Equipo E = getItem(pos);
-        Log.d("conexion", E.IDTorneo + " "+E.Nombre);
         NombreEquipo.setText(E.Nombre);
+        String Ruta = "https://as.com/futbol/imagenes/2019/08/28/videos/1567005433_173028_1567005806_noticia_normal.jpg";
+        Picasso.get().load(Ruta).into(Foto[0]);
+        final Boolean[] Destacado = {false};
+        Destacada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Destacado[0] == false)
+                {
+                    Destacada.setBackgroundResource(R.drawable.estrella_equipo_favorito);
+                    Destacado[0] =true;
+                }else
+                {
+                    Destacada.setBackgroundResource(R.drawable.estrella_equipos);
+                    Destacado[0] =false;
+                }
+            }
+        });
 
         return  VistaADevolver;
     }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,8 +37,8 @@ import java.util.Date;
 
 public class MostrarUsuario extends Fragment {
     TextView Nombre,Edad, Email, Equipo, Contrasenia,TXT4;
+    ImageView Foto;
     Button Volver;
-    ListView lista;
     MainActivity Principal;
     Preferencias P;
     Goleadores G;
@@ -50,6 +52,7 @@ public class MostrarUsuario extends Fragment {
         Edad = VistaADevolver.findViewById(R.id.Edad);
         Email = VistaADevolver.findViewById(R.id.Email);
         Equipo = VistaADevolver.findViewById(R.id.Equipo);
+        Foto = VistaADevolver.findViewById(R.id.foto);
         Contrasenia = VistaADevolver.findViewById(R.id.Contrasenia);
         Volver =  VistaADevolver.findViewById(R.id.Volver);
         Principal = (MainActivity) getActivity();
@@ -76,6 +79,8 @@ public class MostrarUsuario extends Fragment {
         TraerUsuario Tarea = new TraerUsuario();
         Tarea.execute();
         Nombre.setText(G.NombreUsuario1);
+        String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
+        Picasso.get().load(Ruta).into(Foto);
         Contrasenia.setVisibility(View.GONE);
         TXT4.setVisibility(View.GONE);
 

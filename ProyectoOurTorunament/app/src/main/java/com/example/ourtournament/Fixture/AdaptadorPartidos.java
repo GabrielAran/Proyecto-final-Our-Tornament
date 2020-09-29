@@ -2,17 +2,20 @@ package com.example.ourtournament.Fixture;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,13 +49,20 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
             VistaADevolver = MiInflador.inflate(R.layout.item_lista_partidos,null);
         }
 
+        ImageView Foto1,Foto2;
         TextView Equipo1,Equipo2,renglon,jugado;
 
         Equipo1=VistaADevolver.findViewById(R.id.Equipo1);
         Equipo2=VistaADevolver.findViewById(R.id.Equipo2);
         renglon=VistaADevolver.findViewById(R.id.renglonArriba);
         jugado =VistaADevolver.findViewById(R.id.jugado);
+        Foto2 =VistaADevolver.findViewById(R.id.LogoEquipo2);
+        Foto1 =VistaADevolver.findViewById(R.id.LogoEquipo1);
 
+        String Ruta = "https://www.seekpng.com/png/detail/139-1398401_barcelona-logo-png-transparent-escudo-de-fc-barcelona.png";
+        Picasso.get().load(Ruta).into(Foto1);
+        Ruta = "https://upload.wikimedia.org/wikipedia/commons/1/10/Escudo_real_madrid_1941b.png";
+        Picasso.get().load(Ruta).into(Foto2);
         Partido P = getItem(pos);
         if(pos == 0)
         {

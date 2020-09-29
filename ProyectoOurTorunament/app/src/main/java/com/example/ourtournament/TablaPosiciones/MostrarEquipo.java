@@ -46,8 +46,8 @@ import java.util.List;
 
 public class MostrarEquipo extends Fragment {
     TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra;
+    ImageView Foto;
     Button Volver;
-    ListView lista;
     MainActivity Principal;
     Preferencias P;
     Equipo E;
@@ -61,6 +61,7 @@ public class MostrarEquipo extends Fragment {
         PJugados = VistaADevolver.findViewById(R.id.PartidosJugados);
         GolesAFavor = VistaADevolver.findViewById(R.id.GolesAFavor);
         GolesEnContra = VistaADevolver.findViewById(R.id.GolesEnContra);
+        Foto = VistaADevolver.findViewById(R.id.foto);
         Volver =  VistaADevolver.findViewById(R.id.Volver);
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
@@ -90,6 +91,8 @@ public class MostrarEquipo extends Fragment {
         PJugados.setText(String.valueOf(E.PartidosJugados));
         GolesAFavor.setText(String.valueOf(E.GolesAFavor));
         GolesEnContra.setText(String.valueOf(E.GolesEnContra));
+        String Ruta = "https://as.com/futbol/imagenes/2019/08/28/videos/1567005433_173028_1567005806_noticia_normal.jpg";
+        Picasso.get().load(Ruta).into(Foto);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override
