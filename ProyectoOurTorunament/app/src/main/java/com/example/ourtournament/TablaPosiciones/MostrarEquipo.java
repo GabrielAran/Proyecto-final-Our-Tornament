@@ -148,12 +148,7 @@ public class MostrarEquipo extends Fragment {
         protected void onPostExecute(ArrayList<Usuario> lista)
         {
             Log.d("conexion","Traje: "+lista.size()+" usuarios");
-            ArrayList<String> ListaNombres = new ArrayList<>();
-            for (int i=0; i<lista.size();i++)
-            {
-                ListaNombres.add(lista.get(i).NombreUsuario);
-            }
-            ArrayAdapter Adaptador = new ArrayAdapter(Principal,android.R.layout.simple_list_item_1, ListaNombres);
+            AdaptadorListaJugadores Adaptador = new AdaptadorListaJugadores(Principal,R.layout.item_lista_jugadores,lista);
             ListaJugadores.setAdapter(Adaptador);
         }
     }
