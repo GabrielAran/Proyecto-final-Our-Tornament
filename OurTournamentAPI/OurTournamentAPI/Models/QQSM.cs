@@ -314,21 +314,30 @@ namespace OurTournamentAPI
             return ListaUsuarios;
         }
 
-        public void InsertarUsuarios(List<int> ListaUsuarios)
+        public bool InsertarUsuario(Models.Usuario Usuario)
         {
+            bool Devolver = false;
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
-            Consulta.CommandText = "insert into Usuarios(IdUsuario,NombreUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values (" + ListaUsuarios[0] + "," + ListaUsuarios[1] + "," + ListaUsuarios[2] + "," + ListaUsuarios[3] + "," + ListaUsuarios[4] + "," + ListaUsuarios[5] + ")";
-            Consulta.ExecuteNonQuery();
+            try
+            {
+                Consulta.CommandText = "insert into Usuarios(NombreDeUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values ('"+Usuario.NombreUsuario + "','" + Usuario.Contrasenia + "','" + Usuario.FechaDeNacimiento + "','" + Usuario.Email + "'," + Usuario.GolesEnTorneo + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception)
+            {
+            }
             Desconectar(con);
+            return Devolver;
         }
 
         public Models.Usuario TraerUsuariosPorID(int IDUsuario)
         {
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
-            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.CommandType = CommandType.Text;
             Consulta.CommandText = "Select * from Usuarios where Usuarios.IDUsuario =+ " + IDUsuario;
             SqlDataReader Lector = Consulta.ExecuteReader();
             Models.Usuario UnUsuario = new Models.Usuario();

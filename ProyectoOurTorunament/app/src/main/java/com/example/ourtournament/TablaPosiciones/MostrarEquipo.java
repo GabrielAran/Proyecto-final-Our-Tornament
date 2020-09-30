@@ -51,6 +51,7 @@ public class MostrarEquipo extends Fragment {
     ImageView Foto;
     Button Volver;
     ListView ListaJugadores;
+    AdaptadorListaJugadores Adaptador;
     MainActivity Principal;
     Preferencias P;
     Equipo E;
@@ -134,6 +135,7 @@ public class MostrarEquipo extends Fragment {
                         JsonElement Elemento = VecJugadores.get(i);
                         Usuario U = gson.fromJson(Elemento, Usuario.class);
                         listajugadores.add(U);
+                        Log.d("conexion",U.NombreUsuario);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -148,7 +150,7 @@ public class MostrarEquipo extends Fragment {
         protected void onPostExecute(ArrayList<Usuario> lista)
         {
             Log.d("conexion","Traje: "+lista.size()+" usuarios");
-            AdaptadorListaJugadores Adaptador = new AdaptadorListaJugadores(Principal,R.layout.item_lista_jugadores,lista);
+            Adaptador = new AdaptadorListaJugadores(Principal,R.layout.item_lista_jugadores,lista);
             ListaJugadores.setAdapter(Adaptador);
         }
     }

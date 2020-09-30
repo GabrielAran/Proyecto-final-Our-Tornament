@@ -29,8 +29,8 @@
             android:text="Tabla de posiciones"
             android:fontFamily="serif-monospace"
             android:textColor="@android:color/background_light"
-            android:textSize="32dp"
-            android:layout_marginLeft="15dp"
+            android:textSize="26dp"
+            android:layout_marginLeft="10dp"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
 
