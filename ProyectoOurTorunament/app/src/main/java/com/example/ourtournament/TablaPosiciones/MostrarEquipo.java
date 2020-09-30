@@ -23,6 +23,8 @@ import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.GolesXUsuario;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
+import com.example.ourtournament.Objetos.TorneoSeguido;
+import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,6 +50,7 @@ public class MostrarEquipo extends Fragment {
     TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra;
     ImageView Foto;
     Button Volver;
+    ListView ListaJugadores;
     MainActivity Principal;
     Preferencias P;
     Equipo E;
@@ -62,7 +65,9 @@ public class MostrarEquipo extends Fragment {
         GolesAFavor = VistaADevolver.findViewById(R.id.GolesAFavor);
         GolesEnContra = VistaADevolver.findViewById(R.id.GolesEnContra);
         Foto = VistaADevolver.findViewById(R.id.foto);
-        Volver =  VistaADevolver.findViewById(R.id.Volver);
+        Volver = VistaADevolver.findViewById(R.id.Volver);
+        ListaJugadores = VistaADevolver.findViewById(R.id.ListaJugadores);
+
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
 
@@ -85,7 +90,8 @@ public class MostrarEquipo extends Fragment {
             }
 
         }
-
+        TraerJugadores Tarea = new TraerJugadores();
+        Tarea.execute();
         Nombre.setText(E.Nombre);
         Puntos.setText(String.valueOf(E.Puntos));
         PJugados.setText(String.valueOf(E.PartidosJugados));
@@ -103,5 +109,52 @@ public class MostrarEquipo extends Fragment {
             }
         });
         return VistaADevolver;
+    }
+
+    private class TraerJugadores extends AsyncTask<Void,Void,ArrayList<Usuario>>
+    {
+        @Override
+        protected ArrayList<Usuario> doInBackground(Void... voids) {
+            ArrayList<Usuario> listajugadores= new ArrayList<>();
+            try {
+                String miURL = "http://10.0.2.2:55859/api/GetJugadoresXEquipos/Equipo/"+E.IDEquipo;
+                Log.d("conexion", "estoy accediendo a la ruta "+miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setRequestMethod("GET");
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "me pude conectar perfectamente");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonArray VecJugadores = parseador.parse(lectorJSon).getAsJsonArray();
+                    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                    for (int i = 0; i < VecJugadores.size(); i++)
+                    {
+                        JsonElement Elemento = VecJugadores.get(i);
+                        Usuario U = gson.fromJson(Elemento, Usuario.class);
+                        listajugadores.add(U);
+                    }
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return listajugadores;
+        }
+        protected void onPostExecute(ArrayList<Usuario> lista)
+        {
+            Log.d("conexion","Traje: "+lista.size()+" usuarios");
+            ArrayList<String> ListaNombres = new ArrayList<>();
+            for (int i=0; i<lista.size();i++)
+            {
+                ListaNombres.add(lista.get(i).NombreUsuario);
+            }
+            ArrayAdapter Adaptador = new ArrayAdapter(Principal,android.R.layout.simple_list_item_1, ListaNombres);
+            ListaJugadores.setAdapter(Adaptador);
+        }
     }
 }
