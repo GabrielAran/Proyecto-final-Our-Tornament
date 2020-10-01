@@ -3,40 +3,31 @@ package com.example.ourtournament.Administracion;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.os.AsyncTask;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
-import com.example.ourtournament.Objetos.Goleadores;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
-import com.example.ourtournament.TablaGoleadores.AdaptadorListaGoleadores;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
 
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
-    TextView Nombre, Edad, Email, Contrasenia, EquipoFavorito;
+    TextView Nombre, Edad, Email, Contrasenia, GolesEnTorneo;
     ImageView foto;
+    Button Volver;
     View VistaADevolver;
     Preferencias P;
+    private FragmentTransaction TransaccionesDeFragment;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -47,13 +38,10 @@ public class Perfil extends Fragment {
 
         MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
-        Nombre.setText("Juan");
-        /*
-        Nombre.setText("Nombre de usuario: "+ P.ObtenerString("NombreDeUsuario","Nombre"));
-        Edad.setText("Fecha de nacimiento: "+ P.ObtenerString("FechaDeNacimiento","Nacimiento"));
-        Email.setText("Email: "+ P.ObtenerString("Email","Email"));
-        Contrasenia.setText("Contraseña: "+ P.ObtenerString("Contraseña","Contraseña"));
-        EquipoFavorito.setText("Equipo Favorito: "+ P.ObtenerString("NombreEquipoFavorito","Equipo favorito"));*/
+
+        LlenarDatos();
+        SetearListeners();
+
         return VistaADevolver;
     }
 
@@ -62,17 +50,46 @@ public class Perfil extends Fragment {
         Edad = VistaADevolver.findViewById(R.id.Edad);
         Email = VistaADevolver.findViewById(R.id.Email);
         Contrasenia = VistaADevolver.findViewById(R.id.Contrasenia);
-        EquipoFavorito = VistaADevolver.findViewById(R.id.EquipoFavorito);
+        GolesEnTorneo = VistaADevolver.findViewById(R.id.EquipoFavorito);
         foto = VistaADevolver.findViewById(R.id.foto);
+        Volver = VistaADevolver.findViewById(R.id.Volver);
     }
 
-    /*
-    gabi: usa este for para mostrar la contrasenia en forma de asteriscos
-      String contra = "";
-      for (int i = 0;i<U.Contrasenia.length();i++)
-      {
-          contra += "*";
-      }
-      Contrasenia.setText(String.valueOf(contra));
-     */
+    private void SetearListeners(){
+        Volver.setOnClickListener(Atras);
+    }
+
+    private View.OnClickListener Atras = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Administracion admin = new Administracion();
+            IrAFragment(admin);
+        }
+    };
+
+    private void LlenarDatos(){
+        String contra = "";
+        Gson gson = new Gson();
+        String usuario = P.ObtenerString("InformacionUsuario", "");
+        Usuario Usu = gson.fromJson(usuario, Usuario.class);
+
+        for (int i = 0; i < Usu.Contrasenia.length() ;i++)
+        {
+            contra += "*";
+        }
+        Contrasenia.setText(contra);
+
+        Nombre.setText(Usu.NombreUsuario);
+        Edad.setText(String.valueOf(Usu.FechaDeNacimiento));
+        Email.setText(Usu.Email);
+        GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo));
+    }
+
+    public void IrAFragment(Fragment fragment){
+        TransaccionesDeFragment=AdminFragments.beginTransaction();
+        TransaccionesDeFragment.replace(R.id.Frame,fragment);
+        TransaccionesDeFragment.commit();
+        TransaccionesDeFragment.addToBackStack(null);
+    }
+
 }
