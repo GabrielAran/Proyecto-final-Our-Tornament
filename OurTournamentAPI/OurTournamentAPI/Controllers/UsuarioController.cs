@@ -86,7 +86,17 @@ namespace OurTournamentAPI.Controllers
             bool Devolver;
             QQSM Conexion = new QQSM();
             Models.Usuario US = new Models.Usuario(U.IdUsuario,U.NombreUsuario, U.Contrasenia, U.FechaDeNacimiento, U.Email, U.GolesEnTorneo);
-            Devolver = Conexion.InsertarUsuario(US); //Usuario
+            Devolver = Conexion.InsertarUsuario(US);
+            return Ok(Devolver);
+        }
+
+        [System.Web.Http.Route("api/InsertJugadoresxEquipos")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult InsertarJugadoresxEquipos(List<int> lista)
+        {
+            bool Devolver;
+            QQSM Conexion = new QQSM();
+            Devolver = Conexion.InstertarJugadoresXEquipos(lista);
             return Ok(Devolver);
         }
     }

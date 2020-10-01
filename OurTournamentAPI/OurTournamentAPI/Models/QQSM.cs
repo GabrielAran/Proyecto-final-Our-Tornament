@@ -471,6 +471,25 @@ namespace OurTournamentAPI
             Desconectar(con);
             return ListaUsuarios;
         }
+
+        public bool InstertarJugadoresXEquipos(List<int> lista)
+        {
+            bool Devolver = false;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            try
+            {
+                Consulta.CommandText = "insert into JugadoresXEquipos (IDUsuario,IDEquipo) values (IDUsuario =  " + lista[0] + " and IDEquipo = " + lista[1] + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception)
+            {
+            }
+            Desconectar(con);
+            return Devolver;
+        }
     }
 }
 
