@@ -1,5 +1,6 @@
 package com.example.ourtournament.Administracion;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.AsyncTask;
@@ -36,18 +37,20 @@ public class Perfil extends Fragment {
     ImageView Foto;
     View VistaADevolver;
     Preferencias P;
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         VistaADevolver = inflador.inflate(R.layout.admin_perfil, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
 
         Referencias();
+
         MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
-        txt_Nombre.setText("Nombre de usuario: "+P.ObtenerString("NombreDeUsuario","Nombre"));
-        txt_Fecha.setText("Fecha de nacimiento: "+P.ObtenerString("FechaDeNacimiento","Nacimiento"));
-        txt_Email.setText("Email: "+P.ObtenerString("Email","Email"));
-        txt_Equipo.setText("Equipo Favorito: "+P.ObtenerString("NombreEquipoFavorito","Equipo favorito"));
+        txt_Nombre.setText("Nombre de usuario: "+ P.ObtenerString("NombreDeUsuario","Nombre"));
+        txt_Fecha.setText("Fecha de nacimiento: "+ P.ObtenerString("FechaDeNacimiento","Nacimiento"));
+        txt_Email.setText("Email: "+ P.ObtenerString("Email","Email"));
+        txt_Equipo.setText("Equipo Favorito: "+ P.ObtenerString("NombreEquipoFavorito","Equipo favorito"));
         return VistaADevolver;
     }
 

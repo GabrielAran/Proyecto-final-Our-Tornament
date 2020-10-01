@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -128,6 +128,26 @@ namespace OurTournamentAPI
             Desconectar(con);
             return ListaPartidos;
         }
+
+        public bool InsertarPartidos(Models.Partido Partidos)
+        {
+            bool Devolver = false;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            try
+            {
+                Consulta.CommandText = "insert into Partidos(IDPartido,FechaDeEncuentro,JornadaDelTorneo,NombreEquipoLocal,NombreEquipoVisitante,GolesLocal,GolesVisitante,IDTorneo) values ('" + Partidos.IDPartido + "','" + Partidos.FechaDeEncuentro + "','" + Partidos.Jornada + "','" + Partidos.NombreEquipoLocal + "','" + Partidos.NombreEquipoVisitante + "','" + Partidos.GolesLocal + "','" + Partidos.GolesVisitante + "','" + Partidos.IDTorneo + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception)
+            {
+            }
+            Desconectar(con);
+            return Devolver;
+        }
+
         public List<Models.Equipo> TraerListaDePosiciones(int IDTorneo)
         {
             SqlConnection con = Conectar();
