@@ -83,13 +83,12 @@ namespace OurTournamentAPI.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarUsuarios(Models.Usuario U)
         {
+
             bool Devolver;
             QQSM Conexion = new QQSM();
             Models.Usuario US = new Models.Usuario(U.IdUsuario,U.NombreUsuario, U.Contrasenia, U.FechaDeNacimiento, U.Email, U.GolesEnTorneo);
             Devolver = Conexion.InsertarUsuario(US); //Usuario
             return Ok(Devolver);
         }
-      
-
     }
 }

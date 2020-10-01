@@ -15,13 +15,13 @@ namespace OurTournamentAPI.Models
         private int _GolesEnTorneo;
 
         public int IdUsuario { get => _IdUsuario; set => _IdUsuario = value; }
-        public String NombreUsuario { get => _NombreUsuario; set => _NombreUsuario = value; }
-        public String Contrasenia { get => _Contrasenia; set => _Contrasenia = value; }
+        public string NombreUsuario { get => _NombreUsuario; set => _NombreUsuario = value; }
+        public string Contrasenia { get => _Contrasenia; set => _Contrasenia = value; }
         public DateTime FechaDeNacimiento { get => _FechaDeNacimiento; set => _FechaDeNacimiento = value; }
-        public String Email { get => _Email; set => _Email = value; }
+        public string Email { get => _Email; set => _Email = value; }
         public int GolesEnTorneo { get => _GolesEnTorneo; set => _GolesEnTorneo = value; }
 
-        public Usuario(int IdUsuario, String NombreUsuario, String Contrasenia, DateTime FechaDeNacimiento, String Email, int GolesEnTorneo)
+        public Usuario(int IdUsuario, string NombreUsuario, string Contrasenia, DateTime FechaDeNacimiento, string Email, int GolesEnTorneo)
         {
             _IdUsuario = IdUsuario;
             _NombreUsuario = NombreUsuario;
@@ -33,6 +33,7 @@ namespace OurTournamentAPI.Models
 
         public Usuario()
         {
+
         }
     }
 }
