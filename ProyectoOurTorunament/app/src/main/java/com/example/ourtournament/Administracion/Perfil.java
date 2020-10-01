@@ -33,33 +33,37 @@ import java.util.ArrayList;
 
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
-    TextView txt_Nombre, txt_Fecha, txt_Email, txt_Equipo;
-    ImageView Foto;
+    TextView Nombre, Edad, Email, Contrasenia, EquipoFavorito;
+    ImageView foto;
     View VistaADevolver;
     Preferencias P;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-        VistaADevolver = inflador.inflate(R.layout.admin_perfil, GrupoDeLaVista, false);
+        VistaADevolver = inflador.inflate(R.layout.un_usuario, GrupoDeLaVista, false);
         AdminFragments=getFragmentManager();
 
         Referencias();
 
         MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
-        txt_Nombre.setText("Nombre de usuario: "+ P.ObtenerString("NombreDeUsuario","Nombre"));
-        txt_Fecha.setText("Fecha de nacimiento: "+ P.ObtenerString("FechaDeNacimiento","Nacimiento"));
-        txt_Email.setText("Email: "+ P.ObtenerString("Email","Email"));
-        txt_Equipo.setText("Equipo Favorito: "+ P.ObtenerString("NombreEquipoFavorito","Equipo favorito"));
+        Nombre.setText("Juan");
+        /*
+        Nombre.setText("Nombre de usuario: "+ P.ObtenerString("NombreDeUsuario","Nombre"));
+        Edad.setText("Fecha de nacimiento: "+ P.ObtenerString("FechaDeNacimiento","Nacimiento"));
+        Email.setText("Email: "+ P.ObtenerString("Email","Email"));
+        Contrasenia.setText("Contraseña: "+ P.ObtenerString("Contraseña","Contraseña"));
+        EquipoFavorito.setText("Equipo Favorito: "+ P.ObtenerString("NombreEquipoFavorito","Equipo favorito"));*/
         return VistaADevolver;
     }
 
     private void Referencias() {
-        txt_Nombre = VistaADevolver.findViewById(R.id.txt_Nombre);
-        txt_Fecha = VistaADevolver.findViewById(R.id.txt_Fecha);
-        txt_Email = VistaADevolver.findViewById(R.id.txt_Email);
-        txt_Equipo = VistaADevolver.findViewById(R.id.txt_Equipo);
-        Foto = VistaADevolver.findViewById(R.id.Foto);
+        Nombre = VistaADevolver.findViewById(R.id.Nombre);
+        Edad = VistaADevolver.findViewById(R.id.Edad);
+        Email = VistaADevolver.findViewById(R.id.Email);
+        Contrasenia = VistaADevolver.findViewById(R.id.Contrasenia);
+        EquipoFavorito = VistaADevolver.findViewById(R.id.EquipoFavorito);
+        foto = VistaADevolver.findViewById(R.id.foto);
     }
 
     /*

@@ -73,6 +73,5 @@ namespace OurTournamentAPI.Controllers
             return Ok(Devolver);
         }
 
-
     }
 }

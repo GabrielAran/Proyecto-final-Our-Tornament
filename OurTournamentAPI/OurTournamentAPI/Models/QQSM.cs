@@ -428,6 +428,25 @@ namespace OurTournamentAPI
             return TraerNoticiasPorTorneo;
         }
 
+        public bool InstertarNoticias(Models.Noticia Noticia)
+        {
+            bool Devolver = false;
+            SqlConnection con = Conectar();
+            SqlCommand Consulta = con.CreateCommand();
+            Consulta.CommandType = CommandType.Text;
+            try
+            {
+                Consulta.CommandText = "insert into Noticias (IDNoticia,Titulo,Descripcion,IDFoto,IDTorneo,Fecha,Destacada) values ('" + Noticia.Idtorneo + "','" + Noticia.Idnoticia + "','" + Noticia.Titulo + "','" + Noticia.Descripcion + "','" + Noticia.Destacada + "','" + Noticia.Foto + "','" + Noticia.Fecha + ")";
+                Consulta.ExecuteNonQuery();
+                Devolver = true;
+            }
+            catch (Exception)
+            {
+            }
+            Desconectar(con);
+            return Devolver;
+        }
+
         public List<Models.Usuario> TraerJugadoresXEquipos(int IDEquipo)
         {
             SqlConnection con = Conectar();

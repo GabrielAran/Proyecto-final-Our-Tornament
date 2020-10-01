@@ -27,5 +27,16 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
         }
+
+        [System.Web.Http.Route("api/InsertNoticia")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult InsertarNoticia(Models.Noticia N)
+        {
+            bool Devolver;
+            QQSM Conexion = new QQSM();
+            Models.Noticia Not = new Models.Noticia(N.Idtorneo, N.Idnoticia, N.Titulo, N.Descripcion, N.Destacada, N.Foto, N.Fecha);
+            Devolver = Conexion.InstertarNoticias(Not);
+            return Ok(Devolver);
+        }
     }
 }
