@@ -34,7 +34,7 @@ namespace OurTournamentAPI.Controllers
         {
             bool Devolver;
             QQSM Conexion = new QQSM();
-            Models.Noticia Not = new Models.Noticia(N.Idtorneo, N.Idnoticia, N.Titulo, N.Descripcion, N.Destacada, N.Foto, N.Fecha);
+            Models.Noticia Not = new Models.Noticia(N.IDTorneo, N.IDNoticia, N.Titulo, N.Descripcion, N.Destacada, N.Foto, N.Fecha);
             Devolver = Conexion.InstertarNoticias(Not);
             return Ok(Devolver);
         }

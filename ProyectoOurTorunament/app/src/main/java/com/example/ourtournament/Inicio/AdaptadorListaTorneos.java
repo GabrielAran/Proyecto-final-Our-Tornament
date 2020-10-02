@@ -35,8 +35,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
     private ArrayList<TorneoSeguido> _ListaTorneos;
     private Context _Contexto;
-    private int _Resource;
-    private int _IDTorneo;
+    private int _Resource;    private int _IDTorneo;
+
     private ListView Lista;
     private int IDUsuario;
 
@@ -51,16 +51,18 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
 
     @SuppressLint("ViewHolder")
     public View getView(final int pos, View VistaADevolver, ViewGroup GrupoActual) {
-        final ListView lista;
-        final boolean[] bool = {false};
-        final Button Seguir, VerEquipos;
-        CircleImageView FotoPerfil;
-        TextView NombreTorneo;
         LayoutInflater MiInflador;
         if (VistaADevolver == null) {
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource, null);
         }
+
+        final ListView lista;
+        final boolean[] bool = {false};
+        final Button Seguir, VerEquipos;
+        CircleImageView FotoPerfil;
+        TextView NombreTorneo;
+
         FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
         NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
         VerEquipos = VistaADevolver.findViewById(R.id.VerEquipos);
@@ -156,8 +158,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                         JsonElement Elemento = VecEquipos.get(i);
                         Gson gson = new Gson();
                         Equipo E = gson.fromJson(Elemento, Equipo.class);
-                        listaEquipos.add(E);
-                        listaEquipos.add(E);
                         listaEquipos.add(E);
                     }
                 } else {

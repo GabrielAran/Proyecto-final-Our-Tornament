@@ -96,8 +96,17 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
         }
         Equipo E = getItem(pos);
         NombreEquipo.setText(E.Nombre);
-        String Ruta = "https://as.com/futbol/imagenes/2019/08/28/videos/1567005433_173028_1567005806_noticia_normal.jpg";
-        Picasso.get().load(Ruta).into(Foto[0]);
+
+        if (pos%2==0)
+        {
+            String Ruta = "https://as.com/futbol/imagenes/2019/08/28/videos/1567005433_173028_1567005806_noticia_normal.jpg";
+            Picasso.get().load(Ruta).into(Foto[0]);
+        }else
+        {
+            String Ruta = "https://www.ertheo.com/blog/wp-content/uploads/2018/06/tottenham.png";
+            Picasso.get().load(Ruta).into(Foto[0]);
+        }
+
         final Boolean[] Destacado = {false};
         Destacada.setOnClickListener(new View.OnClickListener() {
             @Override

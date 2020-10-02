@@ -12,7 +12,7 @@ namespace OurTournamentAPI.Models
         private String _contraseniaDeAdministrador;
         private String _linkParaUnirse;
 
-        public int IDTorneo { get => this._IDTorneo; set => this._IDTorneo = value; }
+        public int IDTorneo { get => _IDTorneo; set => _IDTorneo = value; }
         public String NombreTorneo { get => _nombreTorneo; set => _nombreTorneo = value; }
         public String ContraseniaDeAdministrador { get => _contraseniaDeAdministrador; set => _contraseniaDeAdministrador = value; }
         public String LinkParaUnirse { get => _linkParaUnirse; set => _linkParaUnirse = value; }

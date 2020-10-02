@@ -28,6 +28,7 @@ import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.Objetos.TorneoSeguido;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -43,6 +44,7 @@ public class Inicio extends Fragment {
     MainActivity Principal;
     Preferencias P;
     int IDUsuario;
+    int IDTorneo;
 
     Button Noticias,Buscar;
 
@@ -50,11 +52,9 @@ public class Inicio extends Fragment {
     ImageView Carga;
 
     ListView listanoticias;
-    ArrayList<Noticia> ListaNoticias;
 
     EditText Buscador;
     ArrayList<Torneo> ListaTorneos = new ArrayList<>();
-    ArrayList<Torneo> ListaTorneosSeguidos = new ArrayList<>();
     ListView listatorneos;
     String NombreABuscar ="()";
 
@@ -69,12 +69,13 @@ public class Inicio extends Fragment {
         Rotacion(Carga);
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
-
-        ListaNoticias = Principal.getNoticias();
-        AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(ListaNoticias, Principal);
-        listanoticias.setAdapter(Adaptador);
-        Carga.setVisibility(View.GONE);
         IDUsuario = P.ObtenerInt("IDUsuario",-1);
+        IDTorneo = P.ObtenerInt("IDTorneo",-1);
+
+        TraerNoticias Tarea = new TraerNoticias();
+        Tarea.execute();
+
+        Carga.setVisibility(View.GONE);
 
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,16 +83,16 @@ public class Inicio extends Fragment {
                 Carga.setVisibility(View.VISIBLE);
                 Rotacion(Carga);
 
-                ListaNoticias = Principal.getNoticias();
-                AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(ListaNoticias, Principal);
-                listanoticias.setAdapter(Adaptador);
+                TraerNoticias Tarea = new TraerNoticias();
+                Tarea.execute();
 
-                Buscador.setVisibility(View.GONE);
                 listanoticias = VistaADevolver.findViewById(R.id.lista);
+                listanoticias.setVisibility(View.GONE);
+                Buscador.setVisibility(View.GONE);
                 Buscar.setTextColor(Color.rgb(255,255,255));
                 Noticias.setTextColor(Color.rgb(60,188,128));
                 Animacion(renglon,"X",-10);
-                Carga.setVisibility(View.GONE);
+
             }
         });
         Buscar.setOnClickListener(new View.OnClickListener() {
@@ -196,10 +197,49 @@ public class Inicio extends Fragment {
         }
 
         protected void onPostExecute(ArrayList<TorneoSeguido> lista) {
-            int IDTorneo = P.ObtenerInt("IDTorneo",-1);
             listatorneos.setVisibility(View.VISIBLE);
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,IDTorneo,IDUsuario);
             listatorneos.setAdapter(Adaptador);
+            Carga.setVisibility(View.GONE);
+        }
+    }
+    private class TraerNoticias extends AsyncTask<Void, Void, ArrayList<Noticia>> {
+        @Override
+        protected ArrayList<Noticia> doInBackground(Void... voids) {
+            ArrayList<Noticia> ListaNoticias = new ArrayList<>();
+            try {
+                String miURL = "http://10.0.2.2:55859/api/GetNoticiasPorTorneo/Torneo/"+IDTorneo;
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setRequestMethod("GET");
+                if (miConexion.getResponseCode() == 200) {
+                    Log.d("conexion", "me pude conectar perfectamente");
+                    InputStream lector = miConexion.getInputStream();
+                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                    JsonParser parseador = new JsonParser();
+                    JsonArray VecNoticias = parseador.parse(lectorJSon).getAsJsonArray();
+                    for (int i = 0; i < VecNoticias.size(); i++) {
+                        JsonElement Elemento = VecNoticias.get(i);
+                        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+                        Noticia N = gson.fromJson(Elemento, Noticia.class);
+                        Log.d("conexion","Agregue la noticia: "+N.Titulo);
+                        ListaNoticias.add(N);
+                    }
+                } else {
+                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                }
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return ListaNoticias;
+        }
+
+        protected void onPostExecute(ArrayList<Noticia> listaN) {
+            AdaptadorListaNoticias Adaptador = new AdaptadorListaNoticias(Principal,R.layout.item_lista_noticias, listaN);
+            listanoticias.setAdapter(Adaptador);
+            listanoticias.setVisibility(View.VISIBLE);
             Carga.setVisibility(View.GONE);
         }
     }

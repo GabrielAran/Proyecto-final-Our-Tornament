@@ -36,7 +36,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class MostrarUsuario extends Fragment {
-    TextView Nombre,Edad, Email, Equipo, Contrasenia,TXT4;
+    TextView Nombre,Edad, Email, Equipo, Contrasenia,GolesEnTorneo,TXT4,TXT3;
     ImageView Foto;
     Button Volver;
     MainActivity Principal;
@@ -46,15 +46,8 @@ public class MostrarUsuario extends Fragment {
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         final View VistaADevolver;
         VistaADevolver = inflador.inflate(R.layout.un_usuario, GrupoDeLaVista, false);
+        Find(VistaADevolver);
 
-        TXT4 = VistaADevolver.findViewById(R.id.TXT4);
-        Nombre = VistaADevolver.findViewById(R.id.Nombre);
-        Edad = VistaADevolver.findViewById(R.id.Edad);
-        Email = VistaADevolver.findViewById(R.id.Email);
-        Equipo = VistaADevolver.findViewById(R.id.Equipo);
-        Foto = VistaADevolver.findViewById(R.id.foto);
-        Contrasenia = VistaADevolver.findViewById(R.id.Contrasenia);
-        Volver =  VistaADevolver.findViewById(R.id.Volver);
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
 
@@ -78,11 +71,6 @@ public class MostrarUsuario extends Fragment {
 
         TraerUsuario Tarea = new TraerUsuario();
         Tarea.execute();
-        Nombre.setText(G.NombreUsuario1);
-        String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
-        Picasso.get().load(Ruta).into(Foto);
-        Contrasenia.setVisibility(View.GONE);
-        TXT4.setVisibility(View.GONE);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,8 +120,32 @@ public class MostrarUsuario extends Fragment {
             Edad.setText(String.valueOf(U.E))
             ;
              */
-            Email.setText(String.valueOf(U.Email));
+            Nombre.setText(G.NombreUsuario1);
+            GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));
+            String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
+            Picasso.get().load(Ruta).into(Foto);
         }
+    }
+
+    public void Find(View Vista)
+    {
+        TXT4 = Vista.findViewById(R.id.TXT4);
+        Contrasenia = Vista.findViewById(R.id.Contrasenia);
+        Contrasenia.setVisibility(View.GONE);
+        TXT4.setVisibility(View.GONE);
+
+        TXT3 = Vista.findViewById(R.id.TXT3);
+        Email = Vista.findViewById(R.id.Email);
+        TXT3.setVisibility(View.GONE);
+        Email.setVisibility(View.GONE);
+
+        Nombre = Vista.findViewById(R.id.Nombre);
+        Edad = Vista.findViewById(R.id.Edad);
+        Equipo = Vista.findViewById(R.id.Equipo);
+        Foto = Vista.findViewById(R.id.foto);
+        GolesEnTorneo = Vista.findViewById(R.id.GolesEnTorneo);
+
+        Volver =  Vista.findViewById(R.id.Volver);
     }
 
 

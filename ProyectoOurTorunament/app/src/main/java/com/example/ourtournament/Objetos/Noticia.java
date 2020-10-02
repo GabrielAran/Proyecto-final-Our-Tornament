@@ -5,16 +5,16 @@ import android.widget.ImageView;
 import java.sql.Date;
 
 public class Noticia {
-    public int Idnoticia;
+    public int IDNoticia;
     public String Torneo;
     public String Titulo;
     public String Descripcion;
     public Boolean Destacada;
-    public ImageView Foto;
+    public int Foto;
     public Date Fecha;
-    public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, ImageView foto, Date fecha)
+    public Noticia(int idNoticia, String torneo, String titulo, String descripcion, Boolean destacada, int foto, Date fecha)
     {
-        Idnoticia = idNoticia;
+        IDNoticia = idNoticia;
         Torneo = torneo;
         Titulo = titulo;
         Descripcion = descripcion;

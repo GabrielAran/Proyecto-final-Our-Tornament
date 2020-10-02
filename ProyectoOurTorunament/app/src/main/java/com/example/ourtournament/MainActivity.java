@@ -2,13 +2,17 @@ package com.example.ourtournament;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ourtournament.Administracion.Administracion;
 import com.example.ourtournament.Fixture.Fixture;
@@ -30,6 +35,7 @@ import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     FragmentManager AdminFragments=getFragmentManager();
@@ -94,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         String Titulo = "Boca y river empatan 8 a 8";
         String Descripcion = "el partido se llevo a cabo en una maniana calurosa donde river convertia 2 goles y boca 0";
         Boolean Destacada = true;
-        ImageView Foto = null;
+        int Foto = 1;
         Date Fecha = new Date(2/2/2020);
         Noticia UnaNoticia = new Noticia(IDNoticia,Torneo,Titulo,Descripcion,Destacada,Foto,Fecha);
         ListaNoticias = new ArrayList<>();

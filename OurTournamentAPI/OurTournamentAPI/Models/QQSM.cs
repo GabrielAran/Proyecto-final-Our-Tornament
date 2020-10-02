@@ -10,8 +10,8 @@ namespace OurTournamentAPI
     {
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -406,7 +406,7 @@ namespace OurTournamentAPI
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = System.Data.CommandType.Text;
-            Consulta.CommandText = "Select * from Noticias where IDTorneo = + IDTorneo ";
+            Consulta.CommandText = "Select * from Noticias where IDTorneo = "+ IDTorneo +"order by Destacada DESC";
             SqlDataReader Lector = Consulta.ExecuteReader();
             Models.Noticia UnaNoticia = new Models.Noticia();
 
@@ -415,11 +415,11 @@ namespace OurTournamentAPI
             {
                 int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 int IDnoticia = Convert.ToInt32(Lector["IDNoticia"]);
-                String Titulo = Lector["Titulo"].ToString();
-                String Descripcion = Lector["Descripcion"].ToString();
-                Boolean Destacada = Convert.ToBoolean(Lector["Destacada"]);
-                String Foto = Lector["Foto"].ToString();
-                int Fecha = Convert.ToInt32(Lector["Fecha"]);
+                string Titulo = Lector["Titulo"].ToString();
+                string Descripcion = Lector["Descripcion"].ToString();
+                bool Destacada = Convert.ToBoolean(Lector["Destacada"]);
+                int Foto = Convert.ToInt32(Lector["IDFoto"]);
+                DateTime Fecha = Convert.ToDateTime(Lector["Fecha"]);
                 UnaNoticia = new Models.Noticia(IDtorneo, IDnoticia, Titulo, Descripcion, Destacada, Foto, Fecha);
                 TraerNoticiasPorTorneo.Add(UnaNoticia);
             }
@@ -436,7 +436,7 @@ namespace OurTournamentAPI
             Consulta.CommandType = CommandType.Text;
             try
             {
-                Consulta.CommandText = "insert into Noticias (IDNoticia,Titulo,Descripcion,IDFoto,IDTorneo,Fecha,Destacada) values ('" + Noticia.Idtorneo + "','" + Noticia.Idnoticia + "','" + Noticia.Titulo + "','" + Noticia.Descripcion + "','" + Noticia.Destacada + "','" + Noticia.Foto + "','" + Noticia.Fecha + ")";
+                Consulta.CommandText = "insert into Noticias (IDNoticia,Titulo,Descripcion,IDFoto,IDTorneo,Fecha,Destacada) values ('" + Noticia.IDTorneo + "','" + Noticia.IDNoticia + "','" + Noticia.Titulo + "','" + Noticia.Descripcion + "','" + Noticia.Destacada + "','" + Noticia.Foto + "','" + Noticia.Fecha + ")";
                 Consulta.ExecuteNonQuery();
                 Devolver = true;
             }

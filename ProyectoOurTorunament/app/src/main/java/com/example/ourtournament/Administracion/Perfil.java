@@ -19,6 +19,7 @@ import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
@@ -50,7 +51,7 @@ public class Perfil extends Fragment {
         Edad = VistaADevolver.findViewById(R.id.Edad);
         Email = VistaADevolver.findViewById(R.id.Email);
         Contrasenia = VistaADevolver.findViewById(R.id.Contrasenia);
-        GolesEnTorneo = VistaADevolver.findViewById(R.id.EquipoFavorito);
+        GolesEnTorneo = VistaADevolver.findViewById(R.id.GolesEnTorneo);
         foto = VistaADevolver.findViewById(R.id.foto);
         Volver = VistaADevolver.findViewById(R.id.Volver);
     }
@@ -83,6 +84,8 @@ public class Perfil extends Fragment {
         Edad.setText(String.valueOf(Usu.FechaDeNacimiento));
         Email.setText(Usu.Email);
         GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo));
+        String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
+        Picasso.get().load(Ruta).into(foto);
     }
 
     public void IrAFragment(Fragment fragment){

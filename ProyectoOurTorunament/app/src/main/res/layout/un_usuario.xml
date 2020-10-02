@@ -64,7 +64,7 @@
                 android:id="@+id/TXT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:text="Nombre usuario:"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:text="null"
                 android:textColor="#FFF"
                 android:textSize="24dp"
@@ -169,7 +169,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
 
             <TextView
-                android:id="@+id/EquipoFavorito"
+                android:id="@+id/GolesEnTorneo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="40dp"
