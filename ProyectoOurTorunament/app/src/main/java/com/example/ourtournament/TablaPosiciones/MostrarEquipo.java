@@ -152,6 +152,7 @@ public class MostrarEquipo extends Fragment {
             Log.d("conexion","Traje: "+lista.size()+" usuarios");
             Adaptador = new AdaptadorListaJugadores(Principal,R.layout.item_lista_jugadores,lista);
             ListaJugadores.setAdapter(Adaptador);
+            ListaJugadores.getLayoutParams().height = 100 * lista.size();
         }
     }
 }

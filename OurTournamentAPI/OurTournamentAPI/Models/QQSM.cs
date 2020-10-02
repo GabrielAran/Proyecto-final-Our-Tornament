@@ -334,20 +334,21 @@ namespace OurTournamentAPI
             return ListaUsuarios;
         }
 
-        public bool InsertarUsuario(Models.Usuario Usuario)
+        public String InsertarUsuario(Models.Usuario Usuario)
         {
-            bool Devolver = false;
+            String Devolver = "";
             SqlConnection con = Conectar();
             SqlCommand Consulta = con.CreateCommand();
             Consulta.CommandType = CommandType.Text;
             try
             {
-                Consulta.CommandText = "insert into Usuarios(NombreDeUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values ('"+Usuario.NombreUsuario + "','" + Usuario.Contrasenia + "','" + Usuario.FechaDeNacimiento + "','" + Usuario.Email + "'," + Usuario.GolesEnTorneo + ")";
+                Consulta.CommandText = "insert into Usuarios(NombreDeUsuario,Contrasenia,FechaDeNacimiento,Email,GolesEnTorneo) values ('"+Usuario.NombreUsuario + "','" + Usuario.Contrasenia + "','" + Usuario.FechaDeNacimiento.ToString("yyyy-MM-dd") + "','" + Usuario.Email + "'," + Usuario.GolesEnTorneo + ")";
                 Consulta.ExecuteNonQuery();
-                Devolver = true;
+                Devolver = "";
             }
-            catch (Exception)
+            catch (Exception E)
             {
+                Devolver = E.ToString();
             }
             Desconectar(con);
             return Devolver;

@@ -175,7 +175,7 @@
             <ListView
                 android:id="@+id/ListaJugadores"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="14dp"
                 android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"

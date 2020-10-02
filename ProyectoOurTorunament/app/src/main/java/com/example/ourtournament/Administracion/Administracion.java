@@ -3,6 +3,7 @@ package com.example.ourtournament.Administracion;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +19,9 @@ import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Goleadores;
+import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Torneo;
+import com.example.ourtournament.Objetos.TorneoSeguido;
 import com.example.ourtournament.R;
 import com.example.ourtournament.TablaGoleadores.AdaptadorListaGoleadores;
 import com.google.gson.Gson;
@@ -39,6 +42,9 @@ public class Administracion extends Fragment {
     private FragmentTransaction TransaccionesDeFragment;
     ArrayAdapter<String> adapter;
     ListView ListaDeAdministracion;
+    MainActivity Principal;
+    Preferencias P;
+    int IDUsuario;
 
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -47,9 +53,10 @@ public class Administracion extends Fragment {
             AdminFragments = getFragmentManager();
 
             Referencias();
+            IDUsuario = P.ObtenerInt("IDUsuario",-1);
             SetearListeners();
-            AsyncTasks();
         }
+        AsyncTasks();
         return VistaADevolver;
     }
 
@@ -58,7 +65,7 @@ public class Administracion extends Fragment {
         protected ArrayList<String> doInBackground(Integer... voids) {
             ArrayList<String> ArrayTorneos = new ArrayList<>();
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetTorneosSeguidosPorUsuario/Usuario/1";
+                String miURL = "http://10.0.2.2:55859/api/GetTorneosPorNombre/Nombre/()/Usuario/"+IDUsuario;
                 URL miRuta = new URL(miURL);
                 Log.d("conexion","estoy accediendo a la ruta: "+miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -73,8 +80,11 @@ public class Administracion extends Fragment {
                     for (int i = 0; i < VecTorneos.size(); i++) {
                         JsonElement Elemento = VecTorneos.get(i);
                         Gson gson = new Gson();
-                        Torneo T = gson.fromJson(Elemento, Torneo.class);
-                        ArrayTorneos.add(T.NombreTorneo);
+                        TorneoSeguido TS = gson.fromJson(Elemento, TorneoSeguido.class);
+                        if (TS.Siguiendo)
+                        {
+                            ArrayTorneos.add(TS.NombreTorneo);
+                        }
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -87,7 +97,7 @@ public class Administracion extends Fragment {
         }
         protected void onPostExecute(ArrayList<String> ArrayTorneos)
         {
-            adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, ArrayTorneos);
+            adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, ArrayTorneos);
             ListaDeAdministracion.setAdapter(adapter);
         }
     }
@@ -101,6 +111,8 @@ public class Administracion extends Fragment {
         ListaDeAdministracion = VistaADevolver.findViewById(R.id.ListaDeAdministracion);
         btn_Perfil = VistaADevolver.findViewById(R.id.btn_Perfil);
         btn_Config = VistaADevolver.findViewById(R.id.btn_Config);
+        Principal = (MainActivity) getActivity();
+        P = Principal.CargarSharedPreferences();
     }
 
     private void AsyncTasks(){

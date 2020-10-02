@@ -30,7 +30,7 @@
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:text="Our Tournament"
-            android:fontFamily="serif-monospace"
+            android:fontFamily="@font/se"
             android:textColor="#FFF"
             android:textSize="26sp" />
     </LinearLayout>
