@@ -1,5 +1,6 @@
 package com.example.ourtournament.Fixture;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.animation.AnimatorSet;
@@ -10,8 +11,12 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +47,10 @@ import java.net.URL;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.PropertyResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class Fixture extends Fragment {
     FragmentManager AdminFragments;
@@ -62,11 +71,8 @@ public class Fixture extends Fragment {
         Carga = VistaADevolver.findViewById(R.id.Carga);
         AdminFragments=getFragmentManager();
 
-        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,8000);
-        Animacion.setDuration(7000);
-        AnimatorSet SetDeAnimacion = new AnimatorSet();
-        SetDeAnimacion.play(Animacion);
-        SetDeAnimacion.start();
+        Animacion();
+
         final MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
         ID = P.ObtenerInt("IDTorneo",-1);
@@ -79,12 +85,14 @@ public class Fixture extends Fragment {
         return VistaADevolver;
     }
 
-    public void MostrarListaPartidos()
+    public void Animacion()
     {
-        TraerPartidos Tarea = new TraerPartidos();
-        Tarea.execute();
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(Carga,"rotation",0,360);
+        Animacion.setDuration(1200);
+        AnimatorSet SetDeAnimacion = new AnimatorSet();
+        SetDeAnimacion.play(Animacion);
+        SetDeAnimacion.start();
     }
-
     private class TraerPartidos extends AsyncTask<Void,Void,ArrayList<Partido>> {
         @Override
         protected ArrayList<Partido> doInBackground(Void... voids) {
@@ -180,9 +188,10 @@ public class Fixture extends Fragment {
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                        i++;
-                        P.GuardarInt("JornadaElegida",i);
-                        MostrarListaPartidos();
+                    i++;
+                    P.GuardarInt("JornadaElegida",i);
+                    TraerPartidos Tarea = new TraerPartidos();
+                    Tarea.execute();
                 }
                 public void onNothingSelected(AdapterView<?> parent) {
 

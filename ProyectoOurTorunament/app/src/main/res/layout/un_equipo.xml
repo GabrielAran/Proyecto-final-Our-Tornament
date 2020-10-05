@@ -71,7 +71,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Puntos:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foto" />
 
@@ -83,7 +83,7 @@
                 android:layout_marginRight="40dp"
                 android:text="0"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foto" />
 
@@ -95,7 +95,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Partidos jugados:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TXT1" />
 
@@ -107,7 +107,7 @@
                 android:layout_marginTop="20dp"
                 android:text="0"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Puntos" />
 
@@ -119,7 +119,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Goles a favor:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TXT2" />
 
@@ -131,7 +131,7 @@
                 android:layout_marginTop="20dp"
                 android:text="0"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/PartidosJugados" />
 
@@ -143,7 +143,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Goles en contra:"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TXT3" />
 
@@ -155,7 +155,7 @@
                 android:layout_marginTop="20dp"
                 android:text="0"
                 android:textColor="#FFF"
-                android:textSize="28dp"
+                android:textSize="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/GolesAFavor" />
 
@@ -167,7 +167,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Jugadores"
-                android:textColor="#3CBC80"
+                android:textColor="#FFF"
                 android:textSize="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

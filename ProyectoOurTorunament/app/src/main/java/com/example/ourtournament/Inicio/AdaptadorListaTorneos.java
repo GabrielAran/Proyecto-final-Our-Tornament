@@ -98,6 +98,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                     Tarea.execute();
                     bool[0] = true;
 
+
                 } else {
                     Animacion(VerEquipos, "rotation", 0, 0, 0);
                     lista.setVisibility(View.GONE);

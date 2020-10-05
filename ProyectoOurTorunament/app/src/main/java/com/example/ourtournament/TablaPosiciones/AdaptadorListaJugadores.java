@@ -53,13 +53,13 @@ public class AdaptadorListaJugadores extends ArrayAdapter<Usuario>
 
         if (pos%2==0)
         {
-            CL.setBackgroundColor(Color.rgb(170,170,170));//170 170 170
+            CL.setBackgroundColor(Color.rgb(166,188,250));//170 170 170
         }else
         {
-            CL.setBackgroundColor(Color.rgb(130,170,108));//108 108 108
+            CL.setBackgroundColor(Color.rgb(117,151,249));//108 108 108
         }
         Usuario U = getItem(pos);
-        Goles.setText(String.valueOf(U.GolesEnTorneo));
+        Goles.setText("Goles: "+U.GolesEnTorneo);
         Nombre.setText(U.NombreUsuario);
 
         return  VistaADevolver;

@@ -5,6 +5,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -36,8 +38,10 @@ import com.example.ourtournament.TablaPosiciones.TablaPosiciones;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<task> extends AppCompatActivity {
     FragmentManager AdminFragments=getFragmentManager();
     FragmentTransaction TransaccionesDeFragment;
     Preferencias P;
