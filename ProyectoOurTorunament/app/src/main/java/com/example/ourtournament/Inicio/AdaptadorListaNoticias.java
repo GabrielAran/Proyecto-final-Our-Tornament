@@ -55,10 +55,8 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
             VistaADevolver = MiInflador.inflate(_Resource, null);
         }
 
-        Log.d("conexion","Entre al getview");
         TextView Titulo,Fecha,Descripcion;
         ImageView Destacada,imageView;
-        Noticia Not;
 
         Titulo=VistaADevolver.findViewById(R.id.Titulo);
         Fecha=VistaADevolver.findViewById(R.id.Fecha);
@@ -66,7 +64,8 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
         Destacada=VistaADevolver.findViewById(R.id.Destacada);
         imageView =VistaADevolver.findViewById(R.id.imageView);
 
-        Not = getItem(pos);
+        Noticia Not = getItem(pos);
+        Log.d("conexion",String.valueOf(Not.IDNoticia));
         if(Not.Destacada)
         {
             Destacada.setVisibility(View.VISIBLE);
@@ -77,16 +76,9 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
         Descripcion.setText(Not.Descripcion);
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Noticias/ID"+Not.IDNoticia+"_1.JPG";
+        Picasso.get().load(Ruta).into(imageView);
 
-        if (pos%2 ==0)
-        {
-            String Ruta = "https://img.fifa.com/image/upload/t_s3/mk7m1dqgxma3pgrdkbem.jpg";
-            Picasso.get().load(Ruta).into(imageView);
-        }else
-        {
-            String Ruta = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg";
-            Picasso.get().load(Ruta).into(imageView);
-        }
         return  VistaADevolver;
     }
 }

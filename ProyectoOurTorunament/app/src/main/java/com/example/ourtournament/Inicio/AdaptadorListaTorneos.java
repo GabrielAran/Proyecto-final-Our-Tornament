@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -71,7 +72,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         lista = VistaADevolver.findViewById(R.id.list);
         final TorneoSeguido T = getItem(pos);
 
-        Log.d("conexion",String.valueOf(T.NombreTorneo+" "+T.Siguiendo));
         if (T.Siguiendo)
         {
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
@@ -83,6 +83,8 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
             Seguir.setText("seguir");
             Seguir.setTextColor(Color.rgb(0, 0, 0));
         }
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+T.IDTorneo+"_Perfil.JPG";
+        Picasso.get().load(Ruta).into(FotoPerfil);
         FotoPerfil.setImageResource(R.drawable.icono_torneo);
         NombreTorneo.setText(T.NombreTorneo);
 
@@ -97,8 +99,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                     TraerEquipos Tarea = new TraerEquipos();
                     Tarea.execute();
                     bool[0] = true;
-
-
                 } else {
                     Animacion(VerEquipos, "rotation", 0, 0, 0);
                     lista.setVisibility(View.GONE);

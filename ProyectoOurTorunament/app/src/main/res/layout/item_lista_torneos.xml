@@ -31,8 +31,7 @@
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/icono_persona" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/Torneo"

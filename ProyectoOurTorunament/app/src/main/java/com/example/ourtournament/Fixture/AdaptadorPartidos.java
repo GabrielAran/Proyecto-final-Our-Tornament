@@ -60,10 +60,9 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
         Foto1 =VistaADevolver.findViewById(R.id.LogoEquipo1);
 
         Partido P = getItem(pos);
-        //String Ruta = "https://www.seekpng.com/png/detail/139-1398401_barcelona-logo-png-transparent-escudo-de-fc-barcelona.png";
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/"+P.NombreEquipoLocal+".JPG";
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID7_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto1);
-        Ruta = "https://upload.wikimedia.org/wikipedia/commons/1/10/Escudo_real_madrid_1941b.png";
+        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID8_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto2);
         if(pos == 0)
         {

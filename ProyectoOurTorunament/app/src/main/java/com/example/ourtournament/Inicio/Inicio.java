@@ -161,7 +161,6 @@ public class Inicio extends Fragment {
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
     }
-
     private class LLenarListaTorneos extends AsyncTask<Void,Void,ArrayList<TorneoSeguido>> {
         @Override
         protected ArrayList<TorneoSeguido> doInBackground(Void... voids) {
@@ -223,7 +222,7 @@ public class Inicio extends Fragment {
                         JsonElement Elemento = VecNoticias.get(i);
                         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
                         Noticia N = gson.fromJson(Elemento, Noticia.class);
-                        Log.d("conexion","Agregue la noticia: "+N.Titulo);
+                        Log.d("conexion","Agregue la noticia: "+N.IDNoticia);
                         ListaNoticias.add(N);
                     }
                 } else {

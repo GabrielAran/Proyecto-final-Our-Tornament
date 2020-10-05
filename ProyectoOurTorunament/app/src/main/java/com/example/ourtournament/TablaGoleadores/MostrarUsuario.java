@@ -121,8 +121,7 @@ public class MostrarUsuario extends Fragment {
             ;
              */
             Nombre.setText(G.NombreUsuario1);
-            GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));
-            String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
+            GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
             Picasso.get().load(Ruta).into(Foto);
         }
     }
