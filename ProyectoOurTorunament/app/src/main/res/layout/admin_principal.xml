@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/general"
@@ -8,50 +9,65 @@
     android:layout_height="match_parent"
     android:layout_above="@id/footer"
     android:layout_below="@id/header"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:background="#212423">
-
-
     <!-- HEADER -->
     <LinearLayout
         android:id="@+id/header"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:background="#000"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/Fixture"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="serif-monospace"
             android:gravity="center"
             android:text="Administracion"
-            android:fontFamily="serif-monospace"
-            android:textSize="26dp"
             android:textColor="#FFF"
-            android:layout_marginLeft="10dp"
+            android:textSize="26dp"
             tools:ignore="HardcodedText,SpUsage" />
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="20dp"
+        android:text="Torneos seguidos"
+        android:textColor="#FFF"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"/>
+
+    <ListView
+        android:id="@+id/ListaDeAdministracion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+    </ListView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/footer"
-        android:layout_below="@id/header"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <ListView
-            android:id="@+id/ListaDeAdministracion"
-            android:layout_width="wrap_content"
-            android:layout_height="437dp"
-            android:layout_marginTop="8dp"
-            android:background="#F3E6E6">
-
-        </ListView>
 
         <Button
             android:id="@+id/btn_Config"
@@ -59,7 +75,10 @@
             android:layout_height="61dp"
             android:backgroundTint="#3CBC80"
             android:text="Configuración"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btn_Perfil"
@@ -68,8 +87,11 @@
             android:height="61dp"
             android:backgroundTint="#3CBC80"
             android:text="Perfil"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_Config"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,7 +40,7 @@ public class Administracion extends Fragment {
     Button btn_Perfil, btn_Config;
     View VistaADevolver = null;
     private FragmentTransaction TransaccionesDeFragment;
-    ArrayAdapter<String> adapter;
+    AdaptadorTorneos Adaptador;
     ListView ListaDeAdministracion;
     MainActivity Principal;
     Preferencias P;
@@ -60,10 +60,10 @@ public class Administracion extends Fragment {
         return VistaADevolver;
     }
 
-    private class TraerTorneosSeguidosPorUsuario extends AsyncTask<Integer,Void,ArrayList<String>> {
+    private class TraerTorneosSeguidosPorUsuario extends AsyncTask<Integer,Void,ArrayList<TorneoSeguido>> {
         @Override
-        protected ArrayList<String> doInBackground(Integer... voids) {
-            ArrayList<String> ArrayTorneos = new ArrayList<>();
+        protected ArrayList<TorneoSeguido> doInBackground(Integer... voids) {
+            ArrayList<TorneoSeguido> ArrayTorneos = new ArrayList<>();
             try {
                 String miURL = "http://10.0.2.2:55859/api/GetTorneosPorNombre/Nombre/()/Usuario/"+IDUsuario;
                 URL miRuta = new URL(miURL);
@@ -83,7 +83,7 @@ public class Administracion extends Fragment {
                         TorneoSeguido TS = gson.fromJson(Elemento, TorneoSeguido.class);
                         if (TS.Siguiendo)
                         {
-                            ArrayTorneos.add(TS.NombreTorneo);
+                            ArrayTorneos.add(TS);
                         }
                     }
                 } else {
@@ -95,10 +95,10 @@ public class Administracion extends Fragment {
             }
             return ArrayTorneos;
         }
-        protected void onPostExecute(ArrayList<String> ArrayTorneos)
+        protected void onPostExecute(ArrayList<TorneoSeguido> ArrayTorneos)
         {
-            adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, ArrayTorneos);
-            ListaDeAdministracion.setAdapter(adapter);
+            Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
+            ListaDeAdministracion.setAdapter(Adaptador);
         }
     }
 

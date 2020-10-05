@@ -371,7 +371,7 @@ namespace OurTournamentAPI
                 bool Destacada = Convert.ToBoolean(Lector["Destacada"]);
                 int Foto = Convert.ToInt32(Lector["IDFoto"]);
                 DateTime Fecha = Convert.ToDateTime(Lector["Fecha"]);
-                UnaNoticia = new Models.Noticia(IDtorneo, IDnoticia, Titulo, Descripcion, Destacada, Foto, Fecha);
+                UnaNoticia = new Models.Noticia(IDnoticia, IDtorneo, Titulo, Descripcion, Destacada, Foto, Fecha);
                 TraerNoticiasPorTorneo.Add(UnaNoticia);
             }
             Desconectar(con);
