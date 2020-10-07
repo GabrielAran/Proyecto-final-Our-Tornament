@@ -76,7 +76,7 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
         Descripcion.setText(Not.Descripcion);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Noticias/ID2_1.JPG";
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Noticias/ID"+Not.IDNoticia+"_1.JPG";
         Picasso.get().load(Ruta).into(imageView);
 
         return  VistaADevolver;
