@@ -63,7 +63,7 @@ public class MainActivity<task> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         P = CargarSharedPreferences();
-        //P.EliminarString("contrasenia");
+        P.EliminarString("contrasenia");
         String Nombre = P.ObtenerString("contrasenia","no hay contrasenia");
 
         if(Nombre=="no hay contrasenia")

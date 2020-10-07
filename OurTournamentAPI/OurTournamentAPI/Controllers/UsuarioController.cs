@@ -64,8 +64,8 @@ namespace OurTournamentAPI.Controllers
         }
         
         [HttpGet]
-        [Route("api/GetUsuario/Usuario/{IDUsuario}")]
-        public IHttpActionResult ObtenerUsuario(int IDUsuario)
+        [Route("api/GetUsuarioPorID/Usuario/{IDUsuario}")]
+        public IHttpActionResult ObtenerUsuarioID(int IDUsuario)
         {
             QQSM Conexion = new QQSM();
             Models.Usuario U = Conexion.TraerUsuariosPorID(IDUsuario);
@@ -78,7 +78,24 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
         }
-        
+
+        [HttpGet]
+        [Route("api/GetUsuarioPorContrasenia/Usuario/{Nombre}/contrasenia/{Contrasenia}")]
+        public IHttpActionResult ObtenerUsuarioPorContrasenia(String Nombre, String Contrasenia)
+        {
+            QQSM Conexion = new QQSM();
+            Models.Usuario U = Conexion.TraerUsuarioPorNombreContrasenia(Nombre, Contrasenia);
+            if (U.NombreUsuario != null)
+            {
+                return Ok(U);
+            }
+            else
+            {
+                Models.Usuario Us = new Models.Usuario(0, "", "", U.FechaDeNacimiento, "", -10);
+                return Ok(Us);
+            }
+        }
+
         [System.Web.Http.Route("api/InsertUsuario")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarUsuarios(Models.Usuario U)

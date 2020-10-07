@@ -32,8 +32,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class MostrarUsuario extends Fragment {
     TextView Nombre,Edad, Email, Equipo, Contrasenia,GolesEnTorneo,TXT4,TXT3;
@@ -88,7 +94,7 @@ public class MostrarUsuario extends Fragment {
         @Override
         protected Usuario doInBackground(Void... voids) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetUsuario/Usuario/"+G.IDUsuario1;
+                String miURL = "http://10.0.2.2:55859/api/GetUsuarioPorID/Usuario/"+G.IDUsuario1;
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -101,7 +107,7 @@ public class MostrarUsuario extends Fragment {
                     JsonObject Us = parseador.parse(lectorJSon).getAsJsonObject();
                     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
                     U = gson.fromJson(Us, Usuario.class);
-                    Log.d("conexion","Traje al usuario: "+U.NombreUsuario);
+                    Log.d("conexion","Traje al usuario: "+U.FechaDeNacimiento.getYear());
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
                 }
@@ -114,14 +120,12 @@ public class MostrarUsuario extends Fragment {
         }
         protected void onPostExecute(Usuario U)
         {
-            /*
-            Date hoy = new Date();
-            long edad = ChronoUnit.YEARS.between(U.FechaDeNacimiento, hoy);
-            Edad.setText(String.valueOf(U.E))
-            ;
-             */
+            Period edad = Period.between(LocalDate.of(2003, 5, 8), LocalDate.now());
+            Edad.setText(String.valueOf(edad.getYears()));
+
             Nombre.setText(G.NombreUsuario1);
-            GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
+            GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));
+            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
             Picasso.get().load(Ruta).into(Foto);
         }
     }

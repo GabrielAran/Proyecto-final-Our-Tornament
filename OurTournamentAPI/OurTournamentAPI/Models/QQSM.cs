@@ -11,8 +11,8 @@ namespace OurTournamentAPI
         private SqlConnection con;
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
-            string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=OurTournament;Trusted_Connection=True;";
+            //string constring = @"Server=DESKTOP-F0QOOGP\AAA;Database=OurTournament;Trusted_Connection=True;";
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
@@ -278,30 +278,25 @@ namespace OurTournamentAPI
             return ElEquipo;
         }
 
-        public List<Models.Usuario> TraerUsuariosPorUsuarioContrasenia(string NombreDeUsuario, string Contrasenia)
+        public Models.Usuario TraerUsuarioPorNombreContrasenia(string NombreDeUsuario, string Contrasenia)
         {
-            String C = " Select Usuario.IDUsuario,NombreDeUsuario,FechaDeNacimiento,Email,GolesEnTorneo,IDTorneo,NombreTorneo,IDEquipo)" +
-                " from Usuarios inner join SeguidoresXTorneos on Usuarios.IDUsuario = SeguidoresXTorneos.IDUsuariuo" +
-                " where Usuarios.NombreDeUsuario = " + NombreDeUsuario + " && Usuarios.Contrasenia = " + Contrasenia + "";
+            String C = " Select * from Usuarios where Usuarios.NombreDeUsuario = '" + NombreDeUsuario + "' and Usuarios.Contrasenia = '" + Contrasenia + "'";
             SqlDataReader Lector = HacerSelect(C);
-            List<Models.Usuario> ListaUsuarios = new List<Models.Usuario>();
             Models.Usuario ElUsuario = new Models.Usuario();
-            while (Lector.Read())
+            if (Lector.Read())
             {
 
-                int IDUsuarios = Convert.ToInt32(Lector["IdUsuario"]);
-                string NombreUsuario = Convert.ToString(Lector["NombreUsuario"]);
-                string contrasenia = Convert.ToString(Lector["Comtrasenia"]);
+                int IDUsuarios = Convert.ToInt32(Lector["IDUsuario"]);
+                string NombreUsuario = Convert.ToString(Lector["NombreDeUsuario"]);
+                string contrasenia = Convert.ToString(Lector["Contrasenia"]);
                 DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
                 string Email = Convert.ToString(Lector["Email"]);
                 int GolesEnTorneo = Convert.ToInt32(Lector["GolesEnTorneo"]);
-                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
 
                 ElUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, contrasenia, FechaDeNacimiento, Email, GolesEnTorneo);
-                ListaUsuarios.Add(ElUsuario);
             }
             Desconectar(con);
-            return ListaUsuarios;
+            return ElUsuario;
         }
 
         public bool InsertarUsuario(Models.Usuario Usuario)

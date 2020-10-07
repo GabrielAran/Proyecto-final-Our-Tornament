@@ -21,6 +21,9 @@ import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
     TextView Nombre, Edad, Email, Contrasenia, GolesEnTorneo;
@@ -81,7 +84,8 @@ public class Perfil extends Fragment {
         Contrasenia.setText(contra);
 
         Nombre.setText(Usu.NombreUsuario);
-        Edad.setText(String.valueOf(Usu.FechaDeNacimiento));
+        Period edad = Period.between(LocalDate.of(Usu.FechaDeNacimiento.getYear(), Usu.FechaDeNacimiento.getMonth(),Usu.FechaDeNacimiento.getDay()), LocalDate.now());
+        Edad.setText(String.valueOf(edad.getYears()));
         Email.setText(Usu.Email);
         GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo));
         String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
