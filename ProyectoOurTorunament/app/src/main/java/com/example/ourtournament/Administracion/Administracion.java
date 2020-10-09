@@ -49,7 +49,7 @@ public class Administracion extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         if (VistaADevolver == null) {
-            VistaADevolver = inflador.inflate(R.layout.admin_principal, GrupoDeLaVista, false);
+            VistaADevolver = inflador.inflate(R.layout.administracion, GrupoDeLaVista, false);
             AdminFragments = getFragmentManager();
 
             Referencias();
@@ -98,6 +98,7 @@ public class Administracion extends Fragment {
         protected void onPostExecute(ArrayList<TorneoSeguido> ArrayTorneos)
         {
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
+            ListaDeAdministracion.getLayoutParams().height = 58 * ArrayTorneos.size();
             ListaDeAdministracion.setAdapter(Adaptador);
         }
     }
