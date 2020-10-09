@@ -10,6 +10,8 @@ namespace OurTournamentAPI.Models
 
         private int _IDPartido;
         private DateTime _FechaDeEncuentro;
+        private int _IDEquipoLocal;
+        private int _IDEquipoVisitante;
         private String _NombreEquipoLocal;
         private String _NombreEquipoVisitante;
         private int _GolesLocal;
@@ -25,12 +27,16 @@ namespace OurTournamentAPI.Models
         public int GolesLocal { get => _GolesLocal; set => _GolesLocal = value; }
         public int GolesVisitante { get => _GolesVisitante; set => _GolesVisitante = value; }
         public int Jornada { get => _Jornada; set => _Jornada = value; }
+        public int IDEquipoLocal { get => _IDEquipoLocal; set => _IDEquipoLocal = value; }
+        public int IDEquipoVisitante { get => _IDEquipoVisitante; set => _IDEquipoVisitante = value; }
 
-        public Partido(int IDPartido, DateTime FechaDeEncuentro, String NombreEquipoLocal, String NombreEquipoVisitante, int GolesLocal, int GolesVisitante, int IDTorneo, int Jornada)
+        public Partido(int IDPartido, DateTime FechaDeEncuentro, String NombreEquipoLocal, String NombreEquipoVisitante, int GolesLocal, int GolesVisitante, int IDTorneo, int Jornada, int IDEquipoLocal, int IDEquipoVisitante)
         {
             _IDPartido = IDPartido;
             _NombreEquipoLocal = NombreEquipoLocal;
             _NombreEquipoVisitante = NombreEquipoVisitante;
+            _IDEquipoLocal = IDEquipoLocal;
+            _IDEquipoVisitante = IDEquipoVisitante;
             _GolesLocal = GolesLocal;
             _GolesVisitante = GolesVisitante;
             _FechaDeEncuentro = FechaDeEncuentro;

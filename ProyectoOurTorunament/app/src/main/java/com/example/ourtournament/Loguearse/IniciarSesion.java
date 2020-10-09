@@ -64,10 +64,10 @@ public class IniciarSesion extends Fragment {
                     Tarea.execute();
                 }else
                 {
-                    //Incorrecto.setText("Debes ingresar minimo 4 caracteres en cada espacio");
-                    //Incorrecto.setVisibility(View.VISIBLE);
-                    TraerUsuario Tarea = new TraerUsuario();
-                    Tarea.execute();
+                    Incorrecto.setText("Debes ingresar minimo 4 caracteres en cada espacio");
+                    Incorrecto.setVisibility(View.VISIBLE);
+                    //TraerUsuario Tarea = new TraerUsuario();
+                    //Tarea.execute();
                 }
             }
         });
@@ -80,7 +80,7 @@ public class IniciarSesion extends Fragment {
         @Override
         protected Usuario doInBackground(Integer... voids) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetUsuarioPorContrasenia/Usuario/DamianGluk"/*+Nombre.getText()*/+"/contrasenia/Dami123"/*+Contrasenia.getText()*/;
+                String miURL = "http://10.0.2.2:55859/api/GetUsuarioPorContrasenia/Usuario/"+Nombre.getText()+"/contrasenia/"+Contrasenia.getText();
                 URL miRuta = new URL(miURL);
                 Log.d("conexion", "estoy accediendo a la ruta: " + miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();

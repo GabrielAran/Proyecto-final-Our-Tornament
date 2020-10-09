@@ -68,7 +68,7 @@ namespace OurTournamentAPI.Controllers
         {
             bool Devolver;
             QQSM Conexion = new QQSM();
-            Models.Partido partido = new Models.Partido(P.IDPartido, P.FechaDeEncuentro, P.NombreEquipoLocal, P.NombreEquipoVisitante, P.GolesLocal, P.GolesVisitante, P.IDTorneo, P.Jornada);
+            Models.Partido partido = new Models.Partido(P.IDPartido, P.FechaDeEncuentro, P.NombreEquipoLocal, P.NombreEquipoVisitante, P.GolesLocal, P.GolesVisitante, P.IDTorneo, P.Jornada,P.IDEquipoLocal,P.IDEquipoVisitante);
             Devolver = Conexion.InsertarPartidos(partido);
             return Ok(Devolver);
         }

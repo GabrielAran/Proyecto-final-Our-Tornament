@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -61,7 +62,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         final ListView lista;
         final boolean[] bool = {false};
         final Button Seguir, VerEquipos;
-        CircleImageView FotoPerfil;
+        final CircleImageView FotoPerfil;
         TextView NombreTorneo;
 
         FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
@@ -72,20 +73,29 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         lista = VistaADevolver.findViewById(R.id.list);
         final TorneoSeguido T = getItem(pos);
 
-        if (T.Siguiendo)
-        {
+        if (T.Siguiendo) {
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
             Seguir.setText("Siguiendo");
             Seguir.setTextColor(Color.rgb(60, 188, 128));
-        }else
-        {
+        } else {
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
             Seguir.setText("seguir");
             Seguir.setTextColor(Color.rgb(0, 0, 0));
         }
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+T.IDTorneo+"_Perfil.JPG";
-        Picasso.get().load(Ruta).into(FotoPerfil);
-        FotoPerfil.setImageResource(R.drawable.icono_torneo);
+
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID" + T.IDTorneo + "_Perfil.JPG";
+        Picasso.get().load(Ruta)
+                .into(FotoPerfil, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        FotoPerfil.setImageResource(R.drawable.icono_torneo);
+                    }
+
+                });
         NombreTorneo.setText(T.NombreTorneo);
 
         VerEquipos.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +103,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
             public void onClick(View view) {
                 if (!bool[0]) {
                     Animacion(VerEquipos, "rotation", 0, -180, 0);
-                    lista.setVisibility(View.VISIBLE);
                     Lista = lista;
                     _IDTorneo = T.IDTorneo;
                     TraerEquipos Tarea = new TraerEquipos();
@@ -172,10 +181,14 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         }
 
         protected void onPostExecute(ArrayList<Equipo> listaE) {
-            Context contexto = getContext();
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
-            Lista.setAdapter(Adaptador);
-            Lista.getLayoutParams().height = 154 * listaE.size();
+            if (listaE.size() > 0)
+            {
+                Context contexto = getContext();
+                AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
+                Lista.setAdapter(Adaptador);
+                Lista.getLayoutParams().height = 154 * listaE.size();
+                Lista.setVisibility(View.VISIBLE);
+            }
         }
     }
 

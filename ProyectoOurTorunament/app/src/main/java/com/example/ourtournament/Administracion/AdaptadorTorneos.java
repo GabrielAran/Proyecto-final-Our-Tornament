@@ -41,16 +41,26 @@ public class AdaptadorTorneos extends ArrayAdapter<TorneoSeguido> {
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource, null);
         }
-        CircleImageView FotoPerfil;
+        final CircleImageView FotoPerfil;
         TextView NombreTorneo;
 
         FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
         NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
         final Torneo T = getItem(pos);
 
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+T.IDTorneo+"_Perfil.JPG";
-        Picasso.get().load(Ruta).into(FotoPerfil);
-        FotoPerfil.setImageResource(R.drawable.icono_torneo);
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID" + T.IDTorneo + "_Perfil.JPG";
+        Picasso.get().load(Ruta)
+                .into(FotoPerfil, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        FotoPerfil.setImageResource(R.drawable.icono_torneo);
+                    }
+
+                });
         NombreTorneo.setText(T.NombreTorneo);
 
         return VistaADevolver;

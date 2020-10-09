@@ -124,7 +124,10 @@ namespace OurTournamentAPI
 
         public List<Models.Partido> TraerPartidosPorJornada(int IDJornada, int IDTorneo)
         {
-            String C = "SELECT * FROM Partidos where Partidos.JornadaDelTorneo = " + IDJornada + "and Partidos.IDTorneo = " + IDTorneo;
+            String C = "SELECT Partidos.*,EquipoLocal.NombreEquipo As NombreEquipoLocal, EquipoVisitante.NombreEquipo AS NombreEquipoVisitante " +
+                "FROM Partidos INNER JOIN Equipos EquipoLocal ON Partidos.IDEquipo1 = EquipoLocal.IDEquipo " +
+                "INNER JOIN Equipos EquipoVisitante ON Partidos.IDEquipo2 = EquipoVisitante.IDEquipo " +
+                "where Partidos.JornadaDelTorneo = "+IDJornada+" and Partidos.IDTorneo = "+IDTorneo;
             SqlDataReader Lector = HacerSelect(C);
             List<Models.Partido> ListaPartidos = new List<Models.Partido>();
             Models.Partido UnPartido = new Models.Partido();
@@ -132,13 +135,15 @@ namespace OurTournamentAPI
             {
                 int IDPartido = Convert.ToInt32(Lector["IDPartido"]);
                 DateTime FechaDeEncuentro = Convert.ToDateTime(Lector["FechaDeEncuentro"]);
-                String NobreEquipoLocal = Lector["NombreEquipoLocal"].ToString();
+                String NombreEquipoLocal = Lector["NombreEquipoLocal"].ToString();
                 String NombreEquipoVisitante = Lector["NombreEquipoVisitante"].ToString();
+                int IDEquipoLocal = Convert.ToInt32(Lector["IDEquipo1"]);
+                int IDEquipoVisitante = Convert.ToInt32(Lector["IDEquipo2"]);
                 int GolesLocal = Convert.ToInt32(Lector["GolesLocal"]);
                 int GolesVisitante = Convert.ToInt32(Lector["GolesVisitante"]);
                 int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 int IDjornada = Convert.ToInt32(Lector["JornadaDelTorneo"]);
-                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, NobreEquipoLocal, NombreEquipoVisitante, GolesLocal, GolesVisitante, IDtorneo, IDjornada);
+                UnPartido = new Models.Partido(IDPartido, FechaDeEncuentro, NombreEquipoLocal, NombreEquipoVisitante, GolesLocal, GolesVisitante, IDtorneo, IDjornada, IDEquipoLocal, IDEquipoVisitante);
                 ListaPartidos.Add(UnPartido);
             }
             Desconectar(con);

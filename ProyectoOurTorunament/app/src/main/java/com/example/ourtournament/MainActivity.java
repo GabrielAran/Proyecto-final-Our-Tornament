@@ -45,6 +45,7 @@ public class MainActivity<task> extends AppCompatActivity {
     FragmentManager AdminFragments=getFragmentManager();
     FragmentTransaction TransaccionesDeFragment;
     Preferencias P;
+    int IDUsuario;
 
     Button BTNFixture;
     Button BTNTablaDePosiciones;
@@ -64,9 +65,9 @@ public class MainActivity<task> extends AppCompatActivity {
 
         P = CargarSharedPreferences();
         P.EliminarString("contrasenia");
-        String Nombre = P.ObtenerString("contrasenia","no hay contrasenia");
+        IDUsuario = P.ObtenerInt("IDUsuario",-1);
 
-        if(Nombre=="no hay contrasenia")
+        if(IDUsuario==-1)
         {
             Loguear logueo = new Loguear();
             IrAFragmentDePantallaVacia(logueo);
