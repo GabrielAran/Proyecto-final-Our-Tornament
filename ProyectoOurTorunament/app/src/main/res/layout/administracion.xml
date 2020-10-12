@@ -36,19 +36,20 @@
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:orientation="vertical">
-
-
         <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="match_parent"
             android:layout_height="580dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_Perfil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
@@ -57,13 +58,13 @@
                     android:layout_marginTop="10dp"
                     android:text="Torneos seguidos"
                     android:textColor="#FFF"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
 
                 <ListView
                     android:id="@+id/ListaDeAdministracion"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp" />
             </LinearLayout>
         </ScrollView>
 

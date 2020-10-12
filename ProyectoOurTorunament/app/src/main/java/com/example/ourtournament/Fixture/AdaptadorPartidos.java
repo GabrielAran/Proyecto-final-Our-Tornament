@@ -60,9 +60,9 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
         Foto1 =VistaADevolver.findViewById(R.id.LogoEquipo1);
 
         Partido P = getItem(pos);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID7_Escudo.PNG";
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+P.IDEquipoLocal+"_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto1);
-        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID8_Escudo.PNG";
+        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+P.IDEquipoVisitante+"_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto2);
         if(pos == 0)
         {
