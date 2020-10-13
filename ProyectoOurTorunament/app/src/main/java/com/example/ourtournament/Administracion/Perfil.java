@@ -85,7 +85,7 @@ public class Perfil extends Fragment {
 
         Nombre.setText(Usu.NombreUsuario);
         Period edad = Period.between(LocalDate.of(Usu.FechaDeNacimiento.getYear(), Usu.FechaDeNacimiento.getMonth(),Usu.FechaDeNacimiento.getDay()), LocalDate.now());
-        Edad.setText(String.valueOf(edad.getYears()));
+        Edad.setText("edad");
         Email.setText(Usu.Email);
         GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo));
         String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
