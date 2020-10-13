@@ -97,9 +97,9 @@ public class MostrarPartido extends Fragment {
             TraerGoles Tarea = new TraerGoles();
             Tarea.execute();
 
-            String Ruta = "https://upload.wikimedia.org/wikipedia/commons/c/c9/Boca_escudo.png";
+            String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG";
             Picasso.get().load(Ruta).into(Foto1);
-            Ruta = "https://logodownload.org/wp-content/uploads/2015/05/river-plate-logo-0.png";
+            Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG";
             Picasso.get().load(Ruta).into(Foto2);
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
             jugado.setText("El partido se jugo el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
