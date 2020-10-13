@@ -222,7 +222,6 @@ public class Inicio extends Fragment {
                         JsonElement Elemento = VecNoticias.get(i);
                         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
                         Noticia N = gson.fromJson(Elemento, Noticia.class);
-                        Log.d("conexion","Agregue la noticia: "+N.IDNoticia);
                         ListaNoticias.add(N);
                     }
                 } else {

@@ -97,8 +97,13 @@ public class Administracion extends Fragment {
         }
         protected void onPostExecute(ArrayList<TorneoSeguido> ArrayTorneos)
         {
+            int Cantidad=ArrayTorneos.size();
+            if (ArrayTorneos.size()>4)
+            {
+                Cantidad = 4;
+            }
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
-            ListaDeAdministracion.getLayoutParams().height = 155 * ArrayTorneos.size();
+            ListaDeAdministracion.getLayoutParams().height = 155 * Cantidad;
             ListaDeAdministracion.setAdapter(Adaptador);
         }
     }

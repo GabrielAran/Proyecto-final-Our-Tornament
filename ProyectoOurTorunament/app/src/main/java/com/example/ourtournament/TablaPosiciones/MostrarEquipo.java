@@ -98,7 +98,7 @@ public class MostrarEquipo extends Fragment {
         PJugados.setText(String.valueOf(E.PartidosJugados));
         GolesAFavor.setText(String.valueOf(E.GolesAFavor));
         GolesEnContra.setText(String.valueOf(E.GolesEnContra));
-        String Ruta = "https://as.com/futbol/imagenes/2019/08/28/videos/1567005433_173028_1567005806_noticia_normal.jpg";
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto);
 
         Volver.setOnClickListener(new View.OnClickListener() {

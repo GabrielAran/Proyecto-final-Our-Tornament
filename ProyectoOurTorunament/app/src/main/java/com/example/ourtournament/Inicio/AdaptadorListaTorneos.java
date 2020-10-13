@@ -181,14 +181,11 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         }
 
         protected void onPostExecute(ArrayList<Equipo> listaE) {
-            if (listaE.size() > 0)
-            {
-                Context contexto = getContext();
-                AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
-                Lista.setAdapter(Adaptador);
-                Lista.getLayoutParams().height = 154 * listaE.size();
-                Lista.setVisibility(View.VISIBLE);
-            }
+            Context contexto = getContext();
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
+            Lista.setAdapter(Adaptador);
+            Lista.getLayoutParams().height = 154 * listaE.size();
+            Lista.setVisibility(View.VISIBLE);
         }
     }
 

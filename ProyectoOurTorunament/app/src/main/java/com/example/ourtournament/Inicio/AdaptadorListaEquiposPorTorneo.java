@@ -67,9 +67,14 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
     public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista)
     {
         super(contexto,Resource,lista);
-        this._ListaEquipos = lista;
         this._Contexto = contexto;
         this._Resource = Resource;
+        if (lista.size()<1)
+        {
+            Equipo E = new Equipo(-1,"No hay equipos aún",0,0,0,0,0);
+            lista.add(E);
+        }
+        this._ListaEquipos = lista;
     }
 
     @SuppressLint("ViewHolder")
@@ -114,6 +119,11 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
                 }
             }
         });
+        if (E.IDEquipo==-1)
+        {
+            Foto.setVisibility(View.GONE);
+            Destacada.setVisibility(View.GONE);
+        }
 
         return  VistaADevolver;
     }

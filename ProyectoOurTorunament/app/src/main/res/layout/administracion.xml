@@ -30,24 +30,21 @@
             android:textSize="26dp" />
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
+        android:gravity="bottom"
         android:orientation="vertical">
         <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="match_parent"
-            android:layout_height="580dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_Perfil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="460dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
@@ -55,16 +52,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Torneos seguidos"
                     android:textColor="#FFF"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"/>
 
                 <ListView
                     android:id="@+id/ListaDeAdministracion"
-                    android:layout_width="match_parent"
+                    android:layout_width="380dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp" />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
         </ScrollView>
 
@@ -72,26 +70,22 @@
             android:id="@+id/btn_Config"
             android:layout_width="380dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bordes_rondeados_fondoverde"
             android:text="Configuración"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_Perfil"
             android:layout_width="380dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bordes_rondeados_fondoverde"
             android:text="Perfil"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_Config"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
 </LinearLayout>

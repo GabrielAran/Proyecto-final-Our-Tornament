@@ -16,9 +16,9 @@
          />
     <ImageView
         android:id="@+id/LogoEquipo1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="0dp"
         android:src="@drawable/icono_equipo"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/Equipo1"
@@ -27,9 +27,9 @@
 
     <ImageView
         android:id="@+id/LogoEquipo2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="0dp"
         android:padding="10dp"
         android:src="@drawable/icono_equipo"
         app:layout_constraintBottom_toTopOf="@+id/Equipo2"
