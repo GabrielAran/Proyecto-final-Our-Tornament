@@ -16,19 +16,21 @@
          />
     <ImageView
         android:id="@+id/LogoEquipo1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/icono_equipo"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/Equipo1"
         app:layout_constraintEnd_toEndOf="@+id/Equipo1"
         app:layout_constraintStart_toStartOf="@+id/Equipo1" />
 
     <ImageView
         android:id="@+id/LogoEquipo2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
+        android:padding="10dp"
         android:src="@drawable/icono_equipo"
         app:layout_constraintBottom_toTopOf="@+id/Equipo2"
         app:layout_constraintEnd_toEndOf="@+id/Equipo2"
@@ -75,7 +77,7 @@
         app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.920" />
 
     <TextView
         android:id="@+id/Equipo2"
@@ -90,7 +92,7 @@
         app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.886" />
+        app:layout_constraintVertical_bias="0.920" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

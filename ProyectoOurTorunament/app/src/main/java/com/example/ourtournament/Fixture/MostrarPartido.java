@@ -96,15 +96,15 @@ public class MostrarPartido extends Fragment {
         {
             TraerGoles Tarea = new TraerGoles();
             Tarea.execute();
-
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG";
-            Picasso.get().load(Ruta).into(Foto1);
-            Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG";
-            Picasso.get().load(Ruta).into(Foto2);
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
             jugado.setText("El partido se jugo el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
 
         }
+
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG";
+        Picasso.get().load(Ruta).into(Foto1);
+        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG";
+        Picasso.get().load(Ruta).into(Foto2);
 
         Jorn.setText("Jornada "+Par.Jornada);
         E1.setText(Par.NombreEquipoLocal);

@@ -107,7 +107,6 @@ public class MostrarUsuario extends Fragment {
                     JsonObject Us = parseador.parse(lectorJSon).getAsJsonObject();
                     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
                     U = gson.fromJson(Us, Usuario.class);
-                    Log.d("conexion","Traje al usuario: "+U.FechaDeNacimiento.getYear());
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
                 }
@@ -120,7 +119,10 @@ public class MostrarUsuario extends Fragment {
         }
         protected void onPostExecute(Usuario U)
         {
-            Period edad = Period.between(LocalDate.of(2003, 5, 8), LocalDate.now());
+            int Anio = U.FechaDeNacimiento.getYear();
+            int Mes = U.FechaDeNacimiento.getMonth();
+            int Dia = U.FechaDeNacimiento.getDay();
+            Period edad = Period.between(LocalDate.of(Anio, Mes, Dia), LocalDate.now());
             Edad.setText(String.valueOf(edad.getYears()));
 
             Nombre.setText(G.NombreUsuario1);
