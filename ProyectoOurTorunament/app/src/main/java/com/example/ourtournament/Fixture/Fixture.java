@@ -54,7 +54,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Fixture extends Fragment {
     FragmentManager AdminFragments;
-    FragmentTransaction TransaccionesDeFragment;
+    View VistaADevolver = null;
     ListView ListView;
     ImageView Carga;
     int ID;
@@ -63,16 +63,15 @@ public class Fixture extends Fragment {
     ArrayList<Partido> listaPartidos = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-
-        View VistaADevolver;
-        VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
-        ListView = VistaADevolver.findViewById(R.id.ListaPartidos);
-        spinner = VistaADevolver.findViewById(R.id.Jornadas);
-        Carga = VistaADevolver.findViewById(R.id.Carga);
-        AdminFragments=getFragmentManager();
+        if (VistaADevolver == null) {
+            VistaADevolver = inflador.inflate(R.layout.fixture, GrupoDeLaVista, false);
+            ListView = VistaADevolver.findViewById(R.id.ListaPartidos);
+            spinner = VistaADevolver.findViewById(R.id.Jornadas);
+            Carga = VistaADevolver.findViewById(R.id.Carga);
+            AdminFragments=getFragmentManager();
+        }
 
         Animacion();
-
         final MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
         ID = P.ObtenerInt("IDTorneo",-1);

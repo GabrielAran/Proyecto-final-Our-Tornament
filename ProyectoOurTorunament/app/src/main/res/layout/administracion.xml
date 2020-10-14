@@ -48,6 +48,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Torneos Participados"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"/>
+
+                <ListView
+                    android:id="@+id/ListaTorneosParticipados"
+                    android:layout_width="380dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp" />
+                <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -58,7 +74,7 @@
                     android:textSize="20dp"/>
 
                 <ListView
-                    android:id="@+id/ListaDeAdministracion"
+                    android:id="@+id/ListaTorneosSeguidos"
                     android:layout_width="380dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"

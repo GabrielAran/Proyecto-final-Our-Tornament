@@ -59,7 +59,6 @@ public class MainActivity<task> extends AppCompatActivity {
     TablaPosiciones tabladeposiciones = new TablaPosiciones();
     Administracion admin = new Administracion();
 
-    ArrayList<Noticia> ListaNoticias;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -93,25 +92,7 @@ public class MainActivity<task> extends AppCompatActivity {
         BTNInicio = findViewById(R.id.Inicio);
         BTNTablaDeGoleadores = findViewById(R.id.TablaDeGoleadores);
         BTNAdministracion = findViewById(R.id.Administracion);
-        CargarInicio();
         IrAInicio(null);
-    }
-
-    //Inicio
-    public void CargarInicio()
-    {
-        int IDNoticia=1;
-        String Torneo = "Europa league";
-        String Titulo = "Boca y river empatan 8 a 8";
-        String Descripcion = "el partido se llevo a cabo en una maniana calurosa donde river convertia 2 goles y boca 0";
-        Boolean Destacada = true;
-        int Foto = 1;
-        Date Fecha = new Date(2/2/2020);
-        Noticia UnaNoticia = new Noticia(IDNoticia,Torneo,Titulo,Descripcion,Destacada,Foto,Fecha);
-        ListaNoticias = new ArrayList<>();
-        ListaNoticias.add(UnaNoticia);
-        ListaNoticias.add(UnaNoticia);
-        ListaNoticias.add(UnaNoticia);
     }
 
     //Navegacion
@@ -153,7 +134,6 @@ public class MainActivity<task> extends AppCompatActivity {
     }
 
     //Inicio
-    public ArrayList<Noticia> getNoticias(){return ListaNoticias;}
 
     public void CambiarColor()
     {

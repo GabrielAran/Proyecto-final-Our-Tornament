@@ -21,13 +21,13 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdaptadorTorneos extends ArrayAdapter<TorneoSeguido> {
-    private ArrayList<TorneoSeguido> _ListaTorneos;
+public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
+    private ArrayList<Torneo> _ListaTorneos;
     private Context _Contexto;
     private int _Resource;
     private int _IDTorneo;
 
-    public AdaptadorTorneos(Context contexto, int Resource, ArrayList<TorneoSeguido> ListaTorneos) {
+    public AdaptadorTorneos(Context contexto, int Resource, ArrayList<Torneo> ListaTorneos) {
         super(contexto, Resource, ListaTorneos);
         this._ListaTorneos = ListaTorneos;
         this._Contexto = contexto;
