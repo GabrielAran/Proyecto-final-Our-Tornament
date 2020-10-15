@@ -15,7 +15,7 @@ namespace OurTournamentAPI.Controllers
         {
             List<Models.Torneo> Lista = new List<Models.Torneo>();
             QQSM Conexion = new QQSM();
-            Lista = Conexion.TorneosSeguidosPorUsuario(IDUsuario);
+            Lista = Conexion.TraerTorneosSeguidosPorUsuario(IDUsuario);
             if (Lista != null)
             {
                 return Ok(Lista);
@@ -25,7 +25,24 @@ namespace OurTournamentAPI.Controllers
                 return NotFound();
             }
         }
-        
+
+        [HttpGet]
+        [Route("api/GetTorneosParticipadosPorUsuario/Usuario/{IDUsuario}")]
+        public IHttpActionResult ObtenerTorneosParticipadosPorUsuario(int IDUsuario)
+        {
+            List<Models.Torneo> Lista = new List<Models.Torneo>();
+            QQSM Conexion = new QQSM();
+            Lista = Conexion.TraerTorneosParticipadosPorUsuario(IDUsuario);
+            if (Lista != null)
+            {
+                return Ok(Lista);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
         [System.Web.Http.Route("api/InsertTorneosSeguidos")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarTorneoSeguidoPorUsuario(List<int> LISTA)

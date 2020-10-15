@@ -217,9 +217,9 @@ namespace OurTournamentAPI
 
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {
             String C = "select Usuarios.IDUsuario,NombreDeUsuario, Equipos.NombreEquipo,GolesEnTorneo from Usuarios inner join" +
-                " TorneosParticipadosXUsuario on Usuarios.IDUsuario = TorneosParticipadosXUsuario.IDUsuario inner join JugadoresXEquipos" +
-                " on JugadoresXEquipos.IDUsuario = Usuarios.IDUsuario inner join Equipos on Equipos.IDEquipo = JugadoresXEquipos.IDEquipo" +
-                " where TorneosParticipadosXUsuario.IDTorneo = " + IDTorneo + " order by Usuarios.GolesEnTorneo desc";
+                " TorneosParticipadosXUsuario on Usuarios.IDUsuario = TorneosParticipadosXUsuario.IDUsuario inner join Equipos" +
+                " on Equipos.IDEquipo = TorneosParticipadosXUsuario.IDEquipo where TorneosParticipadosXUsuario.IDTorneo = " + IDTorneo +
+                " order by Usuarios.GolesEnTorneo desc";
             SqlDataReader Lector = HacerSelect(C);
             List<Models.Goleadores> Tablagoleadores = new List<Models.Goleadores>();
             Models.Goleadores UnGoleador = new Models.Goleadores();
@@ -241,8 +241,8 @@ namespace OurTournamentAPI
         {
             String C = "select IDPartido, GolesXUsuarioXPartidos.IDUsuario,NombreDeUsuario,CantidadGoles," +
                 "Equipos.NombreEquipo from GolesXUsuarioXPartidos inner join Usuarios on Usuarios.IDUsuario = " +
-                "GolesXUsuarioXPartidos.IDUsuario inner join JugadoresXEquipos on JugadoresXEquipos.IDUsuario = " +
-                "Usuarios.IDUsuario inner join Equipos on JugadoresXEquipos.IDEquipo = Equipos.IDEquipo where " +
+                "GolesXUsuarioXPartidos.IDUsuario inner join TorneosParticipadosXUsuario on TorneosParticipadosXUsuario.IDUsuario = " +
+                "Usuarios.IDUsuario inner join Equipos on TorneosParticipadosXUsuario.IDEquipo = Equipos.IDEquipo where " +
                 "GolesXUsuarioXPartidos.IDPartido = " + IDPartido;
             SqlDataReader Lector = HacerSelect(C);
             List<Models.GolesXUsuario> Goles = new List<Models.GolesXUsuario>();
@@ -333,9 +333,9 @@ namespace OurTournamentAPI
             return UnUsuario;
         }
 
-        public List<Models.Torneo> TorneosSeguidosPorUsuario(int IDUsuario)
+        public List<Models.Torneo> TraerTorneosSeguidosPorUsuario(int IDUsuario)
         {
-            String C = "Select Torneos.IDTorneo,NombreTorneo,ContraseniaDeAdministrador,LinkParaUnirse,TorneosParticipadosXUsuario.IDUsuario from Torneos inner join TorneosParticipadosXUsuario on Torneos.IDTorneo = TorneosParticipadosXUsuario.IDTorneo where TorneosParticipadosXUsuario.IDUsuario =  " + IDUsuario;
+            String C = "SELECT Torneos.* FROM Torneos LEFT JOIN SeguidoresXTorneos ON Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo AND SeguidoresXTorneos.IDUsuario = " + IDUsuario + " where SeguidoresXTorneos.IDUsuario IS NOT NULL order by Torneos.NombreTorneo ASC";
             SqlDataReader Lector = HacerSelect(C);
             List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
             Models.Torneo UnTorneo = new Models.Torneo();
@@ -346,7 +346,27 @@ namespace OurTournamentAPI
                 string NombreTorneo = Convert.ToString(Lector["NombreTorneo"]);
                 string ContraseniaDeAdministrador = Convert.ToString(Lector["ContraseniaDeAdministrador"]);
                 string LinkParaUnirse = Convert.ToString(Lector["LinkParaUnirse"]);
-                int IdUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+
+                UnTorneo = new Models.Torneo(IdTorneo, NombreTorneo, ContraseniaDeAdministrador, LinkParaUnirse);
+                TorneosSeguidosPorUsuario.Add(UnTorneo);
+            }
+            Desconectar(con);
+            return TorneosSeguidosPorUsuario;
+        }
+
+        public List<Models.Torneo> TraerTorneosParticipadosPorUsuario(int IDUsuario)
+        {
+            String C = "SELECT Torneos.* FROM Torneos LEFT JOIN TorneosParticipadosXUsuario ON Torneos.IDTorneo = TorneosParticipadosXUsuario.IDTorneo AND TorneosParticipadosXUsuario.IDUsuario = "+IDUsuario+" where TorneosParticipadosXUsuario.IDUsuario IS NOT NULL order by Torneos.NombreTorneo ASC";
+            SqlDataReader Lector = HacerSelect(C);
+            List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
+            Models.Torneo UnTorneo = new Models.Torneo();
+
+            while (Lector.Read())
+            {
+                int IdTorneo = Convert.ToInt32(Lector["IDTorneo"]);
+                string NombreTorneo = Convert.ToString(Lector["NombreTorneo"]);
+                string ContraseniaDeAdministrador = Convert.ToString(Lector["ContraseniaDeAdministrador"]);
+                string LinkParaUnirse = Convert.ToString(Lector["LinkParaUnirse"]);
 
                 UnTorneo = new Models.Torneo(IdTorneo, NombreTorneo, ContraseniaDeAdministrador, LinkParaUnirse);
                 TorneosSeguidosPorUsuario.Add(UnTorneo);
@@ -390,7 +410,7 @@ namespace OurTournamentAPI
 
         public List<Models.Usuario> TraerJugadoresXEquipos(int IDEquipo)
         {
-            String C = "select * from Usuarios inner join JugadoresXEquipos on Usuarios.IDUsuario = JugadoresXEquipos.IDUsuario where JugadoresXEquipos.IDEquipo = " + IDEquipo;
+            String C = "select * from Usuarios inner join TorneosParticipadosXUsuario on Usuarios.IDUsuario = TorneosParticipadosXUsuario.IDUsuario where TorneosParticipadosXUsuario.IDEquipo = " + IDEquipo;
             SqlDataReader Lector = HacerSelect(C);
             List<Models.Usuario> ListaUsuarios = new List<Models.Usuario>();
             Models.Usuario UnUsuario = new Models.Usuario();
@@ -413,7 +433,7 @@ namespace OurTournamentAPI
         public bool InstertarJugadoresXEquipos(List<int> lista)
         {
             bool Devolver;
-            String C = "insert into JugadoresXEquipos (IDUsuario,IDEquipo) values (IDUsuario =  " + lista[0] + " and IDEquipo = " + lista[1] + ")";
+            String C = "insert into TorneosParticipadosXUsuario (IDUsuario,IDEquipo) values (IDUsuario =  " + lista[0] + " and IDEquipo = " + lista[1] + ")";
             return Devolver = HacerInsertODelete(C);
         }
     }

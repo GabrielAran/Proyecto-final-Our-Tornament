@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
@@ -16,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.TorneoSeguido;
@@ -31,16 +34,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.Principal;
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
     private ArrayList<TorneoSeguido> _ListaTorneos;
     private Context _Contexto;
-    private int _Resource;    private int _IDTorneo;
-
+    private int _Resource;
+    private int _IDTorneo;
     private ListView Lista;
     private int IDUsuario;
+    private DialogInterface.OnClickListener Aceptar;
 
     public AdaptadorListaTorneos(Context contexto, int Resource, ArrayList<TorneoSeguido> ListaTorneos, int IDTorneo, int Idusuario) {
         super(contexto, Resource, ListaTorneos);
@@ -61,7 +66,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
 
         final ListView lista;
         final boolean[] bool = {false};
-        final Button Seguir, VerEquipos;
+        final Button Seguir,VerEquipos;
         final CircleImageView FotoPerfil;
         TextView NombreTorneo;
 
@@ -127,16 +132,36 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                     Seguir.setTextColor(Color.rgb(60, 188, 128));
                     T.Siguiendo = true;
                 } else{
-                    EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
-                    Tarea.execute(IDUsuario,T.IDTorneo);
-                    Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
-                    Seguir.setText("seguir");
-                    Seguir.setTextColor(Color.rgb(0, 0, 0));
-                    T.Siguiendo = false;
+
+                    /*
+                    AlertDialog.Builder Alerta = new AlertDialog.Builder(getContext());
+                    Alerta.setPositiveButton("Aceptar",Aceptar(Seguir));
+                    Alerta.setNegativeButton("Cancelar",null);
+                    Alerta.setTitle("Dejar de seguir");
+                    Alerta.setMessage("Deseas dejar de seguir al torneo "+T.NombreTorneo);
+                    Alerta.create();
+                    Alerta.show();
+
+                     */
                 }
 
             }
         });
+
+        /*
+        Aceptar = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
+                Tarea.execute(IDUsuario,T.IDTorneo);
+                Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
+                Seguir.setText("seguir");
+                Seguir.setTextColor(Color.rgb(0, 0, 0));
+                T.Siguiendo = false;
+            }
+        };
+
+         */
         return VistaADevolver;
     }
 
