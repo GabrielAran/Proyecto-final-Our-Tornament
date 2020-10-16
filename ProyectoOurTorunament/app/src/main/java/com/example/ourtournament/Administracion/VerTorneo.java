@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -28,6 +29,7 @@ public class VerTorneo extends Fragment{
     Preferencias P;
     ImageView Perfil;
     Button Volver;
+    TextView NombreTorneo;
     View VistaADevolver = null;
     Torneo T;
     @Override
@@ -37,6 +39,7 @@ public class VerTorneo extends Fragment{
             VistaADevolver = inflador.inflate(R.layout.administrar_torneo, GrupoDeLaVista, false);
             Perfil = VistaADevolver.findViewById(R.id.foto);
             Volver = VistaADevolver.findViewById(R.id.Volver);
+            NombreTorneo = VistaADevolver.findViewById(R.id.NombreTorneo);
             Principal = (MainActivity) getActivity();
             P = Principal.CargarSharedPreferences();
         }
@@ -71,6 +74,7 @@ public class VerTorneo extends Fragment{
                     }
 
                 });
+        NombreTorneo.setText(T.NombreTorneo);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override

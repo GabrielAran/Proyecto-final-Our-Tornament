@@ -51,22 +51,32 @@
                     android:layout_marginLeft="40dp"
                     android:src="@drawable/icono_equipo" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/Seguidores"
+                        android:id="@+id/NombreTorneo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="Nombre torneo"
+                        android:textColor="#FFF"
+                        android:gravity="center"
+                        android:textSize="26sp" />
+                    <TextView
+                        android:id="@+id/Seguidores"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
                         android:text="0"
                         android:textColor="#FFF"
                         android:gravity="center"
                         android:textSize="24sp" />
                     <TextView
                         android:id="@+id/Palabra"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:layout_marginLeft="20dp"
@@ -86,7 +96,7 @@
                 android:textColor="#000"
                 android:paddingLeft="60dp"
                 android:gravity="center_vertical"
-                android:background="#C6FFFFFF"
+                android:background="@drawable/fondo_barra"
                 android:textSize="24sp" />
             <TextView
                 android:id="@+id/Equipos"
@@ -97,7 +107,7 @@
                 android:textColor="#000"
                 android:paddingLeft="60dp"
                 android:gravity="center_vertical"
-                android:background="#C6FFFFFF"
+                android:background="@drawable/fondo_barra"
                 android:textSize="24dp" />
             <TextView
                 android:id="@+id/Partidos"
@@ -108,7 +118,7 @@
                 android:paddingLeft="60dp"
                 android:textColor="#000"
                 android:gravity="center_vertical"
-                android:background="#C6FFFFFF"
+                android:background="@drawable/fondo_barra"
                 android:textSize="24sp"
             />
             <TextView
@@ -120,7 +130,7 @@
                 android:paddingLeft="60dp"
                 android:textColor="#000"
                 android:gravity="center_vertical"
-                android:background="#C6FFFFFF"
+                android:background="@drawable/fondo_barra"
                 android:textSize="24sp" />
         </LinearLayout>
     </ScrollView>

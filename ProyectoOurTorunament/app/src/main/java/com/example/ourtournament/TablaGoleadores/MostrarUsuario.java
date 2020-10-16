@@ -122,8 +122,8 @@ public class MostrarUsuario extends Fragment {
             int Anio = U.FechaDeNacimiento.getYear();
             int Mes = U.FechaDeNacimiento.getMonth();
             int Dia = U.FechaDeNacimiento.getDay();
-            Period edad = Period.between(LocalDate.of(Anio, Mes, Dia), LocalDate.now());
-            Edad.setText(String.valueOf(edad.getYears()));
+            //Period edad = Period.between(LocalDate.of(Anio, Mes, Dia), LocalDate.now());
+            //Edad.setText(String.valueOf(edad.getYears()));
 
             Nombre.setText(G.NombreUsuario1);
             GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));
