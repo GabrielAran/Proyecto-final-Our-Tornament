@@ -133,13 +133,16 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                     T.Siguiendo = true;
                 } else{
 
+                    /*
                     EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
                     Tarea.execute(IDUsuario,T.IDTorneo);
                     Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
                     Seguir.setText("seguir");
                     Seguir.setTextColor(Color.rgb(0, 0, 0));
                     T.Siguiendo = false;
-                    /*
+
+                     */
+
                     AlertDialog.Builder Alerta = new AlertDialog.Builder(getContext());
                     Alerta.setPositiveButton("Aceptar",Aceptar);
                     Alerta.setNegativeButton("Cancelar",null);
@@ -147,7 +150,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                     Alerta.setMessage("Deseas dejar de seguir al torneo "+T.NombreTorneo);
                     Alerta.create();
                     Alerta.show();
-                     */
+
                 }
             }
         });

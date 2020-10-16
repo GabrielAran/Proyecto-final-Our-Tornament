@@ -143,7 +143,7 @@ public class Administracion extends Fragment {
             }
             return ArrayTorneos;
         }
-        protected void onPostExecute(ArrayList<Torneo> ArrayTorneos)
+        protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
         {
             int Cantidad=ArrayTorneos.size();
             if (ArrayTorneos.size()>4)
@@ -158,7 +158,9 @@ public class Administracion extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MainActivity Principal = (MainActivity) getActivity();
                     P.GuardarInt("TorneoElegido",i);
+                    P.GuardarListaTorneos("ListaTorneos",ArrayTorneos);
                     VerTorneo VT = new VerTorneo();
+                    VT.setTorneoElegido(ArrayTorneos.get(i));
                     Principal.IrAFragment(VT);
                 }
             });

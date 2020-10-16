@@ -25,6 +25,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class VerTorneo extends Fragment{
+
+    Torneo torneoElegido = null;
     MainActivity Principal;
     Preferencias P;
     ImageView Perfil;
@@ -32,6 +34,11 @@ public class VerTorneo extends Fragment{
     TextView NombreTorneo;
     View VistaADevolver = null;
     Torneo T;
+
+    public void setTorneoElegido(Torneo torneoElegido) {
+        this.torneoElegido = torneoElegido;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         if (VistaADevolver == null)
@@ -51,17 +58,18 @@ public class VerTorneo extends Fragment{
         {
             try {
                 JsonParser parseador = new JsonParser();
-                JsonArray VecPartidos = parseador.parse(ListaTorneos).getAsJsonArray();
-                JsonElement Elemento = VecPartidos.get(Torneo);
+                JsonArray VecTorneos = parseador.parse(ListaTorneos).getAsJsonArray();
+                JsonElement Elemento = VecTorneos.get(Torneo);
                 Gson gson = new Gson();
                 T = gson.fromJson(Elemento, Torneo.class);
+                Log.d("conexion","Traje torneo "+T.IDTorneo);
 
             } catch (Exception e) {
                 Log.d("conexion","Hubo un error:"+e);
             }
         }
 
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+T.IDTorneo+"_Perfil.JPG";
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+torneoElegido.IDTorneo+"_Perfil.JPG";
         Picasso.get().load(Ruta)
                 .into(Perfil, new com.squareup.picasso.Callback() {
                     @Override
@@ -74,7 +82,7 @@ public class VerTorneo extends Fragment{
                     }
 
                 });
-        NombreTorneo.setText(T.NombreTorneo);
+        NombreTorneo.setText(torneoElegido.NombreTorneo);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package com.example.ourtournament.TablaGoleadores;
 
 
 import android.app.Fragment;
+import android.graphics.YuvImage;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -119,11 +121,17 @@ public class MostrarUsuario extends Fragment {
         }
         protected void onPostExecute(Usuario U)
         {
-            int Anio = U.FechaDeNacimiento.getYear();
-            int Mes = U.FechaDeNacimiento.getMonth();
-            int Dia = U.FechaDeNacimiento.getDay();
-            //Period edad = Period.between(LocalDate.of(Anio, Mes, Dia), LocalDate.now());
-            //Edad.setText(String.valueOf(edad.getYears()));
+            Log.d("conexion",String.valueOf(U.FechaDeNacimiento));
+
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(U.FechaDeNacimiento);
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            //Log.d("conexion",String.valueOf(Anio));
+            Period edad = Period.between(LocalDate.of(year, month, day), LocalDate.now());
+            Edad.setText(String.valueOf(edad.getYears()));
 
             Nombre.setText(G.NombreUsuario1);
             GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));
