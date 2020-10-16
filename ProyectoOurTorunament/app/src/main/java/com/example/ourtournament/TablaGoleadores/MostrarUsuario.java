@@ -56,27 +56,6 @@ public class MostrarUsuario extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.un_usuario, GrupoDeLaVista, false);
         Find(VistaADevolver);
 
-        Principal = (MainActivity) getActivity();
-        P = Principal.CargarSharedPreferences();
-
-        String JSON = P.ObtenerString("ListaGoleadores","...");
-        int GoleadorElegido = P.ObtenerInt("GoleadorElegido",-1);
-
-        if (!JSON.equals("..."))
-        {
-            try {
-                JsonParser parseador = new JsonParser();
-                JsonArray VecGoleadores = parseador.parse(JSON).getAsJsonArray();
-                JsonElement Elemento = VecGoleadores.get(GoleadorElegido);
-                Gson gson = new Gson();
-                G = gson.fromJson(Elemento, Goleadores.class);
-
-            } catch (Exception e) {
-                Log.d("conexion","Hubo un error:"+e);
-            }
-
-        }
-
         TraerUsuario Tarea = new TraerUsuario();
         Tarea.execute();
 
@@ -89,6 +68,11 @@ public class MostrarUsuario extends Fragment {
             }
         });
         return VistaADevolver;
+    }
+
+    public void SetGoleadorElegido(Goleadores goleadores)
+    {
+        G = goleadores;
     }
 
     private class TraerUsuario extends AsyncTask<Void,Void,Usuario> {

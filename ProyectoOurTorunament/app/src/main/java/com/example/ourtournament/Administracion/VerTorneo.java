@@ -34,10 +34,6 @@ public class VerTorneo extends Fragment{
     TextView NombreTorneo;
     View VistaADevolver = null;
 
-    public void setTorneoElegido(Torneo torneoElegido) {
-        T = torneoElegido;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         if (VistaADevolver == null)
@@ -75,6 +71,10 @@ public class VerTorneo extends Fragment{
         });
 
         return VistaADevolver;
+    }
+
+    public void setTorneoElegido(Torneo torneoElegido) {
+        T = torneoElegido;
     }
 
 }

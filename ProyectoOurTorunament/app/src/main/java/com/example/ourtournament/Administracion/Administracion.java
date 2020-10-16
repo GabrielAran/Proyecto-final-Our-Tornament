@@ -101,10 +101,8 @@ public class Administracion extends Fragment {
             ListaSeguidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    MainActivity Principal = (MainActivity) getActivity();
-                    P.GuardarInt("TorneoElegido",i);
-                    P.GuardarListaTorneos("ListaTorneos",ArrayTorneos);
                     VerTorneo VT = new VerTorneo();
+                    VT.setTorneoElegido(ArrayTorneos.get(i));
                     Principal.IrAFragment(VT);
                 }
             });
@@ -156,9 +154,6 @@ public class Administracion extends Fragment {
             ListaParticipados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    MainActivity Principal = (MainActivity) getActivity();
-                    P.GuardarInt("TorneoElegido",i);
-                    P.GuardarListaTorneos("ListaTorneos",ArrayTorneos);
                     VerTorneo VT = new VerTorneo();
                     VT.setTorneoElegido(ArrayTorneos.get(i));
                     Principal.IrAFragment(VT);

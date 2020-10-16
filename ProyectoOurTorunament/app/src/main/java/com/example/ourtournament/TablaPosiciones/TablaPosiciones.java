@@ -67,14 +67,6 @@ public class TablaPosiciones extends Fragment {
         SetDeAnimacion.start();
         ID = P.ObtenerInt("IDTorneo",-1);
 
-        listaposiciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                P.GuardarInt("EquipoElegido",i);
-                MostrarEquipo MP = new MostrarEquipo();
-                Principal.IrAFragment(MP);
-            }
-        });
         if(ID!=-1)
         {
             TraerPosiciones Tarea = new TraerPosiciones();
@@ -115,11 +107,18 @@ public class TablaPosiciones extends Fragment {
             }
             return VecPosiciones;
         }
-        protected void onPostExecute(ArrayList<Equipo> VecPosiciones)
+        protected void onPostExecute(final ArrayList<Equipo> VecPosiciones)
         {
-            P.GuardarListaEquipos("ListaEquipos",VecPosiciones);
             AdaptadorListaPosiciones Adaptador = new AdaptadorListaPosiciones(Principal,R.layout.item_lista_posiciones,VecPosiciones);
             listaposiciones.setAdapter(Adaptador);
+            listaposiciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    MostrarEquipo MP = new MostrarEquipo();
+                    MP.SetEquipoElegido(VecPosiciones.get(i));
+                    Principal.IrAFragment(MP);
+                }
+            });
             Carga.setVisibility(View.GONE);
         }
     }

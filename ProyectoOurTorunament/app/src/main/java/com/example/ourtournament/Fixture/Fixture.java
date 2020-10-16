@@ -128,16 +128,15 @@ public class Fixture extends Fragment {
         protected void onPostExecute(final ArrayList<Partido> lista)
         {
             Carga.setVisibility(View.GONE);
-            MainActivity Principal = (MainActivity) getActivity();
+            final MainActivity Principal = (MainActivity) getActivity();
             AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
             P.GuardarListaPartidos("ListaPartidos",lista);
             ListView.setAdapter(Adaptador);
             ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    MainActivity Principal = (MainActivity) getActivity();
-                    P.GuardarInt("PartidoElegido",i);
                     MostrarPartido MP = new MostrarPartido();
+                    MP.SetPartidoElegido(lista.get(i));
                     Principal.IrAFragment(MP);
                 }
             });

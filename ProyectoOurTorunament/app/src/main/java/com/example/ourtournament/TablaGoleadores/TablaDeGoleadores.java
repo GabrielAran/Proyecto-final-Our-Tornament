@@ -62,14 +62,6 @@ public class TablaDeGoleadores extends Fragment {
             TraerGoleadores ASync = new TraerGoleadores();
             ASync.execute();
         }
-        ListaView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                P.GuardarInt("GoleadorElegido",i);
-                MostrarUsuario MU = new MostrarUsuario();
-                Principal.IrAFragment(MU);
-            }
-        });
 
         return VistaADevolver;
     }
@@ -106,11 +98,18 @@ public class TablaDeGoleadores extends Fragment {
             }
             return VecGoleadores;
         }
-        protected void onPostExecute(ArrayList<Goleadores> VecGoleadores)
+        protected void onPostExecute(final ArrayList<Goleadores> VecGoleadores)
         {
-            P.GuardarListaGoleadores("ListaGoleadores",VecGoleadores);
             AdaptadorListaGoleadores Adapter = new AdaptadorListaGoleadores(Principal,R.layout.item_tabla_goleadores,VecGoleadores);
             ListaView.setAdapter(Adapter);
+            ListaView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    MostrarUsuario MU = new MostrarUsuario();
+                    MU.SetGoleadorElegido(VecGoleadores.get(i));
+                    Principal.IrAFragment(MU);
+                }
+            });
             Carga.setVisibility(View.GONE);
         }
     }

@@ -56,25 +56,6 @@ public class MostrarPartido extends Fragment {
         VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
 
         finds(VistaADevolver);
-        MainActivity Principal = (MainActivity) getActivity();
-        P = Principal.CargarSharedPreferences();
-        String JSON = P.ObtenerString("ListaPartidos","...");
-        int PartidoElegido = P.ObtenerInt("PartidoElegido",-1);
-
-        if (JSON != "...")
-        {
-            try {
-                JsonParser parseador = new JsonParser();
-                JsonArray VecPartidos = parseador.parse(JSON).getAsJsonArray();
-                JsonElement Elemento = VecPartidos.get(PartidoElegido);
-                Gson gson = new Gson();
-                Par = gson.fromJson(Elemento, Partido.class);
-
-            } catch (Exception e) {
-                Log.d("conexion","Hubo un error:"+e);
-            }
-
-        }
 
         if (Par.GolesLocal == -1)
         {
@@ -120,6 +101,11 @@ public class MostrarPartido extends Fragment {
         });
 
         return VistaADevolver;
+    }
+
+    public void SetPartidoElegido(Partido partido)
+    {
+        Par = partido;
     }
 
     public void finds(View VistaADevolver)

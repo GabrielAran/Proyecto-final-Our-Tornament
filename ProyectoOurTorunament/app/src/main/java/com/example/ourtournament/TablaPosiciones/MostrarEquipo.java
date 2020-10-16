@@ -3,6 +3,7 @@ package com.example.ourtournament.TablaPosiciones;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.media.audiofx.DynamicsProcessing;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Telephony;
@@ -53,7 +54,6 @@ public class MostrarEquipo extends Fragment {
     ListView ListaJugadores;
     AdaptadorListaJugadores Adaptador;
     MainActivity Principal;
-    Preferencias P;
     Equipo E;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -68,29 +68,8 @@ public class MostrarEquipo extends Fragment {
         Foto = VistaADevolver.findViewById(R.id.foto);
         Volver = VistaADevolver.findViewById(R.id.Volver);
         ListaJugadores = VistaADevolver.findViewById(R.id.ListaJugadores);
-
         Principal = (MainActivity) getActivity();
-        P = Principal.CargarSharedPreferences();
 
-        String JSON = P.ObtenerString("ListaEquipos","...");
-        int EquipoElegido = P.ObtenerInt("EquipoElegido",-1);
-
-        if (!JSON.equals("..."))
-        {
-            try {
-                JsonParser parseador = new JsonParser();
-                JsonArray VecPartidos = parseador.parse(JSON).getAsJsonArray();
-                JsonElement Elemento = VecPartidos.get(EquipoElegido);
-                Gson gson = new Gson();
-                Log.d("conexion","hasta aca estoy bien");
-                E = gson.fromJson(Elemento, Equipo.class);
-                Log.d("conexion",E.Nombre);
-
-            } catch (Exception e) {
-                Log.d("conexion","Hubo un error:"+e);
-            }
-
-        }
         TraerJugadores Tarea = new TraerJugadores();
         Tarea.execute();
         Nombre.setText(E.Nombre);
@@ -110,6 +89,11 @@ public class MostrarEquipo extends Fragment {
             }
         });
         return VistaADevolver;
+    }
+
+    public void SetEquipoElegido(Equipo equipo)
+    {
+        E = equipo;
     }
 
     private class TraerJugadores extends AsyncTask<Void,Void,ArrayList<Usuario>>
