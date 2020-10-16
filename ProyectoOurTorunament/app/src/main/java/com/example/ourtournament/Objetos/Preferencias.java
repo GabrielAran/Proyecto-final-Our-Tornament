@@ -86,5 +86,11 @@ public class Preferencias{
         String json = gson.toJson(dato);
         editor.putString(Clave,json);
     }
+    public void GuardarListaGoleadores(String Clave, Object dato)
+    {
+        Gson gson = new Gson();
+        String json = gson.toJson(dato);
+        editor.putString(Clave,json);
+    }
 
 }

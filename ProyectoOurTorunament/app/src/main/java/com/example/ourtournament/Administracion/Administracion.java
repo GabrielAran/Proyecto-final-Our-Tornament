@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 
+import com.example.ourtournament.Fixture.MostrarPartido;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Torneo;
@@ -31,12 +33,11 @@ import java.util.ArrayList;
 
 public class Administracion extends Fragment {
     FragmentManager AdminFragments;
-    Button btn_Perfil, btn_Config;
+    Button btn_Perfil, btn_Config,INV1,INV2;
     View VistaADevolver = null;
     private FragmentTransaction TransaccionesDeFragment;
     AdaptadorTorneos Adaptador;
-    ListView ListaSeguidos;
-    ListView ListaParticipados;
+    ListView ListaSeguidos,ListaParticipados;
     MainActivity Principal;
     Preferencias P;
     int IDUsuario;
@@ -87,7 +88,7 @@ public class Administracion extends Fragment {
             }
             return ArrayTorneos;
         }
-        protected void onPostExecute(ArrayList<Torneo> ArrayTorneos)
+        protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
         {
             int Cantidad=ArrayTorneos.size();
             if (ArrayTorneos.size()>5)
@@ -97,6 +98,16 @@ public class Administracion extends Fragment {
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
             ListaSeguidos.getLayoutParams().height = 155 * Cantidad;
             ListaSeguidos.setAdapter(Adaptador);
+            ListaSeguidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    MainActivity Principal = (MainActivity) getActivity();
+                    P.GuardarInt("TorneoElegido",i);
+                    P.GuardarListaGoleadores("ListaTorneos",ArrayTorneos);
+                    VerTorneo VT = new VerTorneo();
+                    Principal.IrAFragment(VT);
+                }
+            });
         }
     }
 
@@ -142,6 +153,15 @@ public class Administracion extends Fragment {
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
             ListaParticipados.getLayoutParams().height = 155 * Cantidad;
             ListaParticipados.setAdapter(Adaptador);
+            ListaParticipados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    MainActivity Principal = (MainActivity) getActivity();
+                    P.GuardarInt("TorneoElegido",i);
+                    VerTorneo VT = new VerTorneo();
+                    Principal.IrAFragment(VT);
+                }
+            });
         }
     }
     private void SetearListeners() {

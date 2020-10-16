@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212423"
+    android:orientation="vertical">
+    <!-- HEADER -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#000">
+
+        <Button
+            android:id="@+id/Volver"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:background="@drawable/flechita_volver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/foto"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/icono_equipo" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/Seguidores"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="0"
+                        android:textColor="#FFF"
+                        android:gravity="center"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/Palabra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Seguidores"
+                        android:textColor="#FFF"
+                        android:gravity="center"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/ListaDeEspera"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:text="Lista de espera"
+                android:textColor="#000"
+                android:paddingLeft="60dp"
+                android:gravity="center_vertical"
+                android:background="#C6FFFFFF"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/Equipos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:text="Equipos"
+                android:textColor="#000"
+                android:paddingLeft="60dp"
+                android:gravity="center_vertical"
+                android:background="#C6FFFFFF"
+                android:textSize="24dp" />
+            <TextView
+                android:id="@+id/Partidos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:text="Partidos"
+                android:paddingLeft="60dp"
+                android:textColor="#000"
+                android:gravity="center_vertical"
+                android:background="#C6FFFFFF"
+                android:textSize="24sp"
+            />
+            <TextView
+                android:id="@+id/Noticias"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:text="Noticias"
+                android:paddingLeft="60dp"
+                android:textColor="#000"
+                android:gravity="center_vertical"
+                android:background="#C6FFFFFF"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
