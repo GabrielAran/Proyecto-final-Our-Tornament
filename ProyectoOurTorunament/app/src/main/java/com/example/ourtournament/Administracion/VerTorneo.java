@@ -26,17 +26,16 @@ import java.util.ArrayList;
 
 public class VerTorneo extends Fragment{
 
-    Torneo torneoElegido = null;
+    Torneo T = null;
     MainActivity Principal;
     Preferencias P;
     ImageView Perfil;
     Button Volver;
     TextView NombreTorneo;
     View VistaADevolver = null;
-    Torneo T;
 
     public void setTorneoElegido(Torneo torneoElegido) {
-        this.torneoElegido = torneoElegido;
+        T = torneoElegido;
     }
 
     @Override
@@ -51,25 +50,7 @@ public class VerTorneo extends Fragment{
             P = Principal.CargarSharedPreferences();
         }
 
-        int Torneo = P.ObtenerInt("TorneoElegido",-1);
-        String ListaTorneos = P.ObtenerString("ListaTorneos","...");
-
-        if (Torneo != -1 && ListaTorneos != "...")
-        {
-            try {
-                JsonParser parseador = new JsonParser();
-                JsonArray VecTorneos = parseador.parse(ListaTorneos).getAsJsonArray();
-                JsonElement Elemento = VecTorneos.get(Torneo);
-                Gson gson = new Gson();
-                T = gson.fromJson(Elemento, Torneo.class);
-                Log.d("conexion","Traje torneo "+T.IDTorneo);
-
-            } catch (Exception e) {
-                Log.d("conexion","Hubo un error:"+e);
-            }
-        }
-
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+torneoElegido.IDTorneo+"_Perfil.JPG";
+        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+T.IDTorneo+"_Perfil.JPG";
         Picasso.get().load(Ruta)
                 .into(Perfil, new com.squareup.picasso.Callback() {
                     @Override
@@ -82,7 +63,7 @@ public class VerTorneo extends Fragment{
                     }
 
                 });
-        NombreTorneo.setText(torneoElegido.NombreTorneo);
+        NombreTorneo.setText(T.NombreTorneo);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override
