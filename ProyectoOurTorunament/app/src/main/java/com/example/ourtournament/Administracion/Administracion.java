@@ -103,7 +103,7 @@ public class Administracion extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MainActivity Principal = (MainActivity) getActivity();
                     P.GuardarInt("TorneoElegido",i);
-                    P.GuardarListaGoleadores("ListaTorneos",ArrayTorneos);
+                    P.GuardarListaTorneos("ListaTorneos",ArrayTorneos);
                     VerTorneo VT = new VerTorneo();
                     Principal.IrAFragment(VT);
                 }
