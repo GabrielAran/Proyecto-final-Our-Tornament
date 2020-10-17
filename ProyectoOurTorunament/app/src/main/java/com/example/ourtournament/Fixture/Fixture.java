@@ -59,6 +59,7 @@ public class Fixture extends Fragment {
     ImageView Carga;
     int ID;
     private Spinner spinner;
+    int JornadaElegida;
     Preferencias P;
     ArrayList<Partido> listaPartidos = new ArrayList<>();
     @Override
@@ -96,8 +97,7 @@ public class Fixture extends Fragment {
         @Override
         protected ArrayList<Partido> doInBackground(Void... voids) {
             try {
-                int Jornada = P.ObtenerInt("JornadaElegida", -1);
-                String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+Jornada+"/Torneo/"+ID;
+                String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+JornadaElegida+"/Torneo/"+ID;
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -130,7 +130,6 @@ public class Fixture extends Fragment {
             Carga.setVisibility(View.GONE);
             final MainActivity Principal = (MainActivity) getActivity();
             AdaptadorPartidos Adaptador = new AdaptadorPartidos(lista,R.layout.item_lista_partidos,Principal);
-            P.GuardarListaPartidos("ListaPartidos",lista);
             ListView.setAdapter(Adaptador);
             ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -187,7 +186,7 @@ public class Fixture extends Fragment {
 
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     i++;
-                    P.GuardarInt("JornadaElegida",i);
+                    JornadaElegida = i;
                     TraerPartidos Tarea = new TraerPartidos();
                     Tarea.execute();
                 }
@@ -195,7 +194,7 @@ public class Fixture extends Fragment {
 
                 }
             });
-            spinner.setSelection(lista.size()-1);
+            spinner.setSelection(lista.size()-1,true);
         }
     }
 

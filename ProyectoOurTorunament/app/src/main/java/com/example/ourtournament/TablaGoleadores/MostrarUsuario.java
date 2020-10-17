@@ -44,7 +44,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class MostrarUsuario extends Fragment {
-    TextView Nombre,Edad, Email, Equipo, Contrasenia,GolesEnTorneo,TXT4,TXT3;
+    TextView Nombre,Edad, Email, Equipo, Contrasenia,GolesEnTorneo;
     ImageView Foto;
     Button Volver;
     MainActivity Principal;
@@ -105,20 +105,16 @@ public class MostrarUsuario extends Fragment {
         }
         protected void onPostExecute(Usuario U)
         {
-            Log.d("conexion",String.valueOf(U.FechaDeNacimiento));
-
             Calendar calendar = new GregorianCalendar();
             calendar.setTime(U.FechaDeNacimiento);
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH) + 1;
             int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-            //Log.d("conexion",String.valueOf(Anio));
             Period edad = Period.between(LocalDate.of(year, month, day), LocalDate.now());
-            Edad.setText(String.valueOf(edad.getYears()));
+            Edad.setText(edad.getYears()+ " años");
 
             Nombre.setText(G.NombreUsuario1);
-            GolesEnTorneo.setText(String.valueOf(U.GolesEnTorneo));
+            GolesEnTorneo.setText(U.GolesEnTorneo+" goles en torneo");
             String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
             Picasso.get().load(Ruta).into(Foto);
         }
@@ -126,14 +122,9 @@ public class MostrarUsuario extends Fragment {
 
     public void Find(View Vista)
     {
-        TXT4 = Vista.findViewById(R.id.TXT4);
         Contrasenia = Vista.findViewById(R.id.Contrasenia);
         Contrasenia.setVisibility(View.GONE);
-        TXT4.setVisibility(View.GONE);
-
-        TXT3 = Vista.findViewById(R.id.TXT3);
         Email = Vista.findViewById(R.id.Email);
-        TXT3.setVisibility(View.GONE);
         Email.setVisibility(View.GONE);
 
         Nombre = Vista.findViewById(R.id.Nombre);

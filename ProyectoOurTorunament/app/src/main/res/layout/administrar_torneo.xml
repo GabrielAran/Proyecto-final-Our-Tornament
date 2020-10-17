@@ -54,16 +54,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/NombreTorneo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="20dp"
                         android:text="Nombre torneo"
                         android:textColor="#FFF"
-                        android:gravity="center"
                         android:textSize="26sp" />
+
                     <TextView
                         android:id="@+id/Seguidores"
                         android:layout_width="100dp"
@@ -91,7 +92,7 @@
                 android:id="@+id/ListaDeEspera"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:text="Lista de espera"
                 android:textColor="#000"
                 android:paddingLeft="60dp"

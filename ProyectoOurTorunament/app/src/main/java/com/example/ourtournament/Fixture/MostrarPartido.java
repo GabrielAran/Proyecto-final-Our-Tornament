@@ -1,8 +1,10 @@
 package com.example.ourtournament.Fixture;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Telephony;
@@ -18,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
+import com.example.ourtournament.Administracion.VerTorneo;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.GolesXUsuario;
 import com.example.ourtournament.Objetos.Partido;
@@ -40,7 +43,11 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MostrarPartido extends Fragment {
@@ -50,16 +57,26 @@ public class MostrarPartido extends Fragment {
     Button Volver;
     ImageView Foto1,Foto2;
     ListView lista1,lista2;
+    View VistaADevolver;
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
-        final View VistaADevolver;
-        VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
+        if(VistaADevolver == null)
+        {
+            VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
+            finds(VistaADevolver);
+        }
 
-        finds(VistaADevolver);
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(Par.FechaDeEncuentro);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int horas = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutos = calendar.get(Calendar.MINUTE);
 
         if (Par.GolesLocal == -1)
         {
-            jugado.setText("El partido se jugara el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
+            jugado.setText("El partido se jugara el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
             Resultado.setText("-:-");
 
             ArrayList<String> Goles1 = new ArrayList<>();
@@ -78,7 +95,7 @@ public class MostrarPartido extends Fragment {
             TraerGoles Tarea = new TraerGoles();
             Tarea.execute();
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
-            jugado.setText("El partido se jugo el "+Par.FechaDeEncuentro.getDay()+"/"+Par.FechaDeEncuentro.getMonth()+" a las "+Par.FechaDeEncuentro.getHours()+" horas");
+            jugado.setText("El partido se jugo el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
 
         }
 

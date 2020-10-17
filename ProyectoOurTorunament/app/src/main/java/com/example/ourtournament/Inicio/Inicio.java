@@ -113,7 +113,7 @@ public class Inicio extends Fragment {
     }
     public void IraTorneos()
     {
-        Log.d("conexion","Voy a torneos");
+        Buscador.setVisibility(View.GONE);
         Carga.setVisibility(View.VISIBLE);
         Rotacion(Carga);
 
@@ -143,7 +143,6 @@ public class Inicio extends Fragment {
                 Tarea.execute();
             }
         });
-        Buscador.setVisibility(View.VISIBLE);
         Animacion(renglon,"X",540);
     }
     public void Animacion(TextView objeto,String Nombre,int value)
@@ -201,6 +200,7 @@ public class Inicio extends Fragment {
             listatorneos.setVisibility(View.VISIBLE);
             listatorneos.setAdapter(Adaptador);
             Carga.setVisibility(View.GONE);
+            Buscador.setVisibility(View.VISIBLE);
         }
     }
     private class TraerNoticias extends AsyncTask<Void, Void, ArrayList<Noticia>> {

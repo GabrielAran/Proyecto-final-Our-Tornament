@@ -60,11 +60,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/TXT1"
+                android:id="@+id/Nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="100dp"
                 android:gravity="center"
                 android:text="Nombre usuario:"
                 android:textColor="#FFF"
@@ -72,111 +72,53 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foto"
                 tools:ignore="RtlHardcoded"/>
-            <TextView
-                android:id="@+id/Nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="30dp"
-                android:text="null"
-                android:textColor="#FFF"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/foto" />
-            <TextView
-                android:id="@+id/TXT2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Edad:"
-                android:textColor="#FFF"
-                android:textSize="24dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TXT1" />
 
             <TextView
                 android:id="@+id/Edad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginTop="20dp"
-                android:text="null"
-                android:textColor="#FFF"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Nombre" />
-
-            <TextView
-                android:id="@+id/TXT3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Email:"
+                android:text="Edad:"
                 android:textColor="#FFF"
                 android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TXT2" />
+                app:layout_constraintTop_toBottomOf="@+id/Nombre" />
 
             <TextView
                 android:id="@+id/Email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginTop="20dp"
-                android:text="null"
-                android:textColor="#FFF"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Edad" />
-
-            <TextView
-                android:id="@+id/TXT4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Contrasenia:"
+                android:text="Email:"
                 android:textColor="#FFF"
                 android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TXT3" />
+                app:layout_constraintTop_toBottomOf="@+id/Edad" />
 
             <TextView
                 android:id="@+id/Contrasenia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginTop="20dp"
-                android:text="null"
-                android:textColor="#FFF"
-                android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Email" />
-
-            <TextView
-                android:id="@+id/TXT5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="Goles en torneo:"
+                android:text="Contrasenia:"
                 android:textColor="#FFF"
                 android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
+                app:layout_constraintTop_toBottomOf="@+id/Email" />
 
             <TextView
                 android:id="@+id/GolesEnTorneo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginTop="20dp"
-                android:text="null"
+                android:text="Goles en torneo:"
                 android:textColor="#FFF"
                 android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
 
             <ListView

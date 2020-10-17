@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MostrarEquipo extends Fragment {
-    TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra;
+    TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra,CantJug;
     ImageView Foto;
     Button Volver;
     ListView ListaJugadores;
@@ -65,6 +65,7 @@ public class MostrarEquipo extends Fragment {
         PJugados = VistaADevolver.findViewById(R.id.PartidosJugados);
         GolesAFavor = VistaADevolver.findViewById(R.id.GolesAFavor);
         GolesEnContra = VistaADevolver.findViewById(R.id.GolesEnContra);
+        CantJug = VistaADevolver.findViewById(R.id.CantJug);
         Foto = VistaADevolver.findViewById(R.id.foto);
         Volver = VistaADevolver.findViewById(R.id.Volver);
         ListaJugadores = VistaADevolver.findViewById(R.id.ListaJugadores);
@@ -137,6 +138,9 @@ public class MostrarEquipo extends Fragment {
             Adaptador = new AdaptadorListaJugadores(Principal,R.layout.item_lista_jugadores,lista);
             ListaJugadores.setAdapter(Adaptador);
             ListaJugadores.getLayoutParams().height = 100 * lista.size();
+            String Texto;
+            if (lista.size()>1){Texto=lista.size()+" Jugadores";}else if(lista.size()==1){Texto="1 Jugador";}else{Texto="No hay jugadores";}
+            CantJug.setText(Texto);
         }
     }
 }

@@ -67,7 +67,7 @@
                 android:id="@+id/TXT1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginLeft="30dp"
                 android:text="Puntos:"
                 android:textColor="#FFF"
@@ -160,11 +160,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/GolesAFavor" />
 
             <TextView
-                android:id="@+id/TXT5"
-                android:layout_width="match_parent"
+                android:id="@+id/CantJug"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif-black"
-                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Jugadores"
                 android:textColor="#FFF"
@@ -172,6 +172,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TXT4" />
+
             <ListView
                 android:id="@+id/ListaJugadores"
                 android:layout_width="match_parent"
@@ -181,7 +182,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TXT5" />
+                app:layout_constraintTop_toBottomOf="@+id/CantJug" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
