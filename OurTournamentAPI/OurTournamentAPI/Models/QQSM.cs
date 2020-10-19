@@ -38,11 +38,10 @@ namespace OurTournamentAPI
             con = Conectar();
             SqlCommand Consulta = new SqlCommand("dbo."+ST, con);
             Consulta.CommandType = CommandType.StoredProcedure;
-            /*
-            foreach (KeyValuePair<string, object> entry in Parametros)
+            foreach (KeyValuePair<string, object> Param in Parametros)
             {
-                Consulta.Parameters.AddWithValue();
-            }*/
+                Consulta.Parameters.AddWithValue(Param.Key,Param.Value);
+            }
             SqlDataReader Lector = Consulta.ExecuteReader();
             return Lector;
         }
@@ -68,12 +67,10 @@ namespace OurTournamentAPI
 
         public List<Models.TorneoSeguido> TraerTorneosPorNombre(String Nombre,int IDUsuario)
         {
-            con = Conectar();
-            SqlCommand Consulta = new SqlCommand("dbo.TraerTorneosPorNombre", con);
-            Consulta.CommandType = CommandType.StoredProcedure;
-            Consulta.Parameters.AddWithValue("@Nombre", Nombre);
-            Consulta.Parameters.AddWithValue("@IDUsuario", IDUsuario);
-            SqlDataReader Lector = Consulta.ExecuteReader();
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@Nombre", Nombre);
+            P.Add("@IDUsuario", IDUsuario);
+            SqlDataReader Lector = HacerStoredProcedured("TraerTorneosPorNombre", P);
 
             Models.TorneoSeguido UnTorneo;
             List<Models.TorneoSeguido> ListaTorneos = new List<Models.TorneoSeguido>();
@@ -101,8 +98,9 @@ namespace OurTournamentAPI
 
         public Models.Torneo TraerTorneoPorID(int ID)
         {
-            String C = "SELECT * FROM Torneos where Torneos.IDTorneo = " + ID;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDTorneo", ID);
+            SqlDataReader Lector = HacerStoredProcedured("TraerTorneoPorID", P);
             Models.Torneo UnTorneo = new Models.Torneo();
             if (Lector.Read())
             {
@@ -118,8 +116,9 @@ namespace OurTournamentAPI
 
         public List<int> TraerJornadasPorTorneo(int IDTorneo)
         {
-            String C = "SELECT Distinct JornadaDelTorneo FROM Partidos where Partidos.IDTorneo = " + IDTorneo;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDTorneo", IDTorneo);
+            SqlDataReader Lector = HacerStoredProcedured("TraerJornadasPorTorneo", P);
             List<int> ListaJornadas = new List<int>();
             int jornada;
             while (Lector.Read())
@@ -133,13 +132,13 @@ namespace OurTournamentAPI
 
         public List<Models.Partido> TraerPartidosPorJornada(int IDJornada, int IDTorneo)
         {
-            String C = "SELECT Partidos.*,EquipoLocal.NombreEquipo As NombreEquipoLocal, EquipoVisitante.NombreEquipo AS NombreEquipoVisitante " +
-                "FROM Partidos INNER JOIN Equipos EquipoLocal ON Partidos.IDEquipo1 = EquipoLocal.IDEquipo " +
-                "INNER JOIN Equipos EquipoVisitante ON Partidos.IDEquipo2 = EquipoVisitante.IDEquipo " +
-                "where Partidos.JornadaDelTorneo = "+IDJornada+" and Partidos.IDTorneo = "+IDTorneo;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDTorneo", IDTorneo);
+            P.Add("@IDJornada", IDJornada);
+            SqlDataReader Lector = HacerStoredProcedured("TraerPartidosPorJornada", P);
+
             List<Models.Partido> ListaPartidos = new List<Models.Partido>();
-            Models.Partido UnPartido = new Models.Partido();
+            Models.Partido UnPartido;
             while (Lector.Read())
             {
                 int IDPartido = Convert.ToInt32(Lector["IDPartido"]);
@@ -206,27 +205,21 @@ namespace OurTournamentAPI
             return Devolver = HacerInsertODelete(C);
         }
 
-        public bool InsertarTorneoSeguidoPorUsuario(List<int> lista)
+        public void InsertarTorneoSeguidoPorUsuario(List<int> lista)
         {
-            bool Devolver;
-            String EFav = "null";
-            if(lista[2]==-1)
-            {
-                EFav = "NULL";
-            }else
-            {
-                EFav = lista[2].ToString();
-            }
-            String C = "insert into SeguidoresXTorneos(IDUsuario,IDTorneo,IDEquipoFavorito) values" +
-                " (" + lista[0] + "," + lista[1] + "," + EFav + ")";
-            return Devolver = HacerInsertODelete(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDUsuario", lista[0]);
+            P.Add("@IDTorneo", lista[1]);
+            P.Add("@IDEquipoFavorito", lista[2]);
+            HacerStoredProcedured("InsertarTorneoSeguidoPorUsuario", P);
         }
 
-        public bool DeleteTorneoSeguidoPorUsuario(List<int> lista)
+        public void DeleteTorneoSeguidoPorUsuario(List<int> lista)
         {
-            bool Devolver;
-            String C = "delete from SeguidoresXTorneos where IDUsuario = " + lista[0] + " and IDTorneo = " + lista[1];
-            return Devolver = HacerInsertODelete(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDUsuario", lista[0]);
+            P.Add("@IDTorneo", lista[1]);
+            HacerStoredProcedured("DeleteTorneoSeguidoPorUsuario", P);
         }
 
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {
