@@ -33,6 +33,20 @@ namespace OurTournamentAPI
             return Lector;
         }
 
+        private SqlDataReader HacerStoredProcedured(String ST,Dictionary<String,object> Parametros)
+        {
+            con = Conectar();
+            SqlCommand Consulta = new SqlCommand("dbo."+ST, con);
+            Consulta.CommandType = CommandType.StoredProcedure;
+            /*
+            foreach (KeyValuePair<string, object> entry in Parametros)
+            {
+                Consulta.Parameters.AddWithValue();
+            }*/
+            SqlDataReader Lector = Consulta.ExecuteReader();
+            return Lector;
+        }
+
         private bool HacerInsertODelete(String STRConsulta)
         {
             bool Devolver = false;
@@ -54,18 +68,13 @@ namespace OurTournamentAPI
 
         public List<Models.TorneoSeguido> TraerTorneosPorNombre(String Nombre,int IDUsuario)
         {
-            String C;
-            if (Nombre == "()")
-            {
-                C = "SELECT Torneos.*, CASE WHEN SeguidoresXTorneos.IDUsuario IS NOT NULL THEN 1 ELSE 0 END AS Siguiendo FROM Torneos LEFT JOIN SeguidoresXTorneos ON Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo AND SeguidoresXTorneos.IDUsuario = " +IDUsuario+ " order by Torneos.NombreTorneo ASC";
-            } else
-            {
-                C = "SELECT Torneos.*, CASE WHEN SeguidoresXTorneos.IDUsuario IS NOT NULL THEN 1 ELSE 0 END AS Siguiendo" +
-                    " FROM Torneos LEFT JOIN SeguidoresXTorneos ON Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo AND SeguidoresXTorneos.IDUsuario = " + IDUsuario +
-                    " where NombreTorneo LIKE '%" + Nombre + "%'" +
-                    " order by Torneos.NombreTorneo ASC";
-            }
-            SqlDataReader Lector = HacerSelect(C);
+            con = Conectar();
+            SqlCommand Consulta = new SqlCommand("dbo.TraerTorneosPorNombre", con);
+            Consulta.CommandType = CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@Nombre", Nombre);
+            Consulta.Parameters.AddWithValue("@IDUsuario", IDUsuario);
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
             Models.TorneoSeguido UnTorneo;
             List<Models.TorneoSeguido> ListaTorneos = new List<Models.TorneoSeguido>();
             while (Lector.Read())
@@ -163,8 +172,13 @@ namespace OurTournamentAPI
 
         public List<Models.Equipo> TraerListaDePosiciones(int IDTorneo)
         {
-            String C = "SELECT * FROM Equipos where Equipos.IDTorneo = " + IDTorneo + " order by Puntos desc";
-            SqlDataReader Lector = HacerSelect(C);
+            //String C = "SELECT * FROM Equipos where Equipos.IDTorneo = " + IDTorneo + " order by Puntos desc,GolesAFavor desc";
+            con = Conectar();
+            SqlCommand Consulta = new SqlCommand("dbo.TraerListaPosiciones", con);
+            Consulta.CommandType = CommandType.StoredProcedure;
+            Consulta.Parameters.AddWithValue("@IDTorneo", IDTorneo);
+            SqlDataReader Lector = Consulta.ExecuteReader();
+
             List<Models.Equipo> ListaPosiciones = new List<Models.Equipo>();
             Models.Equipo UnEquipo = new Models.Equipo();
             while (Lector.Read())
