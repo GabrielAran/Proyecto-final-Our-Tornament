@@ -22,6 +22,7 @@ import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -33,6 +34,7 @@ public class Perfil extends Fragment {
     ImageView foto;
     Button Volver;
     View VistaADevolver;
+    MainActivity Principal;
     Preferencias P;
     private FragmentTransaction TransaccionesDeFragment;
     @SuppressLint("SetTextI18n")
@@ -43,7 +45,7 @@ public class Perfil extends Fragment {
 
         Referencias();
 
-        MainActivity Principal = (MainActivity) getActivity();
+        Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
 
         LlenarDatos();
@@ -70,7 +72,7 @@ public class Perfil extends Fragment {
         @Override
         public void onClick(View v) {
             Administracion admin = new Administracion();
-            IrAFragment(admin);
+            Principal.IrAFragment(admin);
         }
     };
 
