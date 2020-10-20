@@ -47,20 +47,18 @@ namespace OurTournamentAPI.Controllers
         [System.Web.Http.HttpPost]
         public IHttpActionResult InsertarTorneoSeguidoPorUsuario(List<int> LISTA)
         {
-            bool Devolver;
             QQSM Conexion = new QQSM();
-            Devolver = Conexion.InsertarTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo,IDEquipo
-            return Ok(Devolver);
+            Conexion.InsertarTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo,IDEquipo
+            return Ok();
         }
 
         [System.Web.Http.Route("api/DeleteTorneosSeguidos")]
         [System.Web.Http.HttpDelete]
         public IHttpActionResult EliminarTorneoSeguidoPorUsuario(List<int> LISTA)
         {
-            bool Devolver;
             QQSM Conexion = new QQSM();
-            Devolver = Conexion.DeleteTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo
-            return Ok(Devolver);
+            Conexion.DeleteTorneoSeguidoPorUsuario(LISTA); //IDUsuario, IDTorneo
+            return Ok();
         }
 
         [HttpGet]

@@ -163,8 +163,7 @@ public class Fixture extends Fragment {
                     for (int i = 0; i < VecJornadas.size(); i++)
                     {
                         int Jornada = VecJornadas.get(i).getAsInt();
-                        Log.d("conexion", "Traje jornada "+Jornada);
-                        listaJornada.add("jornada "+Jornada);
+                        listaJornada.add("Jornada "+Jornada);
                     }
                 } else {
                     Log.d("Conexion", "Me pude conectar pero algo malo pasó");
@@ -178,8 +177,6 @@ public class Fixture extends Fragment {
         }
         protected void onPostExecute(ArrayList<String> lista)
         {
-            P.GuardarListaString("ListaJornadas",lista);
-            P.GuardarInt("JornadaElegida", lista.size()-1);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),android.R.layout.select_dialog_singlechoice,lista);
             spinner.setAdapter(adapter);
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

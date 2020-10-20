@@ -61,65 +61,74 @@
 
             <TextView
                 android:id="@+id/Nombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="100dp"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:text="Nombre usuario:"
-                android:textColor="#FFF"
-                android:textSize="24sp"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:background="@drawable/fondo_barra_usuario"
+                android:paddingLeft="40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foto"
                 tools:ignore="RtlHardcoded"/>
 
             <TextView
                 android:id="@+id/Edad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_usuario"
+                android:layout_marginTop="10dp"
                 android:text="Edad:"
-                android:textColor="#FFF"
-                android:textSize="24dp"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:paddingLeft="40dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Nombre" />
+                app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
 
             <TextView
                 android:id="@+id/Email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_usuario"
+                android:layout_marginTop="10dp"
                 android:text="Email:"
-                android:textColor="#FFF"
-                android:textSize="24dp"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:paddingLeft="40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Edad" />
 
             <TextView
                 android:id="@+id/Contrasenia"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_usuario"
+                android:layout_marginTop="10dp"
                 android:text="Contrasenia:"
-                android:textColor="#FFF"
-                android:textSize="24dp"
+                android:paddingLeft="40dp"
+                android:textColor="#000"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Email" />
+                app:layout_constraintTop_toBottomOf="@+id/Nombre" />
 
             <TextView
                 android:id="@+id/GolesEnTorneo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_usuario"
+                android:layout_marginTop="10dp"
                 android:text="Goles en torneo:"
-                android:textColor="#FFF"
-                android:textSize="24dp"
+                android:paddingLeft="40dp"
+                android:textColor="#000"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
+                app:layout_constraintTop_toBottomOf="@+id/Email" />
 
             <ListView
                 android:layout_width="match_parent"

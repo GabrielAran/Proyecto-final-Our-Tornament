@@ -24,8 +24,9 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text=""
-            android:textColor="#FB3131"
-            android:textSize="18dp"
+            android:textColor="#DC2A2A"
+            android:background="#C8C5AC"
+            android:textSize="16dp"
             android:visibility="gone"/>
         <EditText
             android:id="@+id/Nombre"

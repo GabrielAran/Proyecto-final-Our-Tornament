@@ -57,14 +57,13 @@ public class IniciarSesion extends Fragment {
         ConfirmarLogueo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Nombre.getText().length() >3 & Contrasenia.getText().length() >3)
+                if (Nombre.getText().length() >2 & Contrasenia.getText().length() >2)
                 {
-                    Incorrecto.setVisibility(View.INVISIBLE);
                     TraerUsuario Tarea = new TraerUsuario();
                     Tarea.execute();
                 }else
                 {
-                    Incorrecto.setText("Debes ingresar minimo 4 caracteres en cada espacio");
+                    Incorrecto.setText("Debes ingresar minimo 3 caracteres en cada espacio");
                     Incorrecto.setVisibility(View.VISIBLE);
                     //TraerUsuario Tarea = new TraerUsuario();
                     //Tarea.execute();
@@ -118,7 +117,7 @@ public class IniciarSesion extends Fragment {
             }else
             {
                 Incorrecto.setText("El nombre de usuario y/o la contraseña son incorrectos");
-                Incorrecto.setVisibility(View.VISIBLE);
+                Contrasenia.setText("");
             }
         }
     }

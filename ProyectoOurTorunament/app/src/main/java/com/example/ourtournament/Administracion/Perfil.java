@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.squareup.picasso.Picasso;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
@@ -77,17 +80,24 @@ public class Perfil extends Fragment {
         String usuario = P.ObtenerString("InformacionUsuario", "");
         Usuario Usu = gson.fromJson(usuario, Usuario.class);
 
+        Log.d("conexion",String.valueOf(Usu.FechaDeNacimiento));
         for (int i = 0; i < Usu.Contrasenia.length() ;i++)
         {
             contra += "*";
         }
         Contrasenia.setText(contra);
 
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(Usu.FechaDeNacimiento);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        Period edad = Period.between(LocalDate.of(year, month, day), LocalDate.now());
+
         Nombre.setText(Usu.NombreUsuario);
-        Period edad = Period.between(LocalDate.of(Usu.FechaDeNacimiento.getYear(), Usu.FechaDeNacimiento.getMonth(),Usu.FechaDeNacimiento.getDay()), LocalDate.now());
-        Edad.setText("edad");
+        Edad.setText(edad.getYears()+" años");
         Email.setText(Usu.Email);
-        GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo));
+        GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo+ " goles en torneo"));
         String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
         Picasso.get().load(Ruta).into(foto);
     }

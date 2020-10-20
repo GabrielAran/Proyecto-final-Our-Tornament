@@ -179,7 +179,7 @@ namespace OurTournamentAPI
             SqlDataReader Lector = Consulta.ExecuteReader();
 
             List<Models.Equipo> ListaPosiciones = new List<Models.Equipo>();
-            Models.Equipo UnEquipo = new Models.Equipo();
+            Models.Equipo UnEquipo;
             while (Lector.Read())
             {
                 int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
@@ -223,13 +223,12 @@ namespace OurTournamentAPI
         }
 
         public List<Models.Goleadores> TraerListaGoleadores(int IDTorneo) {
-            String C = "select Usuarios.IDUsuario,NombreDeUsuario, Equipos.NombreEquipo,GolesEnTorneo from Usuarios inner join" +
-                " TorneosParticipadosXUsuario on Usuarios.IDUsuario = TorneosParticipadosXUsuario.IDUsuario inner join Equipos" +
-                " on Equipos.IDEquipo = TorneosParticipadosXUsuario.IDEquipo where TorneosParticipadosXUsuario.IDTorneo = " + IDTorneo +
-                " order by Usuarios.GolesEnTorneo desc";
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDTorneo", IDTorneo);
+            SqlDataReader Lector = HacerStoredProcedured("TraerListaGoleadores", P);
+
             List<Models.Goleadores> Tablagoleadores = new List<Models.Goleadores>();
-            Models.Goleadores UnGoleador = new Models.Goleadores();
+            Models.Goleadores UnGoleador;
             while (Lector.Read())
             {
                 int IDUsuario = Convert.ToInt32(Lector["IdUsuario"]);
@@ -246,14 +245,12 @@ namespace OurTournamentAPI
 
         public List<Models.GolesXUsuario> TraerGolesXusuario(int IDPartido)
         {
-            String C = "select IDPartido, GolesXUsuarioXPartidos.IDUsuario,NombreDeUsuario,CantidadGoles," +
-                "Equipos.NombreEquipo from GolesXUsuarioXPartidos inner join Usuarios on Usuarios.IDUsuario = " +
-                "GolesXUsuarioXPartidos.IDUsuario inner join TorneosParticipadosXUsuario on TorneosParticipadosXUsuario.IDUsuario = " +
-                "Usuarios.IDUsuario inner join Equipos on TorneosParticipadosXUsuario.IDEquipo = Equipos.IDEquipo where " +
-                "GolesXUsuarioXPartidos.IDPartido = " + IDPartido;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDPartido", IDPartido);
+            SqlDataReader Lector = HacerStoredProcedured("TraerGolesXusuario", P);
+
             List<Models.GolesXUsuario> Goles = new List<Models.GolesXUsuario>();
-            Models.GolesXUsuario Gol = new Models.GolesXUsuario();
+            Models.GolesXUsuario Gol;
             while (Lector.Read())
             {
                 int IDpartido = Convert.ToInt32(Lector["IDPartido"]);
@@ -271,8 +268,10 @@ namespace OurTournamentAPI
 
         public Models.Equipo TraerEquipoPorIDEquipo(int IDEquipo)
         {
-            String C = "Select * from Equipos where Equipos.IDEquipo = " + IDEquipo;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDEquipo", IDEquipo);
+            SqlDataReader Lector = HacerStoredProcedured("TraerEquipoPorIDEquipo", P);
+
             Models.Equipo ElEquipo = new Models.Equipo();
             if (Lector.Read())
             {
@@ -292,8 +291,11 @@ namespace OurTournamentAPI
 
         public Models.Usuario TraerUsuarioPorNombreContrasenia(string NombreDeUsuario, string Contrasenia)
         {
-            String C = " Select * from Usuarios where Usuarios.NombreDeUsuario = '" + NombreDeUsuario + "' and Usuarios.Contrasenia = '" + Contrasenia + "'";
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@NombreUsuario", NombreDeUsuario);
+            P.Add("@Contrasenia", Contrasenia);
+            SqlDataReader Lector = HacerStoredProcedured("TraerUsuarioPorNombreContrasenia", P);
+
             Models.Usuario ElUsuario = new Models.Usuario();
             if (Lector.Read())
             {
@@ -322,8 +324,10 @@ namespace OurTournamentAPI
 
         public Models.Usuario TraerUsuariosPorID(int IDUsuario)
         {
-            String C = "Select * from Usuarios where Usuarios.IDUsuario =+ " + IDUsuario;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDUsuario", IDUsuario);
+            SqlDataReader Lector = HacerStoredProcedured("TraerUsuariosPorID", P);
+
             Models.Usuario UnUsuario = new Models.Usuario();
             while (Lector.Read())
             {
@@ -342,10 +346,12 @@ namespace OurTournamentAPI
 
         public List<Models.Torneo> TraerTorneosSeguidosPorUsuario(int IDUsuario)
         {
-            String C = "SELECT Torneos.* FROM Torneos LEFT JOIN SeguidoresXTorneos ON Torneos.IDTorneo = SeguidoresXTorneos.IDTorneo AND SeguidoresXTorneos.IDUsuario = " + IDUsuario + " where SeguidoresXTorneos.IDUsuario IS NOT NULL order by Torneos.NombreTorneo ASC";
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDUsuario", IDUsuario);
+            SqlDataReader Lector = HacerStoredProcedured("TraerTorneosSeguidosPorUsuario", P);
+
             List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
-            Models.Torneo UnTorneo = new Models.Torneo();
+            Models.Torneo UnTorneo;
 
             while (Lector.Read())
             {
@@ -363,10 +369,12 @@ namespace OurTournamentAPI
 
         public List<Models.Torneo> TraerTorneosParticipadosPorUsuario(int IDUsuario)
         {
-            String C = "SELECT Torneos.* FROM Torneos LEFT JOIN TorneosParticipadosXUsuario ON Torneos.IDTorneo = TorneosParticipadosXUsuario.IDTorneo AND TorneosParticipadosXUsuario.IDUsuario = "+IDUsuario+" where TorneosParticipadosXUsuario.IDUsuario IS NOT NULL order by Torneos.NombreTorneo ASC";
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDUsuario", IDUsuario);
+            SqlDataReader Lector = HacerStoredProcedured("TraerTorneosParticipadosPorUsuario", P);
+
             List<Models.Torneo> TorneosSeguidosPorUsuario = new List<Models.Torneo>();
-            Models.Torneo UnTorneo = new Models.Torneo();
+            Models.Torneo UnTorneo;
 
             while (Lector.Read())
             {
@@ -384,10 +392,11 @@ namespace OurTournamentAPI
 
         public List<Models.Noticia> TraerNoticiasPorTorneo (int IDTorneo)  
         {
-            String C = "Select * from Noticias where IDTorneo = "+ IDTorneo +"order by Destacada DESC";
-            SqlDataReader Lector = HacerSelect(C);
-            Models.Noticia UnaNoticia = new Models.Noticia();
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDTorneo", IDTorneo);
+            SqlDataReader Lector = HacerStoredProcedured("TraerNoticiasPorTorneo", P);
 
+            Models.Noticia UnaNoticia;
             List<Models.Noticia> TraerNoticiasPorTorneo = new List<Models.Noticia>();
             while(Lector.Read())
             {
@@ -417,10 +426,12 @@ namespace OurTournamentAPI
 
         public List<Models.Usuario> TraerJugadoresXEquipos(int IDEquipo)
         {
-            String C = "select * from Usuarios inner join TorneosParticipadosXUsuario on Usuarios.IDUsuario = TorneosParticipadosXUsuario.IDUsuario where TorneosParticipadosXUsuario.IDEquipo = " + IDEquipo;
-            SqlDataReader Lector = HacerSelect(C);
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDEquipo", IDEquipo);
+            SqlDataReader Lector = HacerStoredProcedured("TraerJugadoresXEquipos", P);
+
             List<Models.Usuario> ListaUsuarios = new List<Models.Usuario>();
-            Models.Usuario UnUsuario = new Models.Usuario();
+            Models.Usuario UnUsuario;
             while (Lector.Read())
             {
                 int IDUsuarios = Convert.ToInt32(Lector["IDUsuario"]);
