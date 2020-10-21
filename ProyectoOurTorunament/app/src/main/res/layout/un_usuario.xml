@@ -69,7 +69,7 @@
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:background="@drawable/fondo_barra_usuario"
-                android:paddingLeft="40dp"
+                android:paddingLeft="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foto"
                 tools:ignore="RtlHardcoded"/>
@@ -84,7 +84,7 @@
                 android:text="Edad:"
                 android:textColor="#000"
                 android:textSize="20dp"
-                android:paddingLeft="40dp"
+                android:paddingLeft="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
 
@@ -98,7 +98,7 @@
                 android:text="Email:"
                 android:textColor="#000"
                 android:textSize="20dp"
-                android:paddingLeft="40dp"
+                android:paddingLeft="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Edad" />
 
@@ -110,7 +110,7 @@
                 android:background="@drawable/fondo_barra_usuario"
                 android:layout_marginTop="10dp"
                 android:text="Contrasenia:"
-                android:paddingLeft="40dp"
+                android:paddingLeft="25dp"
                 android:textColor="#000"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +124,7 @@
                 android:background="@drawable/fondo_barra_usuario"
                 android:layout_marginTop="10dp"
                 android:text="Goles en torneo:"
-                android:paddingLeft="40dp"
+                android:paddingLeft="25dp"
                 android:textColor="#000"
                 android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
