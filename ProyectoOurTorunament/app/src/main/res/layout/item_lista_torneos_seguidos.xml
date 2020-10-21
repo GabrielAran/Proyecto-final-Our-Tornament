@@ -9,12 +9,12 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:background="@drawable/bordes_rondeados">
+    android:background="@drawable/borde_gris_fondo_negro">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/PerfilTorneo"
-        android:layout_width="45dp"
+        android:layout_width="35dp"
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"

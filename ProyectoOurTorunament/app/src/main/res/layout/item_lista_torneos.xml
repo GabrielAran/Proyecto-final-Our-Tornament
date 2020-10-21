@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp">
+    android:layout_height="50dp">
 
     <ScrollView
         android:layout_width="380dp"
@@ -17,18 +17,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/bordes_rondeados">
+            android:background="@drawable/borde_gris_fondo_negro">
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/PerfilTorneo"
-                android:layout_width="45dp"
-                android:layout_height="60dp"
+                android:layout_width="35dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
                 android:id="@+id/BTNSeguir"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
-                android:background="@drawable/bordes_rondeados"
+                android:background="@drawable/borde_gris_fondo_negro"
                 android:backgroundTint="#3CBC80"
                 android:gravity="center"
                 android:text="Seguir"

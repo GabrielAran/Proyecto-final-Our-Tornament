@@ -24,8 +24,8 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text=""
-            android:textColor="#DC2A2A"
-            android:background="#C8C5AC"
+            android:textColor="#B10000"
+            android:background="@drawable/borde_fondo_manteca"
             android:textSize="16dp"
             android:visibility="gone"/>
         <EditText

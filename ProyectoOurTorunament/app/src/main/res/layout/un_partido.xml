@@ -89,7 +89,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/algo"
         app:srcCompat="@drawable/icono_equipo"
-        android:background="@drawable/bordes_blancos"
+        android:background="@drawable/borde_verde_fondo_nada"
         android:padding="16dp"
         />
 
@@ -102,7 +102,7 @@
         app:layout_constraintStart_toEndOf="@+id/Resultado"
         app:layout_constraintTop_toBottomOf="@id/algo"
         app:srcCompat="@drawable/icono_equipo"
-        android:background="@drawable/bordes_blancos"
+        android:background="@drawable/borde_verde_fondo_nada"
         android:padding="16dp"/>
 
     <TextView
