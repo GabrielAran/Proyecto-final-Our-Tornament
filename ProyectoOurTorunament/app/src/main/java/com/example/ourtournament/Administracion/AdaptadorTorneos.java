@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,11 +42,14 @@ public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
             MiInflador = LayoutInflater.from(this._Contexto);
             VistaADevolver = MiInflador.inflate(_Resource, null);
         }
-        final CircleImageView FotoPerfil;
-        TextView NombreTorneo;
 
-        FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
-        NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
+        Button Administrar = VistaADevolver.findViewById(R.id.Administrar);
+        Button Eliminar = VistaADevolver.findViewById(R.id.Eliminar);
+        EditText Contra = VistaADevolver.findViewById(R.id.Contra);
+        final CircleImageView FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
+        TextView NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
+        final boolean[] Admnistrando = {false};
+
         final Torneo T = getItem(pos);
 
         String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID" + T.IDTorneo + "_Perfil.JPG";
@@ -63,6 +67,33 @@ public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
                 });
         NombreTorneo.setText(T.NombreTorneo);
 
+        final EditText finalContra = Contra;
+        Administrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                if (!Admnistrando[0])
+                {
+                    finalContra.setVisibility(View.VISIBLE);
+                    Admnistrando[0]=true;
+                }else if (Admnistrando[0])
+                {
+                    finalContra.setVisibility(View.GONE);
+                    Admnistrando[0]=false;
+                }
+
+                 */
+            }
+        });
+
+        Eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return VistaADevolver;
     }
+
 }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -33,7 +34,7 @@ import java.util.ArrayList;
 
 public class Administracion extends Fragment {
     FragmentManager AdminFragments;
-    Button btn_Perfil, btn_Config,INV1,INV2;
+    Button btn_Perfil, btn_Config;
     View VistaADevolver = null;
     private FragmentTransaction TransaccionesDeFragment;
     AdaptadorTorneos Adaptador;
@@ -96,7 +97,7 @@ public class Administracion extends Fragment {
                 Cantidad = 5;
             }
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
-            ListaSeguidos.getLayoutParams().height = 155 * Cantidad;
+            ListaSeguidos.getLayoutParams().height = 165 * Cantidad;
             ListaSeguidos.setAdapter(Adaptador);
             ListaSeguidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -149,7 +150,7 @@ public class Administracion extends Fragment {
                 Cantidad = 4;
             }
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
-            ListaParticipados.getLayoutParams().height = 155 * Cantidad;
+            ListaParticipados.getLayoutParams().height = 165 * Cantidad;
             ListaParticipados.setAdapter(Adaptador);
             ListaParticipados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
