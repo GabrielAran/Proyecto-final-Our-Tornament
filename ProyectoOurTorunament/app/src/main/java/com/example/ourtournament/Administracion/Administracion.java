@@ -97,7 +97,7 @@ public class Administracion extends Fragment {
                 Cantidad = 5;
             }
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
-            ListaSeguidos.getLayoutParams().height = 165 * Cantidad;
+            //ListaSeguidos.getLayoutParams().height = 165 * Cantidad;
             ListaSeguidos.setAdapter(Adaptador);
             ListaSeguidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -144,13 +144,8 @@ public class Administracion extends Fragment {
         }
         protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
         {
-            int Cantidad=ArrayTorneos.size();
-            if (ArrayTorneos.size()>4)
-            {
-                Cantidad = 4;
-            }
             Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos);
-            ListaParticipados.getLayoutParams().height = 165 * Cantidad;
+            //ListaParticipados.getLayoutParams().height = 165 * Cantidad;
             ListaParticipados.setAdapter(Adaptador);
             ListaParticipados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

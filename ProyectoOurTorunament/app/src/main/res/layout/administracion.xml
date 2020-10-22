@@ -30,78 +30,84 @@
             android:textSize="26dp" />
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="bottom"
         android:orientation="vertical">
-        <ScrollView
-            android:id="@+id/scrollView3"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="460dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Torneos Participados"
-                    android:textColor="#FFF"
-                    android:textSize="20dp"/>
-
-                <ListView
-                    android:id="@+id/ListaTorneosParticipados"
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp" />
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Torneos seguidos"
-                    android:textColor="#FFF"
-                    android:textSize="20dp"/>
-
-                <ListView
-                    android:id="@+id/ListaTorneosSeguidos"
-                    android:layout_width="380dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp" />
-            </LinearLayout>
-        </ScrollView>
-
-        <Button
-            android:id="@+id/btn_Config"
-            android:layout_width="380dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
+            android:layout_height="400dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/bordes_fondo_verde"
-            android:text="Configuración"
-            android:textSize="18sp" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btn_Perfil"
-            android:layout_width="380dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bordes_fondo_verde"
-            android:text="Perfil"
-            android:textSize="18sp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Torneos Participados"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <ListView
+                android:id="@+id/ListaTorneosParticipados"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Torneos seguidos"
+                android:textColor="#FFF"
+                android:textSize="20dp" />
+
+            <ListView
+                android:id="@+id/ListaTorneosSeguidos"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/btn_Config"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bordes_fondo_verde"
+                android:text="Configuración"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_Perfil"
+                android:layout_width="380dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bordes_fondo_verde"
+                android:text="Perfil"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>

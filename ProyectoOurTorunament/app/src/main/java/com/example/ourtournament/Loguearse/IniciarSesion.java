@@ -117,6 +117,7 @@ public class IniciarSesion extends Fragment {
             }else
             {
                 Incorrecto.setText("El nombre de usuario y/o la contraseña son incorrectos");
+                Incorrecto.setVisibility(View.VISIBLE);
                 Contrasenia.setText("");
             }
         }
