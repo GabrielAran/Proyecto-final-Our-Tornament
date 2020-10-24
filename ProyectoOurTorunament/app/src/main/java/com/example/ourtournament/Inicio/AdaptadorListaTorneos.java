@@ -37,10 +37,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
     private ArrayList<TorneoSeguido> _ListaTorneos;
+    private ArrayList<Boolean> _ListaAbiertos;
     private Context _Contexto;
     private int _Resource;
     private int _IDTorneo;
@@ -54,6 +57,16 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         this._Resource = Resource;
         this._IDTorneo = IDTorneo;
         this.IDUsuario = Idusuario;
+        LLenarListaBoleans(ListaTorneos.size());
+    }
+
+    public void LLenarListaBoleans(int Cantidad)
+    {
+        _ListaAbiertos = new ArrayList<>();
+        for (int i=0;i<Cantidad;i++)
+        {
+            _ListaAbiertos.add(false);
+        }
     }
 
     @SuppressLint("ViewHolder")
@@ -65,7 +78,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
         }
 
         final ListView lista;
-        final boolean[] bool = {false};
         final Button Seguir,VerEquipos;
         final CircleImageView FotoPerfil;
         TextView NombreTorneo;
@@ -103,22 +115,33 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoSeguido> {
                 });
         NombreTorneo.setText(T.NombreTorneo);
 
+        if (!_ListaAbiertos.get(pos)) {
+            Animacion(VerEquipos, "rotation", 0, 0, 0);
+            lista.setVisibility(View.GONE);
+        } else {
+            Animacion(VerEquipos, "rotation", 0, -180, 0);
+            Lista = lista;
+            _IDTorneo = T.IDTorneo;
+            TraerEquipos Tarea = new TraerEquipos();
+            Tarea.execute();
+        }
+
         VerEquipos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!bool[0]) {
-                    Animacion(VerEquipos, "rotation", 0, -180, 0);
-                    Lista = lista;
-                    _IDTorneo = T.IDTorneo;
-                    TraerEquipos Tarea = new TraerEquipos();
-                    Tarea.execute();
-                    bool[0] = true;
-                } else {
-                    Animacion(VerEquipos, "rotation", 0, 0, 0);
-                    lista.setVisibility(View.GONE);
-                    bool[0] = false;
-                }
 
+                if (!_ListaAbiertos.get(pos))
+                {
+                    for (int i=0;i<_ListaAbiertos.size();i++)
+                    {
+                        _ListaAbiertos.set(i,false);
+                    }
+                    _ListaAbiertos.set(pos,true);
+                }else
+                {
+                    _ListaAbiertos.set(pos,false);
+                }
+                notifyDataSetChanged();
             }
         });
         Seguir.setOnClickListener(new View.OnClickListener() {
