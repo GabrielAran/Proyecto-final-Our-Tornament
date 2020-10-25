@@ -454,6 +454,31 @@ namespace OurTournamentAPI
             String C = "insert into TorneosParticipadosXUsuario (IDUsuario,IDEquipo) values (IDUsuario =  " + lista[0] + " and IDEquipo = " + lista[1] + ")";
             return Devolver = HacerInsertODelete(C);
         }
+
+        public List<Models.Equipo> TraerEquiposPorTorneo(int IDTorneo)
+        {
+            Dictionary<String, Object> P = new Dictionary<string, object>();
+            P.Add("@IDTorneo", IDTorneo);
+            SqlDataReader Lector = HacerStoredProcedured("TraerEquiposPorTorneo", P);
+
+            List<Models.Equipo> ListaEquipos = new List<Models.Equipo>();
+            Models.Equipo UnEquipo;
+            while (Lector.Read())
+            {
+                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
+                string Nombre = Convert.ToString(Lector["NombreEquipo"]);
+                int PartidosJugados = Convert.ToInt32(Lector["PartidosJugados"]);
+                int Puntos = Convert.ToInt32(Lector["Puntos"]);
+                int GolesAFavor = Convert.ToInt32(Lector["GolesAFavor"]);
+                int GolesEnContra = Convert.ToInt32(Lector["GolesEnContra"]);
+                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
+
+                UnEquipo = new Models.Equipo(IDEquipo, Nombre, PartidosJugados, Puntos, GolesAFavor, GolesEnContra,IDtorneo);
+                ListaEquipos.Add(UnEquipo);
+            }
+            Desconectar(con);
+            return ListaEquipos;
+        }
     }
 }
 
