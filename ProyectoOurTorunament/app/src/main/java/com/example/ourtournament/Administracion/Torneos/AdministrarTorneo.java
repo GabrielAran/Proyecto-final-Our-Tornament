@@ -1,4 +1,4 @@
-package com.example.ourtournament.Administracion;
+package com.example.ourtournament.Administracion.Torneos;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class VerTorneo extends Fragment{
+public class AdministrarTorneo extends Fragment{
 
     Torneo T = null;
     MainActivity Principal;

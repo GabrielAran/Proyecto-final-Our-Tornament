@@ -1,4 +1,4 @@
-package com.example.ourtournament.Administracion;
+package com.example.ourtournament.Administracion.Torneos;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
@@ -33,13 +35,15 @@ public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
     private Context _Contexto;
     private int _Resource;
     private int _IDUsuario;
+    MainActivity _Principal;
 
-    public AdaptadorTorneos(Context contexto, int Resource, ArrayList<Torneo> ListaTorneos,int IDUsuario) {
+    public AdaptadorTorneos(Context contexto, int Resource, ArrayList<Torneo> ListaTorneos,int IDUsuario,MainActivity Principal) {
         super(contexto, Resource, ListaTorneos);
         this._ListaTorneos = ListaTorneos;
         this._Contexto = contexto;
         this._Resource = Resource;
         this._IDUsuario = IDUsuario;
+        _Principal = Principal;
     }
 
     @SuppressLint("ViewHolder")
@@ -80,6 +84,9 @@ public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
         Administrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AdministrarTorneo VT = new AdministrarTorneo();
+                VT.setTorneoElegido(T);
+                _Principal.IrAFragment(VT,true);
                 /*
                 if (!Admnistrando[0])
                 {

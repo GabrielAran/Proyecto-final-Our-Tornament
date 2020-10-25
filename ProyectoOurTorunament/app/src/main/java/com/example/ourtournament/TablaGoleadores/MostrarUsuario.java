@@ -111,10 +111,10 @@ public class MostrarUsuario extends Fragment {
             int month = calendar.get(Calendar.MONTH) + 1;
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             Period edad = Period.between(LocalDate.of(year, month, day), LocalDate.now());
-            Edad.setText(edad.getYears()+ " años");
+            Edad.setText("Edad: "+edad.getYears()+ " años");
 
-            Nombre.setText(G.NombreUsuario1);
-            GolesEnTorneo.setText(U.GolesEnTorneo+" goles en torneo");
+            Nombre.setText("Nombre: "+G.NombreUsuario1);
+            GolesEnTorneo.setText("Goles: "+U.GolesEnTorneo+" goles en torneo");
             String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
             Picasso.get().load(Ruta).into(Foto);
         }

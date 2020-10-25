@@ -1,4 +1,4 @@
-package com.example.ourtournament.Administracion;
+package com.example.ourtournament.Administracion.Usuario;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.ourtournament.Administracion.Administracion;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Usuario;
@@ -22,7 +23,6 @@ import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -87,7 +87,7 @@ public class Perfil extends Fragment {
         {
             contra += "*";
         }
-        Contrasenia.setText(contra);
+        Contrasenia.setText("Contraseña: "+contra);
 
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(Usu.FechaDeNacimiento);
@@ -96,19 +96,12 @@ public class Perfil extends Fragment {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         Period edad = Period.between(LocalDate.of(year, month, day), LocalDate.now());
 
-        Nombre.setText(Usu.NombreUsuario);
-        Edad.setText(edad.getYears()+" años");
-        Email.setText(Usu.Email);
-        GolesEnTorneo.setText(String.valueOf(Usu.GolesEnTorneo+ " goles en torneo"));
+        Nombre.setText("Nombre: "+Usu.NombreUsuario);
+        Edad.setText("Edad: "+edad.getYears()+" años");
+        Email.setText("Email: "+Usu.Email);
+        GolesEnTorneo.setText("Goles: "+Usu.GolesEnTorneo+ " goles en torneo");
         String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
         Picasso.get().load(Ruta).into(foto);
-    }
-
-    public void IrAFragment(Fragment fragment){
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,fragment);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
     }
 
 }

@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 
-import com.example.ourtournament.Fixture.MostrarPartido;
+import com.example.ourtournament.Administracion.Torneos.AdaptadorTorneos;
+import com.example.ourtournament.Administracion.Torneos.AdministrarTorneo;
+import com.example.ourtournament.Administracion.Usuario.Configuracion;
+import com.example.ourtournament.Administracion.Usuario.Perfil;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Torneo;
@@ -100,17 +102,9 @@ public class Administracion extends Fragment {
                 Torneo T = new Torneo(-1,"No sigues ningun torneo", "","");
                 ArrayTorneos.add(T);
             }
-            Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos,IDUsuario);
+            Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos,IDUsuario,Principal);
             //ListaSeguidos.getLayoutParams().height = 165 * Cantidad;
             ListaSeguidos.setAdapter(Adaptador);
-            ListaSeguidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    VerTorneo VT = new VerTorneo();
-                    VT.setTorneoElegido(ArrayTorneos.get(i));
-                    Principal.IrAFragment(VT,true);
-                }
-            });
         }
     }
 
@@ -148,13 +142,13 @@ public class Administracion extends Fragment {
         }
         protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
         {
-            Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos,IDUsuario);
+            Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos,IDUsuario,Principal);
             //ListaParticipados.getLayoutParams().height = 165 * Cantidad;
             ListaParticipados.setAdapter(Adaptador);
             ListaParticipados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    VerTorneo VT = new VerTorneo();
+                    AdministrarTorneo VT = new AdministrarTorneo();
                     VT.setTorneoElegido(ArrayTorneos.get(i));
                     Principal.IrAFragment(VT,true);
                 }
@@ -186,7 +180,7 @@ public class Administracion extends Fragment {
         @Override
         public void onClick(View v) {
             Perfil perf = new Perfil();
-            IrAFragment(perf);
+            Principal.IrAFragment(perf,true);
         }
     };
 
@@ -194,14 +188,8 @@ public class Administracion extends Fragment {
         @Override
         public void onClick(View v) {
             Configuracion conf = new Configuracion();
-            IrAFragment(conf);
+            Principal.IrAFragment(conf,true);
         }
     };
 
-    public void IrAFragment(Fragment fragment){
-        TransaccionesDeFragment=AdminFragments.beginTransaction();
-        TransaccionesDeFragment.replace(R.id.Frame,fragment);
-        TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
-    }
 }

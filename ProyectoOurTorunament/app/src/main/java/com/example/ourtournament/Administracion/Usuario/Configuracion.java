@@ -1,4 +1,4 @@
-package com.example.ourtournament.Administracion;
+package com.example.ourtournament.Administracion.Usuario;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
-import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
 
 public class Configuracion extends Fragment {
