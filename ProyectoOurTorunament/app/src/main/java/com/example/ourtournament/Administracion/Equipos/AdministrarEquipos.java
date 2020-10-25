@@ -17,7 +17,7 @@ import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 
-public class AdministrarTorneo extends Fragment {
+public class AdministrarEquipos extends Fragment {
 
     MainActivity Principal;
     Preferencias P;
