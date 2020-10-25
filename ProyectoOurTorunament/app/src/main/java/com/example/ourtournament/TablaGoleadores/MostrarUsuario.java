@@ -64,7 +64,7 @@ public class MostrarUsuario extends Fragment {
             public void onClick(View view) {
                 MainActivity Principal = (MainActivity) getActivity();
                 TablaDeGoleadores TG = new TablaDeGoleadores();
-                Principal.IrAFragment(TG);
+                Principal.IrAFragment(TG,true);
             }
         });
         return VistaADevolver;

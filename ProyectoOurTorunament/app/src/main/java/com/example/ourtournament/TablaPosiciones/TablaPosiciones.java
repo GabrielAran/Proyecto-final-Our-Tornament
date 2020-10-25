@@ -116,7 +116,7 @@ public class TablaPosiciones extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MostrarEquipo MP = new MostrarEquipo();
                     MP.SetEquipoElegido(VecPosiciones.get(i));
-                    Principal.IrAFragment(MP);
+                    Principal.IrAFragment(MP,true);
                 }
             });
             Carga.setVisibility(View.GONE);

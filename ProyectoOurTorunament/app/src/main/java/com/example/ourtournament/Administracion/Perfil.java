@@ -72,7 +72,7 @@ public class Perfil extends Fragment {
         @Override
         public void onClick(View v) {
             Administracion admin = new Administracion();
-            Principal.IrAFragment(admin);
+            Principal.IrAFragment(admin,true);
         }
     };
 

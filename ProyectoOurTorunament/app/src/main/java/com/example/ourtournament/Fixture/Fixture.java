@@ -136,7 +136,7 @@ public class Fixture extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MostrarPartido MP = new MostrarPartido();
                     MP.SetPartidoElegido(lista.get(i));
-                    Principal.IrAFragment(MP);
+                    Principal.IrAFragment(MP,true);
                 }
             });
 

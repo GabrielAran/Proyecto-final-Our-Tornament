@@ -86,7 +86,7 @@ public class MostrarEquipo extends Fragment {
             public void onClick(View view) {
                 MainActivity Principal = (MainActivity) getActivity();
                 TablaPosiciones TP = new TablaPosiciones();
-                Principal.IrAFragment(TP);
+                Principal.IrAFragment(TP,true);
             }
         });
         return VistaADevolver;

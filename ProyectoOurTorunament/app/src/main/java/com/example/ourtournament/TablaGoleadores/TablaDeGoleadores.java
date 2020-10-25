@@ -107,7 +107,7 @@ public class TablaDeGoleadores extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     MostrarUsuario MU = new MostrarUsuario();
                     MU.SetGoleadorElegido(VecGoleadores.get(i));
-                    Principal.IrAFragment(MU);
+                    Principal.IrAFragment(MU,true);
                 }
             });
             Carga.setVisibility(View.GONE);

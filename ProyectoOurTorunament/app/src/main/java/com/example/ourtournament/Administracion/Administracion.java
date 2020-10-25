@@ -108,7 +108,7 @@ public class Administracion extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     VerTorneo VT = new VerTorneo();
                     VT.setTorneoElegido(ArrayTorneos.get(i));
-                    Principal.IrAFragment(VT);
+                    Principal.IrAFragment(VT,true);
                 }
             });
         }
@@ -156,7 +156,7 @@ public class Administracion extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     VerTorneo VT = new VerTorneo();
                     VT.setTorneoElegido(ArrayTorneos.get(i));
-                    Principal.IrAFragment(VT);
+                    Principal.IrAFragment(VT,true);
                 }
             });
         }

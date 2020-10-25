@@ -63,7 +63,7 @@ public class MainActivity<task> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         P = CargarSharedPreferences();
-        P.EliminarInt("IDUsuario");
+        //P.EliminarInt("IDUsuario");
         IDUsuario = P.ObtenerInt("IDUsuario",-1);
 
         if(IDUsuario==-1)
@@ -101,7 +101,7 @@ public class MainActivity<task> extends AppCompatActivity {
         CambiarColor();
         BTNFixture.setBackgroundResource(R.drawable.icono_fixture_verde);
 
-        IrAFragment(fixture);
+        IrAFragment(fixture,false);
     }
 
     public void IrATablaGoleadores(View vista)
@@ -109,28 +109,28 @@ public class MainActivity<task> extends AppCompatActivity {
         CambiarColor();
         BTNTablaDeGoleadores.setBackgroundResource(R.drawable.icono_tabla_goleadores_verde);
 
-        IrAFragment(tablaDeGoleadores);
+        IrAFragment(tablaDeGoleadores,false);
     }
 
     public void IrAInicio(View vista) {
         CambiarColor();
         BTNInicio.setBackgroundResource(R.drawable.icono_inicio_verde);
 
-        IrAFragment(inicio);
+        IrAFragment(inicio,false);
     }
 
     public void IrATablaPosiciones(View vista) {
         CambiarColor();
         BTNTablaDePosiciones.setBackgroundResource(R.drawable.icono_tabla_posiciones_verde);
 
-        IrAFragment(tabladeposiciones);
+        IrAFragment(tabladeposiciones,false);
     }
 
     public void IrAAdministracion(View vista) {
         CambiarColor();
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin_verde);
 
-        IrAFragment(admin);
+        IrAFragment(admin,false);
     }
 
     //Inicio
@@ -144,11 +144,14 @@ public class MainActivity<task> extends AppCompatActivity {
         BTNAdministracion.setBackgroundResource(R.drawable.icono_admin);
     }
 
-    public void IrAFragment(Fragment fragment){
+    public void IrAFragment(Fragment fragment,Boolean B){
         TransaccionesDeFragment=AdminFragments.beginTransaction();
         TransaccionesDeFragment.replace(R.id.Frame,fragment);
         TransaccionesDeFragment.commit();
-        TransaccionesDeFragment.addToBackStack(null);
+        if (B)
+        {
+            TransaccionesDeFragment.addToBackStack(null);
+        }
     }
     public void IrAFragmentDePantallaVacia(Fragment fragment){
         setContentView(R.layout.pantalla_vacia_con_fragment);
