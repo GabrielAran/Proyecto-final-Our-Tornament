@@ -59,7 +59,6 @@ namespace OurTournamentAPI.Controllers
             {
                 return NotFound();
             }
-
         }
 
         [HttpGet]

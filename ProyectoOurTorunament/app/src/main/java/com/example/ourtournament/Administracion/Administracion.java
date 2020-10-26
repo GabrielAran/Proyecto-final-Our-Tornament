@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.ourtournament.Administracion.Equipos.AdministrarEquipos;
 import com.example.ourtournament.Administracion.Torneos.AdaptadorTorneos;
 import com.example.ourtournament.Administracion.Torneos.AdministrarTorneo;
 import com.example.ourtournament.Administracion.Usuario.Configuracion;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 public class Administracion extends Fragment {
     FragmentManager AdminFragments;
     Button btn_Perfil, btn_Config;
+    Button Equipos;
     View VistaADevolver = null;
     private FragmentTransaction TransaccionesDeFragment;
     AdaptadorTorneos Adaptador;
@@ -158,6 +161,7 @@ public class Administracion extends Fragment {
     private void SetearListeners() {
         btn_Perfil.setOnClickListener(clickP);
         btn_Config.setOnClickListener(clickF);
+        Equipos.setOnClickListener(ClickEquipos);
     }
 
     private void Referencias() {
@@ -165,6 +169,7 @@ public class Administracion extends Fragment {
         ListaParticipados = VistaADevolver.findViewById(R.id.ListaTorneosParticipados);
         btn_Perfil = VistaADevolver.findViewById(R.id.btn_Perfil);
         btn_Config = VistaADevolver.findViewById(R.id.btn_Config);
+        Equipos = VistaADevolver.findViewById(R.id.Equipos);
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
     }
@@ -189,6 +194,14 @@ public class Administracion extends Fragment {
         public void onClick(View v) {
             Configuracion conf = new Configuracion();
             Principal.IrAFragment(conf,true);
+        }
+    };
+
+    private View.OnClickListener ClickEquipos = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            AdministrarEquipos AE = new AdministrarEquipos();
+            Principal.IrAFragment(AE,true);
         }
     };
 

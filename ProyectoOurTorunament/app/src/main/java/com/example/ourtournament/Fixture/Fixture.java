@@ -1,22 +1,13 @@
 package com.example.ourtournament.Fixture;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,38 +17,29 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.R;
-import com.example.ourtournament.TablaPosiciones.MostrarEquipo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.PropertyResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class Fixture extends Fragment {
     FragmentManager AdminFragments;
     View VistaADevolver = null;
     ListView ListView;
     ImageView Carga;
-    int ID;
+    int IDTorneo;
     private Spinner spinner;
     int JornadaElegida;
     Preferencias P;
@@ -75,9 +57,9 @@ public class Fixture extends Fragment {
         Animacion();
         final MainActivity Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
-        ID = P.ObtenerInt("IDTorneo",-1);
+        IDTorneo = P.ObtenerInt("IDTorneo",-1);
 
-        if(ID!=-1)
+        if(IDTorneo !=-1)
         {
             TraerJornadas Tarea = new TraerJornadas();
             Tarea.execute();
@@ -97,7 +79,7 @@ public class Fixture extends Fragment {
         @Override
         protected ArrayList<Partido> doInBackground(Void... voids) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+JornadaElegida+"/Torneo/"+ID;
+                String miURL = "http://10.0.2.2:55859/api/GetPartidos/Jornada/"+JornadaElegida+"/Torneo/"+ IDTorneo;
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -149,7 +131,7 @@ public class Fixture extends Fragment {
         protected ArrayList<String> doInBackground(Void... voids) {
             ArrayList<String> listaJornada= new ArrayList<>();
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetJornadas/Torneo/" + ID;
+                String miURL = "http://10.0.2.2:55859/api/GetJornadas/Torneo/" + IDTorneo;
                 Log.d("conexion", "estoy accediendo a la ruta "+miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
