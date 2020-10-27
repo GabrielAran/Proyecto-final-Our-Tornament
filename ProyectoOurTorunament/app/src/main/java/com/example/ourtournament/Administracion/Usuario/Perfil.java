@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,11 +32,13 @@ import java.util.GregorianCalendar;
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
     TextView Nombre, Edad, Email, Contrasenia, GolesEnTorneo;
+    EditText EDTNombre, EDTEdad, EDTEmail, EDTContrasenia, EDTGolesEnTorneo;
     ImageView foto;
     Button Volver;
     View VistaADevolver;
     MainActivity Principal;
     Preferencias P;
+    Usuario Usu;
     private FragmentTransaction TransaccionesDeFragment;
     @SuppressLint("SetTextI18n")
     @Override
@@ -62,10 +65,13 @@ public class Perfil extends Fragment {
         GolesEnTorneo = VistaADevolver.findViewById(R.id.GolesEnTorneo);
         foto = VistaADevolver.findViewById(R.id.foto);
         Volver = VistaADevolver.findViewById(R.id.Volver);
+
+        EDTNombre = VistaADevolver.findViewById(R.id.EDTNombre);
     }
 
     private void SetearListeners(){
         Volver.setOnClickListener(Atras);
+        Nombre.setOnClickListener(EditarNombre);
     }
 
     private View.OnClickListener Atras = new View.OnClickListener() {
@@ -76,13 +82,26 @@ public class Perfil extends Fragment {
         }
     };
 
+    private View.OnClickListener EditarNombre = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Nombre.setVisibility(View.INVISIBLE);
+            EDTNombre.setText(Usu.NombreUsuario);
+            EDTNombre.setSelection(EDTNombre.getText().length() - 1, 0);
+            EDTNombre.setSelectAllOnFocus(true);
+            v.clearFocus ();
+            v.requestFocus ();
+            v.setSelected(true);
+            EDTNombre.setVisibility(View.VISIBLE);
+        }
+    };
+
     private void LlenarDatos(){
-        String contra = "";
         Gson gson = new Gson();
         String usuario = P.ObtenerString("InformacionUsuario", "");
-        Usuario Usu = gson.fromJson(usuario, Usuario.class);
+        Usu = gson.fromJson(usuario, Usuario.class);
 
-        Log.d("conexion",String.valueOf(Usu.FechaDeNacimiento));
+        String contra = "";
         for (int i = 0; i < Usu.Contrasenia.length() ;i++)
         {
             contra += "*";

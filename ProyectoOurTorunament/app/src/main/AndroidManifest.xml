@@ -13,6 +13,7 @@
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
+        android:windowSoftInputMode="adjustPan"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" android:theme="@style/SplashScreen">
             <intent-filter>
