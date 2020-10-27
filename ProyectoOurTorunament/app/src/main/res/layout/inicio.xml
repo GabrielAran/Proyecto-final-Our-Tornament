@@ -31,8 +31,8 @@
             android:layout_gravity="center"
             android:text="Our Tournament"
             android:textColor="#FFF"
-            android:fontFamily="@font/tabarrashadow"
-            android:textSize="26sp" />
+            android:fontFamily="@font/sansposterbold"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout

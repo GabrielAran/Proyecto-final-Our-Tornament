@@ -3,6 +3,7 @@ package com.example.ourtournament.Administracion.Equipos;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,19 +23,20 @@ import java.util.ArrayList;
 
 
 public class AdaptadorAdminEquipos extends ArrayAdapter<Equipo> {
-
-    ArrayList<Equipo> _ListaEquipos;
-    int _Resource;
-    Context _Contexto;
+    private ArrayList<Equipo> _ListaEquipos;
+    private int _Resource;
+    private Context _Contexto;
     public AdaptadorAdminEquipos(Context contexto, int Resource, ArrayList<Equipo> ListaEquipos) {
         super(contexto, Resource, ListaEquipos);
-        this._ListaEquipos = _ListaEquipos;
+        this._ListaEquipos = ListaEquipos;
         this._Contexto = contexto;
         this._Resource = Resource;
+        Log.d("conexion",String.valueOf(_ListaEquipos.size()));
     }
 
     @SuppressLint("ViewHolder")
-    public View getView(final int pos, View VistaADevolver, ViewGroup GrupoActual) {
+    public View getView(int pos, View VistaADevolver, ViewGroup GrupoActual) {
+        Log.d("conexion","Entre en pos: "+pos);
         LayoutInflater MiInflador;
         if (VistaADevolver == null) {
             MiInflador = LayoutInflater.from(this._Contexto);

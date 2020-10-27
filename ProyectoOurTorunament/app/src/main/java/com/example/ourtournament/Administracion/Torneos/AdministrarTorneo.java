@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.example.ourtournament.Administracion.Equipos.AdministrarEquipos;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.Torneo;
@@ -30,7 +31,7 @@ public class AdministrarTorneo extends Fragment{
     MainActivity Principal;
     Preferencias P;
     ImageView Perfil;
-    Button Volver;
+    Button Volver, Equipos;
     TextView NombreTorneo;
     View VistaADevolver = null;
 
@@ -42,6 +43,7 @@ public class AdministrarTorneo extends Fragment{
             Perfil = VistaADevolver.findViewById(R.id.foto);
             Volver = VistaADevolver.findViewById(R.id.Volver);
             NombreTorneo = VistaADevolver.findViewById(R.id.NombreTorneo);
+            Equipos = VistaADevolver.findViewById(R.id.Equipos);
             Principal = (MainActivity) getActivity();
             P = Principal.CargarSharedPreferences();
         }
@@ -60,6 +62,13 @@ public class AdministrarTorneo extends Fragment{
 
                 });
         NombreTorneo.setText(T.NombreTorneo);
+        Equipos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AdministrarEquipos AE = new AdministrarEquipos();
+                Principal.IrAFragment(AE,true);
+            }
+        });
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -55,6 +55,8 @@ public class AdministrarEquipos extends Fragment {
         }
 
         IDTorneo = P.ObtenerInt("IDTorneo",-1);
+        TraerEquiposPorTorneo Tarea = new TraerEquiposPorTorneo();
+        Tarea.execute();
 
         return VistaADevolver;
     }
@@ -95,10 +97,8 @@ public class AdministrarEquipos extends Fragment {
         }
         protected void onPostExecute(ArrayList<Equipo> lista)
         {
-
             AdaptadorAdminEquipos Adaptador = new AdaptadorAdminEquipos(Principal,R.layout.item_admin_equipos,lista);
             ListaEquipos.setAdapter(Adaptador);
-
         }
     }
 }

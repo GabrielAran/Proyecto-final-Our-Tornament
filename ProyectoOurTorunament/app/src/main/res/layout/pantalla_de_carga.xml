@@ -14,10 +14,11 @@
         android:src="@mipmap/logo"
         />
     <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="240dp"
+        android:layout_height="80dp"
         android:textColor="#FFF"
         android:text="OUR TOURNAMENT"
+        android:fontFamily="@font/sansposterbold"
         android:gravity="center"
         android:textSize="20dp"/>
 
