@@ -60,7 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="18dp"
                         android:text="Nombre torneo"
                         android:textColor="#FFF"
                         android:textSize="26sp" />
@@ -69,7 +69,7 @@
                         android:id="@+id/Seguidores"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginLeft="10dp"
                         android:text="0"
                         android:textColor="#FFF"
@@ -88,14 +88,14 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
+            <Button
                 android:id="@+id/ListaDeEspera"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="40dp"
                 android:text="Lista de espera"
                 android:textColor="#000"
-                android:paddingLeft="60dp"
+                android:paddingLeft="40dp"
                 android:gravity="center_vertical"
                 android:background="@drawable/fondo_barra_torneo"
                 android:textSize="24sp" />
@@ -106,30 +106,31 @@
                 android:layout_marginTop="4dp"
                 android:text="Equipos"
                 android:textColor="#000"
-                android:paddingStart="60dp"
+                android:paddingStart="40dp"
                 android:gravity="center_vertical"
                 android:background="@drawable/fondo_barra_torneo"
                 android:textSize="24sp"
                 tools:ignore="RtlSymmetry" />
-            <TextView
+
+            <Button
                 android:id="@+id/Partidos"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="4dp"
-                android:text="Partidos"
-                android:paddingLeft="60dp"
-                android:textColor="#000"
-                android:gravity="center_vertical"
                 android:background="@drawable/fondo_barra_torneo"
-                android:textSize="24sp"
-            />
-            <TextView
+                android:gravity="center_vertical"
+                android:paddingLeft="40dp"
+                android:text="Partidos"
+                android:textColor="#000"
+                android:textSize="24sp" />
+
+            <Button
                 android:id="@+id/Noticias"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="4dp"
                 android:text="Noticias"
-                android:paddingLeft="60dp"
+                android:paddingLeft="40dp"
                 android:textColor="#000"
                 android:gravity="center_vertical"
                 android:background="@drawable/fondo_barra_torneo"

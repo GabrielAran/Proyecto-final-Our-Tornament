@@ -65,7 +65,6 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
         imageView =VistaADevolver.findViewById(R.id.imageView);
 
         Noticia Not = getItem(pos);
-        Log.d("conexion",String.valueOf(Not.IDNoticia));
         if(Not.Destacada)
         {
             Destacada.setVisibility(View.VISIBLE);

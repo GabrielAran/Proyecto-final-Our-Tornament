@@ -35,13 +35,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class MostrarPartido extends Fragment {
-    TextView Jorn,E1,E2,jugado,Resultado;
+    TextView Jorn,E1,E2,jugado,Resultado,NombreE1,NombreE2;
     Partido Par;
-    Preferencias P;
     Button Volver;
     ImageView Foto1,Foto2;
     ListView lista1,lista2;
     View VistaADevolver;
+    ArrayList<GolesXUsuario> Goles1;
+    ArrayList<GolesXUsuario> Goles2;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -50,6 +51,9 @@ public class MostrarPartido extends Fragment {
             VistaADevolver = inflador.inflate(R.layout.un_partido, GrupoDeLaVista, false);
             finds(VistaADevolver);
         }
+
+        Goles1 = new ArrayList<>();
+        Goles2 = new ArrayList<>();
 
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(Par.FechaDeEncuentro);
@@ -63,16 +67,15 @@ public class MostrarPartido extends Fragment {
             jugado.setText("El partido se jugara el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
             Resultado.setText("-:-");
 
-            ArrayList<String> Goles1 = new ArrayList<>();
+            GolesXUsuario GU = new GolesXUsuario(-1,-1,"No hay goles",-1,"");
+            Goles1.add(GU);
+
             ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
-            Goles1.add("No hay goles");
-            ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
+            AdaptadorGolesXPartido Adaptador = new AdaptadorGolesXPartido(Goles1, R.layout.item_goles_por_usuario, getActivity().getApplicationContext());
             lista1.setAdapter(Adaptador);
 
-            ArrayList<String> Goles2 = new ArrayList<>();
             ListView lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
-            ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
-            Goles2.add("No hay goles");
+            AdaptadorGolesXPartido Adaptador2 = new AdaptadorGolesXPartido(Goles1, R.layout.item_goles_por_usuario, getActivity().getApplicationContext());
             lista2.setAdapter(Adaptador2);
         }else
         {
@@ -91,6 +94,8 @@ public class MostrarPartido extends Fragment {
         Jorn.setText("Jornada "+Par.Jornada);
         E1.setText(Par.NombreEquipoLocal);
         E2.setText(Par.NombreEquipoVisitante);
+        NombreE1.setText(Par.NombreEquipoLocal);
+        NombreE2.setText(Par.NombreEquipoVisitante);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +124,9 @@ public class MostrarPartido extends Fragment {
         E1 = VistaADevolver.findViewById(R.id.Equipo1);
         E2 = VistaADevolver.findViewById(R.id.Equipo2);
         Volver = VistaADevolver.findViewById(R.id.Volver);
+
+        NombreE1 = VistaADevolver.findViewById(R.id.NombreE1);
+        NombreE2 = VistaADevolver.findViewById(R.id.NombreE2);
 
         lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
         lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
@@ -160,25 +168,29 @@ public class MostrarPartido extends Fragment {
         }
         protected void onPostExecute(ArrayList<GolesXUsuario> lista)
         {
-            ArrayList<String> Goles1 = new ArrayList<>();
-            ArrayList<String> Goles2 = new ArrayList<>();
-            Goles1.add(Par.NombreEquipoLocal);
-            Goles2.add(Par.NombreEquipoVisitante);
+            Log.d("conexion",String.valueOf(lista.size()));
+            /*
+            GolesXUsuario GU1 = new GolesXUsuario(-1,-1, Par.NombreEquipoLocal,-1, Par.NombreEquipoLocal);
+            GolesXUsuario GU2 = new GolesXUsuario(-1,-1, Par.NombreEquipoVisitante,-1, Par.NombreEquipoVisitante);
+            Goles1.add(GU1);
+            Goles2.add(GU2);
+
+             */
             for(int i=0;i<lista.size();i++)
             {
                 if (lista.get(i).Nombreequipo.equals(Par.NombreEquipoLocal))
                 {
-                    Goles1.add(lista.get(i).Cantgoles+" - "+ lista.get(i).NombreUsuario);
+                    Goles1.add(lista.get(i));
                 }else if (lista.get(i).Nombreequipo.equals(Par.NombreEquipoVisitante))
                 {
-                    Goles2.add(lista.get(i).Cantgoles+" - "+ lista.get(i).NombreUsuario);
+                    Goles2.add(lista.get(i));
                 }
             }
 
-            ArrayAdapter<String> Adaptador = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles1);
+            AdaptadorGolesXPartido Adaptador = new AdaptadorGolesXPartido(Goles1, R.layout.item_goles_por_usuario, getActivity().getBaseContext());
             lista1.setAdapter(Adaptador);
 
-            ArrayAdapter<String> Adaptador2 = new ArrayAdapter<>(getActivity().getApplicationContext(), R.layout.simple_lista_centrada, Goles2);
+            AdaptadorGolesXPartido Adaptador2 = new AdaptadorGolesXPartido(Goles2, R.layout.item_goles_por_usuario, getActivity().getApplicationContext());
             lista2.setAdapter(Adaptador2);
         }
     }
