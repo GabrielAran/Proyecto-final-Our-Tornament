@@ -7,6 +7,7 @@
     android:layout_height="60dp"
     android:background="@drawable/borde_fondo_manteca">
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/Foto"
         android:layout_width="40dp"

@@ -67,7 +67,7 @@ public class AdaptadorGolesXPartido extends ArrayAdapter<GolesXUsuario>
                 Palabra = " Gol";
             }
             Goles.setText(GU.Cantgoles+Palabra);
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
+            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID"+ GU.IdUsuario+"_Perfil.JPG";
             Picasso.get().load(Ruta)
                     .into(Foto, new com.squareup.picasso.Callback() {
                         @Override

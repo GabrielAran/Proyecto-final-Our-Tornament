@@ -67,23 +67,16 @@ public class MostrarPartido extends Fragment {
             jugado.setText("El partido se jugara el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
             Resultado.setText("-:-");
 
-            GolesXUsuario GU = new GolesXUsuario(-1,-1,"No hay goles",-1,"");
-            Goles1.add(GU);
-
-            ListView lista1 = VistaADevolver.findViewById(R.id.ListaGolesE1);
-            AdaptadorGolesXPartido Adaptador = new AdaptadorGolesXPartido(Goles1, R.layout.item_goles_por_usuario, getActivity().getApplicationContext());
-            lista1.setAdapter(Adaptador);
-
-            ListView lista2 = VistaADevolver.findViewById(R.id.ListaGolesE2);
-            AdaptadorGolesXPartido Adaptador2 = new AdaptadorGolesXPartido(Goles1, R.layout.item_goles_por_usuario, getActivity().getApplicationContext());
-            lista2.setAdapter(Adaptador2);
+            NombreE1.setText("No hay goles");
+            NombreE2.setText("No hay goles");
         }else
         {
             TraerGoles Tarea = new TraerGoles();
             Tarea.execute();
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
             jugado.setText("El partido se jugo el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
-
+            NombreE1.setText(Par.NombreEquipoLocal);
+            NombreE2.setText(Par.NombreEquipoVisitante);
         }
 
         String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG";
@@ -94,8 +87,7 @@ public class MostrarPartido extends Fragment {
         Jorn.setText("Jornada "+Par.Jornada);
         E1.setText(Par.NombreEquipoLocal);
         E2.setText(Par.NombreEquipoVisitante);
-        NombreE1.setText(Par.NombreEquipoLocal);
-        NombreE2.setText(Par.NombreEquipoVisitante);
+
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override

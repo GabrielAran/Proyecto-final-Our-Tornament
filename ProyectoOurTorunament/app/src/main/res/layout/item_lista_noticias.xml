@@ -30,8 +30,8 @@
             android:textSize="24sp" />
         <ImageView
             android:id="@+id/Destacada"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:srcCompat="@drawable/estrella" />
     </LinearLayout>
 

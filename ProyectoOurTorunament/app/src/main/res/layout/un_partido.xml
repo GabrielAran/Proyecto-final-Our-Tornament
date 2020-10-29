@@ -165,7 +165,7 @@
         android:gravity="center"
         android:text="Nombre"
         android:textColor="#FFF"
-        android:textSize="24dp"
+        android:textSize="20dp"
         android:background="@drawable/borde_verde_fondo_nada"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Goles" />
@@ -180,7 +180,7 @@
         android:gravity="center"
         android:text="Nombre"
         android:textColor="#FFF"
-        android:textSize="24dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Goles" />
 

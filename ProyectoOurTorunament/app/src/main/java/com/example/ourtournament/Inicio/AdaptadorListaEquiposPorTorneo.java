@@ -63,6 +63,8 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
     private ArrayList<Equipo> _ListaEquipos;
     private Context _Contexto;
     private int _Resource;
+    private ArrayList<Boolean> ListaDestacado;
+    final Boolean[] Destacado = {false};
 
     public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista)
     {
@@ -75,10 +77,20 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
             lista.add(E);
         }
         this._ListaEquipos = lista;
+        LLenarListaBoleans(lista.size());
+    }
+
+    public void LLenarListaBoleans(int Cantidad)
+    {
+        ListaDestacado = new ArrayList<>();
+        for (int i=0;i<Cantidad;i++)
+        {
+            ListaDestacado.add(false);
+        }
     }
 
     @SuppressLint("ViewHolder")
-    public View getView(int pos, View VistaADevolver, ViewGroup GrupoActual)
+    public View getView(final int pos, View VistaADevolver, ViewGroup GrupoActual)
     {
         ImageView Foto;
         final Button Destacada;
@@ -104,18 +116,28 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
         String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto);
 
-        final Boolean[] Destacado = {false};
+        if (!ListaDestacado.get(pos))
+        {
+            Destacada.setBackgroundResource(R.drawable.estrella_equipos);
+        }else
+        {
+            Destacada.setBackgroundResource(R.drawable.estrella_equipo_favorito);
+        }
         Destacada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Destacado[0] == false)
+                if (!ListaDestacado.get(pos))
                 {
-                    Destacada.setBackgroundResource(R.drawable.estrella_equipo_favorito);
-                    Destacado[0] =true;
+                    for (int i=0;i<ListaDestacado.size();i++)
+                    {
+                        ListaDestacado.set(i,false);
+                    }
+                    ListaDestacado.set(pos,true);
+                    notifyDataSetChanged();
                 }else
                 {
-                    Destacada.setBackgroundResource(R.drawable.estrella_equipos);
-                    Destacado[0] =false;
+                    ListaDestacado.set(pos,false);
+                    notifyDataSetChanged();
                 }
             }
         });
@@ -123,6 +145,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
         {
             Foto.setVisibility(View.GONE);
             Destacada.setVisibility(View.GONE);
+            Destacada.setEnabled(false);
         }
 
         return  VistaADevolver;
