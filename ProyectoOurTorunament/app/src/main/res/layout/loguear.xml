@@ -47,7 +47,6 @@
         android:gravity="center"
         android:layout_marginTop="8dp"
         android:text="Bienvenido a Our tournament"
-        android:fontFamily="@font/sansposterbold"
         android:textColor="#FFF"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"

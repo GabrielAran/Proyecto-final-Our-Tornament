@@ -25,7 +25,6 @@
             android:textColor="#FFF"
             android:textSize="20sp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/sansposterbold"
             app:layout_constraintBottom_toBottomOf="@+id/header2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -166,7 +165,7 @@
         android:text="Nombre"
         android:textColor="#FFF"
         android:textSize="20dp"
-        android:background="@drawable/borde_verde_fondo_nada"
+        android:background="@drawable/borde_gris_fondo_negro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Goles" />
 
@@ -176,7 +175,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/borde_verde_fondo_nada"
+        android:background="@drawable/borde_gris_fondo_negro"
         android:gravity="center"
         android:text="Nombre"
         android:textColor="#FFF"

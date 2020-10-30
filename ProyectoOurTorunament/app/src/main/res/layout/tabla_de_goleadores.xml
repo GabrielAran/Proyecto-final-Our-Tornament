@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tabla de goleadores"
-            android:fontFamily="@font/sansposterbold"
             android:textColor="@android:color/background_light"
             android:textSize="20dp"
             android:layout_marginLeft="10dp"

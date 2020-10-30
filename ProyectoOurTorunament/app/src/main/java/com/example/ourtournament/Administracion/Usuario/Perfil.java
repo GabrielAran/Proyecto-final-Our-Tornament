@@ -32,14 +32,12 @@ import java.util.GregorianCalendar;
 public class Perfil extends Fragment {
     FragmentManager AdminFragments;
     TextView Nombre, Edad, Email, Contrasenia, GolesEnTorneo;
-    EditText EDTNombre, EDTEdad, EDTEmail, EDTContrasenia, EDTGolesEnTorneo;
     ImageView foto;
     Button Volver;
     View VistaADevolver;
     MainActivity Principal;
     Preferencias P;
     Usuario Usu;
-    private FragmentTransaction TransaccionesDeFragment;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -65,13 +63,10 @@ public class Perfil extends Fragment {
         GolesEnTorneo = VistaADevolver.findViewById(R.id.GolesEnTorneo);
         foto = VistaADevolver.findViewById(R.id.foto);
         Volver = VistaADevolver.findViewById(R.id.Volver);
-
-        EDTNombre = VistaADevolver.findViewById(R.id.EDTNombre);
     }
 
     private void SetearListeners(){
         Volver.setOnClickListener(Atras);
-        Nombre.setOnClickListener(EditarNombre);
     }
 
     private View.OnClickListener Atras = new View.OnClickListener() {
@@ -82,19 +77,6 @@ public class Perfil extends Fragment {
         }
     };
 
-    private View.OnClickListener EditarNombre = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Nombre.setVisibility(View.INVISIBLE);
-            EDTNombre.setText(Usu.NombreUsuario);
-            EDTNombre.setSelection(EDTNombre.getText().length() - 1, 0);
-            EDTNombre.setSelectAllOnFocus(true);
-            v.clearFocus ();
-            v.requestFocus ();
-            v.setSelected(true);
-            EDTNombre.setVisibility(View.VISIBLE);
-        }
-    };
 
     private void LlenarDatos(){
         Gson gson = new Gson();

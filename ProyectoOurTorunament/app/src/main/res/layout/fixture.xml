@@ -28,7 +28,6 @@
             android:layout_height="40dp"
             android:text="Fixture"
             android:gravity="center"
-            android:fontFamily="@font/sansposterbold"
             android:textSize="20dp"
             android:textColor="#FFF"
             android:layout_marginLeft="10dp"
