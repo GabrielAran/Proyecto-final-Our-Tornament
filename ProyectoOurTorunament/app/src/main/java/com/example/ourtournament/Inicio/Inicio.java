@@ -15,11 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Noticia;
@@ -83,6 +85,8 @@ public class Inicio extends Fragment {
 
         IraNoticias();
 
+        irNoticiasEspecificas();
+
         return VistaADevolver;
     }
 
@@ -110,7 +114,22 @@ public class Inicio extends Fragment {
         Buscar.setTextColor(Color.rgb(255,255,255));
         Noticias.setTextColor(Color.rgb(60,188,128));
         Animacion(renglon,"X",-10);
+
+        irNoticiasEspecificas();
     }
+
+    private void irNoticiasEspecificas() {
+        listanoticias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("GAbi", "Entre al ir a noticias");
+                MainActivity Principal = (MainActivity) getActivity();
+                NoticiasEspecificas ne = new NoticiasEspecificas();
+                Principal.IrAFragment(ne,true);
+            }
+        });
+    }
+
     public void IraTorneos()
     {
         Buscador.setVisibility(View.GONE);
