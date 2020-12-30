@@ -1,4 +1,4 @@
-package com.example.ourtournament.TablaPosiciones;
+dpackage com.example.ourtournament.TablaPosiciones;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
